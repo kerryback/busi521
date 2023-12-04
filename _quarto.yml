@@ -1,0 +1,31 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - index.qmd
+    - slides.qmd
+    - assignments.qmd
+               
+website:
+  title: ""
+  search: false  
+  navbar:
+    search: false
+    title: BUSI 521 / ECON 505
+    file: index.qmd
+    right:
+      - text: Slides
+        file: slides.qmd
+      - text: Assignments
+        file: assignments.qmd     
+        
+format: 
+  html:
+    theme: cosmo
+    scss: styles.css
+    link-external-newwindow: true
+    
+   
+
+
+

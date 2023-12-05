@@ -7,3 +7,52 @@
 <br>
 J. Howard Creekmore Professor of Finance and Professor of Economics<br>
 <a href="mailto:kerryback@gmail.com">kerryback@gmail.com</a>
+
+#### Meeting Schedule
+
+TTh 2:30 -- 3:45, 1/9/2024 -- 4/18/2024
+
+
+#### Textbook
+
+[Asset Pricing and Portfolio Choice Theory](https://www.amazon.com/Portfolio-Financial-Management-Association-Synthesis/product-reviews/0190241144/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews), Oxford University Press, 2nd Edition, 2017.
+
+#### Course Description
+
+This course is an introduction to asset pricing and portfolio choice theory. This is the foundation for the ‘investments’ branch of finance. Understanding
+how assets are priced is also important for issuing entities, like corporations, so asset
+pricing is also part of the foundation for corporate finance. Of course, prices are determined by supply and demand. We take supply (a topic in corporate finance) as given in
+this course and study demand (portfolio choice).
+
+Uncertainty and time are the two key elements of portfolio choice. We will start with
+single-period models and then move to dynamic models in both discrete and continuous
+time. We’ll develop the theory of dynamic programming in continuous time and use it to
+study portfolio choice and some corporate investment decisions. Dynamic programming
+and other aspects of the mathematics of uncertainty in continuous time are useful in
+other areas of economics and finance as well.
+
+#### Course Calendar
+
+This is a cross-listed course between the Jones School and the School of Social Sciences.  We will follow the School of Social Sciences academic calendar.  We meet TTh from 2:30-3:45 commencing January 9.  The last class day is April 19.  Per the university calendar, there will be on class on February 8 or or March 12 and March 14 (spring break).
+The midterm exam will be February 27.  The final exam will be during exam week.
+
+
+#### Grading
+
+Grades will be based 20% on individual homework assignments, 30% on the
+midterm exam, 10% on class participation, and 40% on the final exam.  Class participation means being present and attentive in class.
+
+#### Honor Code
+
+The Rice University Honor Code applies to all work in this course. The intent of the
+Honor Code in general and specifically in this course is to ensure that each student claims
+and receives credit for their own efforts. The intent is not to limit the valuable exchange
+of ideas through discussion among fellow students. The atmosphere at Rice University
+must be one of academic and personal integrity. Any suspected violations of the Honor
+Code are submitted to the Rice University Honor Council.
+
+#### Disability Accommodations
+
+Any student with a disability requiring accommodations in this class should contact me
+after contacting the Disabled Student Services office
+

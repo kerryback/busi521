@@ -1,2 +1,14 @@
 ## Assignments<br>Asset Pricing / Financial Economics I<br>Rice University
 
+1.  Due Jan 16.  Exercises 1.2, 1.5, and 1.12.
+2.  Due Jan 23.  Exercises 2.2, 2.7, and 2.8.
+3.  Due Jan 30.  Exercises 3.2, 4.1 (skip part e), and 4.6.
+4.  Due Feb 6.  Exercises 5.1, 5.4, and 5.9.
+5.  Due Feb 13.  Exercises 6.1, 6.5, and 6.6.
+6.  Due Feb 20.  Exercises 7.2, 7.3, and 7.4.
+7.  Due Mar 19.  Exercises 12.2, 12.3, and 12.7.
+8.  Due Mar 26.  Exercises 13.1, 13.2, and 13.3.
+9.  Due Apr 2.  Exercises 14.5 and 14.6.
+10. Due Apr 9.  Exercises 15.2, 15.4, and 15.5.
+11.  Due Apr 16.  Exercises 15.6, 16.3, and 16.5.
+

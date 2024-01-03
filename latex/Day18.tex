@@ -1,0 +1,654 @@
+\documentclass[xcolor=dvipsnames,10pt]{beamer}
+\input{head.tex}
+\newcommand{\tu}{\tilde{u}}
+\begin{document}
+\title{\vskip 0.5in Day 18}
+\subtitle{Brownian Motion and Stochastic Calculus}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\bfr\frametitle{Continuous-Time Model of a Stock Price}
+\bi
+\im Notation: 
+$S=\,$ stock price, $B = \,$ Brownian motion, $\mu$ and $\sigma$ are constants or stochastic processes.
+\im Stock price model:
+$$\frac{\D S}{S}=\mu\,\D t+\sigma\,\D B$$
+\im 
+$\mu\,\D t =\,$ expected rate of return, $\sigma\,\D B=\,$ risk
+\im Our goal is to understand what equations like this mean and to learn how to work with them.
+\im The first task is to explain Brownian motion.
+\ei
+
+
+
+\end{frame}
+
+\bfr\frametitle{Stochastic Process}
+\bi
+\im A stochastic process $X$ in continuous time is a collection of random variables  $X_t$ for $t\in [0,\infty)$ or for $t\in[0,T]$.  
+\im The state of the world $\omega$ determines the value $X_t(\omega)$ at each time~$t$.  
+\im A stochastic process can be viewed as a random function of time $t \mapsto X_t(\omega)$.  The function of time is called a path of the stochastic process.
+\ei
+\end{frame}
+
+\section{Brownian Motion}
+\subsection{}
+
+\bfr\frametitle{Brownian Motion}
+\bi
+\im A Brownian motion \index{Brownian motion} is a continuous-time stochastic process~$B$ with the property that, for any dates $t<u$, and \alert{conditional on information at date~$t$, the change $B_u-B_t$ is normally distributed with mean zero and variance $u-t$}. 
+\im Equivalently, \alert{$B_u$ is conditionally normally distributed with mean $B_t$ and variance $u-t$}.  In particular, the distribution of $B_u-B_t$ is the same for any conditioning information and hence is independent of conditioning information.  This is expressed by saying that the Brownian motion has \alert{independent increments}.  
+\im We can regard \alert{$\Delta B = B_u-B_t$ as noise that is unpredictable by any date--$t$ information}.  The starting value of a Brownian motion is typically not important, because only the increments $\Delta B$ are usually used to define the randomness in a model, so we can and will take $B_0=0$.
+\ei
+\end{frame}
+
+\bfr\frametitle{Brownian Motion and Information}
+\bi
+\im A Brownian motion with respect to some information might not be a Brownian motion with respect to other information.  
+\im For example, a stochastic process could be a Brownian motion for some investors but not for better informed investors, who might be able to predict the increments to some degree.  
+\im It is part of the definition of a Brownian motion that the past values $B_s$ for $s \leq t$ are part of the information  at each date~$t$.
+\ei
+\end{frame}
+
+\bfr\frametitle{Continuous Nondifferentiable Paths}
+\bi
+\im The paths of a Brownian motion make many small up-and-down movements with extremely high frequency, so that the limits $\lim_{s\rightarrow t} (B_t-B_s)/(t-s)$ defining derivatives do not exist.  
+\im With probability 1, a path of a Brownian motion is
+\bi
+\im continuous
+\im almost everywhere nondifferentiable
+\ei
+\im The name ``Brownian motion'' stems from the  observations by the botanist Robert Brown of the erratic behavior of particles suspended in a fluid.  
+\ei
+\end{frame}
+
+\bfr\frametitle{Quadratic Variation of Brownian Paths}
+\bi
+\im Let~$B$ be a Brownian motion.  Consider a  discrete partition
+$$s=t_0 < t_1 < t_2 < \cdots < t_N=u$$
+of a time interval $[s,u]$.
+\im Consider the sum of squared changes
+$$\sum_{i=1}^N (B_{t_i}-B_{t_{i-1}})^2$$
+in some state of the world.
+\im If we consider finer partitions (i.e., increase~$N$) with the maximum length $t_i-t_{i-1}$ of the time intervals  going to zero as $N \rightarrow \infty$, the limit of the sum is called the quadratic variation of the path of~$B$.  
+\im The quadratic variation of the path of a Brownian motion over any interval $[s,u]$ is equal to $u-s$ with probability~1.
+\ei
+\end{frame}
+
+
+\bfr\frametitle{Quadratic Variation of Usual Functions of Time}
+\bi
+\im The quadratic variation of any continuously differentiable function is zero.  
+\im Consider, for example, a
+linear function of time: $f_t = at$ for some constant~$a$.  
+\im Taking $t_i-t_{i-1} = \Delta t = (u-s)/N$ for each~$i$, the sum of 
+squared changes over an interval $[s,u]$ is
+$$\sum_{i=1}^N (f_{t_i}-f_{t_{i-1}})^2 = \sum_{i=1}^N  (a\,\Delta t)^2  = Na^2 \left(\frac{u-s}{N}\right)^2 = \frac{a^2(u-s)^2}{N} \rightarrow~0$$
+as $N \rightarrow \infty$.  
+\ei
+\end{frame}
+
+
+\bfr\frametitle{Total Variation of Brownian Paths}
+\bi
+\im Total variation is defined in the same way as quadratic variation but with the squared changes  replaced by the absolute values of the changes.   
+\im Brownian paths have infinite total variation (with probability~1).
+\bi
+\im In general, for continuous functions, finite total variation $\,\Rightarrow\,$ zero quadratic variation.
+\im So, nonzero quadratic variation $\,\Rightarrow\,$ infinite total variation.
+\ei
+\im Infinite total variation means that if we were to straighten out a path of a Brownian motion to measure it, its length would be infinite.  This is true no matter how small the time period over which we measure the path.
+\ei
+\end{frame}
+
+\section{Martingales}
+\subsection{}
+
+\bfr\frametitle{Continuous Martingales}
+\bi
+\im A martingale \index{martingale!continuous martingale} is a stochastic process~$X$ with the property that $\mye_t[X_u]= X_t$ for each $t<u$ (equivalently, $\mye_t[X_u-X_t] = 0$). 
+\bi
+\im In discrete time, if $M$ is an SDF process and $W$ is a self-financing wealth process, then $MW$ is a martingale.
+\ei
+\im A continuous martingale is a martingale for which all of the paths are continuous (up to a null set).  
+\im Every continuous martingale that is not constant has infinite total variation.
+\ei
+\end{frame}
+
+\bfr\frametitle{Levy's Theorem}
+\bi
+\im Aa continuous martingale is a Brownian motion if and only if its quadratic variation over each interval $[s,u]$ equals $u-s$.
+\im Thus, if a stochastic process has (i) continuous paths, (ii) conditionally mean-zero increments, and (iii) quadratic variation over each interval equal to the length of the interval, then its increments must also be \bi
+\im (iv) independent of conditioning information and 
+\im (v) normally distributed.
+\ei
+\im It is possible to deform the time scale (speeding up or slowing down the clock) to convert any continuous martingale into a Brownian motion.
+\im Also, we can form continuous martingales from Brownian motions via stochastic integrals.
+\ei
+\end{frame}
+
+\section{It\^o Integral}
+\subsection{}
+
+\bfr\frametitle{Stochastic Integrals}
+If~$\theta$ is a stochastic process adapted to the information with respect to which~$B$ is a Brownian motion, is jointly measurable in $(t,\omega)$, and satisfies
+$$
+\int_0^T \theta_t^2\,\D t < \infty
+$$
+with probability~1, and if $M_0$ is a constant,
+then we can define the stochastic process
+$$
+M_t = M_0+\int_0^t \theta_s\,\D B_s
+$$
+for $t \in [0,T]$.  This is called an It\^o integral \index{It\^o integral} or stochastic integral.
+
+\end{frame}
+
+\bfr\frametitle{Approximating Stochastic Integrals}
+For each~$t$, the stochastic integral can be approximated as (is a limit in probability of)
+$$
+\sum_{i=1}^N \theta_{t_{i-1}}(B_{t_i}-B_{t_{i-1}})
+$$
+given  discrete partitions
+$$0=t_0 < t_1 < t_2 < \cdots < t_N=t$$
+of the time interval $[0,t]$ with the maximum length $t_i-t_{i-1}$ of the time intervals going to zero as $N \rightarrow \infty$.   Note that~$\theta$ is evaluated in this sum at the beginning of each interval $[t_{i-1},t_i]$ over which the change in~$B$ is computed.
+\end{frame}
+
+\bfr\frametitle{Differential Form}
+Given 
+$$
+M_t = M_0+\int_0^t \theta_s\,\D B_s
+$$
+ we write
+$$
+\D M_t = \theta_t\,\D B_t
+$$ or, more simply, 
+$$\D M = \theta\,\D B$$ 
+We can define $M$ from the formula $\D M = \theta\,\D B$ and the initial condition $M_0$  by ``summing'' the changes $\D M$ as
+$$M_t = M_0 + \int_0^t \D M_s =  M_0+\int_0^t \theta_s\,\D B_s\,.$$
+\end{frame}
+
+
+
+\bfr\frametitle{It\^o Process}
+The sum of an ordinary integral and a stochastic integral is called an It\^o process. \index{It\^o process} Such a process has the form
+$$
+Y_t = Y_0 + \int_0^t \alpha_s\,\D s + \int_0^t \theta_s\,\D B_s\,,
+$$
+which is also written as
+$$
+\D Y_t = \alpha_t\,\D t + \theta_t\,\D B_t
+$$
+or, more simply, as $$\D Y = \alpha\,\D t+ \theta\,\D B$$
+We recover $Y$ from this differential form by ``summing'' the changes $\D Y$ over time.
+The process~$\alpha$ is called the \alert{drift} of~$Y$.
+\end{frame}
+
+\section{Returns}
+\subsection{}
+
+\bfr\frametitle{Asset Return}
+\bi
+\im Suppose that between dividend payments the price~$S$ of an asset satisfies
+$$
+\frac{\D S}{S} = \mu\,\D t + \sigma\,\D B
+$$
+for a Brownian motion~$B$ and stochastic processes (or constants)~$\mu$ and~$\sigma$.  
+\im We interpret $\D S/S$ as the instantaneous rate of return of the asset and $\mu\,\D t$ as the expected rate of return.  
+\im The equation for $S$ can be written equivalently as $\D S = S\mu\,\D t + S\sigma\,\D B$.  
+\im The real meaning is the ``summed'' version:
+$$ S_u = S_0 + \int_0^u S_t\mu_t\,\D t + \int_0^u S_t\sigma_t\,\D B_t
+$$
+\ei
+\end{frame}
+
+\bfr\frametitle{Money Market Account}
+\bi
+\im Suppose there is an asset that is locally risk-free, \index{locally risk-free asset} meaning that its price~$R$ satisfies
+$$
+\frac{\D R}{R} = r\,\D t
+$$
+for some~$r$ (which can be a stochastic process).  
+\im This equation for $R$ can be solved explicitly as
+$$R_u = R_0\exp\left(\int_0^u r_t\,\D t\right)\,.$$
+\im 
+We interpret $r_t$ as the interest rate at date~$t$ for an investment during the infinitesimal period $(t,t+\D t)$.  
+\im If the interest rate is constant, then
+$R_u=R_0\E^{ru}$, 
+meaning that interest is continuously compounded at the constant rate~$r$.  
+\im We call~$r$ the instantaneous risk-free rate or the locally risk-free rate \index{locally risk-free rate}or the short rate.
+\ei
+\end{frame}
+
+
+
+\bfr\frametitle{Portfolio Return}
+\bi
+\im A portfolio of the asset with price $S$ (the risky asset) and the money market account is defined by the fraction $\pi_t$ of wealth invested in the risky asset at each date~$t$.  
+\im If no funds are invested or withdrawn from the portfolio during a time period $[0,T]$ and the asset does not pay dividends during the period, then  the wealth
+process~$W$ satisfies
+$$
+\frac{\D W}{W} = (1-\pi)r\,\D t + \pi \frac{\D S}{S}
+$$
+\im This is called the intertemporal budget constraint.  It states that wealth grows only from interest earned and from the return on the risky asset.
+
+\ei
+\end{frame}
+
+\bfr\frametitle{Intertemporal Budget Constraint}
+The intertemporal budget constraint with no labor income and no consumption is
+\begin{align*}
+\frac{\D W}{W} &= (1-\pi)r\,\D t + \pi \frac{\D S}{S}\\
+&= (1-\pi)r\,\D t + \pi \mu\,\D t + \pi\sigma\,\D B\\
+&= r\,\D t + \pi(\mu-r)\,\D t + \pi\sigma\,\D B
+\end{align*}
+We can also write it as
+$$
+\D W = rW\,\D t + \pi(\mu-r)W\,\D t + \pi\sigma W\,\D B
+$$
+With labor income $Y$ and consumption $C$ (both as rate per unit time), it is
+$$
+\D W = rW\,\D t + \pi(\mu-r)W\,\D t + \pi\sigma W\,\D B + Y\,\D t - C\,\D t
+$$
+\end{frame}
+
+\section{It\^o's Formula}
+\subsection{}
+
+\bfr\frametitle{Notation for Quadratic Variation}
+\bi
+\im Convenient notation:  $(\D B)^2 = \D t$.
+\im The motivation comes from quadratic variation.  Consider discrete partitions
+$$s=t_0 < t_1 < t_2 < \cdots < t_N=u$$
+of a time interval $[s,u]$.  
+\im With $N \rightarrow \infty$ and the maximum length $t_i-t_{i-1}$ of the time intervals  going to zero, 
+\begin{align*}
+\sum_{i=1}^N (B_{t_i}-B_{t_{i-1}})^2  & = \sum_{i=1}^N (\Delta B)^2\\
+\rightarrow \int_s^u (\D B)^2
+= \int_s^u \D t = u-s
+\end{align*}
+\ei
+\end{frame}
+
+\bfr\frametitle{Quadratic Variation of a Stochastic Integral}
+The quadratic variation of a stochastic integral $\D M_t = \theta_t\,\D B_t$
+
+over an interval $[s,u]$ is
+$$\int_s^u (\D M_t)^2 = \int_s^u (\theta_t\,\D B_t)^2 = \int_s^u (\theta_t)^2 (\D B_t)^2 = \int_s^u \theta_t^2\,\D t$$
+
+\end{frame}
+
+\bfr\frametitle{Quadratic Variation of an It\^o Process}
+\bi
+\im More convenient notation: $(\D t)^2 = 0$, $(\D B)(\D t) = 0$.  
+\im The motivation for $(\D t)^2=0$ is that the quadratic variation of a continuously differentiable function of time is zero.
+\im The quadratic variation of an It\^o process $\D X_t = \alpha_t\,\D t + \theta_t\,\D B_t$ 
+over an interval $[s,u]$ is
+$$\int_s^u (\D X_t)^2 = \int_s^u (\alpha_t\,\D t + \theta_t\,\D B_t)^2 = \int_s^u (\theta_t)^2 (\D B_t)^2 = \int_s^u \theta_t^2\,\D t$$
+\ei
+\end{frame}
+
+\bfr\frametitle{Variance and Quadratic Variation in Discrete Time}
+\bi
+\im Suppose $M$ is a martingale in discrete time.  Define $X$ to be the changes in $M$:
+$$X_1 = M_1-M_0, \quad X_2 = M_2 - M_1, \quad X_3 = M_3-M_2, \quad \ldots$$
+\im The process $X$ is called a martingale difference series.  It is serially uncorrelated.
+\im Proof: for $t<u$,
+$$\cov(X_t,X_u) = \mye[X_tX_u] = \mye\bigg[\mye_t[X_tX_u]\bigg] = \mye\bigg[X_t \mye_t[X_u]\bigg] = 0$$
+\im The variance of $M_t$ is
+$$\var(M_t) = \var(M_0 + X_1 + X_2 + \cdots + X_t) = \sum_{i=1}^t \var(X_i) = \mye\left[\sum_{i=1}^t X_i^2\right]$$
+\ei
+\end{frame}
+
+
+\bfr\frametitle{Chain Rule of Ordinary Calculus}
+\bi
+
+\im Define $y=f(x)$ for some continuously differentiable function~$f$, so 
+$$
+\D y = f'(x)\,\D x$$
+\im Now let $x$ be a nonrandom continuously differentiable function of time and define $y_t=f(x_t)$.  The chain rule gives us
+$$\frac{\D y_t}{\D t} = f'(x_t)\frac{\D x_t}{\D t} \quad \Leftrightarrow \quad \D y_t = f'(x_t)\,\D x_t$$
+\im 
+The fundamental theorem of calculus states that we can ``sum'' the changes over an interval $[0,t]$ to obtain
+$$
+y_t = y_0 + \int_0^t f'(x_s)\,\D x_s\,.
+$$
+Of course, we can  substitute $\D x_s = x'_s\,\D s$ in this integral.
+
+\ei
+\end{frame}
+
+\bfr\frametitle{Chain Rule from Multivariate Calculus}
+\bi
+\im Define $y=f(t,x)$, so
+$$\D y = \frac{\partial f}{\partial t}\,\D t + \frac{\partial f}{\partial x}\,\D x$$
+\im Now let $x$ be a nonrandom continuously differentiable function of time and define $y_t=f(t,x_t)$.  The chain rule gives us
+$$\frac{\D y}{\D t} = \frac{\partial f}{\partial t} + \frac{\partial f}{\partial x}\,\frac{\D x}{\D t} \quad \Leftrightarrow \quad \D y_t = \frac{\partial f}{\partial t}\,\D t + \frac{\partial f}{\partial x}\,\D x_t$$
+\im 
+This implies
+$$
+y_t = y_0 + \int_0^t  \frac{\partial f(s,x_s)}{\partial s}\,\D s + \int_0^t  \frac{\partial f(s,x_s)}{\partial x}\,\D x_s
+$$
+Of course, we can  substitute $\D x_s = x'_s\,\D s$ in this integral.
+
+\ei
+\end{frame}
+
+\bfr\frametitle{It\^o's Formula}
+\bi
+\im  Let $f(t,x)$ be continuously differentiable in~$t$ and twice continuously differentiable in~$x$.  
+\im Define $Y_t = f(t,B_t)$ for a Brownian motion~$B$.
+\im  
+It\^o's formula states that
+$$
+\D Y = \frac{\partial f}{\partial t}\,\D t + \frac{1}{2}\frac{\partial^2 f}{\partial B^2}\,\D t +\frac{\partial f}{\partial B}\,\D B 
+$$
+\im Thus, $Y$ is an It\^o process with
+$$\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial B^2}$$
+as its drift and
+$(\partial f/\partial B)\,\D B$ as its stochastic part.  
+\im It\^o's formula means that, for each~$t$,
+$$
+Y_t = Y_0+\int_0^t \left(\frac{\partial f(s,B_s)}{\partial s}+ \frac{1}{2}\frac{\partial^2 f(s,B_s)}{\partial B^2}\right)\,\D s + \int_0^t \frac{\partial f(s,B_s)}{\partial B}\,\D B_s
+$$
+\ei
+\end{frame}
+
+\bfr\frametitle{It\^o's Formula cont.}
+\bi
+\im  Recall our notation $(\D B)^2 = \D t$.
+\im In terms of this notation, It\^o's formula is
+$$
+\D Y = \frac{\partial f}{\partial t}\,\D t +\frac{\partial f}{\partial B}\,\D B + \frac{1}{2}\frac{\partial^2 f}{\partial B^2}\,(\D B)^2
+$$
+\ei
+\end{frame}
+
+
+\bfr\frametitle{Example of It\^o's Formula}
+\bi
+\im  Let $Y_t=B_t^2$, so $Y_t = f(B_t)$ where $f(x)=x^2$.  
+\im Apply It\^o's formula.  Using the notation $(\D B)^2= \D t$, we have
+\begin{align*}
+\D Y &= f'(B_t)\,\D B + \frac{1}{2}f''(B_t)\,(\D B)^2 \notag\\
+&= 2 B_t\,\D B_t + (\D B)^2
+\end{align*}
+\im Compare this to discrete changes. Consider the increment $\Delta Y = Y_u-Y_s$ over an interval $[s,u]$.  Set $\Delta B = B_u-B_s$.
+\im We have
+\begin{align*}
+\Delta Y &= B_u^2 - B_s^2\notag\\
+&= [B_s + \Delta B]^2 - B_s^2\notag\\
+&= 2 B_s\Delta B + (\Delta B)^2
+\end{align*}
+\ei
+\end{frame}
+
+
+\bfr\frametitle{It\^o's Formula for Functions of It\^o Processes}
+\bi
+\im  Let $X$ be an It\^o process: $\D X = \alpha\,\D t + \theta\,\D B$.
+\im Recall our notation: $(\D t)^2=0$, $(\D t)(\D B) = 0$, $(\D B)^2 = \D t$.  
+\im Recall
+$$(\D X)^2 = (\alpha\,\D t + \theta\,\D B)^2 = \theta^2\,\D t$$
+\im Let $f(t,x)$ be continuously differentiable in~$t$ and twice continuously differentiable in~$x$.  
+\im Define $Y_t = f(t,X_t)$.
+\im It\^o's formula is:
+\begin{align*}
+\D Y &=  \frac{\partial f}{\partial t}\,\D t +\frac{\partial f}{\partial X}\,\D X + \frac{1}{2}\frac{\partial^2 f}{\partial X^2}\,(\D X)^2\\
+&=\frac{\partial f}{\partial t}\,\D t +\frac{\partial f}{\partial X}(\alpha\,\D t + \theta\,\D B) + \frac{1}{2}\frac{\partial^2 f}{\partial X^2}\theta^2\,\D t
+\end{align*}
+\ei
+\end{frame}
+
+\section{GBM}\subsection{}
+
+\bfr\frametitle{Geometric Brownian Motion}
+\bi
+\im  Suppose, for constants $\mu$ and $\sigma$, that
+$$\frac{\D S}{S}=\mu\,\D t+\sigma\,\D B$$
+\im We will solve this like we solved for the price of the money market account.  
+\im Define $Y_t = \log S_t$.  The process $S$ is an It\^o process, so we can apply It\^o's formula to $Y$ to obtain
+\begin{align*}
+\D \log S &= \frac{1}{S}\,\D S + \frac{1}{2}\cdot \left(-\frac{1}{S^2}\right)(\D S)^2\\
+&= \mu\,\D t + \sigma\,\D B - \frac{1}{2}\sigma^2\,\D t
+\end{align*}
+\ei
+\end{frame}
+
+\bfr\frametitle{Geometric Brownian Motion cont.}
+\bi
+\im Summing the changes gives
+$$\log S_t = \log S_0 + \left(\mu - \frac{1}{2}\sigma^2\right)t + \sigma B_t$$
+\im Exponentiating both sides gives
+$$S_t = S_0 \E^{\mu t - \sigma^2t/2 + \sigma B_t}$$
+\im This is the solution of the equation
+$$\frac{\D S}{S}=\mu\,\D t+\sigma\,\D B$$
+\ei
+\end{frame}
+
+\section{Multivariate}
+\subsection{}
+
+\bfr\frametitle{Covariation (Joint Variation)}
+\bi
+\im  Consider a  discrete partition
+$s=t_0 < t_1 < t_2 < \cdots < t_N=u$
+of a time interval $[s,u]$.
+\im For any two functions of time~$x$ and~$y$, consider the sum of products of changes
+$$\sum_{i=1}^N \Delta x_{t_i}\Delta y_{t_i}\,,$$
+where $\Delta x_{t_i} = x_{t_i}-x_{t_{i-1}}$ and $\Delta y_{t_i} = y_{t_i}-y_{t_{i-1}}$.
+\im The covariation (or joint variation)  of~$x$ and~$y$ on the interval $[s,u]$ is defined as the limit of this sum as $N \rightarrow \infty$ and the lengths $t_i-t_{i-1}$ of the intervals  go to zero.  
+\im If $x=y$, then this is the same as the quadratic variation.  
+\im If both functions are continuous and one is continuously differentiable, then the covariation is zero.
+\ei
+\end{frame}
+
+
+\bfr\frametitle{Covariation of Brownian Motions}
+\bi
+\im  If $B_1$ and $B_2$ are Brownian motions, then there is a process $\rho$ with $|\rho_t|\leq 1$ for all $t$, such that, with probability~1, the covariation of the paths of $B_1$ and $B_2$ over any interval $[s,u]$ equals
+$$\int_s^u \rho_t\,\D t$$
+\im The Brownian motions are independent if and only if $\rho \equiv 0$. 
+\im We write $(\D B_1)(\D B_2) = \rho\,\D t$.
+\im Then we can ``calculate'' the covariation as the sum of products of changes:
+$$\int_s^u (\D B_{1t})(\D B_{2t})$$
+
+\ei
+\end{frame}
+
+
+
+
+\bfr\frametitle{Covariation of It\^o Processes}
+\bi
+\im  Consider two It\^o processes $\D X_i = \alpha_i\,\D t + \theta_i\,\D B_i$.  
+\im The covariation of $X_1$ and $X_2$ over any interval $[s,u]$ is
+$$\int_s^u (\D X_{1t})\,(\D X_{2t})$$
+\im Here,
+\begin{align*}
+(\D X_{1t})\,(\D X_{2t}) &= (\alpha_{1t}\,\D t + \theta_{1t}\,\D B_{1t})(\alpha_{2t}\,\D t + \theta_{2t}\,\D B_{1t})\\
+&= \theta_{1t}\theta_{2t}(\D B_{1t})(\D B_{2t})\\
+& = \theta_{1t}\theta_{2t}\rho_t\,\D t
+\end{align*}
+where $\rho$ is the correlation process of the two Brownian motions.
+\im We also call $\rho$ the correlation process of the two It\^o processes.
+\ei
+\end{frame}
+
+
+\bfr\frametitle{General It\^o's Formula}
+\bi
+\im  Consider $n$ It\^o processes $\D X_i = \alpha_i\,\D t + \theta_i\,\D B_i$.
+\im Suppose $(t,x) \mapsto f(t,x):[0,\infty) \times \myreal^n \rightarrow \myreal$ is continuously differentiable in $t$ and twice continuously differentiable in $x$.
+\im Define $Y_t = f(t,X_{1t}, \ldots, X_{nt})$.
+\im Then
+$$\D Y = \frac{\partial f}{\partial t}\,\D t + \sum_{i=1}^n \frac{\partial f}{\partial X_i}\,\D X_i + \frac{1}{2}\sum_{i=1}^n \sum_{j=1}^n \frac{\partial^2 f}{\partial X_i \partial X_j}\,(\D X_i)\,(\D X_j)$$
+\im For example, if $n=2$, then
+\begin{multline*}
+\D Y = \frac{\partial f}{\partial t}\,\D t + \frac{\partial f}{\partial X_1}\,\D X_1 + \frac{\partial f}{\partial X_2}\,\D X_2 \\+ \frac{1}{2}\frac{\partial^2 f}{\partial X_1^2 }\,(\D X_1)^2 + \frac{1}{2}\frac{\partial^2 f}{\partial X_2^2 }\,(\D X_2)^2 + \frac{\partial^2 f}{\partial X_1 \partial X_2}\,(\D X_1)\,(\D X_2)
+\end{multline*}
+\ei
+\end{frame}
+
+
+\bfr\frametitle{Product Rule (Integration by Parts)}
+\bi
+\im  Suppose $X_1$ and $X_2$ are It\^o processes and $Y_t = X_{1t}X_{2t}$.
+\im To calculate $\D Y$, we apply It\^o's formula with $n=2$ and $f(t,x_1,x_2) = x_1x_2$.
+\im We obtain
+$$\D Y = X_1\,\D X_2 + X_2\,\D X_1 + (\D X_1)(\D X_2)$$
+\ei
+\end{frame}
+
+\end{document}
+
+\section{Example}
+\subsection{}
+
+\bfr\frametitle{Exercise 12.5}
+Solve the following stochastic differential equation for $X$, where $\kappa$, $\theta$, and $\sigma$ are constants:
+$$\D X  = \kappa(\theta-X)\,\D t + \sigma\,\D B$$
+
+Solution: Define $Y=X-\theta$, so
+$$\D Y  = -\kappa Y\,\D t + \sigma\,\D B$$
+We will solve for $Y$ and then define $X$ as $X=Y+\theta$.
+
+Intuition: the term $-\kappa Y\,\D t$ creates exponential decay towards~0.  The initial value $Y_0$ decays towards 0 and each of the shocks $\sigma\,\D B$ decays towards zero.  This suggests
+\begin{align*}
+ Y_t &= \E^{-\kappa t}Y_0 + \int_0^t \E^{-\kappa(t-s)}\sigma\,\D B_s\\
+ \Rightarrow \quad X_t &= \theta + \E^{-\kappa t}(X_0-\theta) + \int_0^t \E^{-\kappa(t-s)}\sigma\,\D B_s
+\end{align*}
+
+\end{frame}
+
+\bfr\frametitle{Verification of the Solution}
+Define 
+$$Z_t = \int_0^t \E^{\kappa s}\sigma\,\D B_s \quad \Rightarrow \quad \D Z_t = \E^{\kappa t}\sigma\,\D B_t$$
+
+The proposed solution is
+$$Y_t = \E^{-\kappa t}Y_0 + \E^{-\kappa t}Z_t$$
+
+To calculate $\D Y$, use the integration by parts formula for the second term.  This produces
+\begin{align*}
+\D Y &= -\kappa \E^{-\kappa t}Y_0\,\D t - \kappa \E^{-\kappa t}Z_t\,\D t + \E^{-\kappa t}\,\D Z_t\\
+&= - \kappa Y_t\,\D t + \sigma\,\D B_t
+\end{align*}
+\end{frame}
+
+
+\section{Local Marts}
+\subsection{}
+
+\bfr\frametitle{Local Martingales}
+\bi
+\im A stochastic integral $\D M = \theta\,\D B$ is a local martingale.  Martingales are a subset of the class of local martingales.  A stochastic integral might or might not be a martingale.
+\im ``Local'' means that it is like a martingale at each instant in time (its expected change is zero).  But it still might not be a martingale.
+\ei
+\end{frame}
+
+\bfr\frametitle{Example: Doubling Strategy}
+\bi
+\im Suppose we flip a fair coin at an infinite number of dates $t=0$, $t=1/2$, $t=3/4$, $t=4/5$, $t=5/6$, \ldots.  
+\im We stop when I win.  We bet \$1 on the first flip.  If I lose, we bet \$2 on the next flip.  If I lose, we bet \$4 on the next flip, etc.
+\im Define my wealth as $W_0=0$ with $W$ constant between flips and $W$ constant after we stop.
+\im The wealth process $W$ is a local martingale, because the coin is fair.  My expected change in wealth is 0 at each flip.
+\im But I win \$1 with probability 1, due to the law of large numbers. Hence, $W_0=0$ and $W_1 = 1$ with probability 1, so $W_0 \neq \mye[W_1]$.
+\ei
+\end{frame}
+
+\bfr\frametitle{When Is a Stochastic Integral a Martingale?}
+\bi
+\im A sufficient condition for a stochastic integral $\D M = \theta\,\D B$ to be a martingale (with finite variance) on an interval $[0,T]$ is that the expected quadratic variation be finite:
+$$\mye \int_0^T \theta_t^2\,\D t < \infty$$
+In this case, the variance of $M_T$ is the expected quadratic variation.
+\im In general, there are three possibilities:
+\bi
+\im The expected quadratic variation is finite, and $M$ is a finite variance martingale.
+\im The expected quadratic variation is infinite, and $M$ is a martingale with infinite variance.
+\im The expected quadratic variation is infinite, and $M$ is not a martingale.
+\ei 
+\ei
+\end{frame}
+
+\bfr\frametitle{When Is an It\^o Process a Martingale?}
+\bi
+\im An It\^o process $\D X_t = \alpha_t\,\D t + \theta_t\,\D B_t$ is a local martingale if and only if $\alpha_t = 0$ almost everywhere with probability~1.
+\im If $\alpha=0$, then the It\^o process is a stochastic integral, and the previous slide applies.
+\im The condition 
+$$X = \text{local martingale} \quad \Leftrightarrow \quad \alpha=0$$
+is the source of partial differential equations that are important in finance.
+\ei
+\end{frame}
+
+\section{Mart Repr}
+\subsection{}
+
+\bfr\frametitle{Martingale Representation}
+\bi
+\im Suppose $M$ is a local martingale adapted to a Brownian motion $B$ (adapted means that, for each $t$, $M_t$ depends only on the history of $B$ up to time $t$).
+\im Then there exists a stochastic process $\theta$ such that $\D M = \theta\,\D B$.
+\im This extends to multiple Brownian motions.  If $M$ is adapted to a vector of Brownian motions $(B_1,\ldots,B_k)$, then there exist $\theta_1,\ldots,\theta_k$ such that
+$$\D M = \theta_1\,\D B_1 + \cdots + \theta_k\,\D B_k$$
+\im This is a spanning property and underlies many important results in finance.
+\ei
+\end{frame}
+
+
+\end{document}
+
+\end{document}
+
+\bfr\frametitle{Quadratic Variation of a Stochastic Integral}
+The stochastic process~$M$  defined by 
+$$
+M_t = M_0+\int_0^t \theta_s\,\D B_s
+$$
+has continuous paths and has  quadratic variation equal to
+$$
+\int_t^u \theta_s^2\,\D s
+$$
+on each interval $[t,u]$.  Given a partition
+$$t=t_0 < t_1 < t_2 < \cdots < t_N=u$$,
+we have
+$$\sum_{i=1}^N \bigg(M_{t_i}-M_{t_{i-1}}\bigg)^2 \approx \sum_{i=1}^N \bigg(\theta_{t_{i-1}}(B_{t_i}-B_{t_{i-1}})\bigg)^2$$
+\end{frame}
+
+
+\bfr\frametitle{Correlation Process}
+\bi
+\im $\rho$ is called the correlation process of the Brownian motions
+\im The conditional covariance of increments $\Delta B_1 \eqdef B_{1u} - B_{1s}$ and $\Delta B_2 \eqdef B_{2u}-B_{2s}$ is
+$$\mye_s \int_s^u \rho_t\,\D t$$
+\im
+ The conditional correlation of the increments is the average value of $\rho$ over the interval:
+$$\frac{\cov(\Delta B_1,\Delta B_2)}{\sqrt{\var(\Delta B_1)\var(\Delta B_2)}} =  \mye_s \left[\frac{1}{u-s}\int_s^u \rho_t\,\D t\right]$$
+\ei
+\end{frame}
+
+\bfr\frametitle{Solving the ODE for the Money Market Account}
+\bi
+\im We assume the price of the money market account satisfies
+$$
+\frac{\D R}{R} = r\,\D t
+$$
+for some~$r$ (which can be a stochastic process). 
+We use ordinary calculus to solve this differential equation.  
+\im First, note that
+$$\frac{\D \log R}{\D R} = \frac{1}{R} \quad \Leftrightarrow \quad \D \log R = \frac{\D R}{R}$$
+\im Thus, the price of the money market account satisfies
+$$\D \log R = r\,\D t$$
+\ei
+\end{frame}
+
+\bfr\frametitle{Solving the ODE for the Money Market Account cont.}
+\bi
+\im We compute $\log R$ by summing the changes:
+$$\log R_t = \log R_0 + \int_0^t \D \log R_s = \log R_0 + \int_0^t r_s\,\D s$$
+\im Then we exponentiate both sides:
+$$ R_t = R_0\exp\left(\int_0^t r_s\,\D s\right)$$
+
+\ei
+\end{frame}

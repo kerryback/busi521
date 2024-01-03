@@ -1,0 +1,304 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[xcolor=dvipsnames,10pt]{beamer}
+\input{head.tex}
+
+\begin{document}
+\title{\vskip 0.5in Day 14}
+\subtitle{Rational Expectations Equilibria}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Equilibrium}\subsection{}
+
+\begin{frame}{Informational Efficiency}
+
+An important issue, dating back to Hayek, is the extent to which market prices reflect and convey the information of market participants.
+
+In finance, following Fama, prices are said to be 
+\vspace*{-\baselineskip}
+\bi
+\im weak-form efficient if prices contain all of the information that is in past prices,
+\im semi-strong-form efficient if prices contain all public information, and
+\im strong-form efficient if prices contain all public and private information
+\ei
+We will look at price formation under asymmetric information to study this.
+Two types of models: competitive (price-taking) and strategic (game-theoretic).
+
+\end{frame}
+
+\bfr\frametitle{CARA-Normal}
+
+ Suppose there is a risk-free asset and a single risky asset.  
+Suppose the aggregate supply of the risky asset is 1 share.
+
+ Suppose the end-of-period value $\tx$ of the risky asset is normally distributed with mean $\mu$ and variance $\sigma^2$. 
+
+ Suppose there are $H$ investors and each investor $h$ has CARA utility with absolute risk aversion $\alpha_h$ and risk tolerance $\tau_h=1/\alpha_h$.
+ 
+\end{frame}
+
+\begin{frame}{Review of Equilibrium}
+Let $p$ denote the price of the risky asset, and set $\tr = \tx/p$.  
+
+ The demand for the risky asset by investor $h$ is (from Chapter 2)
+ $$\phi_h \ = \ \frac{\mye[\tr] - R_f}{\alpha_h \var(\tr)}$$
+  The mean of $\tr$ is $\mu/p$, and the variance of $\tr$ is $\sigma^2/p^2$, and $\phi = \theta p$ (dollars = shares times price), so
+ $$\theta_h p  \ = \ \frac{\mu/p - R_f}{\alpha_h \sigma^2/p^2}\quad \Rightarrow \quad \theta_h \ = \  \tau_h\frac{\mu - R_fp}{\sigma^2}$$
+ Equating aggregate demand to supply yields
+$$ \tau\frac{\mu - R_fp}{\sigma^2} \ = \ 1 \quad \Rightarrow \quad p \ = \ \frac{\mu - \alpha \sigma^2}{R_f}$$
+where $\tau = \sum_h \tau_h$ and $\alpha = 1/\tau$.
+
+\end{frame}
+
+
+
+\bfr\frametitle{Asymmetric Information}
+
+Assume some investors observe a signal $\ts = \tx + \tve$ before trade.  Let $I \subset \{1,\ldots, H\}$ denote the informed investors.  Let $U$ denote the other investors, who do not observe the signal.
+
+Let $\mu_I$ denote the expectation of $\tx$ for the informed traders (which depends on $\ts$) and let $\mu_U$ denote the expectation for the uninformed traders (which maybe depends on $\ts$).
+
+Write $\nu = 1/\sigma^2$ (called a precision).  Let $\nu_{I}$ denote the precision (reciprocal of variance) for the informed traders and let $\nu_{U}$ denote the precision for the uninformed traders.
+
+Assume both types of investors still regard $\tx$ as normally distributed. We can calculate $\mu_I$ and $\nu_{I}$ using standard statistical arguments.  But $\mu_U$ and $\nu_{U}$ depend on how much uninformed investors learn from prices.
+
+Assume $R_f$ is given exogenously, so information comes only from $p$.
+\end{frame}
+
+\begin{frame}{Equilibrium}
+    Informed investors' demands are
+    $\theta_h \ = \  \tau_h\nu_{I}(\mu_I - R_fp)$.
+    
+    Uninformed investors' demands are $\theta_h \ = \  \tau_h\nu_{U}(\mu_U - R_fp)$.
+    
+    Market clearing is
+    $$\sum_{h \in I} \tau_h\nu_{I}(\mu_I - R_fp) + \sum_{h \in U} \tau_h\nu_{U}(\mu_U - R_fp) = 1$$
+    Set $\tau_I = \sum_{h \in I} \tau_h$ and $\tau_U = \sum_{h \in U} \tau_h$.  Market clearing is
+    $$\tau_I\nu_{I}(\mu_I - R_fp) + \tau_U\nu_{U}(\mu_U - R_fp) = 1$$
+    Equilibrium is
+    $$p = \frac{\tau_I\nu_I\mu_I + \tau_U\nu_U\mu_U - 1}{(\tau_I\nu_I+\tau_U\nu_U)R_f} = \frac{1}{R_f}\left(\frac{\tau_I\nu_I\mu_I + \tau_U\nu_U\mu_U}{\tau_I\nu_I+\tau_U\nu_U} - \frac{1}{\tau_I\nu_I+\tau_U\nu_U}\right)$$
+\end{frame}
+
+\section{Informed Investors}\subsection{}
+\begin{frame}{Posterior Mean}
+
+Suppose the signal is truth plus noise: $\ts = \tx + \te$, where $\te$ is normally distributed, zero mean, and uncorrelated with $\tx$.
+
+To calculate $\mu_I$ and $\nu_I$, start with a projection:
+$$\tx -\mu\ = \beta (\ts -\mu_s)+ \tilde \varepsilon$$
+where $\tilde \varepsilon$ is uncorrelated with $\ts$ and mean zero.
+
+We have $\mu_s = \mu$.  This implies
+$$ \mu_I := \mye[\tx \mid \ts] \ = \ (1-\beta)\mu + \beta \ts\,.$$
+In words: \alert{the posterior mean is a weighted average of the prior mean and the signal.}
+
+Also, $\beta = \cov(\tx,\ts)/\sigma_s^2 = \sigma^2/\sigma_s^2 = \sigma^2/(\sigma^2+\sigma_e^2$).
+\end{frame}
+
+\begin{frame}{Posterior Variance}
+
+From the projection equation,
+$$\sigma^2 = \beta^2 \sigma_s^2 + \sigma_\varepsilon^2$$
+The conditional variance of $\tx$ for the informed investors is the variance of $\tilde\varepsilon$, which is
+$$\sigma_\varepsilon^2 = \sigma^2 - \beta^2\sigma_s^2 = \sigma^2(1-\beta)$$
+
+Notice that the conditional mean depends on $\ts$, but the conditional variance does not.
+\end{frame}
+
+\begin{frame}{Posterior Precision}
+The variance of $\tve$ is
+\begin{align*}
+    \sigma^2(1-\beta) & = \sigma^2\left(1-\frac{\sigma^2}{\sigma^2+\sigma_e^2}\right)\\
+    &= \frac{\sigma^2\sigma_e^2}{\sigma^2+\sigma_e^2}
+\end{align*}
+ So, the informed precision is
+$$
+\nu_I = \frac{1}{\sigma^2} + \frac{1}{\sigma_e^2}
+$$
+In words: \alert{the posterior precision is the sum of the prior precision and the precision of the signal noise term.}
+\end{frame}
+
+\section{Models}\subsection{}
+
+\begin{frame}{Model I: Naive Uninformed Investors}
+    Suppose uninformed investors learn nothing from the price, so $\mu_U=\mu$ and $\nu_U=\nu$ (prior mean and precision).  Then, the equilibrium is
+    
+    $$p \ = \ \frac{1}{R_f}\left(\frac{\tau_I\nu_I[(1-\beta)\mu + \beta\ts] + \tau_U\nu\mu}{\tau_I\nu_I+\tau_U\nu} - \frac{1}{\tau_I\nu_I+\tau_U\nu}\right)$$
+
+ The naive investors are irrational, because they should realize that a higher price means a higher $\ts$.  They should extract information from the price.
+ \end{frame}
+ 
+ \begin{frame}{Model II: Fully Revealing \\Rational Expectations Equilibrium}
+    Suppose uninformed investors are fully rational.  Conjecture that they learn $\ts$ fully from the price, so they have the same posterior mean and precision as do the informed investors.  
+    
+    Substituting a common mean and precision into the demand functions and solving for equilibrium, we obtain
+        $$p \ = \ \frac{1}{R_f}\left((1-\beta)\mu + \beta\ts - \frac{1}{\tau\nu_I}\right)$$
+The uninformed can indeed learn $\ts$ from this price, so our conjecture is established.
+
+ Grossman-Stiglitz paradox:  who would pay to collect information if they can get it free from the price?
+ \end{frame}
+ 
+ \begin{frame}{Model III: Grossman-Stiglitz}
+     Suppose the supply of the asset is a random variable $\tz$.  Randomness could be due to random demand from other traders, sometimes called liquidity traders, because they may be trading due to cash needs or cash surpluses (liquidity shocks).
+     
+    Suppose $\tz$ is normally distributed and independent of all other random variables in the model.  
+    
+    We solve by `guess and verify.'
+ We conjecture that the equilibrium price is $p = a_0 + a_1 \ts + a_2 \tz$ with $a_1 \neq 0$.  We need to compute equilibrium coefficients $a_0$, $a_1$, and $a_2$.
+
+\end{frame}
+
+\section{Solving the GS Model}\subsection{}
+
+\begin{frame}{Uninformed Investors}
+ From the price, uninformed investors can calculate
+\begin{align*}
+\frac{p  - a_0 - a_2\mu_z}{a_1} \ &= \ \ts + \frac{a_2}{a_1} (\tz - \mu_z) \\
+& = \ \ts + b (\tz-\mu_z) \\
+&  = \ \tx + \te + b (\tz-\mu_z)\,.
+\end{align*}
+where we define $b = a_2/a_1$.
+ 
+So, the price provides a truth-plus-noise signal for uninformed investors.  
+
+The noise for uninformed investors is $\te + b(\tz-\mu_z)$, which is `noisier' than the informed investors' signal. 
+\end{frame}
+
+
+
+\bfr\frametitle{Uninformed Demands}
+ For uninformed investors, the conditional (posterior) mean of $\tx$ is
+$$(1-\beta_U)\mu + \beta_U [\ts + b (\tz-\mu_z)]$$
+where
+$$\beta_U \ = \ \frac{\sigma^2}{\sigma^2 + \sigma^2_{e} + b^2 \sigma^2_z}\,.$$
+
+ The posterior precision is
+$$\nu_U \ \eqdef \ \nu + \frac{1}{\sigma^2_{e} + b^2 \sigma^2_z}$$
+
+ Aggregate uninformed demands are
+$$\tau_U\nu_U\bigg[
+(1-\beta_U)\mu + \beta_U [\ts + b (\tz-\mu_z)] - R_f p \bigg]\,.$$
+\end{frame}
+
+\begin{frame}{Market Clearing}
+ Aggregate demand is
+\begin{multline*}
+\tau_I\nu_I\bigg[(1-\beta)\mu + \beta \ts - R_fp \bigg] \\
++ \tau_U\nu_U\bigg[
+(1-\beta_U)\mu + \beta_U [\ts + b (\tz-\mu_z)] - R_fp \bigg]
+\end{multline*}
+
+Substituting $p  = a_0 + a_1 \ts + a_2 \tz$, we see that aggregate 
+demand is of the form $A + B \ts + C\tz$, so market-clearing is
+$$A + B\ts + C\tz  = \tz$$
+where $A$, $B$, and $C$ depend on the unknown coefficients $a_0$, $a_1$, and $a_2$ and on $R_f$.
+For this to hold in all states of the world, it must be that $A=0$, $B=0$, and $C=1$.
+
+\end{frame}
+
+\bfr\frametitle{Solution}
+ Solve $A=0$, $B=0$ and $C=1$ for $a_0$, $a_1$, and $a_2$.
+
+ In equilibrium,
+ $$b = - \frac{1}{\beta\tau_I\nu_I} = - \frac{(1-\beta)\sigma^2}{\beta\tau_I}$$
+Recall that uninformed investors can calculate 
+$$ \ts + b(\tz - \mu_z)$$
+Their information is better (i.e., the variance of $b\tz$ is smaller) when \vspace*{-0.5\baselineskip}
+\begin{itemize}
+    \item the variance of $\tz$ is smaller
+    \item informed investors are more risk tolerant
+    \item $\beta$ is larger (the informed investors have a better signal, so they face less residual risk), or
+    \item $\sigma^2$ is smaller (again, the informed investors face less residual risk).
+  \end{itemize}
+\end{frame}
+
+\end{document}
+
+\section{Kyle Model}\subsection{}
+
+\bfr\frametitle{Kyle Model}
+\bi
+\im Grossman-Stiglitz model assumes informed investors are price takers.  So, they must be small individually, but there must be enough of them for their information/demands to affect prices in the aggregate.
+\im What if there is only one informed investor?  If his information gets into prices -- and he can see it in prices -- but he is a price taker (assumes his demands don't affect prices) then he must be schizophrenic (Hellwig).
+\im What if he is not a price taker?
+\im In reality, all large investors know that their trades move prices.
+\im This is called strategic trading.
+\im The Kyle model is a model of a single strategic informed trader.
+\ei
+\end{frame}
+
+\bfr\frametitle{Assumptions and Notation}
+\bi
+\im Asset value is $\tv$.  Informed trader knows $\tv$.  Risk-free rate normalized to zero.
+\im Other investors regard $\tv$ as normally distributed with mean $\mu$ and variance $\sigma^2_v$.
+\im Noise traders $\tz$ with mean zero and variance $\sigma^2_z$.
+\im Informed trader is risk neutral.  Denote the number of shares he demands by $\tx$.  Set $\ty = \tx + \tz$.
+\im Risk-neutral market makers observe $\ty$.  Compete to fill (take the other side of) $\ty$.  
+\im Equilibrium price is $p  = \mye[\tv \mid \ty]$.
+\im Informed trader knows price depends on $\ty$ and knows that $\tx$ is part of $\ty$.  Chooses his trade strategically.
+\ei
+\end{frame}
+
+\bfr\frametitle{Linear Equilibrium}
+\bi
+\im Conjecture $p  = \delta + \lambda \ty$.
+\im Informed trader maximizes
+\begin{align*}
+\mye[\tx(\tv - p ) \mid \tv] \ &= \ \mye[\tx(\tv - \delta - \lambda \ty) \mid \tv]\\
+& \ = (\tv - \delta) \mye[\tx\mid \tv] - \lambda \mye[\tx^2\mid \tv] - \lambda \mye[\tx\tz\mid \tv]\\
+& \ = (\tv - \delta) \mye[\tx\mid \tv] - \lambda \mye[\tx^2\mid \tv]
+\end{align*}
+\im \pause FOC is (for each realization of $\tv$)
+$$\tv - \delta - 2 \lambda \tx \ = \ 0$$
+so
+$$  \tx = \frac{\tv - \delta}{2\lambda}\,.$$
+\im \pause Hence, 
+$$\ty = \frac{\tv - \delta}{2\lambda} + \tz$$
+which implies $\tv + 2\lambda\tz = 2\lambda\ty + \delta$.
+\ei
+\end{frame}
+
+\bfr\frametitle{}
+\bi
+\im Market makers observe $\ty$ from which they can compute $2\lambda\ty + \delta = \tv + 2\lambda\tz$.  Thus, they have a truth-plus noise signal of $\tv$.
+\im It follows that their conditional expectation of $\tv$ is
+$$(1-\beta)\mu + \beta (\tv + 2\lambda\tz) \ = \ (1-\beta)\mu + \beta (2\lambda\ty + \delta)$$
+where
+$$\beta = \frac{\sigma_v^2}{\sigma_v^2 + 4\lambda^2\sigma_z^2}\,.$$
+\im  Equilibrium requires that this conditional expectation equal $p $.
+\im \pause To confirm our conjecture that $p  = \delta + \lambda \ty$, we must have
+$$\delta + \lambda \ty = (1-\beta)\mu + \beta (2\lambda\ty + \delta)$$
+\im \pause This is true for all realizations of $\ty$ if and only if
+$$
+\delta = (1-\beta)\mu + \beta \delta \quad \Leftrightarrow \quad \delta = 
+\mu$$
+and 
+$$\lambda = 2 \beta \lambda \quad \Leftrightarrow \quad \beta = \frac{1}{2}$$
+The last condition is equivalent to $\lambda = \sigma_v / (2 \sigma_z)$.
+
+\ei
+\end{frame}
+
+\bfr\frametitle{}
+\bi
+\im The posterior precision of market makers is
+$$\frac{1}{\sigma_v^2} + \frac{1}{4\lambda^2\sigma_z^2} \ = \ \frac{2}{\sigma_v^2}\,.$$
+\im So, the market learns half of the informed trader's information from her trades.
+\im The $\lambda$ is called Kyle's lambda and measures the liquidity of the market.  If $\lambda$ is small, the market is liquid -- large trades can be made with little effect on the price.
+\im The market is liquid if private information $\sigma_v^2$ is small or there is a large amount $\sigma_z^2$ of noise trading.
+\ei
+\end{frame}
+
+
+\bfr\frametitle{Exercises}
+
+Graded: 22.1, 24.2, 24.4
+
+Recommended: 24.1, 24.3
+\end{frame}
+\end{document}

@@ -1,0 +1,239 @@
+\documentclass[xcolor=dvipsnames,10pt]{beamer}
+\input{head.tex}
+\newcommand{\tu}{\tilde{u}}
+\begin{document}
+\title{\vskip 0.5in Day 21}
+\subtitle{Dynamic Programming}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Capital Investment Problem}\subsection{}
+
+\bfr\frametitle{Optimal Capital Investment}
+A firm combines capital $k$ and labor $\ell$ to produce output $q=k^\alpha \ell^\psi$ with $\alpha+\psi \le 1$.  The wage rate $w$ is constant.
+
+The firm is a monopolist facing a constant elasticity demand curve:
+$$\frac{\D \log q}{\D \log p} = \gamma \quad \Rightarrow \quad p = aq^{-1/\gamma}$$
+for a constant (soon to be stochastic process) $a$.
+We call $pq-w\ell$ the firm's operating cash flow.
+
+Capital depreciates over time.  Also, adjusting the capital stock is costly.  To adjust by $\Delta k$ costs $\Delta k$ + (1/2)(\Delta k)^2b$.  We call $-\Delta k - (1/2)(\Delta k)^2 b$ the firm's investment cash flow.  $\Delta k$ can be negative.
+
+Total cash flow is operating cash flow plus financing cash flow.
+\end{frame}
+
+\begin{frame}
+We formulate the problem in continuous time.  The firm chooses an investment rate $I_t$ and capital $K_t$ evolves as
+$$\D K_t = -\delta K_t\,\D t + I_t\,\D t$$
+
+Given the capital stock $K$ at time $t$, the firm chooses the labor input $L_t$ to maximize the operating cash flow $pq-w\ell$, i.e., 
+$$L_t = \text{argmax}_\ell \; a\left(K_t^\alpha \ell^\psi\right)^{1-1/\gamma} - w\ell$$
+
+There is random time-varying demand: the constant $a$ is a stochastic process $A$.  The firm chooses an investment policy to maximize
+$$\mye\int_0^\infty M_t \left[\text{Operating Cash Flow} - I_t - (1/2)bI_t^2\right]\,\D t$$
+where $M$ is the SDF process.
+    
+\end{frame}
+
+\begin{frame}
+    Assume the risk-free rate is constant.  By switching to the risk-neutral probablility, we can formulate the firm's objective as
+    $$\mye^*\int_0^\infty \E^{-rt} \left[\text{Operating Cash Flow} - I_t - (1/2)bI_t^2\right]\,\D t$$
+    
+    Assume $A$ is a geometric Brownian motion (hence Markov) under the risk-neutral probability.  The state variables are $A_t$ and $K_t$.  
+    
+    The problem is time-stationary, so the firm's value function is of the form $J(A_t,K_t)$.
+    
+    \end{frame}
+    
+    \section{Solution}\subsection{}
+    \begin{frame}
+        What sort of solution can we find?
+        
+        We want to find the optimal investment rate $I_t$ as a function of $A_t$ and $K_t$.
+        
+        We can show that the optimum satisfies
+        $$I^*_t = \frac{1}{b}\left[\frac{\partial J(A_t,K_t)}{\partial K_t} - 1\right]$$
+        
+        Can we compute $\partial J/\partial K$?  
+        
+        Not analytically.  But, we can show that $J$ satisfies a partial differential equation (PDE), which can be solved numerically.
+        
+    \end{frame}
+
+
+\begin{frame}
+The PDE is the Bellman equation, called Hamilton-Jacobi-Bellman (HJB) equation in continuous time.
+
+The HJB equation is
+$$\max_{\text{controls}} \bigg\{\text{current reward} - rJ + \text{drift of J}\bigg\} = 0$$
+The optimal controls must achieve the max here.
+
+Let $\pi(A_t,K_t)$ denote the operating cash flow maximized over $L_t$.  Then the current reward is
+$$\pi(A_t,K_t) - I_t - \frac{1}{2}bI^2_t$$
+The control is I_t$.
+
+The drift of $J$ is
+$$\frac{\partial J}{\partial A}\text{drift of A} + \frac{\partial J}{\partial k}(-\delta K + I)+ \frac{1}{2}\frac{\partial^2 J}{\partial A^2}(\D A)^2$$
+dropping the $\D t$ from $(\D A)^2$.
+\end{frame}
+
+\begin{frame}
+Substituting into the HJB equation and dropping terms that do not depend on $I$, the maximization problem is
+$$\max_I \bigg\{-I - \frac{1}{2}bI^2 + \frac{\partial J}{\partial K}I\bigg\}$$
+
+The solution is
+$$I = \frac{\partial J/\partial K - 1}{b}$$
+
+Write $J_k$ for the partial derivative.  So, the solution is $I=(J_k-1)/b$.
+
+At the max $I=(J_k-1)/b$, the HJB equation tells us
+$$\text{current reward} - rJ + \text{drift of J} = 0$$
+This is a PDE in $J$. 
+\end{frame}
+
+\begin{frame}
+ 
+
+Write $J_a$ for $\partial J/\partial A$ and $J_{aa}$ for the second partial.  Then, suppressing the arguments $(A,K)$, we have
+\begin{multline*}
+    \pi - \frac{J_k-1}{b} - \frac{1}{2}b\left(\frac{J_k-1}{b}\right)^2 - rJ \\+J_a \text{drift of A} + \left(\frac{J_k-1}{b} - \delta K\right)J_k + \frac{1}{2}J_{aa}(\D A)^2 = 0
+\end{multline*}
+This is an equation that must hold for $A>0$ and $K >0$, with boundary conditions at 0 and $\infty$.
+\end{frame}
+
+\section{HJB Equation}
+\begin{frame}{HJB Equation}
+Discrete-time, no uncertainty, control $c$, state variable $x$, and state evolution equation $x' = f(x,c)$:
+$$J(x) = \max_c \; u(c) + \E^{-\delta} J(x')$$
+With uncertainty and expected utility
+$$J(x) = \max_c \; u(c) + \E^{-\delta} \mye[J(x') \mid x,c]$$
+Equivalently,
+$$0 = \max_c \; u(c) + \mye[J(x')-J(x) \mid x,c] - (1-\E^{-\delta})\mye[J(x') \mid x,c]$$
+In continuous time,
+$$0 = \max_c \; u(c) + \text{drift of J} - \delta J$$
+\end{frame}
+
+\begin{frame}{Another Derivation}
+    Let $C\,$ control process, $X=\,$ state process, $u=\,$ utility function, $\delta=\,$ discount rate ($r$ in capital investment problem), $\mye=\,$ appropriate expectation.  Problem is
+    $$\max_C\; \mye \int_0^\infty \E^{-\delta t}u(C_t,X_t)\,\D t$$
+    where evolution of $X$ depends on current $X$ and $C$.
+    
+    Let $J$ denote value function.
+    Suppose there is an optimal policy $C^*$, which induces the state process $X^*$, so
+      $$J(X_0) = \mye \int_0^\infty \E^{-\delta t}u(C^*_t,X^*_t)\,\D t$$
+      \end{frame}
+      
+      \begin{frame}
+    Bellman's principle of optimality states that, for any $s$,
+    $$J(X_0) = \mye \left[\int_0^s \E^{-\delta t}u(C^*_t,X^*_t)\,\D t + \max_C\; \mye_s\int_s^\infty \E^{-\delta t}u(C_t,X_t)\,\D t\right]$$
+    In other words, if a plan is optimal, then if we re-optimize at some later date, we cannot improve upon the original plan.
+    
+    By changing from $t$ to $a = t-s$, we obtain 
+    \begin{align*}
+        \mye_s\int_s^\infty \E^{-\delta t}u(C_t,X_t)\,\D t &= \mye_s\int_0^\infty \E^{-\delta (s+a)}u(C_{s+a},X_{s+a})\,\D a\\
+        &= \E^{-\delta s} \mye_s\int_0^\infty \E^{-\delta a}u(C_{s+a},X_{s+a})\,\D a
+    \end{align*}
+    and by the Markov property of $X$, the distribution of $X_{s+a}$ given $X_s=x$ is the same as the distribution of $X_a$ given $X_0=x$.  Therefore,
+     
+    $$J(X_0) = \mye \left[\int_0^s \E^{-\delta t}u(C^*_t,X^*_t)\,\D t + \E^{-\delta s}J(X_s)\right]$$
+\end{frame}
+
+\begin{frame}
+The equation
+$$J(X_0) = \mye \left[\int_0^s \E^{-\delta t}u(C^*_t,X^*_t)\,\D t + \E^{-\delta s}J(X_s)\right]$$
+holds for every $s$.
+
+So, the expectation is constant with respect to $s$.  It is not very much extra work to show that, in fact, 
+        $$\int_0^s \E^{-\delta t}u(C^*_t,X^*_t)\,\D t + \E^{-\delta s}J(X_s)$$
+    is a martingale.  
+ 
+ A martingale has no drift.  Calculate the drift and set to zero:
+$$\E^{-\delta s}u(C^*_s,X^*_s) + \E^{-\delta s}\text{drift of J} - \delta \E^{-\delta s}J = 0$$
+Multiply by $\E^{\delta s}$ to cancel the $\E^{-\delta s}$ factor:
+$$u(C^*_s,X^*_s) + \text{drift of J} - \delta J = 0$$   
+\end{frame}
+
+\end{document}
+
+
+\im 
+ $X_{t+1}$ denotes the random state (node) at date $t\!+\!1$, the distribution of which may depend on the decision~$\pi$ and the state~$x$ at date~$t$.
+ \im $X$ can have two components, one being exogenous (a Markov process) and one being endogenous (for example, wealth).
+ \im $V_t$ is the maximum expected sum of utilities at dates $t, t+1, \ldots$ measured in terms of date--0 utility, i.e., discounted to date~0.
+ \im We don't always assume an infinite-horizon stationary model, because we might, for example, want to study maximizing the expected utility of terminal wealth.  
+ \ei  
+\end{frame}
+
+\begin{frame}{Deriving the Bellman Equation}
+
+\begin{align*}
+V_t \ = \ \max_{\text{plan}} \mye_t \sum_{s=t}^\infty u_s \ & = \ \max_{\text{plan}} \left\{ u_t + \mye_t \sum_{s=t+1}^\infty u_s \right\}\\
+& = \ \max_{\text{plan at $t$}} \left\{ u_t + \max_{\text{plan at $t+1$\,\ldots }}\mye_t \sum_{s=t+1}^\infty u_s \right\}\\
+& = \ \max_{\text{plan at $t$}} \left\{ u_t + V_{t+1} \right\}
+\end{align*}
+\end{frame}
+
+\bfr\frametitle{Discounting to Date $t$ Instead of Date 0}
+\bi
+\im Suppose $u_t(x,\pi) = \E^{-\delta t} u(x,\pi)$ 
+\bi
+\im $\E^{-\delta}$ is a number less than 1, and we raise it to the $t$--th power to discount.
+\ei
+\im As stated before, $V_t$ is the maximum expected sum of utilities at dates $t, t+1, \ldots$ measured in terms of date--0 utility, i.e., discounted to date~0.
+\im We can measure in terms of date--$t$ utility by reversing the discounting from $t$ to 0 as
+$$J_t(x) \ = \ \E^{\delta t}V_t(x)$$
+\im Multiplying by $\E^{\delta t}$ in the Bellman equation gives: 
+$$
+J_{t}( x) \ = \ \max_{\pi} \bigg\{u(x,\pi) + \E^{-\delta} \mye[J_{t+1}(X_{t+1})\mid X_t=x]\bigg\}
+$$
+\ei
+\end{frame}
+
+\bfr\frametitle{Infinite Horizon}
+\bi
+\im If there is an infinite horizon, and everything is stationary, then $J$ does not depend on $t$.  
+\im So the Bellman equation is: 
+$$
+J( x) \ = \ \max_{\pi} \bigg\{u(x,\pi) + \E^{-\delta} \mye[J(X_{1})\mid X_0=x]\bigg\}
+$$
+
+\ei
+\end{frame}
+
+\section{Continuous Time}\subsection{}
+
+\bfr\frametitle{Continuous Time}
+\bi
+\im Let's go back to the `discounted-to-time-zero' value function.  Substituting $x=X_t$, the Bellman equation is
+$$V_t(X_t) \ = \ \max_{\pi} \bigg\{u_{t}(X_t,\pi) + \mye[V_{t+1}(X_{t+1})\mid X_t]\bigg\}$$
+\im Define 
+$$\Delta V_{t+1}(X_t,X_{t+1}) \ = \ V_{t+1}(X_{t+1}) - V_t(X_t)$$
+
+\im Then, the Bellman equation is
+$$0 \ = \ \max_{\pi} \bigg\{u_{t}(X_t,\pi) + \mye[\Delta V_{t+1}(X_t,X_{t+1})\mid X_t]\bigg\}$$
+\im The continuous-time Bellman equation is the same, replacing $u$ by $u\,\D t$ and $\Delta V$ with $\D V$:
+$$0 \ = \ \max_{\pi} \bigg\{u_{t}(X_t,\pi)\,\D t + \mye[d V]\bigg\}$$
+\ei
+\end{frame}
+
+
+\bfr\frametitle{Discounting to Date $t$ Instead of Date 0}
+\bi
+\im Suppose again that $u_t = \E^{-\delta t} u$. As before, we can measure value in terms of date--$t$ utility by reversing the discounting from $t$ to 0 as $J_t  = \E^{\delta t}V_t$.
+\im Multiplying by $\E^{\delta t}$ in the Bellman equation gives: 
+$$0 \ = \ \max_{\pi} \bigg\{u\,\D t + \mye[\E^{\delta t}\D V]\bigg\}$$
+\im From It\^o's formula (product rule), we have
+$$\D J = \delta \E^{\delta t}V\,\D t + \E^{\delta t}\, \D V$$
+So,
+$$\E^{\delta t} \D V  \ = \ \D J - \delta \E^{\delta t}V\,\D t \ = \ \D J - \delta J\,\D t$$
+\im So, the continuous-time Bellman equation is
+$$ 0 \ = \ \max_{\pi} \bigg\{u \,\D t - \delta J\,\D t + \mye[\D J]\bigg\} $$
+\ei
+\end{frame}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

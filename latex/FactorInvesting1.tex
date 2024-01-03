@@ -1,0 +1,415 @@
+\documentclass[xcolor=dvipsnames,10pt]{beamer}
+\mode<presentation> {\usetheme{Singapore}}
+\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}[border shrink=5mm]
+\newcommand{\graph}[2]{\vspace*{-\baselineskip}\begin{center}\includegraphics[scale=#2]{#1.pdf}\end{center}\vspace*{-\baselineskip}}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times,amsfonts}
+\usepackage[T1]{fontenc}
+\setlength{\parskip}{\baselineskip}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+%\usecolortheme{sidebartab}
+\setbeamertemplate{itemize item}[triangle]
+
+\usepackage{calc}
+\usepackage{environ}
+\newcommand{\halfmargin}{0.0001\paperwidth}
+
+\RequirePackage{booktabs,colortbl,ulem}
+
+\usepackage{animate}
+\RequirePackage{booktabs,colortbl,gensymb}
+\setlength{\parskip}{\baselineskip}
+
+\usepackage{calc}
+\usepackage{environ}
+
+% \newcommand{\halfmargin}{0.0001\paperwidth}
+
+\definecolor{links}{HTML}{2A1B81}
+\hypersetup{colorlinks,linkcolor=,urlcolor=red}
+
+\NewEnviron{wideframe}[1][]{%
+\begin{frame}{#1}
+\makebox[\textwidth][c]{
+\begin{minipage}{\dimexpr\paperwidth-\halfmargin-\halfmargin\relax}
+\BODY
+\end{minipage}}
+\end{frame}
+}
+
+
+\DeclareMathOperator{\stdev}{stdev}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\corr}{corr}
+\DeclareMathOperator{\prob}{prob}
+\DeclareMathOperator{\n}{n}
+\DeclareMathOperator{\N}{N}
+\DeclareMathOperator{\Cov}{Cov}
+\newcommand{\up}{\vspace*{-\baselineskip}}
+\newcommand{\hlf}{\frac{1}{2}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\im}{\item}
+\newcommand{\D}{\mathrm{d}}
+\newcommand{\E}{\mathrm{e}}
+\newcommand{\mye}{\ensuremath{\mathsf{E}}}
+\newcommand{\myreal}{\ensuremath{\mathbb{R}}}
+\newcommand{\bq}{\begin{equation}}
+\newcommand{\eq}{\end{equation}}
+\newcommand{\eqdef}{\;\buildrel \text{d{}ef}\over = \;}
+\newcommand{\xstar}{\buildrel *\over X}
+\newcommand{\pmax}{p^{\text{max}}}
+\newcommand{\qmax}{q^{\text{max}}}
+\newcommand{\bfr}{\begin{frame}}
+\newcommand{\bfrp}{\begin{frame}[plain]}
+\newcommand{\efr}{\end{frame}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\ve}{\varepsilon}
+\newcommand{\lh}{\hat{\lambda}}
+\definecolor{mycolor}{gray}{0.8}
+\definecolor{mymaincolor}{rgb}{0.6862745098039216,0.9333333333333333,0.9333333333333333}
+\newcommand{\alr}[1]{\textcolor{blue}{#1}}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+\newcommand{\yel}{\cellcolor{yellow}}
+\newcommand{\blue}{\cellcolor{SkyBlue}}
+\newcommand{\gr}{\cellcolor{SpringGreen}}
+\newcommand{\pink}{\cellcolor{pink}}
+\newcommand{\apr}{\cellcolor{Apricot}}
+\newcommand{\tve}{\tilde{\varepsilon}}
+\newcommand{\tw}{\tilde{w}}
+\newcommand{\tx}{\tilde{x}}
+\newcommand{\ty}{\tilde{y}}
+\newcommand{\ow}{\overline{w}}
+\newcommand{\lb}{\left[}
+\newcommand{\rb}{\right]}
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\tm}{\tilde{m}}
+\newcommand{\tc}{\tilde{c}}
+\newcommand{\tz}{\tilde{z}}
+\newcommand{\str}[1]{\textcolor{blue}{\sout{#1}}}
+\newcommand{\tr}{\widetilde{R}}
+\newcommand{\tR}{\widetilde{\mathbf{R}}}
+\newcommand{\bms}{\begin{multline*}}
+\newcommand{\ems}{\end{multline*}}
+\newcommand{\bas}{\begin{align*}}
+\newcommand{\eas}{\end{align*}}
+\newcommand{\qr}{\mathbb{Q}}
+\newcommand{\IMAGES}{/home/kerry/Dropbox/APPC_Revision/Images}
+\newcommand{\tX}{\tilde{X}}
+\newcommand{\tY}{\tilde{Y}}
+
+\author{\vskip 0.5in \small Kerry Back \\BUSI 722: Quantitative Finance\\ Rice University \\Spring 2022}
+%\institute{Rice University\\ Spring 2019}
+\date[]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\title{\vskip 0.5in Factor Investing I:\\ Characteristics and Returns}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+    \begin{itemize}
+       \item Average returns and betas of different stock portfolios
+       \begin{itemize}
+           \item Industries
+           \item Size, value, momentum, profitability, investment rate, \ldots
+       \end{itemize}
+       \item ETFs 
+        \item Fama-French model for cost of equity
+    \end{itemize}
+    \begin{center}
+\href{https://www.aqr.com/Learning-Center/Systematic-Equities/Systematic-Equities-A-Closer-Look?gclid=Cj0KCQiA_8OPBhDtARIsAKQu0gZS3uj9A0fdCN5eB_P-uUfY0VWr2uY9MW503bgPnO7DbQeVr2_WlxkaAlwhEALw_wcB}{Factor Investing at AQR}
+
+\href{https://www.blackrock.com/us/individual/investment-ideas/what-is-factor-investing}{Factor Investing at BlackRock}
+\end{center}
+\end{frame}
+
+\section{Returns and Betas}\subsection{}
+\begin{frame}{Industry Returns and Betas}
+
+    \begin{center}
+        \includegraphics[scale=0.6]{Images/fig_1970_industries.pdf}
+    \end{center}
+    Monthly returns 1970-2021 from Kenneth French's data library.
+\end{frame}
+
+\begin{frame}{Beta is Dead: Value and Size}
+ In 1992, Eugene Fama and Kenneth French published a paper that the press termed the ``beta is dead'' paper.
+ 
+ They showed that average stock returns depend on size (market capitalization) and on measures of value but not on beta.
+ 
+ They concluded that the best measure of value is book-to-market (book value of equity divided by market value).  
+ 
+ High book-to-market stocks are value stocks (cheap relative to book).  
+ 
+ Low book-to-market stocks are commonly called growth stocks (sometimes glamour stocks).
+\end{frame}
+
+\begin{frame}{Value/Size Returns}
+\begin{center}
+\input{Tables/table_1970_value.tex}
+\end{center}
+Average returns in excess of risk-free rate.  BM = book-to-market.  ME = market equity.  Data from Kenneth French's data library 1970-2021.
+\end{frame}
+
+\begin{frame}{Value/Size Returns and Betas}
+    \begin{center}
+        \includegraphics[scale=0.6]{Images/fig_1970_value.pdf}
+    \end{center}
+     Monthly returns 1970-2021 from Kenneth French's data library.
+\end{frame}
+
+\begin{frame}{Momentum}
+In the mid-1990's it was discovered that stocks that had risen over the medium term (6 to 12 months) perform better than stocks that had fallen.
+
+This pattern has mostly continued.  It has also been documented in other asset classes (bonds, commodities, cross-country markets, \ldots).  
+
+The now-standard measure of momentum is the return over the past year excluding the most recent month.
+\end{frame}
+
+\begin{frame}{Momentum/Size Average Returns}
+      \begin{center}
+        \input{Tables/table_1970_momentum.tex}
+    \end{center}
+    Average returns in excess of risk-free rate. PRIOR = momentum.  ME = market equity.  Data from Kenneth French's data library 1970-2021.
+\end{frame}
+
+\begin{frame}{Momentum Returns and Betas}
+  \begin{center}
+        \includegraphics[scale=0.6]{Images/fig_1970_momentum.pdf}
+    \end{center}
+     Monthly returns 1970-2021 from Kenneth French's data library.
+\end{frame}     
+     
+\begin{frame}{Other Characteristics}
+   100s of characteristics have now been found to predict returns.  But, some are weak or disappear in later samples or are subsumed by others.  
+   
+    Here are three important, fairly persistent, examples:
+   \begin{itemize}
+       \item profitability---high profitability stocks outperform low profitability stocks
+   \item investment rate = rate of asset growth---low investment stocks outperform high investment stocks
+   \item volatility---low volatility stocks outperform high volatility stocks
+   \end{itemize} 
+\end{frame}
+
+\begin{frame}{Profitability/Size Average Returns}
+     \begin{center}
+        \input{Tables/table_1970_profitability.tex}
+    \end{center}
+     Average returns in excess of risk-free rate. OP = operating profitability.  ME = market equity.  Data from Kenneth French's data library 1970-2021.
+\end{frame}
+
+\begin{frame}{Profitability Returns and Betas}
+   \begin{center}
+        \includegraphics[scale=0.6]{Images/fig_1970_profitability.pdf}
+    \end{center}
+     Monthly returns 1970-2021 from Kenneth French's data library.
+\end{frame}
+
+\begin{frame}{Investment/Size Average Returns}
+     \begin{center}
+        \input{Tables/table_1970_investment.tex}
+    \end{center}
+    Average returns in excess of risk-free rate. INV = investment rate.  ME = market equity.  Data from Kenneth French's data library 1970-2021.
+\end{frame}
+
+\begin{frame}{Investment Returns and Betas}
+   \begin{center}
+        \includegraphics[scale=0.6]{Images/fig_1970_investment.pdf}
+    \end{center}
+     Monthly returns 1970-2021 from Kenneth French's data library.
+\end{frame}
+
+\begin{frame}{Volatility/Size Average Returns}
+     \begin{center}
+        \input{Tables/table_1970_volatility.tex}
+    \end{center}
+    Average returns in excess of risk-free rate. INV = investment rate.  ME = market equity.  Data from Kenneth French's data library 1970-2021.
+\end{frame}
+
+\begin{frame}{Volatility Returns and Betas}
+   \begin{center}
+        \includegraphics[scale=0.6]{Images/fig_1970_volatility.pdf}
+    \end{center}
+     Monthly returns 1970-2021 from Kenneth French's data library.
+\end{frame}
+
+
+\section{Decile Returns}\subsection{}
+
+\begin{frame}{Decile Returns}
+    To examine performance over time, we sort at the beginning of each month on a characteristic into deciles.
+    
+    We assume we make whatever trades are necessary at the beginning of each month so that we always hold the top decile portfolio or always hold the bottom decile portfolio.
+    
+    Within portfolios, we value weight, so we are putting more money on larger stocks (to be sure we are not over-emphasizing small illiquid stocks). 
+\end{frame}
+
+\begin{frame}{Size Returns}
+     \begin{center}
+        \includegraphics[scale=0.5]{Images/fig_1970_size.pdf}
+    \end{center}
+    Low = bottom decile.  High = top decile.  Value weighted monthly portfolio returns 1970-2021 from Kenneth French's data library.
+\end{frame}
+
+\begin{frame}{Value Returns}
+     \begin{center}
+        \includegraphics[scale=0.5]{Images/fig_1970_val.pdf}
+    \end{center}
+    Low = bottom decile.  High = top decile.  Value weighted monthly portfolio returns 1970-2021 from Kenneth French's data library.
+\end{frame}
+
+\begin{frame}{Momentum Returns}
+     \begin{center}
+        \includegraphics[scale=0.5]{Images/fig_1970_mom.pdf}
+    \end{center}
+    Low = bottom decile.  High = top decile.  Value weighted monthly portfolio returns 1970-2021 from Kenneth French's data library.
+\end{frame}
+
+\begin{frame}{Profitability Returns}
+     \begin{center}
+        \includegraphics[scale=0.5]{Images/fig_1970_prof.pdf}
+    \end{center}
+    Low = bottom decile.  High = top decile.  Value weighted monthly portfolio returns 1970-2021 from Kenneth French's data library.
+\end{frame}
+
+\begin{frame}{Investment Returns}
+     \begin{center}
+        \includegraphics[scale=0.5]{Images/fig_1970_inv.pdf}
+    \end{center}
+    Low = bottom decile.  High = top decile.  Value weighted monthly portfolio returns 1970-2021 from Kenneth French's data library.
+\end{frame}
+
+\begin{frame}{Volatility Returns}
+     \begin{center}
+        \includegraphics[scale=0.5]{Images/fig_1970_vol.pdf}
+    \end{center}
+    Low = bottom decile.  High = top decile.  Value weighted monthly portfolio returns 1970-2021 from Kenneth French's data library.
+\end{frame}
+\section{ETFs}\subsection{}
+
+\begin{frame}{ETFs}
+   `Factor' or `Smart Beta' ETFs are growing rapidly.  They provide a convenient way to invest in portfolios targeted to particular characteristics.  
+   We will look at a few:
+   \begin{itemize}
+       \item MTUM = BlackRock large and mid-cap momentum (beware of the tax burden, because it trades a lot, so distributes lots of capital gains)
+       \item QUAL = BlackRock large and mid-cap quality
+       \item USMV = BlackRock minimum volatility (large, mid and small cap)
+       \item VBR = Vanguard small cap value
+   \end{itemize}
+   For comparison, we will also look at SPY = S\&P 500 and VTWO = Vanguard small cap index (Russell 2000).
+    ETFs are relatively new inventions, so the history is short (especially for MTUM).
+\end{frame}
+
+
+\begin{frame}{MTUM, QUAL, USMV, and SPY}
+    \begin{center}
+        \includegraphics[scale=0.6]{Images/fig_ETFS_largecap.pdf}
+    \end{center}
+\end{frame}
+
+\begin{frame}{VBR (value) and VTWO (index)}
+    \begin{center}
+        \includegraphics[scale=0.6]{Images/fig_ETFS_smallcap.pdf}
+    \end{center}
+\end{frame}
+
+\begin{frame}{MTUM, SPY and VTWO}
+    \begin{center}
+        \includegraphics[scale=0.6]{Images/fig_ETFS_mixed.pdf}
+    \end{center}
+\end{frame}
+
+
+
+\section{Fama-French Model}\subsection{}
+
+\begin{frame}{Fama-French 1993 Model }
+Fama and French hypothesized that there are important measures of risk not captured by the CAPM beta.  Small stocks and value stocks may have higher exposures to these risks, hence warranting their higher average returns.
+
+Not knowing what they risks are, they proposed to use the following as proxies for the risks:
+\begin{itemize}
+    \item SMB = small minus big = return of a portfolio that is long small stocks and short big stocks
+    \item HML = high minus low = return of a portfolio that is long value stocks and short growth stocks
+\end{itemize}
+
+The (original) Fama-French model runs regressions on the market return and these two factors and uses the three slope coefficients (betas) to try to explain average stock returns.    
+\end{frame}
+
+\begin{frame}{Fama-French 2015}
+In the two decades following the 1990s papers, hundreds of characteristics were found in various papers to predict stock returns: stocks with high values outperform stocks with low values on average, or vice versa.
+
+In 2015, Fama and French proposed that most of the new results (other than momentum) could be captured by adding two new factors to their original model:
+\begin{itemize}
+    \item RMW = robust minus weak = return of a portfolio that is long highly profitable stocks and short low profitability stocks
+    \item CMA = conservative minus aggressive = return of a portfolio that is long stocks with low asset growth rates and short stocks with high asset growth rates
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Cost of Equity from the Fama-French Model}
+    Recall that the CAPM says the expected return on a stock is
+    $$\bar{r} = r_f + \beta \times \text{Mkt risk premium}$$
+        For the Fama-French model, we run a multivariate regression:
+   \begin{multline*}
+   r-r_f = \alpha + \beta_{\text{Mkt}}(r_m-r_f) \\+ \beta_{\text{SMB}}\text{SMB}
+    + \beta_{\text{HML}}\text{HML}
+    + \beta_{\text{RMW}}\text{RMW}
+    + \beta_{\text{CMA}}\text{CMA} + \varepsilon
+    \end{multline*}
+    The model says that the expected return of a stock is
+    \begin{multline*}\bar{r} = r_f + \beta_{\text{Mkt}} \times \text{Mkt risk premium} \\+ \beta_{\text{SMB}}\overline{\text{SMB}}
+    + \beta_{\text{HML}}\overline{\text{HML}}
+    + \beta_{\text{RMW}}\overline{\text{RMW}}
+    + \beta_{\text{CMA}}\overline{\text{CMA}}
+    \end{multline*}
+    In other words, the risk premium is a sum of betas times factor risk premia.  
+\end{frame}
+
+\begin{frame}{Rationale for the Fama-French Model}
+   The additional factors in the Fama-French model (relative to the CAPM) reflect the fact that there may be additional risks other than market risk that matter to investors.  
+   
+   The additional factors in the model are the returns of portfolios whose average returns are not explained by the CAPM.
+   
+   If markets are efficient, those portfolios must be exposed to the additional risks that matter (that's why their returns are not explained by the CAPM).
+   
+   So, stocks that are correlated with the additional risks should also be correlated with the portfolio returns, and we can use the correlations (equivalently, betas) to predict the returns that investors expect on stocks.
+\end{frame}
+
+\begin{frame}{Regression of CVX Return on FF
+Factors}
+    \begin{center}
+        \input{Tables/table_cvx_ff.tex}
+    \end{center}
+Monthly returns 1970-2021.  CVX returns from Yahoo.  FF factors from Kenneth French's data library.  All coefficients are significant.
+\end{frame}
+
+\begin{frame}{CVX Cost of Equity from FF Model}
+    \begin{center}
+        \input{Tables/table_cvx_costequity.tex}
+    \end{center}
+According to the Fama-French model, the risk premium of a stock should be the sum of its betas multiplied by the factor means.  Expected return is risk-free rate plus risk premium, so the cost of equity capital should be
+$$\text{risk-free rate} + 10.34\%$$
+\end{frame}
+
+\begin{frame}{CVX Cost of Equity from CAPM}
+     \begin{center}
+        \input{Tables/table_cvx_costequitycapm}
+    \end{center}
+The CAPM says that the risk premium of a stock should be its market beta multiplied by the market risk premium, so the cost of equity capital should be
+$$\text{risk-free rate} + 6.14\%$$
+
+Compared to FF model, smaller market beta and no risk premia for exposures to HML, RMW, and CMA risk.
+\end{frame}
+\end{document}

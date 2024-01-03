@@ -1,0 +1,281 @@
+\documentclass[xcolor=dvipsnames,10pt]{beamer}
+\input{head.tex}
+
+\title{\vskip 0.5in Day 3}
+\subtitle{Stochastic Discount Factors I}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+\begin{frame}{Main Concepts}
+
+\begin{enumerate}
+    \item Day I
+\begin{itemize}
+\im Stochastic discount factors (SDFs)
+\im Risk premia and risk adjustments
+\im Risk-neutral probabilities
+\end{itemize}
+\item Day II
+\begin{itemize}
+\im Complete markets
+\im Finite state model
+\im Arbitrage pricing
+\im Projections and the Hansen-Jagannathan bound
+\end{itemize}
+\end{enumerate}
+\end{frame}
+
+\section{SDFs}
+\subsection{}
+
+\bfr\frametitle{Discounting Future Cash Flows}
+ The value of an asset depends on future cash flows.  We discount future cash flows because of the time value of money and because of risk.
+
+If investors were risk neutral, an asset price would be $p = \mye[\tx]/R_f$ (discounting at the risk-free rate).
+\
+If investors were risk neutral, all expected returns would be the same.  Proof:
+$$\tr = \tx \frac{1}{p} = \tx \cdot \frac{R_f}{\mye[\tx]}\,,$$
+so
+$$\mye[\tr] = R_f$$
+
+Why? If an asset had a higher (lower) expected return than the risk-free return then risk-neutral investors would want to go infinitely long (short) the asset, which is inconsistent with equilibrium.
+\end{frame}
+
+\bfr\frametitle{Stochastic Discount Factors}
+
+Under weak assumptions that we will discuss, there exists a random variable $\tm$, which we call a stochastic discount factor (SDF) such that all asset prices are 
+$$p = \mye[\tm\tx]$$
+
+With risk neutrality, $\tm = 1/R_f$.
+
+\end{frame}
+
+\bfr\frametitle{Alternate Characterizations}
+Suppose $\tm$ is an SDF, meaning
+$$(\forall \,\text{assets\,}\,i) \quad \mye[\tm \tx_i] = p_i$$
+
+If $p_i \neq 0$, then
+$$\mye[\tm \tr_i] = 1$$
+
+If also $p_j \neq 0$, then
+$$\mye[\tm(\tr_i-\tr_j)] = 0$$
+
+Notice that $\mye[\tm R_f]=1$ implies $\mye[\tm] = 1/R_f$.
+
+\end{frame}
+
+
+
+\bfr\frametitle{Marginal Utility Defines an SDF}
+The FOC is
+$$(\forall \,i) \quad \mye[u'(\tw) \tx_i] = \lambda p_i$$
+
+So, $u'(\tw)/\lambda$ is an SDF.  
+
+More succinctly, $u'(\tw)$ is proportional to an SDF.
+
+\end{frame}
+
+\bfr\frametitle{Time-Additive Utility and the Euler Equation}
+\bi
+\im Assume time-additive utility $ u(c_0) + \delta u(c_1)$.
+\im Consumption/investment problem:  choose $c_0, \phi_1, \ldots, \phi_n$ to 
+$$\max \;u(c_0) +  \delta \mye\lb  u\lp \sum_{i=1}^n \phi_i\tr_i \rp \rb \quad \text{subject to} \quad c_0 + \sum_{i=1}^n \phi_i = w$$
+\im FOC: 
+$$u'(c_0) = \lambda \quad \text{and} \quad (\forall \,i) \quad  \mye\lb \delta u'\lp \sum_{i=1}^n \phi_i\tr_i \rp \tr_i\rb = \lambda \quad \Rightarrow$$
+$$\Rightarrow \quad (\forall \,i) \quad \mye\lb \frac{\delta u'\lp \sum_{i=1}^n \phi_i\tr_i \rp}{u'(c_0)} \tr_i\rb = 1 \quad \Rightarrow \quad
+\tm = \frac{\delta u'(\tilde{c}_1)}{u'(c_0)}$$
+\ei
+\end{frame}
+
+\section{Risk Premia}
+\subsection{}
+
+\bfr\frametitle{Risk Premia as Covariances}
+Because $\cov(\tx,\ty) = \mye[\tx\ty] - \mye[\tx]\mye[\ty]$,
+$$1 = \mye[\tm\tr] = \cov(\tm,\tr) + \mye[\tm]\mye[\tr]$$
+
+Rearrange to obtain
+$$\mye[\tr] = \frac{1}{\mye[\tm]} - \frac{1}{\mye[\tm]}\cov(\tm,\tr)$$
+Thus, expected asset returns depend on covariances with an SDF.
+
+If there is a risk-free asset, then $R_f = 1/\mye[\tm]$.  So,
+$$\mye[\tr]-R_f = - R_f\cov(\tm,\tr)$$
+\end{frame}
+
+\bfr\frametitle{Risk Adjustments}
+If there is a risk-free asset, then
+$$p \ = \ \mye[\tilde{m}\tilde{x}]  \ = \ \mye[\tilde{m}]\mye[\tilde{x}]+ \cov(\tilde{m},\tilde{x})
+\ = \ \frac{\mye[\tilde{x}] + R_f\cov(\tilde{m},\tilde{x})}{R_f}$$
+So, we can adjust the expected payoff for risk and then discount at the risk-free rate.
+
+Also,
+$$\mye[\tx/p]-R_f \ = \ - R_f\cov(\tm,\tr)\quad \Rightarrow \quad p \ = \ \frac{\mye[\tilde{x}]}{R_f - R_f\cov(\tilde{m},\tilde{R})}$$
+So we can discount the expected payoff at a risk-adjusted rate. 
+
+\end{frame}
+
+\section{RNPs}
+\subsection{}
+
+\bfr\frametitle{Risk Neutral Probabilities}
+We can price with an SDF: $p = \mye[\tm\tx]$.
+
+Alternatively, given an SDF, we can ``change probabilities'' to price \alert{as if} investors were risk neutral.  That is, we can price as
+$$p \ = \ \frac{\mye^*[\tx]}{R_f}$$
+where $\mye^*$ denotes expectation with respect to the changed probabilities.
+
+We call the new probabilities a ``risk-neutral probability'' or ``risk-neutral probability measure.''
+
+\end{frame}
+
+\begin{frame}{Example}
+$R_f=1.1$. Single risky asset.  Two states of the world.  $p=100$, $x=120$ or 90 with equal probabilities.
+
+Find the SDF.
+\begin{align*}
+1  \ & = \ 1.1\prob_1m_1  + 1.1\prob_2m_2  \\
+100 \ & = \ 120\prob_1 m_1  + 90\prob_2 m_2
+\end{align*}
+
+Find the risk-neutral probability:
+\begin{align*}
+1  \ & = \ \prob_1^* + \prob_2^*\\
+100 \ & = \frac{\ 120 \prob_1^* + 90 \prob_2^*}{1.1} 
+\end{align*}
+
+Clearly, $\prob_1^* = 1.1\prob_1 m_1$ and $\prob_2^* = 1.1\prob_2m_2$.
+\end{frame}
+
+\begin{frame}{Example cont.}
+Let's price another asset in the example.  Consider a security that pays \$1 if $x=120$ and 0 otherwise.  
+
+Price using SDF: ???
+\vskip 3\baselineskip
+Price using RNP: ???
+\end{frame}
+
+\bfr\frametitle{General Definition of RNP}
+For an event $A$, $1_A=\,$ indicator function, meaning $1_A(\omega) = 1$ if $\omega \in A$ and $1_A(\omega) = 0$ otherwise.
+
+Given an SDF $\tm$, define 
+$$\qr(A) = \frac{ \mye[\tilde{m}1_A]}{\mye[\tm]} = R_f \mye[\tilde{m}1_A]$$
+
+Then, $\qr$ is a probability: $\qr(A) \geq 0$, $\qr(\emptyset)=0$, $\qr(\Omega)=1$, and $\qr$ of the union of a sequence of disjoint events is the sum of $\qr$ of the events.
+
+In the example: \vspace*{-\baselineskip}
+\begin{itemize}
+    \item For $A=\{\tx=120\}$,
+$\qr(A) \eqdef \prob_1^* = 1.1 \prob_1 m_1$.
+\item For $A = \{\tx=90\}$,
+$\qr(A) \eqdef \prob_2^* = 1.1 \prob_2 m_2$.
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}{Risk-Neutral Expectation}
+Let $\mye^*$ denote expectation with respect to $\qr$.  Note $\qr(A) = \mye^*[1_A]$ for all events $A$.  
+
+So, the definition of $\qr$ implies
+$$(\forall\, A) \quad \mye^*[1_A] = R_f \mye[\tm 1_A]$$
+
+This generalizes as
+$$(\forall\, \tx) \quad \mye^*[\tx] = R_f \mye[\tm \tx]$$
+
+
+It follows that \alert{prices are risk-neutral expected payoffs discounted at the risk-free rate, and risk-neutral expected returns equal the risk-free return}: 
+$$p = \mye[\tm\tx] = \frac{\mye^*[\tx]}{R_f} \quad \Rightarrow \quad \mye^*[\tilde{R}] = \frac{\mye^*[\tx]}{p} = R_f$$
+
+\end{frame}
+
+\section{CARA-Normal}
+\subsection{}
+
+\begin{frame}{CARA Utility}
+Suppose there is a CARA investor with risk aversion $\alpha$ whose optimal portfolio has a value of $\tw$ at date 1. 
+Her marginal utility is
+$$u'(\tw) \ = \ \alpha \E^{-\alpha \tw}$$
+There is an SDF proportional to her marginal utility, \alert{meaning
+$$\tm  =k \E^{-\alpha \tw}$$
+for some $k>0$.  
+Because $\mye[\tm]=1/R_f$, we have
+$$k \mye[\E^{-\alpha \tw}] = \frac{1}{R_f} \quad \Rightarrow \quad k = \frac{1}{R_f \mye[\E^{-\alpha \tw}]}$$ 
+$$\Rightarrow \quad \tm \ = \ \frac{\E^{-\alpha \tw}}{R_f \mye[\E^{-\alpha \tw}]}$$}
+\end{frame}
+
+\begin{frame}{Normal Distributions}
+Consider an asset with payoff $\tx$.  Suppose $\tx$ and $\tw$ are joint normal, and the investor has CARA utility.
+
+We want to value $\tx$.  Possible approaches:
+\begin{enumerate}
+\im $p = \mye[\tm\tx]$
+\im $p = (\mye[\tx] + R_f\cov(\tm,\tx))/R_f$
+\im $p = \mye^*[\tx] / R_f$
+\end{enumerate}
+From CARA utility,
+$$\tm \ = \ \frac{\E^{-\alpha \tw}}{R_f \mye[\E^{-\alpha \tw}]}$$
+\end{frame}
+
+\begin{frame}{Method 1}
+    Setting \alert{$b=\cov(\tx,\tw)/\var(\tw)$} and $a=\mye[\tx]-b\mye[\tw]$, we have
+    $$\tx = a + b\tw + \te$$
+    where $\te$ has a zero mean, and $\te$ and $\tw$ are uncorrelated (easy to check from definitions) and hence independent (by normality).
+    Thus,
+    $$\mye[\E^{-\alpha \tw}\tx] = a\mye[\E^{-\alpha \tw}] + b\mye[\tw \E^{-\alpha \tw}]$$
+    We can integrate by parts (using the fact that for the standard normal density $f$, we have $xf(x) = - f'(x)$) or look up in a table of integrals that
+    $$\mye[\tw \E^{-\alpha \tw}] = (\mu_w-\alpha \sigma_w^2)\mye[\E^{-\alpha \tw}]$$
+    We end up with 
+    $$p = \frac{a + b \mu_w - \alpha b \sigma_w^2}{R_f} = \frac{\mye[\tx] - \alpha \cov(\tx,\tw)}{R_f}$$
+    \end{frame}
+\begin{frame}{Method 2 via Stein's Lemma}
+Stein's Lemma: For any two joint normal random variables $\ty$ and $\tz$ and any continuously differentiable function $f$, 
+$$\cov(\ty, f(\tz)) = \mye[f'(\tz)]\cov(\ty,\tz)$$
+Intuition: suppose $f$ is linear: $f(z) = a + bz$. Then $f'=b$ and the lemma states that $\cov(\ty,a+b\tz) = b\cov(\ty,\tz)$, which we know.  What the lemma says is that we can approximate $f$ linearly by its derivative and replace $f'$ by its mean when $\ty$ and $\tz$ are joint normal.
+
+Stein's Lemma implies
+$$\cov(\tx,\E^{-\alpha \tw}) \ = \ -\alpha \mye[\E^{-\alpha w}]\cov(\tx,\tw)$$
+Hence,
+$$p \ = \ \frac{\mye[\tx] - \alpha \cov(\tx,\tw)}{R_f}$$
+\end{frame}
+
+\begin{frame}{Method 3}
+We can show that, under the risk-neutral probability defined from $\tm$, the random variable $\tx$ is normally distributed with the same variance as under the original probability and with mean $\mye^*[\tx] = \mye[\tx] - \alpha \cov(\tx,\tw)$.
+
+We end up with
+$$p \ = \ \frac{\mye[\tx] - \alpha \cov(\tx,\tw)}{R_f}$$
+
+To verify the distribution of $\tx$ under $\qr$, we calculate the moment-generating function
+$$\mye^*[\E^{\lambda \tx}] = R_f \mye[\tm \E^{\lambda \tx}] = \frac{\mye[\E^{\lambda \tx -\alpha \tw}]}{\mye[\E^{-\alpha \tw}]}$$
+\end{frame}
+
+\begin{frame}[plain]
+    We have
+ \begin{align*}
+     \mye[\E^{\lambda \tx -\alpha \tw}] &= \E^{\lambda a}\mye[\E^{(\lambda b-\alpha)\tw}]\mye[\E^{\lambda \te}]\\
+     &= \E^{\lambda a}\E^{(\lambda b-\alpha)\mu_w + (\lambda b-\alpha)^2\sigma_w^2/2}\E^{\lambda^2\sigma^2_e/2}\\
+     &= \E^{\lambda a+\lambda b\mu_w +\lambda^2b^2\sigma_w^2/2 - \lambda b \alpha \sigma_w^2 + \lambda^2\sigma_e^2/2}\mye[\E^{-\alpha \tw}]
+ \end{align*} 
+ Thus,
+ \begin{align*}
+     \mye^*[\E^{\lambda \tx}] & = \E^{\lambda a+\lambda b\mu_w +\lambda^2b^2\sigma_w^2/2 - \lambda b \alpha \sigma_w^2 + \lambda^2\sigma_e^2/2}\\
+     &= \E^{\lambda (a + b \mu_w - b \alpha \sigma_w^2) + \lambda^2(b^2\sigma_w^2 + \sigma_e^2)/2}\\
+     &= \E^{\lambda \big(\mu_x - \alpha \cov(\tx,\tw)\big) + \lambda^2\sigma_x^2/2}
+     \end{align*}
+Therefore, $\tx$ is normal with mean $\mye[\tx] - \alpha \cov(\tx,\tw)$ and standard deviation $\sigma_x$ under the RNP.
+\end{frame}
+
+\end{document}

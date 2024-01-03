@@ -1,0 +1,208 @@
+\documentclass[xcolor=dvipsnames,10pt]{beamer}
+\input{head.tex}
+\newcommand{\tu}{\tilde{u}}
+\begin{document}
+\title{\vskip 0.5in Day 22}
+\subtitle{Optimal Portfolio Choice}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Choice Problem}\subsection{}
+
+\begin{frame}{Portfolio Choice Problem}
+
+An investor chooses consumption process $C$ and portfolio process $\pi$ to 
+$$\max \quad \mye \int_0^\infty \E^{-\delta t}u(C_t)\,\D t$$
+subject to the intertemporal budget constraint.
+
+ Assume no labor income ($Y=0$).  The intertemporal budget constraint is
+$$\frac{\D W}{W} = -\frac{C}{W}\,\D t + r\,\D t+\pi'(\mu-r\iota)\,\D t + \pi'\sigma\,\D B$$
+
+\end{frame}
+
+
+\begin{frame}{State Variable}
+  State variable $X$.  For simplicity, assume it is scalar.  
+ Assume 
+$$
+	\D X_t = \phi(X_t)\,\D t + \nu(X_t)'\,\D B_t\,,
+$$
+for functions $\phi$ and $\nu$, where~$B$ is the same~$k$--vector of independent Brownian motions that determines the security 
+returns.
+
+ Assume the investment opportunity set at date~$t$ depends only on $X_t$.  That is,
+ \vspace*{-\baselineskip}
+\begin{itemize}
+    \item  the interest rate is $r(X_t)$,
+\item the asset expected returns are $\mu(X_t)$,
+\item the asset volatility matrix is $\sigma(X_t)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Issues}
+Consumption smoothing
+
+\vskip\baselineskip\pause  
+Risk/return tradeoff
+
+\vskip\baselineskip\pause  
+Hedging against adverse changes in investment opportunities
+\vskip\baselineskip\pause  
+Is also very interesting to study saving/investment/hedging when there is income risk, but we will not do it in this course.
+    
+\end{frame}
+
+\section{HJB Equation}\subsection{}
+\begin{frame}{Hamilton-Jacobi-Bellman Equation}
+
+ At the optimum, the current utility is just enough to offset the loss in value due to the passage of time and discounting and due to the expected change in the value function:
+$$ 0 \ = \ \max_{C,\pi} \;\big\{ \; u\,\D t - \delta J\,\D t + \text{drift of $J$}\;\,\big\}
+$$
+This is the continuous-time version of the equation
+\begin{multline*}
+    0 \ = \ \max_{\text{controls}} \; \big\{ \text{current reward} \\+ [\text{discounted future value of $J$} - \text{current value of $J$}] \;\big\}
+\end{multline*}
+
+ By It\^o's formula, using subscripts to denote partial derivatives,
+$$
+\text{drift of $J$} = J_w \,\text{drift of $W$} + J_x \,\text{drift of $X$}] + \text{second-order terms}
+$$
+\end{frame}
+
+\begin{frame}
+\begin{align*}
+\text{drift of $W$} \ &= \ -C + rW + W\pi'(\mu - r\iota)\\ \\ 
+\text{drift of $X$} \ &= \ \phi\ \\ \\
+(\D W)^2 \ &= \ (W \pi'\sigma\,\D B)(W\pi'\sigma\,\D B)' \ = \ W^2\pi'\Sigma\pi\,\D t\\ \\ 
+(\D W)(\D X) \ &= \  (W\pi'\sigma \,\D B)(\nu'\,\D B)' \ = \ W\pi'\sigma\nu\,\D t\\ \\
+  (\D X)^2 \ &= \ (\nu'\,\D B)(\nu'\,\D B)' \ = \ \nu'\nu\,\D t\\ \\ 
+\end{align*}
+\end{frame}
+
+\begin{frame}
+The HJB equation is
+\begin{multline*} 0 \ = \ \max_{C,\pi} \quad \bigg\{u - \delta J + \big[-C + rW + W\pi'(\mu - r\iota)\big]J_w + \phi J_x \\
++ \frac{1}{2}W^2\pi'\Sigma\pi J_{ww} + W\pi'\sigma\nu J_{wx} 
++ \frac{1}{2}\nu'\nu J_{xx} \bigg\}
+\end{multline*}
+
+\end{frame}
+
+
+\section{FOCs}\subsection{}
+
+\bfr\frametitle{Optimal Consumption (Envelope Condition)}
+The FOC for $C$ is 
+$$u'(C) = J_w$$
+This means that if you are given an extra unit of the consumption good, you could consume it and get $u'$ or save it and get $J_w$ and at the optimum these two values must be equal (you equate marginal values).  
+
+We can invert the marginal utility and solve the envelope condition to compute the optimal consumption as a function of $W$ and $X$:
+$$C = \big(u'\big)^{-1}\big(J_w(W,X)\big)$$
+For example, if $u=log$ then 
+$$u'(C) = J_w \quad \Rightarrow \quad \frac{1}{C} = J_w \quad \Rightarrow \quad C = \frac{1}{J_w}$$
+\end{frame}
+
+\bfr\frametitle{Optimal Portfolio}
+
+The FOC for $\pi$ is
+$$ WJ_w(\mu-r\iota) + W^2J_{ww}\Sigma\pi + WJ_{wx}\sigma\nu=0$$
+
+We can solve this as 
+$$\pi = -\frac{1}{WJ_{ww}}\Sigma^{-1}\bigg[ J_w(\mu-r\iota)+ J_{wx}\sigma\nu\bigg]$$
+
+We can rearrange the solution as
+$$\pi = -\frac{J_w}{WJ_{ww}}\Sigma^{-1}(\mu-r\iota)-\frac{J_w}{WJ_{ww}}\frac{J_{xw}}{J_w}\Sigma^{-1} \sigma\nu$$
+
+What are the terms/factors in this formula?
+\end{frame}
+
+\begin{frame}[plain]
+In the formula for the optimal portfolio, we see relative risk aversion of the value function, the log-optimal portfolio, the sensitivity of the marginal value of wealth to changes in $X$ (namely $\partial \log J_w / \partial x$) and the vector $\Sigma^{-1}\sigma\nu$.
+
+Consider the stochastic part of the portfolio return due to the last term in the optimal portfolio formula.  It is proportional to
+$$(\Sigma^{-1}\sigma\nu)'\sigma\,\D B$$
+
+Take the transpose and write out the definition $\Sigma = \sigma\sigma'$.  We have
+$$(\Sigma^{-1}\sigma\nu)'\sigma\,\D B \ = \ \nu'\sigma'(\sigma\sigma')^{-1}\sigma\,\D B$$
+
+The row vector in front of $\D B$ is the transpose of the projection of $\nu$ onto the span of the rows of $\sigma$.  It is the portfolio that has maximum correlation with $\D X$.   This part of the portfolio is called the hedging demand.  It hedges changes in $X$.
+\end{frame}
+
+
+
+\bfr\frametitle{Hedging Demands}
+\bi
+\im Suppose $J_{wx}>0$.  This means that the marginal value of wealth $J_w$ is larger when $X$ is larger.
+\im And suppose that the multiple regression (projection) of $\D X$ on the asset returns has a positive coefficient for some particular asset.  
+\im Under these two conditions, an investor holds an extra amount of the asset, because it pays off highly when wealth is needed (it tends to pay when $J_w$ goes up).
+\im The investor hedges against $J_w$ rising by holding assets that pay highly when $J_w$ rises.
+\im How much of an asset the investor holds to hedge depends on
+\bi
+\im risk aversion
+\im how much $X$ matters ($\partial \log J_w/\partial x$)
+\im how much and in what direction the asset covaries with $X$ (more precisely, the size and sign of the multiple regression coefficient).
+\ei
+\ei
+\end{frame}
+
+\section{Log Example}\subsection{}
+
+
+\begin{frame}{HJB Equation for Log Utility}
+For log utility, let's see if there is a solution of the HJB equation 
+\begin{multline*} 0 \ = \ \max_{C,\pi} \quad \bigg\{u - \delta J + \big[-C + rW + W\pi'(\mu - r\iota)\big]J_w + \phi J_x \\
++ \frac{1}{2}W^2\pi'\Sigma\pi J_{ww} + W\pi'\sigma\nu J_{wx} 
++ \frac{1}{2}\nu'\nu J_{xx} \bigg\}
+\end{multline*}
+of the form 
+$$J(w,x) = a \log w + f(x)$$
+for some constant $a$ and function~$f$.
+\end{frame}
+
+\begin{frame}
+
+J(w,x) = a \log w + f(x)$ implies
+ \begin{align*}   
+ J_w &=a/W \Rightarrow WJ_w = a\\
+ J_{ww}&=-a/W^2 \Rightarrow W^2J_{ww}=-a\\
+ J_{wx}&=0\\
+ J_x&=f'\\ 
+ J_{xx} &= f''
+ \end{align*}
+ Set $Z=C/W$.
+\end{frame}
+
+
+\begin{frame}{Optimum}
+Substituting $\,\Rightarow$
+\begin{multline*} 0 \ = \ \max_{C,\pi} \quad \bigg\{\log Z + \log W - \delta [a \log W + f] \\ + a[-Z + r + \pi'(\mu - r\iota)] + \phi f'\\ 
+- \frac{a}{2}\pi'\Sigma\pi  + \frac{1}{2}\nu'\nu f'' \bigg\}
+\end{multline*}
+
+The optimal consumption rate is $Z^*=1/a$.  The optimal portfolio solves
+$$\max_\pi \; \pi'(\mu-r\iota) - \frac{1}{2}\pi'\Sigma\pi$$
+FOC is $\mu-r\iota - \Sigma\pi=0$, so $\pi^* = \Sigma^{-1}(\mu-r\iota)$.
+
+\end{frame}
+
+\begin{frame}{Ordinary Differential Equation}
+Substituting $\,\Rightarrow$
+\begin{multline*} 0 \ = \ \log W - \log a - \delta a \log W - \delta f \\ 
+-1 + ar + \phi f' + \frac{1}{2}\nu'\nu f'' +
+ \frac{a}{2}(\mu - r\iota)'\Sigma^{-1}(\mu - r\iota) 
+\end{multline*}
+For this to be true for all $(W,X)$, the terms involving $W$ and the terms involving $X$ must separately add to zero.  
+
+Equating the $W$ terms to zero yields $a = 1/\delta$, so $Z^* = \delta W$.  
+
+Substituting this and equating the $X$ terms to zero yields
+$$ 0= \log \delta - \delta f - 1 + \frac{r}{\delta} + \phi f' +  \frac{1}{2}\nu'\nu f'' +
+ \frac{1}{2\delta}(\mu - r\iota)'\Sigma^{-1}(\mu - r\iota) 
+$$
+This is an ODE in $f$.
+\end{frame}
+
+
+\end{document}

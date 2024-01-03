@@ -1,0 +1,373 @@
+\documentclass[xcolor=dvipsnames,10pt]{beamer}
+\input{head.tex}
+
+\title{\vskip 0.5in Day 11}
+\subtitle{Representative Investors}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\section{Intro}\subsection{}
+
+\begin{frame}{Equilibrium with Date--0 Consumption}
+Assume there is no labor income.
+Investors $h=1,\ldots,H$ have endowments of date--0 consumption $\bar{c}_{h0}$ and asset shares $\bar{\theta}_h$.  Assets $i=1,\ldots,n$ have payoffs $\tx_i$.
+
+Take date--0 consumption to be the numeraire (price=1).  An equilibrium is a price vector $p\in \myreal^n$ for assets, a date--0 consumption allocation $(c_{10},\ldots,c_{H0})$ and asset allocations $(\theta_1,\ldots,\theta_H)$ such that
+\begin{itemize}
+    \item date--0 consumption $c_{h0}$ and portfolio $\theta_h$ are optimal for investor $h$, for all $h$
+    \item the date--0 consumption market: $\sum_h c_{h0} = \sum_h \bar{c}_{h0}$
+    \item the asset markets clear: $\sum_h \theta_h = \sum_h\bar{\theta}_h$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Representative Investor}
+    There is a representative investor 
+    if each asset price vector $p$ that is part of a securities market equilibrium is also part of a securities market equilibrium in the economy in which there is only the representative investor, and the representative investor's endowments are $\bar{c}_0 := \sum_h \bar{c}_{h0}$ and $\bar{\theta} := \sum_h \bar{\theta}_{h0}$.  
+    
+    By the FOC in the representative investor economy, the representative investor's MRS is an SDF.
+ \end{frame}
+ 
+ \begin{frame}{Plan for Today}
+     Assume there is a representative investor with CRRA utility.  Derive
+     \begin{itemize}
+         \item formula for market return 
+         \item formula for risk-free rate
+         \item formula for log equity premium (assuming also lognormal consumption growth)
+         \item variation of the CAPM
+     \end{itemize}
+     
+Then discuss:
+\begin{itemize}
+    \item There is a representative investor if the first welfare theorem holds (complete markets or LRT utility with same cautiousness parameter)
+    \item With LRT utility for all investors and same cautiousness parameter, the representative investor has the same utility function.
+\end{itemize}
+ \end{frame}
+
+\section{Equity Premium}\subsection{}
+\begin{frame}{Representative Investor with CRRA Utility}
+    Assume there is a representative investor with utility function
+      $$(c_0,c_1) \mapsto u(c_0) + \delta u(c_1)$$
+      where
+      $$u(c) = \frac{1}{1-\rho}c^{1-\rho}$$
+      
+      Let $c_0$ denote aggregate consumption at date 0, and let $\tilde{c}_1$ denote aggregate consumption at date 1.
+      
+      Then
+      $$\delta \left(\frac{\tc_1}{c_0}\right)^{-\rho}$$
+      is an SDF.
+     \end{frame}
+
+\bfr\frametitle{Market Return}
+ Assume $\tc_1$ is spanned by the assets.  Its cost is 
+$$\mye[\tm\tc_1]= \mye\left[\frac{\delta \tc_1^{-\rho}}{c_0^{-\rho}}\tc_1\right] = c_0\mye\left[\frac{\delta \tc_1^{-\rho}}{c_0^{-\rho}}\cdot\frac{\tc_1}{c_0}\right] = \delta c_0\mye\left[\left(\frac{\tc_1}{c_0}\right)^{1-\rho}\right]$$
+ The market return is 
+ $$\tr_m := \frac{\tc_1 }{ \mye[\tm\tc_1]} = \frac{1}{\delta\mye\left[\left(\frac{\tc_1}{c_0}\right)^{1-\rho}\right]}\cdot \frac{\tc_1}{c_0} := \frac{1}{\nu_1} \cdot \frac{\tc_1}{c_0}$$
+ 
+ \end{frame}
+ 
+\bfr\frametitle{Risk-Free Return}
+ The risk-free return is
+$$R_f = \frac{1}{\mye[\tm]} = \frac{1}{\delta\mye[(\tc_1/c_0)^{-\rho}]} := \frac{1}{\nu_0}$$
+
+\end{frame}
+
+\begin{frame}{Log Equity Premium}
+$$\frac{\tr_m}{R_f} = \frac{\nu_0}{\nu_1}\cdot \frac{\tc_1}{c_0}$$
+So,
+$$
+\frac{\mye[\tr_m]}{R_f} = \frac{\nu_0\mye[\tc_1/c_0]}{\nu_1} = \  \frac{\mye[(\tc_1/c_0)^{-\rho}]\mye[\tc_1/c_0]}{\mye[(\tc_1/c_0)^{1-\rho}]}
+= \frac{\mye[\tc_1]\mye[\tc_1^{-\rho}]}{ \mye[\tc_1^{1-\rho}]}
+$$
+\end{frame}
+
+
+\bfr\frametitle{Lognormal Consumption}
+ Assume $\log \tc_1 - \log c_0 = \mu + \sigma \tve$ for constants $\mu$ and $\sigma$ and a standard normal $\tve$.
+\begin{align*}\tc_1 = c_0\E^{\mu+\sigma\tve} \;&\Rightarrow\; \mye[\tc_1] = c_0\E^{\mu+\sigma^2/2}\\
+\tc_1^{-\rho} = c_0^{-\rho}\E^{-\rho\mu-\rho\sigma\tve}\;&\Rightarrow\;\mye[\tc_1^{-\rho}] = c_0^{-\rho}\E^{-\rho\mu+\rho^2\sigma^2/2}\\
+\tc_1^{1-\rho} = c_0^{1-\rho}\E^{(1-\rho)\mu + (1-\rho)\sigma\tve}\;&\Rightarrow\; \mye[\tc_1^{1-\rho}] = c_0^{1-\rho}\E^{(1-\rho)\mu+(1-\rho)^2\sigma^2/2}
+\end{align*}
+
+ This implies
+$$\frac{\mye[\tr_m]}{R_f} = \E^{\rho\sigma^2}$$
+So,
+$$\log \mye[\tr_m] - \log R_f = \rho \sigma^2$$
+
+\end{frame}
+\bfr\frametitle{Equity Premium and Risk-Free Rate Puzzles}
+\bi
+\im To match this model to the historical equity premium, a risk aversion around 50 is required.  Much too high.
+\im Using $\rho=10$ and $\delta=0.99$, the model implies a high risk-free rate (12.7\%) and low equity premium ($\mye[\tr_m]-R_f = 1.4\text{\%}$).
+\im The historical (U.S.) numbers are around 1\% for the real risk-free rate and 6\% for the equity premium.
+\ei
+\end{frame}
+
+\section{CAPM Alternative}
+
+\begin{frame}{SDF and Market Return}
+The market return is 
+$$\tr_m = \frac{1}{\nu_1}\cdot \frac{\tc_1}{c_0}$$
+and the SDF is
+$$\tm = \delta \left(\frac{\tc_1}{c_0}\right)^{-\rho}$$
+so the SDF is
+$$\tm = \delta \nu^{-\rho} \tr_m^{-\rho}$$
+\end{frame}
+
+\begin{frame}{CAPM Alternative}
+    Risk premia of all assets are
+    $$\mye[\tr] - R_f = - R_f \cov(\tr,\tm) = - \delta\nu^{-\rho} R_f \cov(\tr,\tr_m^{-\rho})$$
+    
+    This implies
+    $$\mye[\tr] - R_f = \lambda \frac{ \cov(\tr,\tr_m^{-\rho})}{\var(\tr_m^{-\rho})}$$
+    for a $\lambda$ that is the same for all assets.  So, risk premia depend on betas with respect to $\tr_m^{-\rho}$.
+    
+\end{frame}
+
+\section{When is There a Representative Investor?}\subsection{}
+
+\section{Social Planner}\subsection{}
+
+\bfr\frametitle{Social Planner's Problem}
+For each value $w$ of market wealth,  the social planner solves
+$$\max \quad \sum_{h=1}^H \lambda_hu_h(w_h) \quad \text{subject to} \quad \sum_{h=1}^H w_h = w$$
+Let $U(w)$ denote the maximum value.  This is the social planner's utility function.
+
+Let $\eta$ denote the Lagrange multiplier (which depends on market wealth $w$).  Then, for all $h$,
+$$\lambda_h u_h'(w_h) = \eta$$
+Also, the social planner's marginal utility (the marginal value of market wealth) is equal to $\eta$.  So, for all $h$, we have the envelope result:
+$$U'(w) = \lambda_h u_h'(w_h)$$
+Hence, the social planner's marginal utility is proportional to an SDF.
+\end{frame}
+
+\bfr\frametitle{Social Planner's Problem with Date--0 Consumption}
+Suppose investor $h$ has utility $u_h(c_{h0}) + \delta_h u_h(c_{h1})$.  The social planner's problem is now separable in dates and in states.  Given aggregate date--0 consumption $c_{m0}$ and aggregate date--1 consumption $c_{m1}$, the social planner solves 
+$$U_0(c_{m0}) := \max \quad \sum_{h=1}^H \lambda_hu_h(c_{h0}) \quad \text{subject to} \quad \sum_{h=1}^H c_{h0} = c_{m0}$$
+and
+$$U_1(c_{m1}) := \max \quad \sum_{h=1}^H \lambda_h\delta_h u_h(c_{h1}) \quad \text{subject to} \quad \sum_{h=1}^H c_{h1} = c_{m1}$$
+The envelope theorem tells us that, for all $h$,
+$$U_0'(c_{m0}) = \lambda_h u_h'(c_{h0}) \quad \text{and} \quad U_1'(c_{m1}) = \lambda_h \delta_h u_h'(c_{h1})$$
+So,
+$$\frac{U_1'(c_{m1})}{U_0'(c_{m0})} = \frac{\delta_h u_h'(c_{h1})}{u_h'(c_{h0})} = \text{SDF}$$
+\end{frame}
+
+\bfr\frametitle{Common Discount Factors}
+If all investors have the same discount factor $\delta$, then we can pull $\delta$ outside the sum in the definition of $U_1$ and see that, as functions, $U_1 = \delta U_0$.  
+
+Writing $U=U_0$, an SDF is
+$$\frac{\delta U'(\tilde{c}_{m1})}{U'(c_{m0})}$$
+\end{frame}
+
+
+\bfr\frametitle{Linear Risk Tolerance}
+Suppose all investors have linear risk tolerance $\tau_h(c) = A_h + B c$ with same cautiousness parameter $B\ge 0$.  Then, the social planner's utility functions $U_0$ and $U_1$ have linear risk tolerance with the same cautiousness parameter.
+
+Example: all investors have CRRA utility with risk aversion $\rho$ and the same discount factor $\delta$.  Then, an SDF is
+$$\frac{\delta U'(\tilde{c}_{m1})}{U'(c_{m0})}$$
+where
+$$U(c) = \frac{1}{1-\rho}c^{1-\rho}$$
+So, the SDF is
+$$\delta \left(\frac{\tilde{c}_{m1}}{c_{m0}}\right)^{-\rho}$$
+
+\end{frame}
+
+\begin{frame}{Proof of LRT Social Planner in CARA Case}
+We solved the social planner's problem in the last class and found
+$$ w_h =\frac{\tau _h}{\tau }w -\frac{\tau _h}{\tau }\sum_{\ell =1}^H \tau _\ell \log (\lambda_\ell \alpha_\ell ) + \tau _h\log(\lambda_h\alpha_h)$$
+which we wrote as $w_h = a_h + b_h w$ with $b_h = \tau_h/\tau$
+So,
+$$U(w) = -\sum_{h=1}^H \lambda_h \E^{-\alpha_h (a_h + b_h w)} = -\sum_{h=1}^H \lambda_h \E^{-\alpha_ha_h}\E^{-\alpha_hb_hw} $$
+Moreover,
+$$\alpha_h b_hw = \frac{\alpha_h \tau_hw}{\tau} = \frac{w}{\tau} = \alpha w$$
+So
+$$U(w) = -\E^{-\alpha w}\sum_{h=1}^H \lambda_h \E^{-\alpha_ha_h}$$
+which is a monotone affine transform of CARA utility.
+\end{frame}
+
+\end{document}
+
+\section{Consumption-Based Pricing}\subsection{}
+
+\bfr\frametitle{Marginal Utility of Consumption is a Factor}
+
+Now, write $u$ for social planner's (representative investor's) utility function.  Write $c_0$ for aggregate date--0 consumption and $\tc_1$ for aggregate date--1 consumption.
+
+ Because $\tm \eqdef \delta u'(\tc_{1})/u'(c_{0})$ is an SDF, for all returns $\tr$,
+\begin{align*}
+\mye[\tr]- \frac{1}{\mye[\tm]} &= - \frac{1}{\mye[\tm]}\cov(\tr,\tm)\\
+&= - \frac{1}{\mye[u'(\tc_{1})]} \cov(\tr, u'(\tc_{1}))
+\end{align*}
+ Most returns are negatively correlated with $u'(\tc_1)$: aggregate consumption is high when returns are high, so marginal utility is low when returns are high.
+
+ If a return has a small negative or even positive correlation with marginal utility, then it is desirable for hedging and hence will trade at a high price, equivalently at a low risk premium.
+
+\end{frame}
+
+\bfr\frametitle{Market Return and CRRA SDF}
+ Assume CRRA utility with risk aversion $\rho$, so $u'(c_1) = c_1^{-\rho}$.
+ Assume $\tc_1$ is spanned by the assets.  Its cost is 
+$$\mye[\tm\tc_1]= \mye\left[\frac{\delta \tc_1^{-\rho}}{c_0^{-\rho}}\tc_1\right] = c_0\mye\left[\frac{\delta \tc_1^{-\rho}}{c_0^{-\rho}}\cdot\frac{\tc_1}{c_0}\right] = \delta c_0\mye\left[\left(\frac{\tc_1}{c_0}\right)^{1-\rho}\right]$$
+ The market return is 
+ $$\tr_m := \frac{\tc_1 }{ \mye[\tm\tc_1]} = \frac{1}{\delta\mye\left[\left(\frac{\tc_1}{c_0}\right)^{1-\rho}\right]}\cdot \frac{\tc_1}{c_0} \equiv \frac{1}{\nu} \cdot \frac{\tc_1}{c_0}$$
+ so 
+ $$\tm = \delta \left(\frac{\tc_1}{c_0}\right)^{-\rho} = \delta \nu^{-\rho} \tr_m^{-\rho}$$
+ \end{frame}
+ 
+ \begin{frame}{CRRA Version of CAPM}
+ Assume CRRA utility and assume a risk-free asset.  Then, for all returns $\tr$,
+  \begin{align*}
+\mye[\tr]-R_f = - R_f \cov(\tr,\tm) &= -\delta \nu^{-\rho}R_f \cov(\tr,\tr_m^{-\rho})\\
+&= -\delta \nu^{-\rho}R_f \var(\tr_m^{-\rho}) \frac{\cov(\tr,\tr_m^{-\rho})}{\var(\tr_m^{-\rho})}\\ & = \lambda \cdot \text{beta with respect to $R_m^{-\rho}$}
+\end{align*}
+\end{frame}
+
+\section{Equity Premium}\subsection{}
+\bfr\frametitle{Risk-Free Rate and Equity Premium}
+ The risk-free return is
+$$R_f = \frac{1}{\mye[\tm]} = \frac{1}{\delta\mye[(\tc_1/c_0)^{-\rho}]}$$
+and $\tr_m = (1/\nu)(\tc_1/c_0)$, so
+\begin{align*}
+\frac{\mye[\tr_m]}{R_f} = \frac{\mye[\tc_1/c_0]}{\nu R_f} = \frac{\delta\mye[(\tc_1/c_0)^{-\rho}]\mye[\tc_1/c_0]}{\nu} &=  \frac{\delta\mye[(\tc_1/c_0)^{-\rho}]\mye[\tc_1/c_0]}{\delta \mye[(\widetilde{c}_1/c_0)^{1-\rho}]}\\
+&= \frac{\mye[\tc_1]\mye[\tc_1^{-\rho}]}{ \mye[\tc_1^{1-\rho}]}
+\end{align*}
+ 
+
+\end{frame}
+
+\bfr\frametitle{CRRA Utility and Lognormal Consumption}
+ Assume $\log \tc_1 - \log c_0 = \mu + \sigma \tve$ for constants $\mu$ and $\sigma$ and a standard normal $\tve$.
+\begin{align*}\tc_1 = c_0\E^{\mu+\sigma\tve} \;&\Rightarrow\; \mye[\tc_1] = c_0\E^{\mu+\sigma^2/2}\\
+\tc_1^{-\rho} = c_0^{-\rho}\E^{-\rho\mu-\rho\sigma\tve}\;&\Rightarrow\;\mye[\tc_1^{-\rho}] = c_0^{-\rho}\E^{-\rho\mu+\rho^2\sigma^2/2}\\
+\tc_1^{1-\rho} = c_0^{1-\rho}\E^{(1-\rho)\mu + (1-\rho)\sigma\tve}\;&\Rightarrow\; \mye[\tc_1^{1-\rho}] = c_0^{1-\rho}\E^{(1-\rho)\mu+(1-\rho)^2\sigma^2/2}
+\end{align*}
+
+ This implies
+$$\frac{\mye[\tr_m]}{R_f} = \E^{\rho\sigma^2}$$
+
+\end{frame}
+
+\bfr\frametitle{Equity Premium and Risk-Free Rate Puzzles}
+\bi
+\im To match this model to the historical equity premium, a risk aversion around 50 is required.  Much too high.
+\im Using $\rho=10$ and $\delta=0.99$, the model implies a high risk-free rate (12.7\%) and low equity premium ($\mye[\tr_m]-R_f = 1.4\text{\%}$).
+\im The historical (U.S.) numbers are around 1\% for the real risk-free rate and 6\% for the equity premium.
+\ei
+\end{frame}
+
+
+\section{Coskewness-Cokurtosis}
+\subsection{}
+
+\bfr\frametitle{Coskewness-Cokurtosis Model}
+Assume a representative investor with utility function $u$.  Do not assume CRRA utility or lognormal consumption.
+
+Take a Taylor series expansion of the representative investor's marginal utility around the mean $\bar{w}$ of aggregate wealth $\tw$.  
+
+Keeping only the first three terms, we have
+\begin{multline*}
+u'(\tw) \approx u'(\bar{w}) + u''(\bar{w})(\tw-\bar{w}) \\+ \frac{1}{2}u'''(\bar{w})(\tw-\bar{w})^2 + \frac{1}{6}u''''(\bar{w})(\tw-\bar{w})^3\,.
+\end{multline*}
+
+We are going to substitute this into the basic risk premium formula, remembering that $\tm \propto u'(\tw)$.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+Assume that $\tw$ is spanned by the assets, so we can define the market return as $\widetilde{R}_m = \tw/\mye[\widetilde{m}\tw]$.  
+
+From our usual formula, we get 
+\begin{multline*}
+\mye[\widetilde{R}] - R_f \approx \psi_1\cov\left(\widetilde{R},\widetilde{R}_m\right) \\+ \psi_2 \cov\left(\widetilde{R},(\widetilde{R}_m-\overline{R}_m)^2\right) + \psi_3 \cov\left(\widetilde{R},(\widetilde{R}_m-\overline{R}_m)^3\right)\,,
+\end{multline*} 
+The second covariance is called coskewness and the third is called cokurtosis.
+
+The signs of the prices of risk $\psi_i$ are the opposite of the signs of $u''$, $u'''$, and $u''''$.  DARA implies $u'''>0$.  Decreasing absolute prudence implies $u''''<0$.  We assume investors dislike variance, dislike negative skewness, and dislike kurtosis.  
+
+Therefore, they dislike positive covariance, dislike negative coskewness, and dislike positive cokurtosis.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Martin Bound}\subsection{}
+\begin{frame}{Martin's 2017 QJE Bound}
+Consider a return from date 0 to $T$ and the SDF $m$ for pricing claims at $T$.  The definition of the RNP is $\mye^*[x] = R_f\mye[mx]$.  So,
+\begin{align*}
+\var^*(R) & \ = \ \mye^*[R^2] - \mye^*[R]^2\\
+& = \  R_f\mye[mR^2] - R_f^2\,.
+\end{align*}
+The definition of covariance and the fact that $\mye[mR]=1$ imply
+$$\mye[mR^2] = \cov(mR,R) + \mye[R]\,.$$
+We can substitute this into the previous formula and rearrange to obtain
+$$\mye[R] - R_{f} = \frac{1}{R_{f}} \var^*(R) - \cov(mR,R)\,.$$
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Negative Correlation Condition}
+The Negative Correlation Condition (NCC) is that 
+$$\cov(mR,R)<0$$
+It holds for the market portfolio if, for example, there is a representative investor with risk aversion greater than 1.
+
+Martin's lower bound is
+$$\frac{1}{R_{f}} \var^*(R)$$
+and it holds if the NCC holds.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Risk Neutral Variance}
+The key is to calculate $\mye^*[R^2]$.  Write $R=S_T/S_0$ ($S=\,$ price).  For any real number $a$, we can trivially calculate 
+$$a^2 \ = \ a \int_0^a \,\D x \ = \ \int_0^a a\,\D x$$
+and
+$$\frac{1}{2}a^2 \ = \ \int_0^a x\,\D x$$
+so
+$$a^2 \ = \ 2\int_0^a (a-x)\,\D x \ = \ 2 \int_0^\infty(a-x)^+\,\D x$$
+Therefore
+$$\mye^*[S_T^2] \ = \ 2 \int_0^\infty \mye^*[(S_T-K)^+]\,\D K$$
+So, $\mye^*[S_T^2]$ is the value of a portfolio of call options. And/or puts using put-call parity.
+\end{frame}
+
+\begin{frame}{Ian Martin's Lower Bound}
+\begin{center}\vspace*{-2\baselineskip}
+	\includegraphics[width=0.8\textwidth]{ts_bounds_12.pdf} 
+\end{center}
+\vspace{-2\baselineskip}
+Lower bound on the 12-month S\&P 500 risk premium, in \%.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}\frametitle{Martin's Bound: Financial Crisis}
+\begin{center}\vspace*{-\baselineskip}
+	\includegraphics[width=0.8\textwidth]{fig1a.pdf} 
+\end{center}
+\vspace{-2\baselineskip}
+Lower bound on the S\&P 500 risk premium at different horizons, annualized in \%, derived from S\&P 500 option prices.  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}\frametitle{Martin's Bound: Corona Crisis}
+\begin{center}\vspace*{-\baselineskip}
+	\includegraphics[width=0.8\textwidth]{fig1b.pdf} 
+\end{center}
+\vspace{-2\baselineskip}
+Lower bound on the S\&P 500 risk premium at different horizons, annualized in \%, derived from S\&P 500 option prices. From Back, Crotty, Kazempour (2020).
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Martin Bound and Subsequent Returns}
+
+Daily data on 12-month bound binned into 10-basis point bins  \\ Subsequent slackness ($r_m-r_f-Bound$) averaged within bins
+\vspace*{-\baselineskip}
+\begin{center}
+	\includegraphics[width=0.7\textwidth]{Seminar0.pdf} 
+\end{center}
+\vspace{-2\baselineskip}
+The bound is above 5.6\% on 17\% of the days.  Mean realized slackness is positive in every one of those bins. From Back, Crotty, Kazempour (2020).
+
+\begin{document}

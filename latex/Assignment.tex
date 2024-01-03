@@ -1,0 +1,124 @@
+\documentclass[11pt]{article}
+\RequirePackage{natbib,amsmath,amsthm,array,graphicx,footmisc,amsfonts,geometry,fancyvrb,chngcntr,minitoc}
+\raggedbottom
+\raggedright
+\setlength{\parindent}{5ex}
+
+\newcommand{\hiddensection}[1]{
+	\stepcounter{section}
+	\section*{\arabic{chapter}.\arabic{section}\hspace{1em}{#1}}
+}
+
+	
+\counterwithin{table}{chapter}
+
+\newenvironment{mypetit}{\centerline{\rule[0.2\baselineskip]{1in}{0.15mm}}\noindent\small}{}
+\newenvironment{mypetitenum}{\centerline{\rule[0.2\baselineskip]{1in}{0.15mm}}\noindent\small}{}
+
+\def\next{\vskip \baselineskip\noindent}
+\newcommand{\mybox}[1]{\next\fbox{\parbox{4.55in}{#1}}\next}
+\newcommand{\listtype[1]}{\renewcommand{\labelenumi}{#1}}
+\newcommand{\vc}{^{\text{vec}}}
+\newcommand{\mv}{_{\text{m}}}
+\newcommand{\zb}{_{\text{z}}}
+\newcommand{\cm}{_{\text{c}}}
+\newcommand{\vct}{^{\text{vec}}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\tm}{\ensuremath{ t\!-\!1} }
+\newcommand{\Tm}{\ensuremath{ T\!-\!1} }
+\newcommand{\pr}{\ensuremath{\mathbb{P}}}
+\newcommand{\qr}{\ensuremath{\mathbb{Q}}}
+\newcommand{\mye}{\ensuremath{\mathsf{E}}}
+\newcommand{\sr}{\ensuremath{\mathbb{S}}}
+\newcommand{\fr}{\ensuremath{\mathbb{F}}}
+\newcommand{\price}{\ensuremath{\mathcal{P}}}
+\newcommand{\myreal}{\ensuremath{\mathbb{R}}}
+\newcommand{\excise}[1]{\vskip 0.5\baselineskip \textit{#1} \vskip 0.5\baselineskip}
+\newcommand{\CE}{\xi}
+\newcommand{\sectspace}{\;\;\;\;}
+\newcommand{\D}{\mathrm{d}}
+\newcommand{\E}{\mathrm{e}}
+\newcommand{\eqdef}{\;\buildrel \text{d{}ef}\over =\;}
+\newcommand{\eqquest}{\;\buildrel \text{?}\over =\;}
+\newcommand{\halfskip}{\vskip 0.5\baselineskip\noindent}
+\newcommand{\onevector}{\iota}
+\newcommand{\Rvector}{\mathbf{R}}
+\newcommand{\sol}{\textbf{Solution:} \hspace{2ex}}
+\newcommand{\be}{\begin{enumerate}\renewcommand{\labelenumi}{(\alph{enumi})}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bq}{\begin{equation}}
+\newcommand{\eq}{\end{equation}}
+
+\theoremstyle{definition}
+\newtheorem{prob}{}[chapter]
+
+\newcommand{\teff}{\tau_{\text{eff}}}
+
+\DeclareMathOperator{\var}{var} \DeclareMathOperator{\stdev}{stdev}
+\DeclareMathOperator{\cov}{cov} \DeclareMathOperator{\corr}{corr}
+\DeclareMathOperator{\M}{M} \DeclareMathOperator{\N}{N}
+\DeclareMathOperator{\nd}{n} \DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Prob}{prob} \DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\argmax}{argmax}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\sign}{sign}
+
+\newcommand{\ptext}[1]{\Prob(\text{#1})}
+
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1.25in,lmargin=1in,rmargin=1in,headheight=0.2in,footskip=0.5in}
+\renewcommand{\baselinestretch}{2}
+\setlength{\headsep}{2\baselineskip}
+\setlength{\footnotesep}{\baselineskip}
+
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\im}{\item}
+
+\newcommand{\notes}[1]{
+\addtocontents{toc}{\setcounter{tocdepth}{0}}
+\addtocontents{minitoc}{\setcounter{tocdepth}{0}}
+\section{\sectspace Notes and References}\label{#1}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+\addtocontents{minitoc}{\protect\setcounter{tocdepth}{2}}
+}
+
+
+\setlength{\headsep}{2\baselineskip}
+
+\begin{document}
+\VerbatimFootnotes
+\documentclass[english,12pt]{amsart}
+\RequirePackage{geometry,amsmath,graphicx,babel}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1.125in,rmargin=1.125in,headheight=0.5in,footskip=0.5in}
+\setlength{\parskip}{\bigskipamount}
+\setlength{\parindent}{0pt}
+\newcommand{\head}[1]{\vskip 0.5\baselineskip\underline{\textbf{#1}}\vskip 0.25\baselineskip}
+\newcommand{\tophead}[1]{\underline{\textbf{#1}}\vskip 0.5\baselineskip}
+\usepackage{hyperref}
+
+\begin{document}
+\begin{minipage}[t]{0.5\textwidth}
+\vspace*{-1in}
+BUSI 521: Asset Pricing Theory \\ ECON 505: Financial Economics I\\Spring 2022
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+\raggedleft
+%\vspace*{-0.5in}
+\includegraphics[scale=1]{rice.jpg}
+\end{minipage}%
+\begin{center}
+\vspace*{-0.65in}
+\rule{\textwidth}{0.4pt}
+\end{center}
+
+As usual, collaboration on this assignment is not permitted.
+\begin{enumerate}
+\item What is the equilibrium in the Grossman-Stiglitz model when informed investors are risk averse and uninformed investor are risk neutral?
+\item 
+\item Do Exercise 8.1, parts (b)--(e).  The answer to part (a) is as follows.  Under the given assumptions, the return on the risky asset from $t$ to $t+1$ is $R_h := (k+1)\lambda_h/k$ when $D_{t+1}/D_t=\lambda_h$ and the return is $R_\ell := (k+1)\lambda_\ell/k$ when $D_{t+1}/D_t=\lambda_\ell$.  The necessary and sufficient condition for the absence of arbitrage opportunities is $R_h > R_f > R_\ell$.
+\end{enumerate}
+
+\end{document}

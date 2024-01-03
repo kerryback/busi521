@@ -1,0 +1,222 @@
+\documentclass[xcolor=dvipsnames,10pt]{beamer}
+\input{head.tex}
+\newcommand{\tu}{\tilde{u}}
+\begin{document}
+\title{\vskip 0.5in Day 19}
+\subtitle{Continuous-Time Securities Markets}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Market Model}
+\subsection{}
+
+\bfr\frametitle{Securities Market Model}
+ Money market account has price $R$ with $\D R/R = r\,\D t$. 
+ $n$ locally risky assets with dividend-reinvested prices $S_i$.
+$\mu=\,$ vector of $n$ stochastic processes $\mu_i$.
+ $\sigma=n \times k$ matrix of stochastic processes, $\Sigma = \sigma\sigma'$.
+ $B =\,$ vector of $k$ independent Brownian motions.  $k \geq n$. 
+ 
+$$\D S/S \ \eqdef \ \begin{pmatrix}\D S_{1t}/S_{1t} \\ \vdots \\ \D S_{nt}/S_{nt} \end{pmatrix}\ = \  \mu_t\,\D t + \sigma_t\,\D B_t $$
+This means that, for $i=1,\ldots,n$,
+$$\frac{\D S_{it}}{S_{it}} \ = \  \mu_{it}\,\D t + \sum_{j=1}^k \sigma_{ijt}\,\D B_{jt}$$
+\end{frame}
+
+\bfr\frametitle{Intertemporal Budget Constraint}
+ Let $\phi_i$ denote the amount of the consumption good invested in risky asset~$i$.
+ Let $W=\,$ wealth, $C=\,$ consumption, $Y=\,$ labor income.
+ The intertemporal budget constraint is
+$$\D W = (Y-C)\,\D t + \theta'\,\D S + (W-\theta'S)r\,\D t$$
+where $\theta=(\theta_1,\ldots,\theta_n)'$ denotes share holdings.
+Setting $\phi_i = \theta_iS_i$, we obtain
+$$\D W = (Y-C)\,\D t + \phi'\,(\D S/S) + (W-\phi'\iota)r\,\D t$$
+Equivalently,
+$$\D W = (Y-C)\,\D t + rW\,\D t + \phi'(\D S/S - r\iota)\,\D t$$
+Equivalently,
+$$\D W = (Y-C)\,\D t + rW\,\D t+\phi'(\mu-r\iota)\,\D t + \phi'\sigma\,\D B$$
+\end{frame}
+
+\begin{frame}
+ Assuming $W>0$, we can define $\pi=\phi/W$ and write the intertemporal budget constraint as
+$$\D W = (Y-C)\,\D t + rW\,\D t+W\pi'(\mu-r\iota)\,\D t + W\pi'\sigma\,\D B$$
+Equivalently,
+$$\frac{\D W}{W} = \frac{Y-C}{W}\,\D t + r\,\D t+\pi'(\mu-r\iota)\,\D t + \pi'\sigma\,\D B$$
+If $Y=C=0$, the wealth process is said to be self financing.
+\end{frame}
+
+
+\section{SDF Processes}
+\subsection{}
+
+\bfr\frametitle{Stochastic Discount Factor Processes}
+Define a stochastic process ~$M$ to be an SDF process if 
+\bi
+\im $M_0=1$
+\im $M_t>0$ for all~$t$ with probability~1
+\im $MR$ is a local martingale, where $R$ denotes the price of the money market account,
+\im $MS_i$ is a local martingale, for $i=1,\ldots,n$, where the $S_i$ are the dividend-reinvested asset prices.
+\ei
+`Local martingale' means zero drift (no $\D t$ part).  We can show that \alert{if $M$ is an SDF process and $W$ is a self-financing wealth process, then $MW$ is a local martingale}.
+\end{frame}
+
+\bfr\frametitle{Dynamics of SDF Processes}
+ We can show the following:
+A stochastic process $M>0$ with $M_0=1$ is an SDF process if and only if
+$$\frac{\D M}{M} \ = \ - r\,\D t - \lambda'\,\D B$$
+for a stochastic process $\lambda$ satisfying
+$$\sigma\lambda = \mu-r\iota$$
+ Notice that
+\begin{align*} (\D S/S)\left(\frac{\D M}{M} \right) \ & = \ -(\sigma\,\D B)(\lambda'\,\D B)\\
+ \ & = \ -(\sigma\,\D B)(\D B)'\lambda  \ = \ -\sigma\lambda\,\D t  \ = \ - (\mu-r\iota)\,\D t
+ \end{align*}
+  So,
+ $$ (\mu-r\iota)\,\D t \ = \ -(\D S/S)\left(\frac{\D M}{M} \right)$$
+ \end{frame}
+
+\bfr\frametitle{Factor Pricing and Prices of Risk}
+ As in a single-period model, an SDF process is a pricing factor.  We read the equation 
+$$ (\mu-r\iota)\,\D t \ = \ -(\D S/S)\left(\frac{\D M}{M} \right)$$
+as saying \alert{the risk premium of each asset is minus its covariance with the SDF process}.
+
+ Notice that
+$$-(\D S/S)\left(\frac{\D M}{M} \right) \ = \ -(\D S/S)(-\lambda'\,\D B) 
+\ = \ \sum_{j=1}^k \lambda_j (\D S/S)(\D B_j)$$
+ We call $\lambda$ the vector of `prices of risk.' Each $\lambda_j$ is the `price' for the covariance with $B_j$.
+ If there is only a single risky asset, then $\lambda = (\mu-r)/\sigma$, which is the Sharpe ratio of the risky asset.
+
+\end{frame}
+
+\bfr\frametitle{Projections of SDF Processes}
+ One solution $\lambda$ of the equation $\sigma\lambda = \mu-r\iota$ is 
+$$\lambda_p \eqdef \sigma'(\sigma\sigma')^{-1}(\mu-r\iota) = \sigma'\Sigma^{-1}(\mu-r\iota)$$
+ For this solution,
+\begin{align*}
+\lambda_p'\,\D B &= (\mu-r\iota)'\Sigma^{-1}\sigma\,\D B\\
+&= \pi'\sigma\,\D B
+\end{align*}
+for $\pi = \Sigma^{-1}(\mu-r\iota)$ (the log-optimal portfolio).  Thus, it is spanned by the assets.
+
+ Every solution $\lambda$ of the equation $\sigma\lambda = \mu-r\iota$ is of the form
+$$\lambda = \lambda_p + \zeta$$
+where $\zeta$ is orthogonal to the assets in the sense that $\sigma\zeta=0$.
+\end{frame}
+
+\section{Valuation}\subsection{}
+
+\bfr\frametitle{Valuation}
+ If $MW$ is a martingale, for $u>t$,
+$$M_tW_t = \mye_t[M_uW_u] \quad \Leftrightarrow \quad W_t = \mye_t\left[\frac{M_u}{M_t}W_u\right]$$
+ Under another martingale assumption, if $(C,\pi,W)$ satisfy the intertemporal budget constraint with $Y=0$,
+then
+$$W_t = \mye_t \left[\int_t^u \frac{M_\tau}{M_t}C_\tau\,\D \tau + \frac{M_u}{M_t}W_u\right]$$
+ In particular, for an asset with price process $P$ and dividend process $D$,
+$$P_t = \mye_t \left[\int_t^u \frac{M_\tau}{M_t}D_\tau\,\D \tau + \frac{M_u}{M_t}P_u\right]$$
+\end{frame}
+
+\section{Euler Equation}\subsection{}
+\bfr\frametitle{Euler Equation}
+ The Euler equation is a necessary and sufficient condition for optimality for the investor with time-additive utility
+$$\mye \int_0^\infty \E^{-\delta t}u(C_t)\,\D t$$
+ The Euler equation is that the MRS
+$$\frac{\E^{-\delta t}u'(C_t)}{u'(C_0)}$$
+is an SDF process.
+
+\end{frame}
+
+\section{Representative Investor}\subsection{}
+\begin{frame}{CRRA Representative Investor}
+Applying the Euler equation for a CRRA representative investor, we have
+$$M_t = \E^{-\delta t}\left(\frac{C_t}{C_0}\right)^{-\rho}$$
+(``Assuming there is no bubble in the price of the market portfolio'') the price is
+$$P_t = \mye_t \int_t^\infty \E^{-\delta(\tau-t)}\left(\frac{C_\tau}{C_t}\right)^{-\rho}C_\tau\,\D \tau$$
+So, the price-dividend ratio is
+$$\frac{P_t}{C_t} =  \int_t^\infty \E^{-\delta(\tau-t)}\mye_t\left[\left(\frac{C_\tau}{C_t}\right)^{1-\rho}\right]\,\D \tau$$
+\end{frame}
+
+\begin{frame}{IID Consumption Growth}
+Assume
+$$\frac{\D C}{C} = \alpha\,\D t + \gamma'\,\D B$$
+for constant $\alpha$ and $\gamma$ (geometric Brownian motion).  Then
+$$\D \log C = \left(\alpha - \frac{1}{2}\gamma'\gamma\right)\,\D t + \gamma'\,\D B$$
+This implies
+$$C_\tau = C_t \E^{(\alpha - \gamma'\gamma/2)(\tau-t) + \gamma'(B_\tau-B_t)}$$
+The exponent is normal with mean $(\tau-t)(\alpha-\gamma'\gamma/2)$ and variance $(\tau-t)\gamma'\gamma$.
+We can easily calculate 
+$$\mye_t\left[\left(\frac{C_\tau}{C_t}\right)^{1-\rho}\right]$$ as $\E^{-\eta(\tau-t)}$ for a constant $\eta$ and then, assuming $\eta>0$, integrate to get 
+$$\frac{P_t}{C_t} = \frac{1}{\delta+\eta}$$
+\end{frame}
+
+\section{RN Probs}
+\subsection{}
+
+
+\bfr\frametitle{Risk-Neutral Probabilities in Continuous Time}
+ Consider $T<\infty$.
+ Let $R$ denote the money market account price with $R_0=1$.  
+ Let~$M$ be an SDF process. Assume $MR$ is a martingale so $$\mye[M_TR_T] \ = \ R_0 \ = \ 1$$   
+
+ Define
+$$
+\qr (A) \ = \  \mye\left[M_TR_T1_A\right]
+$$
+for each event~$A$ that is distinguishable at date~$T$, where $1_A=1$ when the state of the world is in~$A$ and~0 otherwise. 
+
+ It follows  that $\qr$ is a probability (measure) and
+$$
+\mye^*[X_T] \ = \  \mye\left[M_TR_TX_T\right]
+$$
+for any random variable~$X_T$ depending on date--$T$ information, where $\mye^*$ denotes expectation with respect to $\qr $.  
+\end{frame}
+
+
+\bfr\frametitle{Risk-Neutral Valuation}
+ Let~$W$ be such  that $MW$ is a martingale under the physical probability.  Because we changed the probability using $MR$, a theorem in probability theory tells us that
+$$\frac{MW}{MR}$$
+is a $\qr$--martingale.
+
+ So, $W/R$ is a $\qr $--martingale.  Thus,
+$$
+W_t \ = \  R_t\mye^*_t\left[\frac{W_T}{R_T}\right] \ = \  \mye^*_t\left[\exp\left(-\int_t^T r_u\,\D u\right)W_T\right]\,.
+$$
+ In other words, asset values are expected discounted values, taking expectations with respect to the risk neutral probability and discounting at the instantaneous risk-free rate. 
+
+It follows that expected returns under the RNP equal the risk-free rate.
+
+\end{frame}
+
+
+
+
+\bfr\frametitle{Girsanov's Theorem}
+ Let $M$ be an SDF process with 
+$$\frac{\D M}{M} \ = \ - r\,\D t - \lambda'\,\D B$$
+Here, $r$ and $\lambda$ can be stochastic processes.
+ Define the risk-neutral probability $\qr$ using the martingale $MR$.
+
+ The vector $B$ is not a vector of Brownian motions under $\qr$ 
+\bi
+\im Its drift is nonzero.  
+\im But, we still have quadratic variation $(\D B)(\D B)' = I\,\D t$, so it is ``close'' to being a vector of Brownian motions.
+\ei
+ Girsanov's theorem states that $B^*$ defined by 
+ $B^*_0=0$ and
+$$\D B^* \ = \ \D B + \lambda\,\D t$$
+is a vector of independent Brownian motions under the risk-neutral probability $\qr$.
+\end{frame}
+
+
+\bfr\frametitle{Asset Returns under a Risk-Neutral Probability}
+ Recall that the vector of asset returns is
+$$\frac{\D S}{S} \ = \ \mu\,\D t + \sigma\,\D B$$
+ Define $\D B^* = \D B + \lambda\,\D t$.
+ Substitute to obtain
+\begin{align*}
+\frac{\D S}{S} &\ = \ \mu\,\D t + \sigma\,(\D B^* - \lambda\,\D t)\\
+&\ = \ (\mu - \sigma\lambda)\,\D t + \sigma\,\D B^*\\
+&\ = \ r\iota\,\D t + \sigma\,\D B^*
+\end{align*}
+\end{frame}
+
+\end{document}

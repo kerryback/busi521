@@ -1,0 +1,382 @@
+\documentclass[xcolor=dvipsnames,10pt]{beamer}
+\input{head.tex}
+
+\title{\vskip 0.5in Day 8}
+\subtitle{Factor Models}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\section{Projections}\subsection{}
+
+\begin{frame}{Orthogonal Projection}
+
+Given two (finite-variance) random variables $\tx$ and $\ty$, there exist $\alpha$ and $\beta$ such that $\alpha + \beta \tx$ is the best linear (affine) approximation of $\ty$ in the sense of minimizing the mean squared error:
+$$ \mye[(\ty - \alpha - \beta \tx)^2]\,.$$
+The solution is $\beta = \cov(\tx,\ty)/\var(\tx)$ and 
+$$\alpha = \mye[\ty] - \beta \mye[\tx]$$
+Defining the error (residual) $\tve = \ty - \alpha - \beta \tx$ for the optimal $\alpha$ and $\beta$, we have  $\mye[\tve]= 0$ and $\cov(\tve,\tx)=0$.
+
+An equivalent definition of $\alpha$ and $\beta$ is that they are the unique pair such that
+$$\ty \ = \ \alpha + \beta \tx + \tve$$
+with $\mye[\tve]= 0$ and $\cov(\tve,\tx)=0$.
+\end{frame}
+
+
+\begin{frame}{Projecting onto the Span of Multiple Variables}
+
+Suppose we're given a vector $\tX = (\tx_1 \, \tx_2 \, \cdots \tx_n)'$ of finite-variance random variables.  The orthogonal projection of $\ty$ onto the span of a constant and the $\tx_i$ is
+$$\alpha + \beta'\tx$$
+where
+$$\beta = \Cov(\tX)^{-1}\Cov(\tX,\ty)$$
+and $\alpha = \mye[\ty] - \mye[\beta'\tX]$. 
+
+Substituting for $\alpha$ and letting $\tve$ denote the residual, we have
+$$\ty - \mye[\ty] \ = \ \beta'\big(\tX - \mye[\tX]\big) + \tve$$
+where $\mye[\tve]=0$ and $\Cov(\tX,\tve)=0$.
+
+Furthermore, $\beta'\tX$ is the linear combination of the $\tx_i$ that is most highly correlated with $\ty$.
+\end{frame}
+
+\begin{frame}{Projections that are Returns}
+If we do an orthogonal projection onto the span of asset returns, we get a portfolio payoff but not necessarily a return (the cost of the portfolio may not equal 1).
+
+If we want returns, we can instead project on the space of excess returns (the payoffs of zero-cost portfolios; equivalently, the linear span of the excess returns $\tr-R_f$).  
+
+For every $\tz$ in the space of excess returns, $R_f + \tz$ is a return.
+\end{frame}
+
+\section{Factors}\subsection{}
+
+\begin{frame}{Factor Models}
+
+We say that there is a factor model for asset returns with factors $\tF = (\tf_1 \, \tf_2 \, \cdots \tf_k)'$ if the risk premium of each asset is determined by its betas with respect to the factors.
+
+More precisely, we say there is a factor model if the risk premium is a linear combination of the betas, with the linear coefficients being the same for all assets.
+
+In other words, there is a factor model if there exists $\lambda \in \myreal^k$ such that, for each asset,
+$$\mye[\tr]-R_f \ = \ \lambda' \Cov(\tF)^{-1}\Cov(\tF,\tr)$$
+
+This means that, for determining risk premia, we can measure risks as betas with respect to the factors.  We call the $\lambda_i$'s prices of risk.
+\end{frame}
+
+\bfr\frametitle{Risk Adjustments}
+Start with 
+$$\mye[\tr]-R_f \ = \ \lambda' \Cov(\tF)^{-1}\Cov(\tF,\tr)$$
+and set $\tr = \tx/p$ and solve for $p$:
+$$p \ = \ \frac{\mye[\tx] - \lambda'\Cov(\tF)^{-1}\Cov(\tF,\tx)}{R_f}$$
+
+Or, leave $\tr$ in the covariance and solve for $p$ as
+$$p \ = \ \frac{\mye[\tx]}{R_f + \lambda'\Cov(\tF)^{-1}\Cov(\tF,\tr)}$$
+
+
+\end{frame}
+
+\begin{frame}{SDFs are Factors and Vice Versa}
+If $\tm$ is an SDF, then for all returns:
+$$\mye[\tr]-R_f \ = \ -R_f\cov(\tm,\tr) \ = \ -R_f \var(\tm) \cdot \frac{\cov(\tm,\tr)}{\var(\tm)} \ = \ \lambda \cdot \beta$$
+
+Conversely, factors are SDFs in the sense that if $\tF$ is a vector of factors, then there exists $a$ and $b$ such that $a+b'\tF$ is an SDF.
+\end{frame}
+
+\begin{frame}{Projections of Factors are Factors}
+
+Given a vector $\tF$ of factors, project any or all of the factors onto the span of the excess returns and a constant.  We can replace each such factor $\tf_i$ with the excess return $\tz_i$ in its projection.  
+
+Why?  Denote the projection of $\tf_i$ by $a_i + \tz_i$ with residual $\te_i$, where $\tz_i$ is an excess return.  The residual has zero mean and is orthogonal to each excess return, so it has zero covariance with each excess return.  Therefore, for each return $\tr$,  
+\begin{align*}
+\cov(\tr,\tf_i) \ = \ \cov(\tr,a+ \tz_i + \te_i) \ &= \ \cov(\tr,\tz_i) + \cov(\tr,\te_i)\\
+&= \ \cov(\tr,\tz_i) + \cov(\tr-R_f,\te_i)\\
+&   = \ \cov(\tr,\tz_i)
+\end{align*}
+The covariances are unchanged, so risk premia are linear in covariances.  Betas change, so the prices of risk $\lambda_i$ change.
+\end{frame}
+
+\begin{frame}{Frontier Returns are Factors and Vice Versa}
+A frontier return is a factor: $\pi = (1/\delta)\Sigma^{-1}(\mu - R_f\iota)$ implies that risk premia are proportional to covariances with the return of $\pi$.
+
+Conversely, (projections of) factors are frontier returns: Project each factor onto the space of excess returns.  Denote the projections as a vector $\tZ$.  There exists $\gamma \in \myreal^k$ such that $R_f + \gamma'\tZ$ is a frontier return.  
+\end{frame}
+
+\begin{frame}{Prices of Risk}
+We often try excess returns as factors empirically -- for example, the market excess return $\tr_m - R_f$.  Suppose there is a factor model in which one or more of the factors is an excess return.
+
+The price of risk $\lambda_i$ for each excess-return factor is the mean of the excess return (will prove for CAPM; general proof is similar).
+
+If a factor is a return, its price of risk is its risk premium (the mean of the excess return).
+
+For non-return factors, the price of risk is a free parameter.
+\end{frame}
+
+\section{CAPM}\subsection{}
+
+\begin{frame}{CAPM}
+We have shown that risk premia are proportional to covariances with a frontier portfolio.  Suppose the market is a frontier portfolio and let $\tr_m$ denote the market return.  
+
+Then, there exists $\gamma$ (the constant of proportionality) such that for all returns $\tr$,
+$$\mye[\tr] - R_f \ = \ \gamma \cov(\tr_m,\tr) \ = \ \gamma \var(\tr_m,\tr)\frac{\cov(\tr_m,\tr)}{\var(\tr_m)} \ = \ \lambda \beta$$
+To compute $\lambda$, apply this to $\tr=\tr_m$ to get
+$$\mye[\tr_m]-R_f \ = \ \lambda \beta \ = \ \lambda$$
+because the beta of the projection of $\tr_m$ on $\tr_m$ equals 1.  Thus, for all returns $\tr$,
+$$\mye[\tr] - R_f \ = \ \frac{\cov(\tr_m,\tr)}{\var(\tr_m)}\big(\mye[\tr_m] - R_f \big)$$ 
+\end{frame}
+
+\begin{frame}{Risk Adjustment with the CAPM}
+Under the CAPM, for an asset with date--1 value $\tx$ and date--0 price $p$, we have
+$$p \ = \ \frac{\mye[\tx]}{R_f + \big(\mye[\tr_m] - R_f \big)\beta}$$
+where
+$$\beta \ = \ \frac{\cov(\tr_m,\tr)}{\var(\tr_m)}$$
+In practice, estimate $\beta$ from company stock returns and the market return.  Apply this formula to value the cash flow $\tx$ from a new project. Invest if $p$ is greater than the cost of the project.
+\end{frame}
+
+\begin{frame}{CAPM, Marginal Utilities, and SDFs}
+Suppose there is an investor who optimally holds the market portfolio, so date--1 wealth is $w\tr_m$.  There is an SDF proportional to the investor's marginal utility $u'(w\tr_m)$, so, for all assets,
+$$\mye[\tr]-R_f \ = \ \gamma \cov(u'(w\tr_m),\tr)$$
+for a constant $\gamma$ (that is the same for all assets).
+
+How can we go from $\cov(u'(w\tr_m),\tr)$ to $\cov(\tr_m,\tr)$?
+\pause
+\begin{enumerate}
+\im With normal returns, use Stein's lemma: 
+$$\cov(u'(w\tr_m,\tr) \ = \ \mye[u''(w\tr_m)] w \cov(\tr_m,\tr)$$
+\im With quadratic utility, marginal utility is affine in wealth: $u'(w\tr)m) = a + b w\tr_m$, so
+$$\cov(u'(w\tr_m,\tr) \ = \ b w \cov(\tr_m,\tr)$$
+\end{enumerate}
+\end{frame}
+
+\bfr\frametitle{Testing the CAPM}
+\bi
+\im Regress excess returns on the market excess return:
+$$\tr-R_f = \alpha + \beta(\tr_m-R_f) + \tve$$
+\im The regression implies
+$$\mye[\tr] -R_f = \alpha + \beta \big(\mye[\tr_m]-R_f\big)$$
+\im The CAPM states that $\alpha=0$, so we can test the null $\alpha=0$ for each return.  We can also test the joint null hypothesis $(\alpha_1, \ldots, \alpha_n)' = 0$ for a set of $n$ assets (Gibbons-Ross-Shanken test).
+\im Usually we use portfolio returns rather than individual stock returns when testing the CAPM---diversification improves accuracy of $\beta$ estimates.
+\im We can follow the same procedure to test any factor model in which the factors are excess returns.
+\ei
+\end{frame}
+
+\section{Fama-French Model}\subsection{}
+
+\begin{frame}{Fama-French 1993 Model }
+Fama and French hypothesized that there are important measures of risk not captured by the CAPM beta.  Small stocks and value stocks may have higher exposures to these risks, hence warranting their higher average returns.
+
+Not knowing what they risks are, they proposed to use the following as proxies for the risks:
+\begin{itemize}
+    \item SMB = small minus big = return of a portfolio that is long small stocks and short big stocks
+    \item HML = high minus low = return of a portfolio that is long value stocks and short growth stocks
+\end{itemize}
+
+The (original) Fama-French model runs regressions on the market return and these two factors and uses the three slope coefficients (betas) to try to explain average stock returns.    
+\end{frame}
+
+\begin{frame}{Fama-French 2015}
+In the two decades following the 1990s papers, hundreds of characteristics were found in various papers to predict stock returns: stocks with high values outperform stocks with low values on average, or vice versa.
+
+In 2015, Fama and French proposed that most of the new results (other than momentum) could be captured by adding two new factors to their original model:
+\begin{itemize}
+    \item RMW = robust minus weak = return of a portfolio that is long highly profitable stocks and short low profitability stocks
+    \item CMA = conservative minus aggressive = return of a portfolio that is long stocks with low asset growth rates and short stocks with high asset growth rates
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Cost of Equity from the Fama-French Model}
+    Recall that the CAPM says the expected return on a stock is
+    $$\bar{r} = r_f + \beta \times \text{Mkt risk premium}$$
+        For the Fama-French model, we run a multivariate regression:
+   \begin{multline*}
+   r-r_f = \alpha + \beta_{\text{Mkt}}(r_m-r_f) \\+ \beta_{\text{SMB}}\text{SMB}
+    + \beta_{\text{HML}}\text{HML}
+    + \beta_{\text{RMW}}\text{RMW}
+    + \beta_{\text{CMA}}\text{CMA} + \varepsilon
+    \end{multline*}
+    The model says that the expected return of a stock is
+    \begin{multline*}\bar{r} = r_f + \beta_{\text{Mkt}} \times \text{Mkt risk premium} \\+ \beta_{\text{SMB}}\overline{\text{SMB}}
+    + \beta_{\text{HML}}\overline{\text{HML}}
+    + \beta_{\text{RMW}}\overline{\text{RMW}}
+    + \beta_{\text{CMA}}\overline{\text{CMA}}
+    \end{multline*}
+    In other words, the risk premium is a sum of betas times factor risk premia.  
+\end{frame}
+
+\begin{frame}{Rationale for the Fama-French Model}
+   The additional factors in the Fama-French model (relative to the CAPM) reflect the fact that there may be additional risks other than market risk that matter to investors.  
+   
+   The additional factors in the model are the returns of portfolios whose average returns are not explained by the CAPM.
+   
+   If markets are efficient, those portfolios must be exposed to the additional risks that matter (that's why their returns are not explained by the CAPM).
+   
+   So, stocks that are correlated with the additional risks should also be correlated with the portfolio returns, and we can use the correlations (equivalently, betas) to predict the returns that investors expect on stocks.
+\end{frame}
+
+\section{APT}\subsection{}
+
+\bfr\frametitle{Statistical Factor Models}
+A factor pricing model explains \alert{risk premia} in terms of covariances or betas with respect to a set of factors.
+
+ A statistical factor model explains \alert{covariances} in terms of covariances with respect to a set of factors.
+
+ The residual in the projection of a return $\tr$ onto the span of a constant and $\tX = (\tx_1, \ldots, \tx_k)'$ is
+\bq\tag{$\star$}
+\tve \eqdef \tr - \left\{\overline{R} 
++ \Cov(\widetilde{X},\tr)'\Cov(\widetilde{X})^{-1} [\tX - \overline{X}]\right\}
+\eq
+
+ We say that returns satisfy a \alert{statistical factor model} with factors $\tX$ if the residuals of the returns are pairwise \alert{uncorrelated}.  The residuals are called idiosyncratic risks.
+\end{frame}
+
+
+\bfr\frametitle{Arbitrage Pricing Theory}
+ The APT asserts that statistical factors are also pricing factors (approximately).
+
+ Intuition: In a statistical factor model, only systematic risks should earn risk premia, because idiosyncratic risks can be diversified away.  Thus, risk premia should depend on betas.
+
+\end{frame}
+
+\bfr\frametitle{APT with No Idiosyncratic Risks}
+ To get intuition about the APT, assume there are no idiosyncratic risks: $\tr_i = \overline{R}_i + \beta_i'[\tX - \overline{X}]$.  
+
+ Assume there is an SDF (this is the arbitrage part of the APT).  Then
+\begin{align*}
+ 1 = \mye[\tm\tr] \ &= \ \mye[\tm]\overline{R} + \beta'\mye[\tm(\tX - \overline{X})]\\
+ &= \ \mye[\tm]\overline{R} + \beta'\Cov(\tX,\tm)
+ \end{align*}
+ 
+  So
+ $$\mye[\tr] \ = \ \frac{1}{\mye[\tm]} - \frac{1}{\mye[\tm]}\beta'\Cov(\tX,\tm)$$
+ 
+  Thus, the vector of prices of risk is
+ $$\lambda \eqdef - \frac{1}{\mye[\tm]}\Cov(\tX,\tm)$$
+
+\end{frame}
+
+\end{document}
+
+\bfr\frametitle{APT with Idiosyncratic Risks}
+ Following the same algebra with $\tve \neq 0$ yields
+$$\mye[\tr] \ = \ \frac{1}{\mye[\tm]} +\beta'\lambda - \frac{\mye[\tm\tve]}{\mye[\tm]}$$
+
+ Call
+$$\delta \eqdef - \frac{\mye[\tm\tve]}{\mye[\tm]}$$
+the pricing error.
+
+ Assume there is an infinite number of assets $i = 1, 2, \ldots$ and an SDF.  We can show that
+$\sum_{i=1}^\infty \delta_i^2 < \infty$.
+
+ Thus, for any given number $\epsilon>0$, most (all but a finite number) of the pricing errors are small (satisfy
+$|\delta_i|\ < \epsilon$).
+
+\end{frame}
+
+\bfr\frametitle{}
+ For any return $\tr_i$, let $\beta_i$ denote the column vector of multiple regression betas:
+$$\beta_i \ = \ \Cov(\widetilde{X})^{-1}\Cov(\widetilde{X},\tr_i)$$
+
+ Equation ($\star$) is $\tr_i = \overline{R}_i + \beta_i'[\tX - \overline{X}] + \tve_i$.
+
+ Because the $\tve$'s are mutually uncorrelated (and orthogonal to the factors),
+$$\cov(\tr_i,\tr_j) \ = \ \cov(\beta_i'[\tX - \overline{X}] + \tve_i,\beta_j'[\tX - \overline{X}] + \tve_j] = \beta_i'\Cov(X)\beta_j$$
+
+ Thus, the covariance between any two returns depends only on their exposures to the common factors (their betas).  Those exposures are called systematic risks.
+
+ Simplest model: market model.  Only factor is the market return.  All stocks tend to go up and down with the market.  Other risks are uncorrelated.
+
+\end{frame}
+
+
+\end{document}
+
+
+\section{Jensen's Alpha}\subsection{}
+
+\begin{frame}{Seeking Alpha}
+
+Suppose we conjecture a factor model with excess returns as factors
+$$\mye[\tr] - R_f =  \Cov(\tX,\tr)'\Cov(\tX)^{-1}\mye[\tX]\,.$$
+We test it by running regressions
+$$\tr - R_f = \alpha + \beta'\tX + \tve$$
+and testing if $\alpha=0$.
+
+If a return or portfolio or manager has a positive $\alpha$, it has out-performed, relative to what the model predicts (seeking alpha).
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Jensen's Alpha}
+A standard way to evaluate a portfolio manager is to compute alpha relative to a benchmark (large cap benchmark for large cap manager, small cap benchmark for small cap manager, bond benchmark for bond manager, \ldots).
+
+Compared to holding the benchmark, you can improve mean-variance efficiency by adding some of a positive-alpha return.  
+
+This is called Jensen's alpha.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{$\alpha + \varepsilon$ }
+
+Let $\tr_b$ denote the benchmark return.  Run the regression
+$$\tr - R_f \ = \ \alpha + \beta (\tr_b-R_f) + \tve$$
+
+Consider the excess return
+$$\tr - R_f -\beta (\tr_b-R_f) \ = \ tr - \beta \tr_b - (1-\beta)R_f$$
+This equals
+$$\alpha + \tve$$
+
+So, you can get $\alpha$ at zero cost by taking on the residual risk $\tve$.  Is it worthwhile to take on this risk?
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Utility Improvements}
+Consider an investor who holds the benchmark and consider a return with a positive alpha.
+
+Will he get a utility improvement by adding some of $\alpha + \tve$?  
+
+Suppose he changes to $\tr = \tr_b + \lambda(\alpha+\tve)$ for some (possibly small) $\lambda$.
+
+We can do a Taylor series expansion to get
+$$\mye[u(\tr)] \ \approx \ \mye[u(\tr_b)] + \lambda \mye[u'(\tr_b)(\alpha+\tve)]$$
+What is the sign of $\mye[u'(\tr_b)(\alpha+\tve)]$?
+\bi
+\im If returns are normally distributed?
+\im If utility is quadratic?
+\ei
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Mean-Variance Improvements}
+Let's add some of $\alpha+\tve$ to $\tr_b$ without changing the mean.
+
+To keep the mean constant, we'll subtract some of $\tr_b-\tr_f$.  The new return is
+$$\tr \ = \ \tr_b + \lambda(\alpha+\tve) - \frac{\lambda\alpha}{\mye[\tr_b]-R_f}(\tr_b-\tr_f)$$
+
+The new variance is
+$$\left(1-\frac{\lambda\alpha}{\mye[\tr_b]-R_f}\right)^2\var(\tr_b) + \lambda^2\var(\tve)$$
+Is this larger or smaller than $\var(\tr_b)$?
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Factor Models and Jensen's Alpha}
+
+Suppose we conjecture a factor model with excess returns as factors
+$$\mye[\tr] - R_f =  \Cov(\tX,\tr)'\Cov(\tX)^{-1}\mye[\tX]\,.$$
+
+Suppose we run the regression
+$$\tr - R_f = \alpha + \beta'\tX + \tve$$
+and decide that a return has a positive alpha.
+
+Then adding some of the return will generate utility or mean-variance improvements for an investor who holds 
+$$R_b \ = \ R_f + \beta'\tX$$
+
+\end{frame}
+
+\end{document}

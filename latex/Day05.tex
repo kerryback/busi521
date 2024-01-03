@@ -1,0 +1,293 @@
+\documentclass[xcolor=dvipsnames,10pt]{beamer}
+\input{head.tex}
+
+\title{\vskip 0.5in Day 5}
+\subtitle{Mean Variance Analysis}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+
+\section{StdDev/Mean Plots}\subsection{}
+
+\bfr\frametitle{Notation}
+\bi
+\im $n$ risky assets with returns $\tr_i$.  $\tR = (\tr_1 \cdots \tr_n)'$
+\im $\mu=\,$ vector of expected returns.  At least two of the assets have different expected returns.
+\im  $\Sigma =\,$ covariance matrix. Assume no redundant assets, so $\Sigma$ is positive definite.
+\im $\iota=\,$ $n$--vector of 1's.
+\im $\pi \in \myreal^n$ is a portfolio (of risky assets).  If the portfolio is fully invested in risky assets, then $\iota'\pi=1$.  Otherwise, $1-\iota'\pi$ is the fraction of wealth invested in the risk-free asset.
+\ei
+\end{frame}
+
+
+\bfr\frametitle{Portfolio Mean and Standard Deviation}
+
+Consider two assets with expected returns $\mu_i$, standard deviations $\sigma_i$, and correlation $\rho$. 
+Consider a portfolio $(\pi_1, \pi_2)$ with $\pi_1+\pi_2=1$.
+The portfolio return is 
+$$\pi' \tR \ = \ \pi_1\tilde{R}_1 + \pi_2\tilde{R}_2 $$
+ The portfolio expected return is 
+$$\pi'\mu \ = \ \pi_1\mu_1 + \pi_2\mu_2 $$
+Write the covariance matrix as
+$$\Sigma \ = \ \begin{pmatrix} \sigma_1^2 & \rho\sigma_1\sigma_2 \\ \rho\sigma_1\sigma_2 & \sigma_2^2
+\end{pmatrix}$$
+ The portfolio variance is
+$$\pi'\Sigma\pi \ = \ \pi_1^2\sigma_1^2 + \pi_2^2\sigma_2^2 + 2\pi_1\pi_2\rho\sigma_1\sigma_2$$
+\end{frame}
+
+\bfr\frametitle{Portfolios of Two Risky Assets}
+\vskip -\baselineskip
+\begin{center}
+\includegraphics[scale=.7]{Images/fig5_1.png}
+\end{center}
+\vskip -\baselineskip
+\end{frame}
+
+\bfr\frametitle{Portfolios of a Risky and Risk-Free Asset}
+\vskip -\baselineskip
+\begin{center}
+\includegraphics[scale=.7]{Images/fig5_2.png}
+\end{center}
+\vskip -\baselineskip
+\end{frame}
+
+\section{GMV Portfolio}\subsection{}
+
+\bfr\frametitle{Global Minimum Variance Portfolio}
+
+The portfolio of risky assets with minimum variance is called the Global Minimum Variance (GMV) portfolio.
+
+It solves the optimization problem
+$$\min \quad\frac{1}{2}\pi'\Sigma\pi \quad\text{subject to}\quad \iota '\pi = 1$$
+The Lagrangean for this problem is
+$$\frac{1}{2}\pi'\Sigma\pi - \gamma (\iota '\pi - 1)$$
+The FOC is
+$$\Sigma\pi =  \gamma \iota \quad \Leftrightarrow \quad \pi = \gamma\Sigma^{-1}\iota$$
+Impose the constraint $\iota '\pi = 1$ and solve for $\gamma$ to obtain
+$$\pi = \frac{1}{\iota ' \Sigma^{-1}\iota} \Sigma^{-1}\iota$$
+In other words, take the vector $\Sigma^{-1}\iota$ and divide by the sum of its elements, so the rescaled vector sums to 1.
+\end{frame}
+
+\section{Frontier Portfolios}\subsection{}
+
+
+\bfr\frametitle{Mean-Variance Frontier of Risky Assets}
+
+We continue to look at only risky assets so we continue to require portfolio weights to sum to 1 ($\iota'\pi=1$).
+
+A \alert{frontier portfolio} is a portfolio that achieves a target expected return with minimum risk.  It solves an optimization problem
+$$\min \quad\frac{1}{2}\pi'\Sigma\pi \quad\text{subject to}\quad \mu'\pi=\mu_{\text{targ}}\quad\text{and}\quad \iota '\pi = 1$$
+where $\mu_{\text{targ}}$ denotes the given target expected return.
+
+By varying the target expected return, we trace out the frontier.
+
+\end{frame}
+
+\begin{frame}{Solving for Frontier Portfolios}
+The Lagrangean for the optimization problem is 
+$$\frac{1}{2}\pi'\Sigma\pi - \delta(\mu'\pi-\mu_{\text{targ}}) - \gamma (\iota '\pi - 1)$$
+The FOC is
+$$\Sigma \pi - \delta \mu - \gamma \iota \ = \ 0\,.$$
+The solution is
+$$\pi \ = \ \delta \Sigma^{-1}\mu + \gamma\Sigma^{-1}\iota$$
+This means that~$\pi$ is a linear combination of the two vectors $\Sigma^{-1}\mu$ and $\Sigma^{-1}\iota$.  Use constraints to solve for $\delta$ and $\gamma$. 
+\end{frame}
+
+\begin{frame}{More Notation}
+
+Denote the GMV portfolio by $\pi_{\text{gmv}}$.  It is $\Sigma^{-1}\iota$ rescaled to sum to 1:
+$$\pi_{\text{gmv}} \ = \ \frac{1}{\iota\Sigma^{-1}\iota}\Sigma^{-1}\iota$$
+
+Let's also rescale the vector $\Sigma^{-1}\mu$ to sum to 1 and call it $\pi_\mu$:
+$$\pi_\mu \ = \ \frac{1}{\iota\Sigma^{-1}\mu}\Sigma^{-1}\mu$$
+
+To simplify, 
+define
+$A = \mu'\Sigma^{-1}\mu$, $ B = \mu'\Sigma^{-1}\iota$, and $C = \iota '\Sigma^{-1}\iota$.  
+Then,
+\begin{align*}
+\pi_{\text{gmv}} \ & = \ \frac{1}{C}\Sigma^{-1}\iota\\
+\pi_\mu \ & = \ \frac{1}{B}\Sigma^{-1}\mu
+\end{align*}
+\end{frame}
+
+\begin{frame}{Mean-Variance Frontier Again}
+We saw that a frontier portfolio is
+$$\pi = \delta \Sigma^{-1}\mu + \gamma\Sigma^{-1}\iota$$
+for some $\delta$ and $\gamma$.  We can write this as
+\begin{align*}
+\pi \ = \ \delta B \frac{1}{B}\Sigma^{-1}\mu + \gamma C \frac{1}{C}\Sigma^{-1}\mu\\
+\ = \ \delta B \pi_\mu + \gamma C \pi_{\text{gmv}}
+\end{align*}
+The constraint $\iota'\pi=1$ implies 
+$$\delta B + \gamma C \ = 1$$  The constraint
+$\mu'\pi = \mu_{\text{targ}}$ implies 
+$$\delta BA + \gamma CB \ = \ \mu_{\text{targ}}$$
+Can solve these two equations in two unknowns for $\delta$ and $\gamma$.
+
+\end{frame}
+
+\begin{frame}{Solution}
+Set $\lambda = \delta B$.  The constraint $\iota'\pi=1$ implies $\gamma C = 1-\lambda$, so the frontier portfolio is $\pi = \lambda \pi_\mu + (1-\lambda)\pi_{\text{gmv}}$.  This is the general description of frontier portfolios.
+
+To find the particular frontier portfolio meeting the target return constraint, we can calculate
+$$\mu'\pi = \lambda \mu'\pi_\mu + (1-\lambda) \mu'\pi_{\text{gmv}} \ = \ \lambda \frac{A}{B} + (1-\lambda)\frac{B}{C}$$ 
+and set equal to $\mu_{\text{targ}}$ to obtain
+$$\lambda \ = \ \frac{\mu_{\text{targ}} - B/C}{A/B - B/C} \ = \ \frac{BC\mu_{\text{targ}} - B^2}{AC - B^2}$$
+\end{frame}
+
+\section{Two Fund Spanning}\subsection{}
+\bfr\frametitle{Two Fund Spanning}
+The characterization $\pi = \lambda \pi_\mu + (1-\lambda)\pi_{\text{gmv}}$ means that $\pi$ lies on the line through $\pi_\mu$ and $\pi_{\text{gmv}}$ in $\myreal^n$.  Every frontier portfolio is a combination of $\pi_\mu$ and $\pi_{\text{gmv}}$.  We say that these two portfolios span the frontier.
+
+We can consider the portfolios to be funds -- like mutual funds.  If you want a frontier portfolio, you can just invest in these two funds.  We call this two-fund spanning.
+
+Any other two points on the line also span the line.  So, any two frontier portfolios can serve as the funds.
+\end{frame}
+
+\end{document}
+
+\section{Risk-Free Asset}\subsection{}
+
+\bfr\frametitle{Mean-Variance Frontier with a Risk-Free Asset}
+
+Now, we add a risk-free asset.  We continue to let $\pi\in \myreal^n$ denote the portfolio of risky assets.  We no longer require $\iota'\pi=1$.  The weight on the risk-free asset is $1-\iota'\pi$.  This can be negative (borrowing).
+
+A portfolio's expected return is
+$$(1-\iota'\pi)R_f + \mu'\pi \ = \ R_f + (\mu-R_f\iota)'\pi$$
+A frontier portfolio solves the following for some $\mu_{\text{targ}}$:
+$$\min \quad\frac{1}{2}\pi'\Sigma\pi \quad\text{subject to}\quad R_f + (\mu-R_f\iota )'\pi=\mu_{\text{targ}}$$
+\end{frame}
+
+\begin{frame}
+ FOC is
+$$\Sigma\pi - \delta (\mu-R_f\iota ) = 0 \quad \Leftrightarrow \quad \pi = \delta\Sigma^{-1}(\mu-R_f\iota )$$
+So, all frontier portfolios are scalar multiples of the vector $\Sigma^{-1}(\mu-R_f\iota )$.
+
+In other words, the frontier portfolios form a line through the origin and the vector $\Sigma^{-1}(\mu-R_f\iota )$. 
+\end{frame}
+
+\begin{frame}{Tangency Portfolio}
+
+We can probably divide the vector $\Sigma^{-1}(\mu-R_f\iota )$ by the sum of its elements to form a portfolio of purely risky assets (satisfying $\iota'\pi=1$).  
+
+We can do that as long as the sum is nonzero.  That is, we need
+$$\iota '\Sigma^{-1}(\mu-R_f\iota ) \ \neq \ 0$$
+This expression is $B - R_fC$.  It is nonzero if and only if $B/C \neq R_f$.  
+The term $B/C$ is the expected return of the GMV portfolio:
+$$\mu'\pi_{\text{gmv}} \ = \ \mu'\left(\frac{1}{\iota'\Sigma^{-1}\iota}\Sigma^{-1}\iota\right) \ = \ \frac{1}{\iota'\Sigma^{-1}\iota}\mu'\Sigma^{-1}\iota \ = \ \frac{B}{C}$$
+
+So, when the expected return of the GMV portfolio is different from $R_f$, we 
+ can define
+ $$
+\pi_{\text{tang}} \ = \ \frac{1}{\iota '\Sigma^{-1}(\mu-R_f\iota )}\Sigma^{-1}(\mu-R_f\iota )
+$$
+
+\end{frame}
+
+\begin{frame}
+We call this the tangency portfolio because it is on two frontiers ( the frontier including the risk-free asset and the frontier of only risky assets) that are tangent at its (std dev, mean).
+
+How do we know it is on the frontier of only risky assets?
+\begin{enumerate}
+\item It is a portfolio constructed from the two vectors $\Sigma^{-1}\mu$ and $\Sigma^{-1}\iota$.
+\item Anything that solves a less constrained optimization problem (not requiring $\iota'\pi=1$) and satisfies the constraints of a more constrained problem (satisfies $\iota'\pi=1$ anyway) must solve the more constrained problem too.
+\end{enumerate}
+
+Thus, the two frontiers (in std dev/mean space) must be tangent at this point.
+\end{frame}
+
+\bfr\frametitle{Mean-Variance Frontier: $B/C > R_f$}
+\vskip -\baselineskip
+\begin{center}
+\includegraphics[scale=.7]{Images/fig5_3.png}
+\end{center}
+\vskip -\baselineskip
+\end{frame}
+
+\bfr\frametitle{Mean-Variance Frontier: $B/C < R_f$}
+\vskip -\baselineskip
+\begin{center}
+\includegraphics[scale=.7]{Images/fig5_4.png}
+\end{center}
+\vskip -\baselineskip
+\end{frame}
+
+\begin{frame}{What if $B/C = R_f$?}
+If $B/C = R_f$, all frontier portfolios have 100\% invested in the risk-free asset and then go long and short in proportion to the positive and negative elements of $\Sigma^{-1}(\mu - R_f\iota)$.
+
+The cone and hyperbola never touch.
+\end{frame}
+
+\bfr\frametitle{Two Fund Spanning with a Risk-Free Asset}
+All frontier portfolios lie on the line through the origin and the vector $\Sigma^{-1}(\mu-R_f\iota)$ in $\myreal^n$.
+
+Any vector on the line is a portfolio, because we are not requiring $\iota'\pi=1$.
+
+The origin represents 100\% in the risk-free asset.
+
+Any two portfolios on the line span the frontier in the sense that any frontier portfolio is a combination $\lambda$ and $(1-\lambda$ of the portfolios.
+
+\end{frame}
+
+\begin{frame}{Maximum Sharpe Ratio}
+What is the risk premium of the portfolio $\Sigma^{-1}(\mu-R_f\iota)$?
+
+What is the variance of the return of the portfolio $\Sigma^{-1}(\mu-R_f\iota)$?
+
+What is its Sharpe ratio (risk premium divided by standard deviation)?
+\end{frame}
+
+
+
+\section{SDF}\subsection{}
+
+
+
+
+\begin{frame}{Return Proportional to $\tm_p$}
+Consider the SDF in the span of the assets, denoted by $\tm_p$.
+
+This is the payoff of some portfolio (that's what it means to be in the span of the assets).
+
+If we divide by its cost, the re-scaled payoff will have a cost of 1 and hence be a return.  Call this return $\tilde{R}_p$.
+
+Exercise:  Assume there is a risk-free asset.
+\begin{enumerate}
+\item Show that $\tilde{R}_p$ is a frontier return (use the result of Exercise 3.3 if it is useful).
+\item Show that the return's mean and standard deviation plot at the point on the frontier that is closest to the origin, so it is an inefficient frontier return (see Exercise 5.4 for a hint).
+\end{enumerate}
+\end{frame}
+
+\bfr\frametitle{HJ Bound with a Risk-Free Asset}
+For any SDF $\tm$ and any return $\tr$,
+$$\frac{\stdev(\tilde{m})}{\mye[\tilde{m}]}\geq  \frac{\stdev(\tilde{m}_p)}{\mye[\tilde{m}_p]} \geq  \frac{|\mye[\tilde{R}]-R_f|}{\stdev(\tilde{R})}$$
+The right-hand side is the absolute value of the Sharpe ratio of $\tr$.
+
+We can use the fact that $\tilde{R}_p$ is on the frontier to show that the second inequality is an equality for the maximum Sharpe ratio.
+
+\end{frame}
+
+\section{Risk Premia}\subsection{}
+
+\bfr\frametitle{The FOC with a Risk-Free Asset}
+The FOC for the frontier with a risk-free asset is
+$$\Sigma\pi \ = \ \delta (\mu-R_f\iota )$$
+We solved it for $\pi$:
+$$ \pi \ = \ \delta\Sigma^{-1}(\mu-R_f\iota )$$
+We can instead solve it for the vector of risk premia:
+$$\mu - R_f\iota \ = \ \frac{1}{\delta}\Sigma\pi$$
+ What is $\Sigma \pi$?
+\end{frame}
+
+
+
+\end{document}
+

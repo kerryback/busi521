@@ -1,0 +1,156 @@
+\documentclass[xcolor=dvipsnames,10pt]{beamer}
+\input{head.tex}
+\newcommand{\tu}{\tilde{u}}
+\begin{document}
+\title{\vskip 0.5in Day 24}
+\subtitle{Option Pricing}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Set-up}\subsection{}
+\begin{frame}{Assumptions}
+    single risky asset and single Brownian motion, constant risk-free rate
+    
+    no dividends
+    
+    geometric Browinan motion price process
+    $$\frac{\D S}{S} = \mu\,\D t + \sigma\,\D B$$
+    for constants $\mu$ and $\sigma$
+    
+    option that expires at some future date $T$
+    
+    European = can only be exercised at $T$ or American = can be exercised at any time prior to $T$
+\end{frame}
+
+\begin{frame}{Asset Price}
+  $$\frac{\D S}{S} = \mu\,\D t + \sigma\,\D B$$
+  \pause
+  
+  $$\D \log S = \left(\mu - \frac{1}{2}\sigma^2\right)\,\D t + \sigma\,\D B$$
+  \pause
+  
+  $$\log S_T = \log S_0 + \left(\mu - \frac{1}{2}\sigma^2\right)T + \sigma B_T$$
+  
+  $$S_T = S_0 \E^{(\mu-\sigma^2/2)T + \sigma B_T}$$
+  
+  
+\end{frame}
+\begin{frame}{SDF Process}
+$$\frac{\D M}{M} = - r\,\D t - \lambda\,\D B$$
+
+$$\sigma\lambda = \mu-r \quad \Rightarrow \quad \lambda = \frac{\mu-r}{\sigma}$$
+
+\pause
+$$\D \log M = -r\,\D t - \frac{1}{2}\lambda^2\,\D t - \lambda\,\D B$$
+
+\pause
+$$\log M_T = \log M_0 -\left(r + \frac{1}{2}\lambda^2\right)T - \lambda B_T$$
+\pause
+$$M_T = \E^{-(r+\lambda^2/2)T - \lambda B_T}$$
+\end{frame}
+
+\section{Black-Scholes}\subsection{}
+\begin{frame}{European Call Option}
+Value of call at maturity is $\max(0,S_T-K)=(S_T-K)^+$
+
+Let $A$ denote the event $S_T>K$ and let $1_A$ denote its zero-one indicator.  
+
+The value of the call at maturity is
+$$(S_T-K)1_A = S_T1_A - K1_A$$
+
+The value of the call at date 0 is
+$$\mye[M_TS_T1_A] - K\mye[M_T1_A]$$
+\end{frame}
+
+\begin{frame}[plain]
+The event $A$ is the event $\log S_T > \log K$, which is the event
+$$\log S_0 + \left(\mu - \frac{1}{2}\sigma^2\right)T + \sigma B_T > \log K$$
+Let $\tz$ denote the standard normal $-B_T/\sqrt{T}$.  The event $A$ is the event
+$$\log S_0 + \left(\mu - \frac{1}{2}\sigma^2\right)T - \sigma \sqrt{T}\tz > \log K$$
+This is equivalent to
+$$\tz < \bar{z} \eqdef \frac{\log S_0 - \log K + (\mu-\sigma^2/2)T}{\sigma\sqrt{T}}$$
+Also,
+$$S_T = S_0 \E^{(\mu-\sigma^2/2)T - \sigma\sqrt{T}\tz} \quad \text{and} \quad
+M_T =  \E^{-(r+\lambda^2/2)T - \lambda \sqrt{T}\tz}$$
+So, we're integrating exponentials of a standard normal over the region $(-\infty, \bar{z})$.
+
+
+    
+\end{frame}
+
+
+\begin{frame}{Black-Scholes Formula}
+Value of the call at date 0 is
+$$S_0\N(d_1) - \E^{-rT}K\N(d_2)$$
+where $\N$ is the standard normal cdf and
+\begin{align*}
+    d_1 &= \frac{\log S_0 - \log K + (r+\sigma^2/2)T}{\sigma\sqrt{T}}\\
+    d_2 &= d_1 - \sigma\sqrt{T}
+\end{align*}
+    
+\end{frame}
+
+\begin{frame}{Risk-Neutral Probability}
+
+The asset price process is also
+$$\frac{\D S}{S} = r\,\D t + \sigma\,\D B^*$$
+where $B^*$ is a Brownian motion under the risk-neutral probability.
+
+The value of the call at date 0 is
+$$\E^{-rT}\mye^*[S_T1_A] - \E^{-rT}K\mye^*(1_A) = \E^{-rT}\mye^*[S_T1_A] - \E^{-rT}KQ(A)$$
+
+\end{frame}
+
+\section{Fundamental PDE}\subsection{}
+\begin{frame}{Fundamental PDE}
+    Let $f(t,S_t)$ denote the value at $t$ of some future payoff (e.g., the value of $(S_T-K)1_A$). 
+    
+    It is convenient to use the risk-neutral probability.  The RN expected rate of return is the risk-free rate:
+    $$\frac{\text{drift of $f$}}{f(t,S_t)} = r$$
+    \pause
+   \begin{align*}
+       \D f &= f_t\,\D t + f_S\,\D S 
+       + \frac{1}{2}f_{SS}(\D S)^2\\
+       &= f_t\,\D t + f_S(rS\,\D t + \sigma S\,\D B^*)
+       + \frac{1}{2}f_{SS}(S^2\sigma^2\,\D t)
+   \end{align*}
+   
+   \pause
+   So 
+   $$\text{drift of $f$} = f_t + rSf_S + \frac{1}{2}\sigma^2S^2f_{SS}$$
+\end{frame}
+
+\begin{frame}[plain]
+The fundamental PDE is
+\begin{equation}\tag{$\star$}
+f_t + rSf_S + \frac{1}{2}\sigma^2S^2f_{SS} = rf
+\end{equation}
+
+\pause
+
+The Black-Scholes formula is
+$$f(t,S_t) = S_t\N(d_1(t,S_t)) - \E^{-r(T-t)}K\N(d_2(t,S_t))$$
+where
+\begin{align*}
+    d_1(t,S_t) &= \frac{\log S_t - \log K + (r+\sigma^2/2)(T-t)}{\sigma\sqrt{T-t}}\\
+    d_2(t,S_t) &= d_1(t,S_t) - \sigma\sqrt{T-t}
+\end{align*}
+We can differentiate and verify that the Black-Scholes formula satisfies the fundamental PDE.  It also satisfies the boundary conditions $f(t,0)=0$, $f(t,\infty)=\infty$, and 
+$\lim_{t\rightarrow T}f(t,S) = (S-K)^+$.
+\end{frame}
+
+\begin{frame}{Americans and Perpetuals}
+For a finite-lived American option there is an optimal exercise boundary $s^*(t)$.  Exercise at the first time that $S_t=s^*(t)$.  Value satisfies the fundamental PDE in the ``inaction region'' and conditions at the boundary.
+
+Have to find the boundary.  Called a free boundary problem.  Have to solve numerically.
+
+For a time-stationary perpetual option, the value does not depend on~$t$.  Need to find a function $f(S_t)$.  The fundamental PDE becomes an ODE.  There is an analytic solution.  Appplicable in many timing games -- innovation races, etc. -- and corporate investment problems --- called real options.
+
+Solution is derived from following.  Pick a number $s^*$ and let $\tau$ denote the hitting time of $s^*$ (first time $S_t=s^*$).  Value getting \$1 at $\tau$.  Value is $f(S_t) = \mye^*[\E^{-r(\tau-t)}\mid S_t]$.  Solve the ODE.
+\end{frame}
+ 
+
+ 
+\end{document}

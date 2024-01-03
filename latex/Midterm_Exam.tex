@@ -1,0 +1,252 @@
+\input{../../../Preamble.tex}
+
+\begin{document}\thispagestyle{empty}
+
+\fontfamily{cmss}\fontseries{sbx}\fontshape{n}\fontsize{12}{18}
+\selectfont
+\thispagestyle{empty}
+
+\noindent \parbox{3in}{\setlength{\baselineskip}{0.67\baselineskip}
+\noindent BUSI 521 /ECON 505\\
+\noindent Asset Pricing Theory / Financial Economics\\
+\noindent Prof. Kerry Back\\
+\noindent Spring 2019}
+\hfill
+\parbox{1.5in}{\includegraphics[scale=0.9]{../../../Logo.jpg}}
+\centerline{MIDTERM EXAM}
+\vskip 0.5\baselineskip
+\hrule
+\vskip 0.5in
+This is a  3.0 hour exam.  It is closed book and closed notes.  There are five questions, and they will be equally weighted.  You can continue an answer onto the back of a page, and there are blank pages at the end of the exam if you need to continue an answer further.  
+\vskip\baselineskip
+\begin{enumerate}
+\item Assume there are three states of the world that are equally likely.  There are two assets with prices $p_1=p_2=1$.  The payoffs of the first asset across the three states of the world are $(1,2,1)$.  The payoffs of the second asset across the three states of the world are $(0,1,3)$.  
+\begin{enumerate}
+\item Describe the one-dimensional family of state price vectors.
+\item Find the SDF that is spanned by the assets.
+\end{enumerate}
+
+\newpage\item Assume there is a risk-free asset.  Derive the first-order condition for a portfolio to be on the mean-variance frontier.  Explain why the first-order condition implies a factor model for returns.
+
+\newpage\item  Assume there is a representative investor with constant relative risk aversion $\rho \neq 1$.  Let $c_0$ denote aggregate consumption at date 0 and let $\tilde{c}_1$ denote aggregate consumption at date~$1$.  Assume $\log \tilde{c}_1$ is normally distributed with mean $\log c_0 + \mu$ and variance $\sigma^2$.  
+\begin{enumerate}
+\im Derive a formula for $\log R_f$.  
+\im Explain (in terms of the demand to borrow and market clearing) why $\log R_f$ is larger when $\mu$ is larger and larger when $\sigma$ is smaller.
+\im Why is the effect of $\rho$ on $\log R_f$ ambiguous?
+\end{enumerate}
+
+\newpage\item Assume all investors have linear risk tolerance with the same cautiousness parameter.  Explain why fact (a) below implies (b) and (c).  Along the way, explain the concepts referenced in the facts.
+\begin{enumerate}
+\item Sharing rules are affine.
+\item A competitive equilibrium is Pareto optimal as long as there is a risk-free asset (markets do not need to be complete).
+\item There is two-fund separation.
+\end{enumerate}
+
+
+
+\newpage\item Consider an investor who seeks to maximize
+$$\mye \left[\sum_{t=0}^T \delta^t u(c_t)\right]$$
+where
+$$u(c) = \frac{1}{1-\rho}c^{1-\rho}$$
+subject to the intertemporal budget constraint and subject to the terminal constraint $C_T \leq W_T$'.  Assume returns are iid.  Let $J_t(w)$ denote the value function. Define
+$$B = \max_\pi \mye\left[\frac{1}{1-\rho}(\pi'R_T)^{1-\rho}\right]\,.$$
+Show that the optimal portfolio at date $T-1$ is the portfolio that achieves this maximum, and show that
+$$J_{T-1}(w) = \frac{1}{1-\rho}A_{T-1}w^{1-\rho}$$
+for some constant $A_{T-1}$.
+
+\newpage
+
+
+
+
+
+ 
+\end{enumerate}
+\np
+\np
+\np
+\np
+\np
+\end{document}
+\newpage \item Assume there is a risk-free asset.  Let $\widetilde{\mathbf{R}}$ denote the vector of risky asset returns, let $\mu$ denote the mean of $\widetilde{\mathbf{R}}$,  and let $\Sigma$ denote the covariance matrix of $\widetilde{\mathbf{R}}$.  Let $\iota$ denote a vector of~1's.  
+\begin{enumerate}
+\item Show that the following random variable is an SDF.
+$$
+\frac{1}{R_f} + \left(\iota -\frac{1}{R_f}\mu\right)'\Sigma^{-1}(\widetilde{\mathbf{R}}-\mu)\,.
+$$
+\item The random variable in part (a) is spanned by the assets, so it is the payoff of a portfolio (that may include the risk-free asset).  If we divide by the payoff by the cost of the portfolio, we obtain a return.  Thus, the random variable is proportional to a return.  Show that in fact it is proportional to a return $\pi'\br + (1-\iota'\pi)R_f$ on the mean-variance frontier.  You can use without proof any facts that you know about the mean-variance frontier.
+\end{enumerate}
+
+\newpage\item Assume there is a representative investor with constant relative risk aversion $\rho$ and discount factor $\delta$.  Assume the change in log consumption is normally distributed with mean $\mu$ and standard deviation $\sigma$.  
+\begin{enumerate}
+\item Derive a formula for the risk-free return in terms of $\delta$, $\rho$, $\mu$, and $\sigma$.
+\item Explain why the risk-free return is higher when $\mu$ is higher and lower when $\sigma$ is higher.
+\end{enumerate}
+\end{enumerate}
+\np
+\np
+\np
+\end{document}
+
+\item Assume there is a risk-free asset and multiple risky assets with joint normal returns. Derive the optimal portfolio for an investor with CARA utility.
+
+\newpage\item Assume there are $n$ assets and $k$ states of the world. Let $X$ denote the $n \times k$ matrix of asset payoffs (so $x_{ij}$ is the payoff of the $i$th asset in the $j$th state).  Assume the Law of One Price holds and the market is complete.  Derive the unique state price vector and explain the derivation.
+
+\newpage\item Assume there is a risk-free asset.  Let $\widetilde{\mathbf{R}}$ denote the vector of risky asset returns, let $\mu$ denote the mean of $\widetilde{\mathbf{R}}$,  and let $\Sigma$ denote the covariance matrix of $\widetilde{\mathbf{R}}$.  Let $\iota$ denote a vector of~1's.  
+\begin{enumerate}
+\item Show that the following random variable is an SDF.
+\begin{equation}\label{mv_59}\tag{$\star$}
+\frac{1}{R_f} + \left(\iota -\frac{1}{R_f}\mu\right)'\Sigma^{-1}(\widetilde{\mathbf{R}}-\mu)\,.
+\end{equation}
+\item Let $\widetilde{m}$ be any SDF.  Explain why \eqref{mv_59} equals the orthogonal projection of $\widetilde{m}$ onto the span of the returns.
+\end{enumerate}
+
+\newpage\item Derive the tangency portfolio.  Explain what assumption you need to ensure that the tangency portfolio exists.
+
+\newpage\item Let $\tX = (\tx_1, \ldots, \tx_k)$ denote a vector of random variables.  Suppose there exists a constant $a$ and a vector $b$ such that $a+b'\tX$ is an SDF.  Show that there is a factor pricing model with $\tX$ as the vector of factors.
+
+\newpage\item Assume there is a risk-free asset and a representative investor with CRRA utility.  Let $\tr_m$ denote the market return.  Derive a generalization of the CAPM of the following form:  for each asset $i$,
+$$\mye[\tr_i]-R_f = \gamma_i \bigg(\mye[\tr_m]-R_f\bigg)$$
+where $\gamma_i$ is a generalization of the market beta of asset $i$.  Give an explicit formula for $\gamma_i$.
+\end{enumerate}
+\np
+\np
+\np
+\end{document}
+\item Suppose all investors have log utility and suppose $(\tw_1,\ldots,\tw_H)$ is a Pareto optimal allocation of market wealth $\tw_m$.  Show that each investor's wealth $\tw_h$ is an affine function of $\tw_m$.
+There are four equally probable states of the world, a risk-free asset with return $R_f=1.5$, and two risky assets with the following payoffs:
+\begin{center}
+\begin{tabular}{lcccc}
+& State 1 & State 2 & State 3 & State 4\\
+\hline 
+$\tilde{x}_1$: & 3 & 3 & 1 & 1 \\
+$\tilde{x}_2$: & 1 & 5 & 2 & 4
+\end{tabular}
+\end{center}
+The prices of the two risky assets are $p_1 = 1$ and $p_2=2$. 
+Show that the random variable having the following values in each state is an SDF.
+\begin{center}
+\begin{tabular}{lcccc}
+& State 1 & State 2 & State 3 & State 4\\
+\hline 
+$\tilde{m}$: &1/3 & 1/3 & 1 & 1 
+\end{tabular}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \item \pts{4} Suppose there are two risk-averse investors and three states of the world.  Suppose that the equilibrium end-of-period wealths of the two investors are as follows:
+ \begin{center}
+\begin{tabular}{lccc}
+& State 1 & State 2 & State 3\\
+\hline 
+$\tilde{w}_1$: & 1 & 4 & 3\\
+$\tilde{w}_2$: & 2 & 3 & 5
+\end{tabular}
+\end{center}
+Can we tell whether the market is complete? Explain.
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\item Consider a single-period model with a risk-free asset and a single risky asset.  Let $\phi(w)$ denote the optimal investment in the risky asset for an investor when the investor's initial wealth is $w$.  Under what circumstance is $\phi'(w)>0$?
+\item \pts{4} Define two-fund separation.  What assumption on investor preferences implies two-fund separation?
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\item \five Let $\tilde{m}$ be an SDF and define a probability $Q$ by $Q(A) = R_f \mye[\tilde{m}1_A]$ for each event $A$.  Show that the return $\tilde{R}$ of each asset must satisfy
+%$\mye^*[\tilde{R}] = R_f$, where $\mye^*$ denotes expectation relative to $Q$.
+%\item Derive the Hansen-Jagannathan bound, assuming there is a risk-free asset.
+
+%\item Using the calculus approach, derive the global minimum variance portfolio.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item \pts{4} Show that the return $\tilde{R}_p = \tilde{m}_p/\mye[\tilde{m}_p^2]$ is the return that minimizes $\mye[\tilde{R}^2]$.  Use this fact to depict the location of $\tilde{R}_p$ in standard deviation/mean space.
+\newpage
+%\item Suppose $\tilde{m}$ is an SDF and there are constants $a$ and $b$ such that $a+b\tilde{m}$ is a return.  The return has two important properties.  What are they?  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item \pts{6} Assume there is a risk-free asset.  Derive a first-order condition for a return to be on the mean-variance frontier.  Explain how this condition relates to factor pricing.
+\newpage
+%\item Assume the CAPM holds, and let $\tilde{R}_m$ denote the market return.  There are constants $a$ and $b$ such that $a-b\tilde{R}_m$ is an SDF.  Calculate $a$ and $b$.
+%\item Suppose there is a single-factor pricing model in which the factor is an excess return.  Show that the factor risk premium is the expected excess return.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item \pts{4} Suppose there is a factor pricing model in which the factors are macroeconomic variables---GDP growth, etc.  Explain why there must be a factor pricing model in which the factors are returns, and explain how the returns relate to the macroeconomic variables.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\item \pts{8} Assume there is a representative investor with constant relative risk aversion $\rho$.  Assume there is a riskfree asset, and let $\tilde{R}_m$ denote the market return.  Derive the following formula for the risk premium of each asset:
+$$\mye[\tilde{R}] - R_f = \frac{\mye[\tilde{R}_m]-R_f}{\cov(\tilde{R}_m,\tilde{R}_m^{-\rho})}\cov\left(\tilde{R},\tilde{R}_m^{-\rho}\right)\,.$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+\item \pts{6} In a single-period model, assume there is a representative investor with constant relative risk aversion $\rho$.  Assume that the logarithm of aggregate consumption is normally distributed with mean $\mu$ and variance $\sigma^2$.  Show that
+$$\log \mye[\tilde{R}_m] - \log R_f = \rho \sigma^2\,.$$
+
+\newpage
+\item \pts{4} What is the equity premium puzzle?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+\item \pts{8} Suppose there is a representative investor with discount factor $\delta$ and constant relative risk aversion $\rho$.  Assume that consumption growth $C_{t+1}/C_t$ is an iid sequence.  Show that the market return is 
+$$R_{m,t+1} = \frac{1}{\nu} \cdot \frac{C_{t+1}}{C_t}\,,$$
+where
+$$\nu = \delta \mye\left[\left(\frac{C_{t+1}}{C_t}\right)^{1-\rho}\right]\,.$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\item \pts{6} Consider an investor with constant relative risk aversion in an infinite-horizon discrete-time model.  Suppose there is a single state variable $X$.  Assume the investor has no labor income $Y_t$.  Show that  
+$$J(w,x) = \frac{1}{1-\rho}w^{1-\rho}f(x)$$
+satisfies the Bellman equation for some function $f$.
+%\item Suppose $S$ is a geometric Brownian motion and $\gamma$ is a constant.  Show that $S^\gamma$ is a geometric Brownian motion.  Calculate $\mye[S_T^\gamma]$.
+%\item In a continuous-time model, derive the Hansen-Jagannathan bound.
+%\item Use Girsanov's theorem to show that the expected rate of return of any asset under the risk-neutral probability is the risk-free rate.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\item \pts{6} In a continuous-time model, assume there is an SDF process $M$, stochastic process $X$, and function $f$ such that $M_t = f(X_t)$.  Show that there is a single-factor pricing model with factor $X$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\item \pts{8} Consider a continuous-time model with a single state variable $X$.  Derive the myopic and hedging demands from the HJB equation.  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\item \pts{4} Consider a continuous-time model with a single state variable $X$ and a representative investor.  Explain how the sign of the hedging demands relates to the sign of the risk premium for the factor $X$ in the ICAPM.  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\item \pts{4} Suppose a non-dividend-paying asset has price dynamics
+$$\D S = \mu S\,\D t + \sigma \sqrt{S} \,\D B\,,$$
+for a constant $\sigma$.  Assume there is a constant risk-free rate.  Derive the fundamental PDE for a put option.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+The last three questions concern the following example: 
+There is a constant risk-free rate $r$ and a single risky asset.  The risky asset price is a geometric Brownian motion: for constants $\mu$ and~$\sigma$,
+$$\frac{\D S}{S} = \mu\,\D t + \sigma\,\D B\,.$$
+An investor maximizes his expected utility of date--$T$ wealth.  Assume the asset does not pay dividends prior to $T$.  The investor's optimal date--$T$ wealth is $S_T^{\gamma}$ for a constant $\gamma$.  
+
+\item \pts{4} Derive a formula for the investor's wealth at each date $t<T$.
+\newpage 
+\item \pts{4} In the geometric Brownian motion example, derive a formula for the investor's optimal portfolio at each date $t<T$.
+\newpage
+\item \pts{4} Show that the formulas derived for the previous two questions are valid even if $\mu$ is a stochastic process.  Hint: follow steps used in deriving the Black-Scholes formula.
+
+
+\end{enumerate}
+\np
+\np
+\np
+\np
+\np
+\np
+ \end{document}
+

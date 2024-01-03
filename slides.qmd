@@ -1,34 +1,19 @@
 ## Slide Decks
 
-[Chapter 1](Chapter01.pdf)
-
-[Chapter 2](Chapter02.pdf)
-
-[Chapter 3](Chapter03.pdf)
-
-[Chapter 4](Chapter04.pdf)
-
-[Chapter 5](Chapter05.pdf)
-
-[Chapter 6](Chapter06.pdf)
-
-[Chapter 7](Chapter07.pdf)
-
-[Chapter 8](Chapter08.pdf)
-
-[Chapter 10](Chapter10.pdf)
-
-[Chapter 11](Chapter11.pdf)
-
-[Chapter 12](Chapter12.pdf)
-
-[Chapter 13](Chapter13.pdf)
-
-[Chapter 14](Chapter14.pdf)
-
-[Chapter 15](Chapter15.pdf)
-
-[Chapter 16](Chapter16.pdf)
-
-[Chapter 19](Chapter19.pdf)
+[Chapter 1](Chapter01.pdf){target="_blank"}<br>
+[Chapter 2](Chapter02.pdf){target="_blank"}<br>
+[Chapter 3](Chapter03.pdf){target="_blank"}<br>
+[Chapter 4](Chapter04.pdf){target="_blank"}<br>
+[Chapter 5](Chapter05.pdf){target="_blank"}<br>
+[Chapter 6](Chapter06.pdf){target="_blank"}<br>
+[Chapter 7](Chapter07.pdf){target="_blank"}<br>
+[Chapter 8](Chapter08.pdf){target="_blank"}<br>
+[Chapter 10](Chapter10.pdf){target="_blank"}<br>
+[Chapter 11](Chapter11.pdf){target="_blank"}<br>
+[Chapter 12](Chapter12.pdf){target="_blank"}<br>
+[Chapter 13](Chapter13.pdf){target="_blank"}<br>
+[Chapter 14](Chapter14.pdf){target="_blank"}<br>
+[Chapter 15](Chapter15.pdf){target="_blank"}<br>
+[Chapter 16](Chapter16.pdf){target="_blank"}<br>
+[Chapter 19](Chapter19.pdf){target="_blank"}
 

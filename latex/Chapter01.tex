@@ -11,10 +11,6 @@
 
 \usepackage{xspace}
 \usepackage{xcolor}
-\newcommand{\D}{\mathrm{d}}
-\newcommand{\E}{\mathrm{e}}
-\newcommand{\mye}{\mathsf{E}}
-
 
 \DeclareMathOperator{\stdev}{stdev}
 \DeclareMathOperator{\var}{var}
@@ -87,7 +83,7 @@
 \newcommand{\tX}{\tilde{X}}
 \newcommand{\tY}{\tilde{Y}}
 
-\setbeamertemplate{frame footer}{AFA, January 2024}
+\setbeamertemplate{frame footer}{Chapter 1, BUSI 521, Spring 2024}
 
 \title{Chapter 1: Utility and Risk Aversion}
 
@@ -102,77 +98,199 @@ Rice University}
 
 \maketitle
 
-\begin{frame}{Examples of Finance Questions}
-
-
-1) A company can invest $K$ to generate a cash flow of $\tilde{x}$ in one year.  Under what circumstances should it make the investment?
-
-\vskip 1in
-
-2) Under what circumstances can we expect stock A to earn a higher return than stock B?
-
+\begin{frame}{Outline}
+  \bi 
+  \im Quick overview of finance
+  \im Utility functions and risk aversion coefficients
+  \im Certainty equivalents
+  \ei
 \end{frame}
 
-\begin{frame}{Utility and Certainty Equivalents}
+\section{Overview of Finance}
+
+
+\begin{frame}{Examples of Finance Questions}
+
+\begin{enumerate}
+\item A company can invest $K$ to generate an uncertain cash flow of $\tilde{x}$ in one year.  Should it make the investment?
+\item If the company needs to raise the capital, under what conditions will it choose debt versus equity financing?
+\item What is the optimal portfolio of stocks for an investor?
+\item Which of two stocks should have the higher expected return?
+\item What is the most efficient way to organize the buying and selling of stocks?
+\end{enumerate}
+\end{frame}
+
+\section{Utility Functions}
+
+\begin{frame}{Utility and Risk Aversion}
 \bi
+
 \im Expected utility $\mye[u(\tilde{w})]$
 \bi
 \im Utility function $u$ is unique up to monotone affine transform: $f(w) = a+b u(w)$ for $b>0$.
 \ei
+
 \im Risk aversion: $\mye[\tilde{\varepsilon}]=0 \Rightarrow \mye[u(w+\tilde{\varepsilon})] < \mye[u(w)]$.
 \bi
 \im Equivalent to concavity (Jensen's inequality)
 \im Equivalent to decreasing marginal utility: $u'' \leq 0$.
 \im Invariant under monotone affine transformations.
 \ei
-\im Certainty equivalent: a constant $x$ is the certainty equivalent of a random $\tilde{w}$ if $u(x) = \mye[u(\tilde{w})]$.  
-\bi
-\im Risk aversion implies $x<\mye[\tilde{w}]$.
-\im Certainty equivalents are invariant under monotone affine transformations.
-\ei
+
 \ei
 \end{frame}
 
-\begin{frame}[plain]
-  \Large To Be Continued
-\end{frame}
-\end{document}
 
 
 
 \begin{frame}{Coefficients of Risk Aversion}
-  \begin{itemize}
-    
+\bi    
 \im Absolute risk aversion: $\alpha(w) = -u''(w)/u'(w)$
 \im Risk tolerance: $\tau(w) =  1/\alpha(w)$
-im Relative risk aversion: $\rho(w) = w\alpha(w) = - wu''(w)/u'(w)$.
+\im Relative risk aversion: $\rho(w) = w\alpha(w) = - wu''(w)/u'(w)$.
 \ei
 \end{frame}
+
 
 \begin{frame}{Some Special Utility Functions}
-  \begin{itemize}
-    
-\im CARA : $\alpha(w) = -u''(w)/u'(w)$
-\im Risk tolerance: $\tau(w) =  1/\alpha(w)$
-im Relative risk aversion: $\rho(w) = w\alpha(w) = - wu''(w)/u'(w)$.
-\ei
-\end{frame}
-
-
-\bfr\frametitle{Second Order Risk Aversion}
 \bi
-\im The amount that an expected-utility investor would pay to avoid a small gamble is approximately proportional to the variance of the gamble with proportionality coefficient equal to one-half of absolute risk aversion.
-\im Here is a more precise statement of the result.  Fix $w$.  Let $\tve$ be a bounded zero-mean random variable with unit variance.  For $\sigma>0$, define $\pi(\sigma)$ by 
-$$u(w - \pi(\sigma)) = \mye[u(w+\sigma\tve)]\,.$$
-\im So, $w-\pi(\sigma)$ is the certainty equivalent of $w+\sigma\tve$, and the variance of $w+\sigma\tve$ is $\sigma^2$.
-\im We will show that  
-$$\lim_{\sigma \rightarrow 0} \frac{\pi(\sigma)}{\sigma^2} = \frac{1}{2}\alpha(w)$$
-\im Thus, for small $\sigma$,
-$$\pi(\sigma) \approx \frac{1}{2}\alpha(w)\sigma^2$$
+    
+\im CARA = Constant Absolute Risk Aversion
+\bi 
+\im $u(w) = - \E^{-\alpha w}$
+\im $\alpha$ is the coefficient of absolute risk aversion.
+\ei 
+
+\im CRRA = Constant Relative Risk Aversion 
+\bi
+\im 
+$u(w) = \log w \Rightarrow$ relative risk aversion $ = 1$
+\im $u(w) = w^{1-\rho}/ (1-\rho) \Rightarrow$ relative risk aversion $=\rho$
+\ei
+
 \ei
 \end{frame}
 
-\bfr\frametitle{Proof}
+\begin{frame}{CRRA Utility Functions}
+  \begin{center}
+  \includegraphics{images/fig1_4.png}
+  \end{center}
+  \end{frame}
+
+\begin{frame}{Proof that CARA = $-\E^{-\alpha w}$}
+ The coefficient of absolute risk aversion is
+ $$-\frac{u''(w)}{u'(w)} = - \frac{\D \log u'(w)}{\D w}$$
+ CARA means this is constant.  Call it $\alpha$. Then $\log u'$
+ is an affine (constant plus linear) function of $w$ with slope $-\alpha$.  This means
+\begin{align*}
+    \log u'(w) = \log u'(0) - \alpha w &\Rightarrow u'(w) = u'(0)\E^{-\alpha w}\\
+& \Rightarrow u(w) = u(0) + u'(0)\int_0^w \E^{-\alpha x}\,\D x\\
+& \Rightarrow u(w) = u(0) - \frac{u'(0)}{\alpha} \left(\E^{-\alpha w} - 1\right)
+\end{align*}
+\end{frame}
+
+\begin{frame}{Linear Risk Tolerance}
+  \bi
+  \im CARA risk tolerance $\,= 1/\alpha$
+  \im CRRA absolute risk aversion $\,= \rho/w$.  Risk tolerance $\,= w/\rho$
+  \im Linear risk tolerance: $\tau(w) = A + B w$.
+  \bi
+  \im For CARA, $A=1/\alpha$, $B=0$
+  \im For CRRA, $A=0$, $B = 1/\rho$
+  \im In general, $B$ is called the cautiousness parameter.
+  \ei
+  \ei
+  \end{frame}
+  
+  \begin{frame}{LRT Utility Functions with $B>0$}
+  \bi
+  \im CARA
+  \im CRRA
+  \im Shifted CRRA
+  \bi
+  \im Shifted log: $u(w) = \log (w-\zeta)$
+  \im Shifted power: $u(w) = \frac{1}{1-\rho}(w-\zeta)^{1-\rho}$
+  \ei
+  \ei
+  \end{frame}
+  
+  \begin{frame}{Quadratic Utility}
+   $$u(w) = -\frac{1 }{2}\left(\zeta-w\right)^2$$ 
+  \bi
+  \im Quadratic utility is monotone increasing for $w<\zeta$ ($\zeta$ is bliss point).
+  \im Risk tolerance: $\tau(w) = \zeta-w$, so $A=\zeta$ and $B=-1$.   
+  \im Implies mean-variance preferences:
+  $$\mye[u(\tilde{w})] \;\;\sim  \;\;\zeta \overline{w} - \frac{1}{2}\overline{w}^2 - \frac{1}{2}\var(\widetilde{w})$$
+  \ei
+  \end{frame}
+  
+  \begin{frame}{Decreasing Absolute Risk Aversion}
+    \bi
+    \im An investor has DARA utility if absolute risk aversion $\alpha(w)$ is a decreasing function of $w$.
+    \im CRRA utility is DARA: $\alpha(w) = \rho/w$ for a constant $\rho$ (relative risk aversion).
+    \im LRT utility with $B>0$ is DARA.
+    \im Quadratic utility is not DARA.
+    \ei
+    end{frame}
+
+
+\section{Certainty Equivalents}
+
+\begin{frame}{Certainty Equivalents}
+  \bi
+  \im A constant $x$ is the certainty equivalent of a random $\tilde{w}$ if $u(x) = \mye[u(\tilde{w})]$.  
+\im Risk aversion implies $x<\mye[\tilde{w}]$.
+\im Certainty equivalents are invariant under monotone affine transformations.
+\ei
+\end{frame}
+
+\begin{frame}{CARA Utility and Normal Gambles}
+  \bi
+  \im CARA investor with a normally distributed wealth having mean $w$. How much less than $w$ is the certainty equivalent?
+  \im Equivalent question: CARA investor with initial wealth $w$ facing a \alert{zero-mean} normally distributed gamble.  How much would she pay to avoid the gamble?
+  \im Answer: would pay $\alpha \sigma^2/2$ where $\sigma^2$ is the variance of the gamble.
+  \im Higher risk aversion $\Rightarrow$ pay more.  Higher risk $\Rightarrow$ pay more.
+  \ei
+\end{frame}
+
+\begin{frame}{Proof}
+  \bi
+   \im Call the gamble $w + \sigma \tve$ where $\tve$ is a standard normal.
+   \im Call the certainty equivalent $x$.  Define $\pi = w-x$, so the certainty equivalent is $w-\pi$.
+   \im Claim is that $\pi = \alpha\sigma^2/2$.
+   \pause
+   \im The definition of the certainty equivalent and negative exponential (CARA) utility tell us that $\pi$ satisfies
+  \begin{align*}
+  u(w-\pi) &= \mye\left[u(w+\sigma\tilde{\varepsilon})\right] \\
+   \Leftrightarrow \qquad -\E^{-\alpha(w-\pi)} &= \mye\left[-\E^{-\alpha(w+\sigma\tilde{\varepsilon})}\right]
+  \end{align*} 
+  \ei
+\end{frame} 
+
+\begin{frame}[plain]
+  \bi
+  \im Use the following fact: if $\tilde{x}$ is normal $(\mu,\sigma)$, then 
+  $$\mye\left[\E^{\tilde{x}}\right] = \E^{\mu + \sigma^2/2}$$
+  \pause
+  \im Solve
+  $$\E^{-\alpha(w-\pi)} = \E^{-\alpha w+ \alpha^2\sigma^2/2}$$
+  \pause
+  \im Solution: $\pi = \alpha\sigma^2/2$.
+  \ei
+  \end{frame}
+
+\begin{frame}{Small Gambles}
+\bi
+\im Drop the CARA assumption and drop the normal distribution.\im How much would an investor pay to avoid a gamble?
+\im We can give a limiting result as the size of the gamble goes to zero:  for small gambles, the amount an investor would pay is approximately $\alpha\sigma^2/2$.
+\im More precisely:  Fix $w$.  Let $\tve$ be a bounded zero-mean random variable with unit variance.  For $\sigma>0$, define $\pi(\sigma)$ by 
+$$u(w - \pi(\sigma)) = \mye[u(w+\sigma\tve)]\,.$$
+Then,
+$$\lim_{\sigma \rightarrow 0} \frac{\pi(\sigma)}{\sigma^2} = \frac{1}{2}\alpha(w)$$
+\ei
+\end{frame}
+
+\begin{frame}{Proof}
 Take an exact Taylor series approximation:
 $$\pi(\sigma)= \pi(0) + \pi'(0)\sigma + \frac{1}{2}\pi''(x_\sigma)\sigma^2$$
 for $0<x_\sigma<\sigma$
@@ -188,127 +306,25 @@ Differentiate both sides of \eqref{1}
 twice and evaluate at $\sigma=0$ to obtain $\pi''(0) = \alpha(w)$.
 \end{frame}
 
-\begin{frame}\frametitle{Relative Risk Aversion}
+\begin{frame}{Relative Risk Aversion}
 \bi
-\im Relative risk aversion: $\rho(w) = w\alpha(w)$.
-\im As before, let Let $\tve$ be a bounded zero-mean random variable with unit variance.
-\im Now, define $\pi(\sigma)$ by 
-$$u(w - \pi(\sigma)w) = \mye[u(w+\sigma\tve w)]$$
-\im So now $\pi$ is the fraction of wealth you would pay to avoid a gamble that is proportional to wealth.
-\im If $\sigma$ is small, then
-$$\pi(\sigma) \approx \frac{1}{2}\rho(w)\sigma^2\,.$$
-\im Proof:  From the previous result, $\pi(\sigma)w \approx \alpha(w)\sigma^2w^2/2$.
+\im Instead of a gambles in dollars, let's make it a percent of wealth.  Investor's wealth is $w + w\sigma\tve$ where $\tve$ is a bounded zero-mean unit-variance random variable as before.  Relative risk aversion: $\rho(w) = w\alpha(w)$.
+\im Write the certainty equivalent as $w-w\gamma(\sigma)$.  So, $\gamma := \pi/w$ is the amount she would pay \alert{relative to wealth} to avoid the gamble.
+\im The variance of the gamble is now $w^2\sigma^2$, so, for small $\sigma$, $\pi \approx \alpha w^2\sigma^2/2$.
+\im This implies $\gamma \approx \alpha w \sigma^2 = \rho \sigma^2$, where $\rho$ is \alert{relative risk aversion}..
+
 \ei
 \end{frame}
 
-\section{Utility Functions}
-\subsection{}
 
-\begin{frame}\frametitle{CARA and CRRA Utility}
-\bi
-\im A utility function has constant absolute risk aversion (CARA) if $\alpha(w)$ is constant (same for all $w$).
-\im Every CARA utility function with absolute risk aversion $\alpha$ is a monotone affine transform of 
-$$u(w) = - \E^{-\alpha w}$$
-\im A utility function has constant relative risk aversion (CRRA) if $\rho(w)$ is constant (same for all $w$).
-\im Every CRRA utility function with relative risk aversion $\rho=1$ is a monotone affine transform of 
-$$u(w) = \log w$$
-\im Every CRRA utility function with relative risk aversion $\rho \ne 1$ is a monotone affine transform of 
-$$u(w) = \frac{1}{1-\rho}w^{1-\rho}$$
-\ei
-\end{frame}
+\end{document}
 
-\begin{frame}{Proofs}
-  \underline{CARA is negative exponential:} 
-  
-  $\alpha(w) = - \D \log u'(w)/\D w$, so CARA implies
-\begin{align*}
-    \log u'(w) = \log u'(0) - \alpha w &\Rightarrow u'(w) = u'(0)\E^{-\alpha w}\\
-& \Rightarrow u(w) = u(0) + u'(0)\int_0^w \E^{-\alpha x}\,\D x\\
-& \Rightarrow u(w) = u(0) - \frac{u'(0)}{\alpha} \left(\E^{-\alpha w} - 1\right)
-\end{align*}
 
-\underline{CRRA utilities:}
-
-Use $\rho(w) = - \D \log u'(w)/\D \log w$.
-\end{frame}
-\begin{frame}\frametitle{CRRA Utility Functions}
-\begin{center}
-\includegraphics{Images/fig1_4.png}
-\end{center}
-\end{frame}
-
-\begin{frame}\frametitle{CARA Utility and Normal Gambles}
-\bi
-\im What would someone with CARA utility pay to avoid a normally-distributed zero-mean gamble with variance $\sigma^2$?
-\pause
-\im Solve, for $\tilde{\varepsilon}$ a standard normal, 
-\begin{align*}
-u(w-\pi) &= \mye\left[u(w+\sigma\tilde{\varepsilon})\right] \\
- \Leftrightarrow \qquad -\E^{-\alpha(w-\pi)} &= \mye\left[-\E^{-\alpha(w+\sigma\tilde{\varepsilon})}\right]
-\end{align*} 
-\pause
-\im Use the following fact: if $\tilde{x}$ is normal $(\mu,\sigma)$, then 
-$$\mye\left[\E^{\tilde{x}}\right] = \E^{\mu + \sigma^2/2}$$
-\pause
-\im Solve
-$$\E^{-\alpha(w-\pi)} = \E^{-\alpha w+ \alpha^2\sigma^2/2}$$
-\pause
-\im Solution: $\pi = \alpha\sigma^2/2$.
-\ei
-\end{frame}
-
-\begin{frame}\frametitle{Linear Risk Tolerance}
-\bi
-\im CARA risk tolerance $\,= 1/\alpha$
-\im CRRA absolute risk aversion $\,= \rho/w$.  Risk tolerance $\,= w/\rho$
-\im Linear risk tolerance: $\tau(w) = A + B w$.
-\bi
-\im For CARA, $A=1/\alpha$, $B=0$
-\im For CRRA, $A=0$, $B = 1/\rho$
-\im In general, $B$ is called the cautiousness parameter.
-\ei
-\ei
-\end{frame}
-
-\begin{frame}\frametitle{LRT Utility Functions with $B>0$}
-\bi
-\im CARA
-\im CRRA
-\im Shifted CRRA
-\bi
-\im Shifted log: $u(w) = \log (w-\zeta)$
-\im Shifted power: $u(w) = \frac{1}{1-\rho}(w-\zeta)^{1-\rho}$
-\ei
-\ei
-\end{frame}
-
-\begin{frame}\frametitle{Quadratic Utility}
- $$u(w) = -\frac{1 }{2}\left(\zeta-w\right)^2$$ 
-\bi
-\im Quadratic utility is monotone increasing for $w<\zeta$ ($\zeta$ is bliss point).
-\im Risk tolerance: $\tau(w) = \zeta-w$, so $A=\zeta$ and $B=-1$.   
-\im Implies mean-variance preferences:
-$$\mye[u(\tilde{w})] \;\;\sim  \;\;\zeta \overline{w} - \frac{1}{2}\overline{w}^2 - \frac{1}{2}\var(\widetilde{w})$$
-\ei
-\end{frame}
-
-\begin{frame}\frametitle{Decreasing Absolute Risk Aversion}
-\bi
-\im Recall that an investor will pay approximately $\alpha(w)\sigma^2/2$ to avoid a small gamble with variance $\sigma^2$.
-\im Suppose an investor's wealth increases.  Should she be willing to pay more or less to avoid a given gamble?
-\pause
-\im Paying less seems reasonable.  This means $\alpha(w)$ is a decreasing function of $w$ (DARA utility).
-\pause
-\im If an investor has LRT utility with $B>0$, does she have DARA utility?
-\pause
-\im If an investor has quadratic utility, does she have DARA utility?
-\ei
-\end{frame}
 
 \section{Portfolio Choice}
 \subsection{}
 
-\bfr\frametitle{Notation}
+\begin{frame}{Notation}
 \bi
 \im Single consumption good at each of two dates 0 and 1
 \im Date--0 wealth $w$ (in units of consumption good)
@@ -333,7 +349,7 @@ $$\mye[u(\tilde{w})] \;\;\sim  \;\;\zeta \overline{w} - \frac{1}{2}\overline{w}^
 \ei
 \end{frame}
 
-\bfr\frametitle{Portfolio Choice Problem}
+\begin{frame}{Portfolio Choice Problem}
 \bi
 \im Choose $\theta_1, \ldots, \theta_n$ to 
 $$\max \; \mye\lb u\lp \sum_{i=1}^n \theta_i\tx_i \rp \rb \quad \text{subject to} \quad \sum_{i=1}^n p_i \theta_i = w\,.$$
@@ -345,7 +361,7 @@ Can define $\hat{u}(a) = u(wa)$ so objective is max $\mye[\hat{u}(\sum \pi_i \tr
 \ei
 \end{frame}
 
-\bfr\frametitle{Comments}
+\begin{frame}{Comments}
 \bi
 \im Short sales are allowed ($\theta_i <0$)
 \im There are no margin requirements.  
@@ -359,7 +375,7 @@ Can define $\hat{u}(a) = u(wa)$ so objective is max $\mye[\hat{u}(\sum \pi_i \tr
 \ei
 \end{frame}
 
-\bfr\frametitle{First-Order Condition}
+\begin{frame}{First-Order Condition}
 \bi
 \im Lagrangean:
 $$\mye\lb u\lp \sum_{i=1}^n \theta_i\tx_i \rp \rb - \lambda \lp \sum_{i=1}^n p_i \theta_i - w \rp$$
@@ -370,7 +386,7 @@ $$\mye\lb u'\lp \sum_{i=1}^n \theta_i\tx_i \rp \tr_i \rb = \lambda $$
 \ei
 \end{frame}
 
-\bfr\frametitle{First-Order Condition cont.}
+\begin{frame}{First-Order Condition cont.}
 \bi
 \im If $p_i>0$ and $p_j>0$,
 $$\mye\lb u'\lp \sum_{i=1}^n \theta_i\tx_i \rp (\tr_i -\tr_j)\rb = 0 $$
@@ -389,7 +405,7 @@ $$\mye\lb u'\lp \sum_{i=1}^n \theta_i\tx_i \rp (\tr_i -\tr_j)\rb = 0 $$
 \section{Single Asset}
 \subsection{}
 
-\bfr\frametitle{A Single Risky Asset: \\Go Long if Risk Premium is Positive}
+\begin{frame}{A Single Risky Asset: \\Go Long if Risk Premium is Positive}
 \bi
 \im Let $\phi=\,$ amount invested in risky asset, so $w_0-\phi$ is invested in risk-free asset.  Let $\mu=\mye[\tr]$ and $\sigma^2 = \var(\tr)$.
 \im Date--1 wealth is 
@@ -402,7 +418,7 @@ $$\tw = (w_0-\phi)R_f + \phi \tr = w_0 R_f + \phi (\tr - R_f)$$
 \end{frame}
 
 
-\bfr\frametitle{Proof}
+\begin{frame}{Proof}
 We want to compare $\mye[u(w_0R_f + \phi(\tr-R_f)]$ to $u(w_0R_f)$.  
 
 Define
@@ -421,7 +437,7 @@ $$u(\ow-\pi) > u(\ow - (\mu-R_f)\phi) = u(w_0R_f)$$
 \end{frame}
 
 
-\bfr\frametitle{DARA Implies Risky Asset is a Normal Good}
+\begin{frame}{DARA Implies Risky Asset is a Normal Good}
 \bi
 \im Normal good: demand rises when income (wealth) rises.  Inferior: demand falls when income (wealth) rises.
 \im A single risky asset with $\mu>R_f$ is a normal good if the investor has decreasing absolute risk aversion.
@@ -445,7 +461,7 @@ Can show: DARA $\,\Rightarrow\,$ $\phi' >0$.
 \section{Multiple Assets}
 \subsection{}
 
-\bfr\frametitle{Multiple Risky Assets}
+\begin{frame}{Multiple Risky Assets}
 \bi
 \im $\tR=\,$ $n$--vector of risky asset returns
 \im $\mu=\,$ $n$--vector of expected returns
@@ -465,7 +481,7 @@ $$\mye[(\tw - \ow)^2] = \mye[\{\phi'(\tR - \mu)\}^2] = \mye[\phi'(\tr-\mu)(\tr-\
 \end{frame}
 
 
-\bfr\frametitle{Eliminate Redundant Assets}
+\begin{frame}{Eliminate Redundant Assets}
 \bi
 \im Each portfolio variance $\phi'\Sigma\phi \geq 0$ so a covariance matrix is positive semidefinite.
 \im A positive semidefinite matrix is nonsingular if and only if it is positive definite.
@@ -479,7 +495,7 @@ $$\mye[(\tw - \ow)^2] = \mye[\{\phi'(\tR - \mu)\}^2] = \mye[\phi'(\tr-\mu)(\tr-\
 \end{frame}
 
 
-\bfr\frametitle{Diversification}
+\begin{frame}{Diversification}
 \bi
 \im Portfolio variance is
 $$\pi'\Sigma\pi = \sum_{i=1}^n \pi_i^2 \var(\tr_i) + 2 \sum_{i=1}^n \sum_{j=i+1}^n \pi_i\pi_j \cov(\tr_i,\tr_j)$$
@@ -500,7 +516,7 @@ $$\pi'\Sigma\pi = \sigma^2 \sum_{i=1}^n \lp \frac{1}{n}\rp ^2 = \frac{\sigma^2}{
 \section{CARA-Normal}
 \subsection{}
 
-\bfr\frametitle{CARA-Normal with Single Risky Asset}
+\begin{frame}{CARA-Normal with Single Risky Asset}
 Assume CARA utility $\mye[-\E^{-\alpha \tw}]$.  Assume $\tr\sim\,$ normal $(\mu,\sigma)$.  Then $\tw$ is normally distributed.  
 
 Recall: If $\tx$ is normally distributed with mean $\mu_x$ and std dev $\sigma_x$, then
@@ -517,7 +533,7 @@ is the certainty equivalent (mean minus one-half risk aversion times variance).
 \end{frame}
 
 
-\bfr\frametitle{CARA-Normal cont.}
+\begin{frame}{CARA-Normal cont.}
 Optimal portfolio maximizes the certainty equivalent.  Therefore, the optimum is
 $$\phi^* = \frac{\mu-R_f}{\alpha \sigma^2}$$
 
@@ -533,7 +549,7 @@ Usually assume $\alpha w_0$ is between 1 and 10.
 
 
 
-\bfr\frametitle{CARA-Normal with Multiple Risky Assets}
+\begin{frame}{CARA-Normal with Multiple Risky Assets}
 \bi
 \im Certainty equivalent is mean minus one-half risk aversion times variance:
 $$w_0R_f + \phi'(\mu-R_f\iota) - \frac{1}{2}\alpha \phi'\Sigma\phi$$
@@ -553,7 +569,7 @@ Note no wealth effects.
 \section{Euler equation}
 \subsection{}
 
-\bfr\frametitle{Time-Additive Utility and the Euler Equation}
+\begin{frame}{Time-Additive Utility and the Euler Equation}
 \bi
 \im Date--0 and date--1 consumption.  Utility function $v(c_0,c_1)$.  Assume time-additive utility
 $$v(c_0,c_1) = u(c_0) + \delta u(c_1)$$
@@ -570,7 +586,7 @@ $$(\forall \,i) \quad \mye\lb \frac{\delta u'\lp \sum_{i=1}^n \phi_i\tr_i \rp}{u
 \end{frame}
 
 
-\bfr\frametitle{Exercise 2.6}
+\begin{frame}{Exercise 2.6}
 Date--0 and date--1 consumption.  Utility function $v(c_0,c_1)$.  
 $$\text{MRS} = \frac{\partial v/\partial c_0}{\partial v/\partial c_1}$$
 $$\text{EIS} = \frac{\D \log (c_1/c_0)}{\D \log MRS}$$
@@ -582,7 +598,7 @@ $$\text{EIS}  = \frac{1}{\rho}$$
 \end{frame}
 
 
-\bfr\frametitle{Exercises}
+\begin{frame}{Exercises}
 Graded: 1.2, 1.3, 2.2, 2.4 
 
 Recommended: 1.5, 1.7, 1.8, 2.1, 2.3, 2.7
@@ -596,7 +612,7 @@ In Exercise 2.3(a), ignore the hint ``Use the law of iterated expectations as in
 \section{LRT}
 \subsection{}
 
-\bfr\frametitle{Linear Risk Tolerance}
+\begin{frame}{Linear Risk Tolerance}
 \bi
 \im Assume no labor income.  Assume LRT $\tau(w) = A + B w$.  Assume a risk-free asset exists.
 \im Then optimal investment in each risky asset (in consumption good units) is
@@ -608,7 +624,7 @@ where $\xi_i$ does not depend on $A$ or on $w_0$.
 \ei
 \end{frame}
 
-\bfr\frametitle{Example: Log Utility}
+\begin{frame}{Example: Log Utility}
 \bi
 \im $\tw = w_0[R_f + \pi'(\tR - R_f\iota)]$
 \im $\log \tw = \log w_0 + \log [R_f + \pi'(\tR-R_f\iota)]$
@@ -616,7 +632,7 @@ where $\xi_i$ does not depend on $A$ or on $w_0$.
 \ei
 \end{frame}
 
-\bfr\frametitle{Two-Fund Separation with LRT Utility}
+\begin{frame}{Two-Fund Separation with LRT Utility}
 \bi
 \im Suppose all investors have LRT utility with the same cautiousness parameter.  
 \im Investor $h$ invests
@@ -640,7 +656,7 @@ and the second term is negative.
 \ei
 \end{frame}
 
-\bfr\frametitle{Proof}
+\begin{frame}{Proof}
 Define $w_f = w_0R_f$ and substitute
 \begin{align*}
 u''(\widetilde{w}) &= -\alpha (\widetilde{w})u'(\widetilde{w})\\
@@ -654,32 +670,32 @@ is everywhere positive, due to~$\widetilde{w}$ being greater than $w_f$ whenever
 \end{frame}
 
 
-\bfr\frametitle{Exercises}
+\begin{frame}{Exercises}
 
 \end{frame}
 
 \end{document}
 
 
-\begin{frame}\frametitle{}
+\begin{frame}{}
 \bi
 \im
 \ei
 \end{frame}
 
-\begin{frame}\frametitle{}
+\begin{frame}{}
 \bi
 \im
 \ei
 \end{frame}
 
-\begin{frame}\frametitle{}
+\begin{frame}{}
 \bi
 \im
 \ei
 \end{frame}
 
-\begin{frame}\frametitle{}
+\begin{frame}{}
 \bi
 \im
 \ei
@@ -688,7 +704,7 @@ is everywhere positive, due to~$\widetilde{w}$ being greater than $w_f$ whenever
 \end{document}
 
 
-\bfr\frametitle{Linear Risk Tolerance}
+\begin{frame}{Linear Risk Tolerance}
 \bi
 \im Linear risk tolerance (LRT): $\tau(w) = A + Bw$.  $B$ is cautiousness parameter.
 \im Also called HARA (hyperbolic absolute risk aversion) because absolute risk aversion is $\alpha(w) = 1/(A+Bw)$.
@@ -728,7 +744,7 @@ $$u(w) = \frac{1}{1-\rho }\left(w-\zeta\right)^{1-\rho }\,.$$
 
 \end{frame}
 
-\bfr\frametitle{Quadratic Utility}
+\begin{frame}{Quadratic Utility}
 Shifted power with $\rho=-1$:
 $$u(w) = -\frac{1 }{2}\left(\zeta-w\right)^2$$ 
 It is monotone increasing for $w<\zeta$ ($\zeta$ is bliss point).
@@ -739,7 +755,7 @@ $$\mye[u(\tilde{w})] \sim  \zeta \overline{w} - \frac{1}{2}\overline{w}^2 - \fra
 Risk tolerance is $\zeta-w$ which decreases as $w$ increases up to $\zeta$.
 \end{frame}
 
-\bfr\frametitle{Higher Moments}
+\begin{frame}{Higher Moments}
 \bi
 \im DARA (decreasing absolute risk aversion) $\,\Rightarrow u'''(w)>0$
 \im DARA and decreasing absolute prudence $\,\Rightarrow u''''(w)<0$

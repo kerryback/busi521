@@ -1,4 +1,5 @@
 import os
 os.system("git add .")
-os.system("git commit -m 'my message'")
+string = "my message"
+os.system("git commit -m %s" % string)
 os.system("git push origin main")

@@ -1,10 +1,10 @@
 # Fdb version 3
-["pdflatex"] 1704990730 "c:/Users/kerry/repos/busi521/latex/Chapter02.tex" "Chapter02.pdf" "Chapter02" 1704990733
-  "Chapter02.aux" 1704990732 4790 d0b9ca2c57df30325df7aff72e495146 "pdflatex"
-  "Chapter02.nav" 1704990732 2905 c90ca28a6022cf91e324404fa2404e94 "pdflatex"
-  "Chapter02.out" 1704990732 638 7bfd30c67287da8eb9be2899d7dd66af "pdflatex"
-  "Chapter02.tex" 1704990727 19049 d9792908997a8215fcc55b2fa112fb88 ""
-  "c:/Users/kerry/repos/busi521/latex/Chapter02.tex" 1704990727 19049 d9792908997a8215fcc55b2fa112fb88 ""
+["pdflatex"] 1704991017 "c:/Users/kerry/repos/busi521/latex/Chapter02.tex" "Chapter02.pdf" "Chapter02" 1704991020
+  "Chapter02.aux" 1704991019 4790 d0b9ca2c57df30325df7aff72e495146 "pdflatex"
+  "Chapter02.nav" 1704991019 2905 c90ca28a6022cf91e324404fa2404e94 "pdflatex"
+  "Chapter02.out" 1704991019 638 7bfd30c67287da8eb9be2899d7dd66af "pdflatex"
+  "Chapter02.tex" 1704991016 19187 748dd6957b68e5b8e76cafba76095919 ""
+  "c:/Users/kerry/repos/busi521/latex/Chapter02.tex" 1704991016 19187 748dd6957b68e5b8e76cafba76095919 ""
   "c:/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1667314026 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1667324895 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/tcss0900.tfm" 1667316342 1536 ba0169ee8bc017972775b933313cbbb0 ""
@@ -24,6 +24,7 @@
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmss8.tfm" 1667313873 1296 d77f431d10d47c8ea2cc18cf45346274 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmss9.tfm" 1667313873 1320 49357c421c0d469f88b867dd0c3d10e8 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm" 1667313873 1272 e2d13f0df30bf3ad990bb9d028e37f34 ""
+  "c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmssi10.tfm" 1667313873 1520 ca2bb4b78ac9800bd686e30c6d19ef95 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1667313873 1116 933a60c408fc0a863a92debe84b2d294 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmsy9.tfm" 1667313873 1116 25a7bf822c58caf309a702ef79f4afbb ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/sansmathaccent/mathkerncmssi10.tfm" 1667329707 1696 aaa5bbd1f47f001247d42218ce371101 ""

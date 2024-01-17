@@ -323,7 +323,63 @@ Note no wealth effects.
 \ei
 \end{frame}
 
+\section{Wealth Expansion Paths}
+\subsection{} 
 
+\begin{frame}{Portfolio Return}
+   \bi 
+   \im With a risk-free asset, date-1 wealth is 
+$$\sum_i \phi \tR_i + \left(w_0- \sum_i \phi_i\right)R_f$$
+\im Divide by $w_0$ and write $\pi_i = \phi_i/w_0$.
+\im Date-1 wealth is
+$$w_0 \left[\sum_i \pi \tR_i + \left(1- \sum_i \pi_i\right)R_f\right] := w_0 \tR_p$$
+\im In words, initial wealth times the (gross) portfolio return.
+    \ei
+\end{frame}
+
+\begin{frame}{How does a Log Utility Investor's Portfolio Depend on Wealth?}
+    \bi 
+    \im Utility is
+    $$\log (w_0\tR_p) = \log w_0 + \log \tR_p = \log w_0 + \log\left(\sum_i \pi \tR_i + \left(1- \sum_i \pi_i\right)R_f\right)$$
+     \im The optimal portfolio maximizes expected log of portfolio return and is independent of initial wealth.
+    \im Optimal dollar investments are proportional to initial wealth: $\phi_i^* = w_0 \pi_i^*$.
+    \im Optimal shares are also proportional to initial wealth: $\theta_i^* = \phi_i^*/p_i = w_0 \pi_i^*/p_i$.
+    \ei
+\end{frame}
+
+\begin{frame}{Power Utility}
+    \bi
+    \im Utility is
+    $$\frac{1}{1-\rho} (w_0 \tR_p)^{1-\rho} = w_0^{1-\rho} \times \frac{1}{1-\rho} \tR_p^{1-\rho}$$
+    \im So $w_0^{1-\rho}$ is a positive constant that multiplies the expected utility of the portfolio return.
+    \im Optimal portfolio $\pi^*$ maximizes expected utility of portfolio return and is independent of initial wealth.
+    \im Optimal dollar investments are proportional to initial wealth: $\phi_i^* = w_0 \pi_i^*$.
+    \im Optimal shares are also proportional to initial wealth: $\theta_i^* = \phi_i^*/p_i = w_0 \pi_i^*/p_i$.
+\ei \end{frame}
+
+
+\begin{frame}{CARA Utility} 
+    \bi 
+    \im Stick with \$ investments.  Date-1 wealth is
+    $$\sum_i \phi \tR_i + \left(w_0- \sum_i \phi_i\right)R_f = w_0R_f + \phi'(\tR - R_f\iota)$$
+    \im Here, $\phi$ is vector of $\phi_i$, $\tR$ is vector of $\tR_i$ and $\iota$ is vector of 1's.
+    \im Utility is
+    $$-\E^{-\alpha \tw_1} = \E^{-\alpha w_0R_f} \times \left(- \E^{-\alpha \phi'(\tR - R_f\iota)}\right)$$
+    \im Optimal dollar investments are independent of initial wealth (absence of wealth effects).
+    \im Optimal shares are also independent of initial wealth.
+    \ei 
+\end{frame}
+
+\begin{frame}{LRT Utility}
+    \bi 
+    \im Optimal dollar investments are affine in initial wealth: $\phi_i^* = a_i + b_i w_0$.
+    \im Optimal shares are also affine in initial wealth (divide $a_i$ and $b_i$ by $p_i$).
+    \im We say ``wealth expansion paths are linear.''
+    \im Slope coefficient depends on cautiousness parameter. (Recall LRT means $\tau = A + B w$ and $B$ is called the cautiousness parameter.)
+    \im CARA investors have horizontal (zero slope) expansion paths.
+    \im CRRA investors with same relative risk aversion have parallel expansion paths (same $b_i$).
+    \ei
+\end{frame}
 
 \section{Euler Equation}
 \subsection{}

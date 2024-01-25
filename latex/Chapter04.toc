@@ -1,3 +1,0 @@
-\beamer@sectionintoc {1}{Equilibrium}{2}{0}{1}
-\beamer@sectionintoc {2}{Efficiency}{6}{0}{2}
-\beamer@sectionintoc {3}{LRT Utility}{11}{0}{3}

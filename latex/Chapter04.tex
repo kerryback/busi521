@@ -91,10 +91,262 @@ Rice University}
 
 \begin{document}
 
-\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[plain]
-    \Large Coming Soon
-\end{frame}
+    \titlepage
+  \end{frame}
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+  \section{Equilibrium}\subsection{}
+  \bfr\frametitle{Competitive Equilibrium}
+  \bi 
+  \im $n$ assets, possibly including a risk-free asset, with values $\tx_i$.  
+  \im Investors $h=1, \ldots, H$ have endowments of shares $\bar{\theta}_h \in \myreal^n$ at date 0.
+  \im Choose portfolios $\theta_h \in \myreal^n$ subject to budget constraint
+  $$p'\theta_h \ \le \ p'\bar{\theta}_h$$
+  \im Maximize expected utility of date--1 wealth $\tw_h :=\sum_{i=1}^n \theta_{hi}\tx_i$.   
+  \im Equilibrium is $(p,\theta^*_1, \ldots, \theta^*_H)$ such that $\theta^*_h$ is optimal for each investor $h$ given $p$, and markets clear:
+  $$\sum_{h=1}^H \theta^*_h \ = \ \sum_{h=1}^H \bar{\theta}_h\,.$$
+  \im  Existence?
+  Optimality?  
+  Equilibrium risk premia?
+  \ei
+  \end{frame}
+  
+  \bfr\frametitle{Arrow-Debreu Model}
+  \bi 
+  \im 
+  $k$ states.  
+  \im Assets are Arrow securities: pay 1 in single state and 0 otherwise.  
+  \im Denote price vector by $q \in \myreal^k$.     
+  \im Portfolio $\theta$ determines date--1 wealth as $w_j = \theta_j$ for $j=1, \ldots, k$.  In other words, the wealth vector $w \in \myreal^k$ is the portfolio.
+  \im Existence: standard result
+  \im Optimality: standard welfare theorems
+  \ei 
+  \end{frame}
+  
+  \begin{frame}
+    \bi 
+    \im 
+  When is a competitive equilibrium in a securities market equivalent to an equilibrium in an Arrow-Debreu model?
+  \im   Answer: if the securities market is complete.
+  \im Asset prices $p =(p_1, \ldots, p_n)$ and state prices $(q_1, \ldots, q_k)$ correspond as $Xq=p$.
+  \im  So, equilibria in complete markets are Pareto optimal.
+  \ei
+  \end{frame}
+  
+  \section{Efficiency}\subsection{}
+  
+  \bfr\frametitle{Pareto Optimum}
+  \bi 
+   \im Let $\tw_m$ denote end-of-period market wealth.
+   \im   An allocation is $\tw_1, \ldots, \tw_H$ such that $\sum_h \tw_h = \tw_m$.
+  \im   A Pareto optimum is an allocation such that any other allocation that makes at least one person better off also makes at least one person worse off.
+  \im 
+  A Pareto optimum solves a social planner's problem: for some weights $\lambda_1, \ldots, \lambda_H$, 
+  $$\max \quad \sum_{h=1}^H \lambda_h\mye [u_h(\tw_h)] \quad \text{subject to} \quad \sum_{h=1}^H \tw_h = \tw_m\,.$$
+  \ei 
+  \end{frame}
+  
+  \bfr\frametitle{Social Planner's Problem}
+  \bi 
+  \im The resource constraint is a separate constraint for each state.  And, expected utility is additive across states.
+  \im So, we can solve the maximization problem state-by-state.  
+  \im   What does this mean?  Consider the problem $\max a + b$ subject to $a\le 3$ and $b\le 5$.  We can solve this as separate problems: $\max a$ s.t.\ $a \le 3$ and $\max b$ s.t.\ $b\le 5$.
+  \im 
+  In each state of the world $\omega$, the social planner solves
+  $$\max \quad \sum_{h=1}^H \lambda_hu_h(\tw_h(\omega)) \quad \text{subject to} \quad \sum_{h=1}^H \tw_h(\omega) = \tw_m(\omega)\,.$$
+  \im 
+  Let $\tilde{\eta}(\omega)$ denote the Lagrange multiplier in state $\omega$.  
+  \im Then, for all $h$,
+  $$\lambda_h u_h'(\tw_h(\omega)) = \tilde{\eta}(\omega)\,.$$
+  \ei
+  \end{frame}
+  
+  \bfr\frametitle{Sharing Rules}
+  \bi 
+  \im At a Pareto optimum, there is equality of MRS's: for all individuals $h$ and $\ell$ and states $i$ and $j$,
+  $$\frac{u_h'(\tw_h(\omega_i))}{u_h'(\tw_h(\omega_j))} = \frac{u_\ell'(\tw_\ell(\omega_i))}{u_\ell'(\tw_\ell(\omega_j))}$$
+   \im If market wealth is higher in state~$i$ than in state~$j$, then at any Pareto optimum (assuming strict risk aversion) all investors have higher wealth in state~$i$ than in state~$j$: 
+  \begin{align*}
+  \widetilde{w}_h(\omega_i)>\widetilde{w}_h(\omega_j) & \Rightarrow \frac{u_h'(\widetilde{w}_h(\omega_i))}{u_h'(\widetilde{w}_h(\omega_j))} < 1 \\
+  & \Rightarrow \frac{u_\ell'(\widetilde{w}_\ell(\omega_i))}{u_\ell'(\widetilde{w}_\ell(\omega_j))} <~1 \\
+  &\Rightarrow \widetilde{w}_\ell(\omega_i)>\widetilde{w}_\ell(\omega_j)\,.
+  \end{align*}
+   \im This implies each investor's wealth is a function of market wealth.  The function is called a sharing rule.
+  \ei 
+  \end{frame}
+  
+  \bfr\frametitle{Example}
+  \bi 
+  \im 
+  Suppose there are two risk-averse investors and two possible states of the world, with  $\widetilde{w}_m$ being the same in both states, say, $\widetilde{w}_m=6$, and with the two states being equally likely.  
+  \im Can the allocation
+  $$\widetilde{w}_1 = \begin{cases} 2 & \text{in state~1}\\
+  4 & \text{in state~2}
+  \end{cases}$$
+  $$\widetilde{w}_2 = \begin{cases} 4 & \text{in state~1}\\
+  2 & \text{in state~2}
+  \end{cases}$$
+  be Pareto optimal?
+  \ei
+  \end{frame}
+  
+  \section{LRT Utility}\subsection{}
+  
+  \bfr\frametitle{Sharing Rules with Linear Risk Tolerance}
+  \bi 
+  \im Assume $\tau_h(w) = A_h + B w$ with same cautiousness parameter $B\ge 0$ for all individuals.  Note $B>0$ implies DARA.  Then, either
+  \bi
+  \im Everyone has CARA utility: $-\E^{-\alpha_h w}$, or
+  \im Everyone has shifted log utility:  $\log (w- \zeta_h)$, or
+  \im Everyone has shifted power utility with $\rho>0$: 
+  $$\frac{1}{1-\rho} (w-\zeta_h)^{1-\rho}$$
+  \ei
+  \im 
+  In this case, Pareto optimal sharing rules are affine: $\tw_h = a_h + b_h \tw_m$.
+  \ei 
+  \end{frame}
+  
+  \begin{frame}
+    \bi 
+  \im Pareto optimal sharing rules with LRT utility and same cautiousness parameter are affine ($\tw_h = a_h + b_h \tw_m$) with
+  \bi
+  \im $\sum_{h=1}^H a_h = 0$, and
+  \im $\sum_{h=1}^H b_h = 1$.
+  \ei
+  
+  \im With CARA utility, $b_h = \tau_h / \sum_{j=1}^H \tau_j$.  
+  
+  \im With shifted log ($\rho=1$) or shifted power,
+  $$b_h =  \frac{\lambda_h^{1/\rho }}{\sum_{j=1}^H \lambda_j^{1/\rho }}$$
+  where the $\lambda$'s are the weights in the social planning problem. 
+  \ei
+  \end{frame}
+  
+  \bfr\frametitle{Proof for CARA Utility}
+  \bi 
+  \im
+  Social planner's problem is (in each state of the world)
+  $$\max \quad \sum_{h=1}^H \lambda_h \E^{-\alpha_h w_h} \quad \text{subject to} \quad \sum_{h=1}^H w_h = w$$
+  where $w$ denotes the value of $\tw_m$ in the given state.
+  
+  \im FOC is:  $(\forall\, h) \; \lambda_h\alpha_h\E^{-\alpha_hw_h} = \eta$ where $\eta$ is the Lagrange multiplier (in the given state).   Set $\tau = \sum_h \tau_h$.   We have
+  \begin{align*}
+  w_h& =  -{\tau _h}\log \eta + \tau _h\log (\lambda_h\alpha_h)\label{3_wh}\\
+   \Rightarrow \quad 
+   w & = - \tau \log \eta + \sum_{\ell =1}^H \tau _\ell \log (\lambda_\ell \alpha_\ell )\\
+   \Rightarrow \quad -\log \eta & =
+  \frac{1}{\tau }w - \frac{1}{\tau }\sum_{\ell =1}^H \tau _\ell \log (\lambda_\ell \alpha_\ell )\\
+   \Rightarrow \quad 
+  w_h& =\frac{\tau _h}{\tau }w -\frac{\tau _h}{\tau }\sum_{\ell =1}^H \tau _\ell \log (\lambda_\ell \alpha_\ell ) + \tau _h\log(\lambda_h\alpha_h)
+  \end{align*}
+  \ei 
+  \end{frame}
+  
+  \bfr\frametitle{Competitive Equilibria with LRT Utility}
+  \bi
+  \im Assume there is a risk-free asset.  Assume all investors have linear risk tolerance $\tau_h(w) = A_h + Bw$ with the same cautiousness parameter $B$.  Assume there are no $\ty_h$'s.
+  \im The set of equilibrium prices does not depend on the distribution of wealth across investors.
+  \bi
+  \im Called Gorman aggregation
+  \im Due to wealth expansion paths being parallel (Chapter 2)
+  \ei
+  \im Any Pareto optimal allocation can be implemented in the securities market.
+  \bi
+  \im Due to affine sharing rules, we only need the risk-free asset and market portfolio
+  \im Example of two-fund separation (Chapter 2)
+  \ei
+  \im Any competitive equilibrium is Pareto optimal.
+  \ei
+  \end{frame}
+  
+  \end{document}
+  
+  \bfr\frametitle{Linear Risk Tolerance}
+  If each $u_h$ has linear risk tolerance with the same cautiousness parameter, then $u$ has linear risk tolerance with the same cautiousness parameter.
+  \bi
+  \im If each investor has CARA utility, then the representative investor has CARA utility.
+  \im If each investor has CRRA utility with risk aversion $\rho$, then the representative investor has CRRA utility with risk aversion $\rho$.
+  \ei
+  \end{frame}
+  
+  
+  
+  \bfr\frametitle{Marginal Rates of Substitution}
+  Let $c_0$ and $\tilde{c}_1$ denote aggregate consumption.  At a Pareto optimum, each investor's MRS 
+  $$\frac{\delta u_h'(\tilde{c}_{h1})}{u_h'(c_{h0})}$$
+  equals the social planner's MRS
+  $$\frac{\delta u'(\tilde{c}_{1})}{u'(c_{0})}$$
+  Proof: \small
+  \bi
+  \im At a Pareto optimum, the envelope theorem implies, for each $h$, 
+  $$u'(c_0) = \lambda_h u_h'(c_{h0})\,, \qquad u'(\tc_1) = \lambda_h u_h'(\tc_{h1})$$
+  \im Dividing cancels the $\lambda_h$.
+  \ei
+  \end{frame}
+  
+  
+  
+  
+  \section{Social Planner and SDF}\subsection{}
+  
+  \bfr\frametitle{Social Planner's Utility Function}
+  Assume investors have time-additive utility with the same discount factor $\delta$.  Let $u_h$ denote the utility function of investor $h$.
+  Given weights $\lambda_h$, define
+  $$u(c) = \max \; \left\{\sum_{h=1}^H \lambda_h u_h(c_h) \mid \sum_{h=1}^H c_h = c\right\}$$
+  \bi
+  \im This is the social planner's utility function.
+  \im The social planner's utility function $u$ is concave if each of the $u_h$ is concave.
+  \ei
+  \end{frame}
+  
+  \bfr\frametitle{Linear Risk Tolerance}
+  If each $u_h$ has linear risk tolerance with the same cautiousness parameter, then $u$ has linear risk tolerance with the same cautiousness parameter.
+  \bi
+  \im If each investor has CARA utility, then the representative investor has CARA utility.
+  \im If each investor has CRRA utility with risk aversion $\rho$, then the representative investor has CRRA utility with risk aversion $\rho$.
+  \ei
+  \end{frame}
+  
+  \bfr\frametitle{Proof for CARA Utility}
+  Set $\tau = \sum_h \tau_h$.  FOC for social planning problem ($\tilde{\eta}$ is Lagrange multiplier for resource constraint): $(\forall\, h) \; \lambda_h\alpha_h\E^{-\alpha_h\widetilde{w}_h} = \widetilde{\eta}$
+  \begin{align*}
+   \quad & \Rightarrow \quad 
+  \widetilde{w}_h =  -{\tau _h}\log \widetilde{\eta} + \tau _h\log (\lambda_h\alpha_h)\label{3_wh}\\
+  & \Rightarrow \quad 
+  \widetilde{w}_m = - \tau \log \widetilde{\eta} + \sum_{\ell =1}^H \tau _\ell \log (\lambda_\ell \alpha_\ell )\\
+  & \Rightarrow \quad -\log \widetilde{\eta} =
+  \frac{1}{\tau }\widetilde{w}_m - \frac{1}{\tau }\sum_{\ell =1}^H \tau _\ell \log (\lambda_\ell \alpha_\ell )\\
+  & \Rightarrow \quad 
+  \widetilde{w}_h =\frac{\tau _h}{\tau }\widetilde{w}_m -\frac{\tau _h}{\tau }\sum_{\ell =1}^H \tau _\ell \log (\lambda_\ell \alpha_\ell ) + \tau _h\log(\lambda_h\alpha_h)
+  \end{align*}
+  \end{frame}
+  
+  \bfr\frametitle{Marginal Rates of Substitution}
+  Let $c_0$ and $\tilde{c}_1$ denote aggregate consumption.  At a Pareto optimum, each investor's MRS 
+  $$\frac{\delta u_h'(\tilde{c}_{h1})}{u_h'(c_{h0})}$$
+  equals the social planner's MRS
+  $$\frac{\delta u'(\tilde{c}_{1})}{u'(c_{0})}$$
+  Proof: \small
+  \bi
+  \im At a Pareto optimum, the envelope theorem implies, for each $h$, 
+  $$u'(c_0) = \lambda_h u_h'(c_{h0})\,, \qquad u'(\tc_1) = \lambda_h u_h'(\tc_{h1})$$
+  \im Dividing cancels the $\lambda_h$.
+  \ei
+  \end{frame}
+  
+  
+  \bfr\frametitle{Pareto Optimal Competitive Equilibrium}
+  At a Pareto optimal competitive equilibrium, the social planner's MRS is an SDF.  Proof:
+  \bi
+  \im By Pareto optimality, the social planner's MRS equals each investor's MRS.
+  \im At a competitive equilibrium (due to each investor optimizing) each investor's MRS is an SDF.
+  \ei 
+  \end{frame}
+  \end{document}
+  
 
 \end{document}

@@ -127,7 +127,7 @@ Rice University}
   \ei 
   \end{frame}
   
-  \begin{frame}
+  \begin{frame}{Security Markets vs. Arrow-Debreu Model}
     \bi 
     \im 
   When is a competitive equilibrium in a securities market equivalent to an equilibrium in an Arrow-Debreu model?
@@ -154,26 +154,37 @@ Rice University}
   \bi 
   \im The resource constraint is a separate constraint for each state.  And, expected utility is additive across states.
   \im So, we can solve the maximization problem state-by-state.  
-  \im   What does this mean?  Consider the problem $\max a + b$ subject to $a\le 3$ and $b\le 5$.  We can solve this as separate problems: $\max a$ s.t.\ $a \le 3$ and $\max b$ s.t.\ $b\le 5$.
+  \bi 
+  \im   What does this mean?  
+  \im Consider the problem $\max a + b$ subject to $a\le 3$ and $b\le 5$. 
+  \im  We can solve this as separate problems: $\max a$ s.t.\ $a \le 3$ and $\max b$ s.t.\ $b\le 5$.
+  \ei
   \im 
   In each state of the world $\omega$, the social planner solves
   $$\max \quad \sum_{h=1}^H \lambda_hu_h(\tw_h(\omega)) \quad \text{subject to} \quad \sum_{h=1}^H \tw_h(\omega) = \tw_m(\omega)\,.$$
-  \im 
+    \ei
+  \end{frame}
+  
+  \begin{frame}{Equality of MRS's}
+    \bi 
+    \im 
   Let $\tilde{\eta}(\omega)$ denote the Lagrange multiplier in state $\omega$.  
   \im Then, for all $h$,
   $$\lambda_h u_h'(\tw_h(\omega)) = \tilde{\eta}(\omega)\,.$$
-  \ei
+    \im Consider another state $\hat\omega$ and divide the equations (for the same $h$):
+    $$\frac{u_h'(\tw_h(\omega))}{u_h'(\tw_h(\hat \omega))} = \frac{\tilde\eta(\omega)}{\tilde\eta(\hat\omega)}$$
+    \im So, for any other investor $\ell$,
+    $$\frac{u_h'(\tw_h(\omega))}{u_h'(\tw_h(\hat\omega))} = \frac{u_\ell'(\tw_\ell(\omega))}{u_\ell'(\tw_\ell(\hat\omega))}$$
+    \ei
   \end{frame}
-  
+
   \bfr\frametitle{Sharing Rules}
   \bi 
-  \im At a Pareto optimum, there is equality of MRS's: for all individuals $h$ and $\ell$ and states $i$ and $j$,
-  $$\frac{u_h'(\tw_h(\omega_i))}{u_h'(\tw_h(\omega_j))} = \frac{u_\ell'(\tw_\ell(\omega_i))}{u_\ell'(\tw_\ell(\omega_j))}$$
-   \im If market wealth is higher in state~$i$ than in state~$j$, then at any Pareto optimum (assuming strict risk aversion) all investors have higher wealth in state~$i$ than in state~$j$: 
+     \im If market wealth is higher in state~$\omega$ than in state~$\hat\omega$, then at any Pareto optimum (assuming strict risk aversion) all investors have higher wealth in state~$\omega$ than in state~$\hat\omega$: 
   \begin{align*}
-  \widetilde{w}_h(\omega_i)>\widetilde{w}_h(\omega_j) & \Rightarrow \frac{u_h'(\widetilde{w}_h(\omega_i))}{u_h'(\widetilde{w}_h(\omega_j))} < 1 \\
-  & \Rightarrow \frac{u_\ell'(\widetilde{w}_\ell(\omega_i))}{u_\ell'(\widetilde{w}_\ell(\omega_j))} <~1 \\
-  &\Rightarrow \widetilde{w}_\ell(\omega_i)>\widetilde{w}_\ell(\omega_j)\,.
+  \widetilde{w}_h(\omega)>\widetilde{w}_h(\hat\omega) & \Rightarrow \frac{u_h'(\widetilde{w}_h(\omega))}{u_h'(\widetilde{w}_h(\hat\omega))} < 1 \\
+  & \Rightarrow \frac{u_\ell'(\widetilde{w}_\ell(\omega))}{u_\ell'(\widetilde{w}_\ell(\hat\omega))} <~1 \\
+  &\Rightarrow \widetilde{w}_\ell(\omega)>\widetilde{w}_\ell(\hat\omega)\,.
   \end{align*}
    \im This implies each investor's wealth is a function of market wealth.  The function is called a sharing rule.
   \ei 
@@ -206,19 +217,17 @@ Rice University}
   $$\frac{1}{1-\rho} (w-\zeta_h)^{1-\rho}$$
   \ei
   \im 
-  In this case, Pareto optimal sharing rules are affine: $\tw_h = a_h + b_h \tw_m$.
-  \ei 
-  \end{frame}
-  
-  \begin{frame}
-    \bi 
-  \im Pareto optimal sharing rules with LRT utility and same cautiousness parameter are affine ($\tw_h = a_h + b_h \tw_m$) with
+  In this case, Pareto optimal sharing rules are affine: $\tw_h = a_h + b_h \tw_m$ with
   \bi
   \im $\sum_{h=1}^H a_h = 0$, and
   \im $\sum_{h=1}^H b_h = 1$.
   \ei
+  \ei 
+  \end{frame}
   
-  \im With CARA utility, $b_h = \tau_h / \sum_{j=1}^H \tau_j$.  
+  \begin{frame}{Exposures to Market Risk}
+    \bi 
+    \im With CARA utility, $b_h = \tau_h / \sum_{j=1}^H \tau_j$.  Each person's exposure is proportional to her risk tolerance.
   
   \im With shifted log ($\rho=1$) or shifted power,
   $$b_h =  \frac{\lambda_h^{1/\rho }}{\sum_{j=1}^H \lambda_j^{1/\rho }}$$
@@ -232,18 +241,24 @@ Rice University}
   Social planner's problem is (in each state of the world)
   $$\max \quad \sum_{h=1}^H \lambda_h \E^{-\alpha_h w_h} \quad \text{subject to} \quad \sum_{h=1}^H w_h = w$$
   where $w$ denotes the value of $\tw_m$ in the given state.
-  
-  \im FOC is:  $(\forall\, h) \; \lambda_h\alpha_h\E^{-\alpha_hw_h} = \eta$ where $\eta$ is the Lagrange multiplier (in the given state).   Set $\tau = \sum_h \tau_h$.   We have
-  \begin{align*}
-  w_h& =  -{\tau _h}\log \eta + \tau _h\log (\lambda_h\alpha_h)\label{3_wh}\\
+ 
+  \im FOC is:  $(\forall\, h) \; \lambda_h\alpha_h\E^{-\alpha_hw_h} = \eta$ where $\eta$ is the Lagrange multiplier (in the given state).   
+ \ei 
+\end{frame} 
+\begin{frame} 
+  Set $\tau = \sum_h \tau_h$.   Take logs in the FOC:
+  $$
+  w_h =  -{\tau _h}\log \eta + \tau _h\log (\lambda_h\alpha_h)\label{3_wh}$$
+  \pause
+   $$ \Rightarrow \quad 
+   w  = - \tau \log \eta + \sum_{\ell =1}^H \tau _\ell \log (\lambda_\ell \alpha_\ell )$$ 
+   \pause $$
+   \Rightarrow \quad -\log \eta  =
+  \frac{1}{\tau }w - \frac{1}{\tau }\sum_{\ell =1}^H \tau _\ell \log (\lambda_\ell \alpha_\ell )$$ 
+  \pause $$
    \Rightarrow \quad 
-   w & = - \tau \log \eta + \sum_{\ell =1}^H \tau _\ell \log (\lambda_\ell \alpha_\ell )\\
-   \Rightarrow \quad -\log \eta & =
-  \frac{1}{\tau }w - \frac{1}{\tau }\sum_{\ell =1}^H \tau _\ell \log (\lambda_\ell \alpha_\ell )\\
-   \Rightarrow \quad 
-  w_h& =\frac{\tau _h}{\tau }w -\frac{\tau _h}{\tau }\sum_{\ell =1}^H \tau _\ell \log (\lambda_\ell \alpha_\ell ) + \tau _h\log(\lambda_h\alpha_h)
-  \end{align*}
-  \ei 
+  w_h =\frac{\tau _h}{\tau }w -\frac{\tau _h}{\tau }\sum_{\ell =1}^H \tau _\ell \log (\lambda_\ell \alpha_\ell ) + \tau _h\log(\lambda_h\alpha_h)
+$$
   \end{frame}
   
   \bfr\frametitle{Competitive Equilibria with LRT Utility}

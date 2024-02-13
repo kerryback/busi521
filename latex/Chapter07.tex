@@ -93,8 +93,212 @@ Rice University}
 
 \maketitle
 
-\begin{frame}[plain]
-    \Large Coming Soon
+
+\begin{frame}{Equilibrium with Date--0 Consumption}
+Assume there is no labor income.
+Investors $h=1,\ldots,H$ have endowments of date--0 consumption $\bar{c}_{h0}$ and asset shares $\bar{\theta}_h$.  Assets $i=1,\ldots,n$ have payoffs $\tx_i$.
+
+Take date--0 consumption to be the numeraire (price=1).  An equilibrium is a price vector $p\in \myreal^n$ for assets, a date--0 consumption allocation $(c_{10},\ldots,c_{H0})$ and asset allocations $(\theta_1,\ldots,\theta_H)$ such that
+\begin{itemize}
+    \item date--0 consumption $c_{h0}$ and portfolio $\theta_h$ are optimal for investor $h$, for all $h$
+    \item the date--0 consumption market: $\sum_h c_{h0} = \sum_h \bar{c}_{h0}$
+    \item the asset markets clear: $\sum_h \theta_h = \sum_h\bar{\theta}_h$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Representative Investor}
+    \bi 
+    \im There is a representative investor 
+    if each asset price vector $p$ that is part of a securities market equilibrium is also part of a securities market equilibrium in the economy in which there is only the representative investor, and the representative investor's endowments are $\bar{c}_0 := \sum_h \bar{c}_{h0}$ and $\bar{\theta} := \sum_h \bar{\theta}_{h0}$.  
+    
+    \im By the FOC in the representative investor economy, the representative investor's MRS is an SDF.
+    \ei
+ \end{frame}
+ 
+ \begin{frame}{Plan for Today}
+     Assume there is a representative investor with CRRA utility.  Derive
+     \begin{itemize}
+         \item formula for market return 
+         \item formula for risk-free rate
+         \item formula for log equity premium (assuming also lognormal consumption growth)
+         \item variation of the CAPM
+     \end{itemize}
+     
+Then discuss:
+\begin{itemize}
+    \item There is a representative investor if the first welfare theorem holds (complete markets or LRT utility with same cautiousness parameter)
+    \item With LRT utility for all investors and same cautiousness parameter, the representative investor has the same utility function.
+\end{itemize}
+ \end{frame}
+
+\section{Equity Premium}\subsection{}
+\begin{frame}{Representative Investor with CRRA Utility}
+    \bi 
+    \im 
+    Assume there is a representative investor with utility function
+      $$(c_0,c_1) \mapsto u(c_0) + \delta u(c_1)$$
+      where
+      $$u(c) = \frac{1}{1-\rho}c^{1-\rho}$$
+      
+      \im Let $c_0$ denote aggregate consumption at date 0, and let $\tilde{c}_1$ denote aggregate consumption at date 1.
+      
+      \im Then
+      $$\delta \left(\frac{\tc_1}{c_0}\right)^{-\rho}$$
+      is an SDF.
+      \ei 
+     \end{frame}
+
+\bfr\frametitle{Market Return}
+ \bi 
+ \im Assume $\tc_1$ is spanned by the assets.  Its cost is 
+$$\mye[\tm\tc_1]= \mye\left[\frac{\delta \tc_1^{-\rho}}{c_0^{-\rho}}\tc_1\right] = c_0\mye\left[\frac{\delta \tc_1^{-\rho}}{c_0^{-\rho}}\cdot\frac{\tc_1}{c_0}\right] = \delta c_0\mye\left[\left(\frac{\tc_1}{c_0}\right)^{1-\rho}\right]$$
+ \im The market return is 
+ $$\tr_m := \frac{\tc_1 }{ \mye[\tm\tc_1]} = \frac{1}{\delta\mye\left[\left(\frac{\tc_1}{c_0}\right)^{1-\rho}\right]}\cdot \frac{\tc_1}{c_0} := \frac{1}{\nu_1} \cdot \frac{\tc_1}{c_0}$$
+ \ei 
+ \end{frame}
+ 
+\bfr\frametitle{Risk-Free Return}
+ The risk-free return is
+$$R_f = \frac{1}{\mye[\tm]} = \frac{1}{\delta\mye[(\tc_1/c_0)^{-\rho}]} := \frac{1}{\nu_0}$$
+
+\end{frame}
+
+\begin{frame}{Log Equity Premium}
+$$\frac{\tr_m}{R_f} = \frac{\nu_0}{\nu_1}\cdot \frac{\tc_1}{c_0}$$
+So,
+$$
+\frac{\mye[\tr_m]}{R_f} = \frac{\nu_0\mye[\tc_1/c_0]}{\nu_1} = \  \frac{\mye[(\tc_1/c_0)^{-\rho}]\mye[\tc_1/c_0]}{\mye[(\tc_1/c_0)^{1-\rho}]}
+= \frac{\mye[\tc_1]\mye[\tc_1^{-\rho}]}{ \mye[\tc_1^{1-\rho}]}
+$$
+\end{frame}
+
+
+\bfr\frametitle{Lognormal Consumption}
+\bi 
+\im 
+ Assume $\log \tc_1 - \log c_0 = \mu + \sigma \tve$ for constants $\mu$ and $\sigma$ and a standard normal $\tve$.
+\begin{align*}\tc_1 = c_0\E^{\mu+\sigma\tve} \;&\Rightarrow\; \mye[\tc_1] = c_0\E^{\mu+\sigma^2/2}\\
+\tc_1^{-\rho} = c_0^{-\rho}\E^{-\rho\mu-\rho\sigma\tve}\;&\Rightarrow\;\mye[\tc_1^{-\rho}] = c_0^{-\rho}\E^{-\rho\mu+\rho^2\sigma^2/2}\\
+\tc_1^{1-\rho} = c_0^{1-\rho}\E^{(1-\rho)\mu + (1-\rho)\sigma\tve}\;&\Rightarrow\; \mye[\tc_1^{1-\rho}] = c_0^{1-\rho}\E^{(1-\rho)\mu+(1-\rho)^2\sigma^2/2}
+\end{align*}
+
+ \im This implies
+$$\frac{\mye[\tr_m]}{R_f} = \E^{\rho\sigma^2}$$
+\im So,
+$$\log \mye[\tr_m] - \log R_f = \rho \sigma^2$$
+\ei
+\end{frame}
+
+\bfr\frametitle{Equity Premium and Risk-Free Rate Puzzles}
+\bi
+\im To match this model to the historical equity premium, a risk aversion around 50 is required.  Much too high.
+\im Using $\rho=10$ and $\delta=0.99$, the model implies a high risk-free rate (12.7\%) and low equity premium ($\mye[\tr_m]-R_f = 1.4\text{\%}$).
+\im The historical (U.S.) numbers are around 1\% for the real risk-free rate and 6\% for the equity premium.
+\ei
+\end{frame}
+
+\section{CAPM Alternative}
+
+\begin{frame}{SDF and Market Return}
+    \bi 
+\im The market return is 
+$$\tr_m = \frac{1}{\nu_1}\cdot \frac{\tc_1}{c_0}$$
+\im The SDF is
+$$\tm = \delta \left(\frac{\tc_1}{c_0}\right)^{-\rho}$$
+\im So, the SDF is
+$$\tm = \delta \nu^{-\rho} \tr_m^{-\rho}$$
+\ei 
+\end{frame}
+
+\begin{frame}{CAPM Alternative}
+    \bi 
+    \im Risk premia of all assets are
+    $$\mye[\tr] - R_f = - R_f \cov(\tr,\tm) = - \delta\nu^{-\rho} R_f \cov(\tr,\tr_m^{-\rho})$$
+    
+    \im This implies
+    $$\mye[\tr] - R_f = \lambda \frac{ \cov(\tr,\tr_m^{-\rho})}{\var(\tr_m^{-\rho})}$$
+    for a $\lambda$ that is the same for all assets.  \im So, risk premia depend on betas with respect to $\tr_m^{-\rho}$.
+\ei 
+    
+\end{frame}
+
+\section{When is There a Representative Investor?}\subsection{}
+
+\bfr\frametitle{Social Planner's Problem}\
+\bi 
+\im 
+For each value $w$ of market wealth,  the social planner solves
+$$\max \quad \sum_{h=1}^H \lambda_hu_h(w_h) \quad \text{subject to} \quad \sum_{h=1}^H w_h = w$$
+\im Let $U(w)$ denote the maximum value.  This is the social planner's utility function.
+\im Let $\eta$ denote the Lagrange multiplier (which depends on market wealth $w$).  Then, for all $h$,
+$$\lambda_h u_h'(w_h) = \eta$$
+\im Also, the social planner's marginal utility (the marginal value of market wealth) is equal to $\eta$.  \im So, for all $h$, we have the envelope result:
+$$U'(w) = \lambda_h u_h'(w_h)$$
+\im Hence, the social planner's marginal utility is proportional to an SDF.
+\ei 
+\end{frame}
+
+\bfr\frametitle{Social Planner's Problem with Date--0 Consumption}
+\bi 
+\im Suppose investor $h$ has utility $u_h(c_{h0}) + \delta_h u_h(c_{h1})$.  
+\im The social planner's problem is now separable in dates and in states. 
+\ei 
+\end{frame}
+
+\begin{frame}[plain] 
+    \bi 
+\im Given aggregate date--0 consumption $c_{m0}$ and aggregate date--1 consumption $c_{m1}$, the social planner solves 
+$$U_0(c_{m0}) := \max \quad \sum_{h=1}^H \lambda_hu_h(c_{h0}) \quad \text{subject to} \quad \sum_{h=1}^H c_{h0} = c_{m0}$$
+and
+$$U_1(c_{m1}) := \max \quad \sum_{h=1}^H \lambda_h\delta_h u_h(c_{h1}) \quad \text{subject to} \quad \sum_{h=1}^H c_{h1} = c_{m1}$$
+
+\im The envelope theorem tells us that, for all $h$,
+$$U_0'(c_{m0}) = \lambda_h u_h'(c_{h0}) \quad \text{and} \quad U_1'(c_{m1}) = \lambda_h \delta_h u_h'(c_{h1})$$
+\im So,
+$$\frac{U_1'(c_{m1})}{U_0'(c_{m0})} = \frac{\delta_h u_h'(c_{h1})}{u_h'(c_{h0})} = \text{SDF}$$
+\ei
+\end{frame}
+
+\bfr\frametitle{Common Discount Factors}
+\bi 
+\im 
+If all investors have the same discount factor $\delta$, then we can pull $\delta$ outside the sum in the definition of $U_1$ and see that, as functions, $U_1 = \delta U_0$.  
+
+\im Writing $U=U_0$, an SDF is
+$$\frac{\delta U'(\tilde{c}_{m1})}{U'(c_{m0})}$$
+\ei
+\end{frame}
+
+
+\bfr\frametitle{Linear Risk Tolerance}
+\bi 
+\im Suppose all investors have linear risk tolerance $\tau_h(c) = A_h + B c$ with same cautiousness parameter $B\ge 0$.  
+\im Then, the social planner's utility functions $U_0$ and $U_1$ have linear risk tolerance with the same cautiousness parameter.
+\im 
+Example: all investors have CRRA utility with risk aversion $\rho$ and the same discount factor $\delta$.  
+\im Then, an SDF is
+$$\frac{\delta U'(\tilde{c}_{m1})}{U'(c_{m0})}$$
+where
+$$U(c) = \frac{1}{1-\rho}c^{1-\rho}$$
+\im So, the SDF is
+$$\delta \left(\frac{\tilde{c}_{m1}}{c_{m0}}\right)^{-\rho}$$
+\ei
+\end{frame}
+
+\begin{frame}{Proof of LRT Social Planner in CARA Case}
+    \bi 
+    \im 
+We solved the social planner's problem before and found
+$$ w_h =\frac{\tau _h}{\tau }w -\frac{\tau _h}{\tau }\sum_{\ell =1}^H \tau _\ell \log (\lambda_\ell \alpha_\ell ) + \tau _h\log(\lambda_h\alpha_h)$$
+which we wrote as $w_h = a_h + b_h w$ with $b_h = \tau_h/\tau$
+\im So,
+$$U(w) = -\sum_{h=1}^H \lambda_h \E^{-\alpha_h (a_h + b_h w)} = -\sum_{h=1}^H \lambda_h \E^{-\alpha_ha_h}\E^{-\alpha_hb_hw} $$
+ \im Moreover,
+$$\alpha_h b_hw = \frac{\alpha_h \tau_hw}{\tau} = \frac{w}{\tau} = \alpha w$$
+\im So
+$$U(w) = -\E^{-\alpha w}\sum_{h=1}^H \lambda_h \E^{-\alpha_ha_h}$$
+which is a monotone affine transform of CARA utility.
+\ei 
 \end{frame}
 
 \end{document}

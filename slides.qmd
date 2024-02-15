@@ -6,7 +6,9 @@
 [Chapter 4](Chapter04.pdf){target="_blank"}<br>
 [Chapter 5](Chapter05.pdf){target="_blank"}<br>
 [Chapter 6](Chapter06.pdf){target="_blank"}<br>
-[Chapter 7](Chapter07.pdf){target="_blank"}<br>
+[Chapter 7](Chapter07.pdf){target="_blank"}<br><br>
+[Lopez-Lira/Rousannov](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3628120){target="_blank"}<br>
+[Discussion](KBack_2022_Utah_Discussion.pdf){target="_blank"}<br><br>
 [Chapter 8](Chapter08.pdf){target="_blank"}<br>
 [Chapter 10](Chapter10.pdf){target="_blank"}<br>
 [Chapter 11](Chapter11.pdf){target="_blank"}<br>

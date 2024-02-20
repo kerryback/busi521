@@ -107,6 +107,15 @@ $$R_{i,t+1} := \frac{P_{i,t+1}+D_{i,t+1}}{P_{it}}$$
 \ei
 \end{frame}
 
+\begin{frame}{Iterated Expectations}
+    \bi 
+    \im Let $\mye_t$ denote expectation given information at date $t$.
+    \im Assume information is nondecreasing over time.
+    \im For any $s<t<u$ and random variable $X_u$ known at date $u$,
+    $$\mye_s[X_u] = \mye_s\bigg[ \mye_t[X_u]\bigg]$$
+    \ei
+ \end{frame}
+
 \section{SDFs}\subsection{}
 
 \begin{frame}{One-Period SDFs}

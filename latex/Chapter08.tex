@@ -93,8 +93,367 @@ Rice University}
 
 \maketitle
 
+
+\bfr\frametitle{Assets and Returns}
+\bi \im Dates $t=0,1,2,\ldots$.  No tildes anymore for random things.  Information grows over time as random variables are observed.
+ \im 
+$D_{it}=\,$ dividend of asset $i$ at date $t$.
+ Ex-dividend price $P_{it}>0$.  
+ \im 
+Return from $t$ to $t+1$ is
+$$R_{i,t+1} := \frac{P_{i,t+1}+D_{i,t+1}}{P_{it}}$$
+
+\im Risk-free return from $t$ to $t+1$ is $R_{f,t+1}$.  Known at $t$ (so risk-free from $t$ to $t+1$) but maybe not known until $t$ (randomly evolving interest rates).
+\ei
+\end{frame}
+
+\section{SDFs}\subsection{}
+
+\begin{frame}{One-Period SDFs}
+
+\bi 
+\im SDF at $t$ for pricing at $t+1$ is a r.v. $Z_{t+1}$ depending on date $t+1$ information such that
+$$\mye_t[Z_{t+1}R_{i, t+1}] = 1$$
+for all assets $i$.
+\im Equivalently, price at $t$ of any portfolio payoff $X_{t+1}$ at $t+1$ is
+$$\mye_t[Z_{t+1}X_{t+1}]$$
+\im With no uncertainty or with risk neutrality,
+$$Z_{t+1} = \frac{1}{R_{f, t+1}} := \frac{1}{1+r_{f, t+1}}$$
+\ei
+\end{frame}
+
+\begin{frame}{Two-Period SDFs}
+\bi 
+\im How to price at $t-1$ a payoff at $t+1$?
+\pause 
+\im Same as price at $t-1$ of enough dollars at $t$ to buy the payoff.  So, is price at $t-1$ of 
+$$\mye_t[Z_{t+1}X_{t+1}]$$
+\pause 
+\im So price at $t-1$ is
+$$\mye_{t-1}\bigg[Z_t\mye_t[Z_{t+1}X_{t+1}]\bigg] = \mye_{t-1}\bigg[\mye_t[Z_tZ_{t+1}X_{t+1}]\bigg] = \mye_{t-1}\bigg[Z_tZ_{t+1}X_{t+1}\bigg]$$
+\im We're compounding discount factors. 
+\im With no uncertainty, price is 
+$$\frac{X_{t+1}}{(1+r_{f,t})(1+r_{f,t+1})}$$
+\ei
+\end{frame}
+
+\begin{frame}{SDF Process}
+    \bi 
+    \im Define $M$ by compounding discount factorrs:
+    $$M_{t} := Z_1 \times Z_2 \times \cdots \times Z_{t}$$
+    \im Set $M_0=1$.
+    \im Price at date 0 of a payoff $X_t$ at date $t$ is $\mye[M_tX_t]$.
+    \pause 
+    \im Price at date $s<t$ of payoff $X_t$ at date $t$ is
+    $$\mye_s[Z_{s+1}\cdots Z_tX_t] = \mye_s \left[\frac{Z_1 \cdots Z_t}{Z_1\cdots Z_s}X_t\right] = \mye_s \left[\frac{M_t}{M_s}X_t\right]$$
+    \ei
+\end{frame}
+
+\section{Factor Model}\subsection{}
+
+\begin{frame}{Dynamic Factor Model}
+\bi 
+\im From
+$$ 1 = \mye_t\left[\frac{M_{t+1}}{M_t}R_{i,t+1}\right]$$
+we get
+$$ 1 = \frac{\mye_t[R_{i,t+1}]}{R_{f,t+1}} + \cov_t \left(\frac{M_{t+1}}{M_t},R_{i,t+1}\right)$$
+\im So 
+$$\mye_t[R_{i,t+1}] - R_{f,t+1} = - R_{f,t+1}\cov_t \left(\frac{M_{t+1}}{M_t},R_{i,t+1}\right)$$
+\ei 
+\end{frame}
+
+
+\section{Portfolio Choice}\subsection{}
+
+\begin{frame}{Portfolio Choice}
+\bi \im 
+ Stack returns into an $n$--vector $R_{t+1}$.  One may be risk-free (return $\,= R_{f,t+1}$).
+
+ \im Investor chooses consumption $C_t$ and a portfolio $\pi_t \in \myreal^n$. $\iota'\pi_t=1$.  Labor income $Y_t$.
+
+\im Suppose investor seeks to maximize
+$$\sum_{t=0}^\infty \delta^t u(C_t)$$
+ Wealth (actually financial wealth) $W$ satisfies the \alert{intertemporal budget constraint}
+$$W_{t+1} = (W_t-C_t)\pi_t'R_{t+1} + Y_{t+1}$$
+\ei
+ \end{frame}
+
+
+
+\bfr\frametitle{Euler Equation}
+\bi \im 
+A necessary condition for consumption/investment optimality is that, for all dates~$t$ and assets~$i$,
+$$\mye_t\left[\frac{\delta u'(C_{t+1})}{u'(C_t)}R_{i,t+1}\right] = 1$$
+ \im This is called the Euler equation.  It is derived by the same logic as in a single-period model.
+
+ \im The Euler equation is equivalent to: 
+$$M_t := \frac{\delta^t u'(C_t)}{u'(C_0)}$$
+is an SDF process.
+\im The one-period SDFs are one-period marginal rates of substitution:
+$$\frac{M_{t+1}}{M_t} = \frac{\delta u'(C_{t+1})}{u'(C_t)}$$
+\ei 
+\end{frame}
+
+
+
+
+\section{Equity Premium Puzzle}
+\subsection{}
+
+\bfr\frametitle{Representative Investor and SDF Process}
+\bi \im 
+Let $C$ denote aggregate consumption.    \im Assume there is a representative investor with CRRA utility and risk aversion $\rho$.  \im Then, the one-period SDF is
+$$\frac{M_{t+1}}{M_t} = \delta \left(\frac{C_{t+1}}{C_t}\right)^{-\rho}$$
+
+\im The SDF process is
+$$M_t = \delta^t \left(\frac{C_{t}}{C_0}\right)^{-\rho}$$
+\ei 
+\end{frame}
+
+\begin{frame}{Market Price-Dividend Ratio}
+\bi 
+\im Define the market portfolio as the claim to future consumption.  
+\im Consumption is then the dividend of the market portfolio.  Assume consumption growth $C_{t+1}/C_t$ is iid lognormal.
+\im 
+The ex-dividend date--$t$ price of the market portfolio is
+$$
+   P_t := \mye_t \sum_{u=t+1}^\infty \frac{M_u}{M_t}C_u  = \mye_t \sum_{u=t+1}^\infty \delta^{u-t}\left(\frac{C_u}{C_t}\right)^{-\rho}C_u$$
+\im So, the price-dividend ratio is
+\begin{align*}
+    \frac{P_t}{C_t} & = \mye_t \sum_{u=t+1}^\infty \delta^{u-t}\left(\frac{C_u}{C_t}\right)^{1-\rho}\\
+    & = \mye \sum_{u=1}^\infty \delta^{u}\left(\frac{C_u}{C_0}\right)^{1-\rho}
+\end{align*}
+\ei 
+\end{frame}
+
 \begin{frame}[plain]
-    \Large Coming Soon
+\bi 
+\im Assume $\log C_{t+1} = \log C_t + \mu + \sigma \varepsilon_{t+1}$ for iid standard normals $\varepsilon$.  
+
+\im Then 
+$$\log C_u = \log C_0 + u\mu + \sigma \sum_{n=1}^u \varepsilon_n$$
+\im Hence,
+\begin{align*}
+    \mye \left[\left(\frac{C_u}{C_0}\right)^{1-\rho}\right] &= \mye \left[\exp \left((1-\rho)\left\{u\mu + \sigma \sum_{n=1}^u \varepsilon_n\right\}\right)\right]\\
+ &=\exp \left((1-\rho)u\mu + \frac{1}{2}(1-\rho)^2u\sigma^2 \right) \\
+ &= \left(\E^{(1-\rho)\mu + (1-\rho)^2\sigma^2/2} \right)^u 
+\end{align*}
+\ei 
+\end{frame}
+
+\begin{frame}[plain]
+\bi 
+\im 
+So, the price-dividend ratio is
+$$ \sum_{u=1}^\infty \left(\delta\E^{(1-\rho)\mu + (1-\rho)^2\sigma^2/2} \right)^u = \frac{\nu_1}{1-\nu_1}$$
+where
+$$\nu_1 = \delta \mye\left[\left(\frac{C_1}{C_0}\right)^{1-\rho}\right] = \delta\E^{(1-\rho)\mu + (1-\rho)^2\sigma^2/2}$$
+provided $\nu_1<1$.  
+\im 
+This is the same $\nu_1$ we saw in Chapter 7.  
+\im Everything else---risk-free return, expected market return, log equity premium, equity premium puzzle---is exactly the same as in Chapter 7.
+\ei 
+\end{frame}
+
+\section{Risk-Neutral Probability}\subsection{}
+\begin{frame}{Risk-Neutral Probability}
+\bi \im Consider an arbitrary finite (possibly large) horizon $T$.  
+\im Consider an event $A$ that can be distinguished by date $T$ (at date $T$, you know whether $A$ happened or not).
+\im Define 
+    $$Q(A) = \mye[R_{f1}\cdots R_{fT}M_T1_A]$$ 
+\im Then $Q$ is a probability measure.
+\im Define $\mye^*$ as expectation with respect to $Q$.  Then for all assets $i$ and dates $t$,
+    $$\mye^*_t[R_{i,t+1}] = R_{f,t+1}$$
+        \im And, the price at $t$ of a payoff $X_{t+1}$ at date $t+1$ is
+    $$\frac{\mye^*_t[X_{t+1}]}{1+r_{f,t+1}}$$
+    \ei 
+\end{frame}
+
+\section{Martingales}\subsection{}
+
+\begin{frame}{Martingales}
+    \bi 
+    \im A martingale is a sequence of random variables $Y$ such that $Y_s = \mye_s[Y_t]$ for all $s<t$.
+    \im Equivalently, $E_s[Y_t-Y_s] = 0$.
+    \im Consider any payoff at date $u$ with value $V_t$ at date $t$.  Then
+    \begin{enumerate}
+        \im The sequence $M_tV_t$ is a martingale (up to $u$).
+        \im The sequence
+        $$\frac{V_t}{(1+r_{f1}) \cdots (1+r_{ft})}$$
+        is a $Q$-martingale.
+    \end{enumerate}
+    \ei
+ \end{frame}
+
+\section{Testing}\subsection{}
+\begin{frame}{Testing Conditional Models}
+Suppose we have a model for an SDF.  Call the model value $\hat M$.  We want to test whether
+\begin{equation}\label{0}\tag{$\star$}
+(\forall\;t, i) \qquad \mye_t[\hat M_{t+1}R_{i,t+1}] = 1
+\end{equation}
+Let $I_t$ be any variable observed at $t$.  Multiply both sides by $I_t$ and rearrange as:
+$$(\forall\;t, i) \qquad \mye_t[I_t\hat M_{t+1}R_{i,t+1}] -I_t =0$$
+Take the expectation and use the law of iterated expectations to obtain
+\begin{equation}\label{1}\tag{$\star\star$}
+(\forall\;t, i) \qquad \mye[I_t(\hat M_{t+1}R_{i,t+1} -1)] =0
+\end{equation}
+The conditional model \eqref{0} implies the unconditional moment condition \eqref{1} for every \alert{instrument} $I$.  If we reject the unconditional moment conditions, then we reject the model. 
+\end{frame}
+\end{document}
+
+
+\section{Rare Disasters}
+\subsection{}
+
+\bfr\frametitle{Rare Disasters}
+\bi
+\im Assume a representative investor with CRRA utility.  Assume IID consumption growth.
+\im From Chapter 10, the market return is
+$$R_{m,t+1} = \frac{1}{\nu}\left(\frac{C_{t+1}}{C_t}\right)$$
+where
+$$\nu = \delta \mye\left[\left(\frac{C_{t+1}}{C_t}\right)^{1-\rho}\right]$$
+\im The risk-free return is
+$$R_f = \frac{1}{\delta \mye\left[\left(\frac{C_{t+1}}{C_t}\right)^{-\rho}\right]}$$
+\im We will not assume lognormal consumption growth.  Instead, we assume a fatter left tail (rare disasters).  The goal is to see what this implies for the equity premium and risk-free rate.
+\ei
+\end{frame}
+
+\bfr\frametitle{Consumption Model}
+\bi
+\im Assume 
+$$
+\Delta \log C_{t+1} = \mu + \sigma \xi_{t+1} + \chi_{t+1}\log (1-b_{t+1})\,,
+$$
+where~$\xi$,~$\chi$, and~$b$ are independent sequences of IID random variables, with each $\xi_t$ having the standard normal distribution, each $\chi_t$ having a Bernoulli distribution
+$$\chi_{t} = \begin{cases} 0 & \text{with probability $1-p$}\\
+1 & \text{with probability~$p$}
+\end{cases}$$
+for some fixed $0<p<1$, and each $b_t$ being distributed on the interval $(0,1)$.  Barro (QJE, 2006) takes $p=2$\%.
+\im When $\chi_{t+1}=1$,  
+$$\frac{C_{t+1}}{C_t} = \E^{\mu + \sigma \xi_{t+1}}(1-b_{t+1})\,.$$
+Thus, $b_{t+1}$ is the fraction by which consumption falls when $\chi_{t+1}=1$ (which occurs with probability $p$).  
+\ei
+\end{frame}
+
+\bfr\frametitle{Calculations}
+\bi
+\im To calculate the expected market return and risk-free return, we have to calculate
+$$\mye\left[\left(\frac{C_{t+1}}{C_t}\right)^{\gamma}\right]$$
+for $\gamma = 1$, $\gamma=1-\rho$, and $\gamma=-\rho$.
+\im For the expected market return, $\gamma=1$ is in the numerator and $\gamma=1-\rho$ is in the denominator.
+\im For the risk-free return $\gamma=-\rho$ is in the denominator.
+\ei
+\end{frame}
+
+\bfr\frametitle{Calculations cont.}
+\bi
+\im By the independence of the normal shock $\xi$ from the indicator $\chi$ and loss rate $b$,
+\begin{align*}
+\mye\left[\left(\frac{C_{t+1}}{C_t}\right)^\gamma\right] &=\mye\left[\E^{\gamma \Delta \log C_{t+1}}\right]\\
+&=\mye\left[\E^{\gamma \mu + \gamma \sigma \xi_{t+1}}\right]\mye\left[\E^{\gamma\chi_{t+1}\log(1-b_{t+1})}\right]
+\end{align*}
+\im The first factor is $\E^{\gamma \mu + \gamma^2\sigma^2/2}$.  The second factor is
+$$
+(1-p)\E^0+p\mye\left[\E^{\gamma \log (1-b_{t+1})}\right]=1-p+p\mye\left[(1-b_{t+1})^\gamma\right]\,.
+$$\ei
+\end{frame}
+
+\bfr\frametitle{Expected Market Return and Risk-Free Return}
+\bi
+\im The first factor in the formula for $\mye\left[\left(C_{t+1}/C_t\right)^{\gamma}\right]$ is the same as in a lognormal model.  
+\im Consequently, the expected market return is the same as in a lognormal model except for an additional factor
+$$
+ \frac{1-p+p\mye\left[1-b_{t+1}\right]}{1-p+p\mye\left[(1-b_{t+1})^{1-\rho}\right]}
+ $$
+ \im Also, the risk-free return is the same as in a lognormal model except for an additional factor
+ $$
+ \frac{1}{1-p+p\mye\left[(1-b_{t+1})^{-\rho}\right]}
+ $$
+ \ei
+\end{frame}
+
+\bfr\frametitle{Expected Market Return and Risk-Free Return cont.}
+\bi
+\im Both factors have numerators equal to 1 or smaller and denominators larger than 1 (when $\rho>1$), so both factors are less than 1.
+\im Consequently, the expected market return and risk-free return are lower in the rare disasters model than in the lognormal model.
+\im Usually, the risk-free return shrinks more, so the equity premium is higher and the risk-free return is lower than in a lognormal model.
+ \im The left tail of the distribution of $b$ is important and controversial.   
+ \ei
+\end{frame}
+
+\end{document}
+
+\bfr\frametitle{Exercises}
+Graded: 8.1, 11.2
+
+Recommended: 8.2
+\end{frame}
+\end{document}
+
+
+
+\bfr\frametitle{Ruling Out Ponzi Schemes}
+ An investor with an infinite horizon will borrow and continually roll over the debt if possible, meaning $W_T \rightarrow -\infty$.
+
+ In fact, the investor would take $W$ to $-\infty$ immediately.  To rule this out, we need constraints in addition to the intertemporal budget constraint.  
+
+ We could require one of the following:
+\begin{enumerate}
+\im No borrowing: $C_t \leq W_t$
+\im Negligible debt at infinity: $\lim_{T \rightarrow} \mye [M_TW_T] \geq 0$
+\im $W$ bounded below.  If $\lim_{T \rightarrow} \mye [M_T] = 0$, then this implies (2).
+\end{enumerate}
+\end{frame}
+
+
+
+\section{Gordon Growth Model}
+\subsection{}
+
+\bfr\frametitle{Gordon Growth Model}
+\bi
+\im Asset dividend process $D$.  We want to find a formula for its price $P$.  
+\im Assume there is a strictly positive SDF process $M$ (and no bubble), so
+\begin{align}
+P_t &= \sum_{u=t+1}^\infty \mye_t \left[ \frac{M_u}{M_t}D_u\right]\notag\\
+& = D_t\sum_{u=t+1}^\infty \mye_t \left[ \left(\frac{M_u}{M_t}\right)\left( \frac{D_u}{D_t}\right)\right] \notag\\
+&= D_t \sum_{u=t+1}^\infty \mye_t \left[ \prod_{i=t}^{u-1}\left(\frac{M_{i+1}}{M_i}\right)\left(\frac{D_{i+1}}{D_i}\right)\right]\,. \label{1}\tag{$\star$}
+\end{align}
+\im The last line uses, for example,
+$$\frac{M_u}{M_t} = \frac{M_{t+1}}{M_t}\cdot\frac{M_{t+2}}{M_{t+1}}\cdots \frac{M_u}{M_{u-1}}$$
+
+\ei
+\end{frame}
+
+\bfr\frametitle{Gordon Growth Model cont.}
+\bi
+\im Assume the pair $(M_{t+1}/M_t, D_{t+1}/D_t)$ is an IID vector process.  This gives us a simple formula for $P/D$.
+\im Set
+$$
+\nu = \mye\left[\left(\frac{M_{i+1}}{M_i}\right)\left(\frac{D_{i+1}}{D_i}\right)\right]\,.
+$$
+Assume $\nu<1$.  
+\im By the IID hypothesis, the expected product in \eqref{1} is the product of the expectations, and each expectation equals~$\nu$, so
+$$
+\frac{P_t}{D_t} = \sum_{u=t+1}^\infty \prod_{i=t}^{u-1} \mye\left[\left(\frac{M_{i+1}}{M_i}\right)\left(\frac{D_{i+1}}{D_i}\right)\right]= \sum_{u=t+1}^\infty \nu^{u-t} = \frac{\nu}{1-\nu}\,.
+$$ 
+\ei
+\end{frame}
+
+\bfr\frametitle{Gordon Growth Model cont.}
+\bi
+\im The asset return is proportional to dividend growth.  Because $P/D = \nu/(1-\nu)$, the asset return is
+\begin{align*}
+R_{t+1} = \frac{D_{t+1} + P_{t+1}}{P_{t}} &=  \frac{1+P_{t+1}/D_{t+1}}{P_t/D_t}\left(\frac{D_{t+1}}{D_t}\right)\notag\\
+&=\frac{1}{\nu}\left(\frac{D_{t+1}}{D_t}\right)\,.
+\end{align*}
+\im We can use this to solve for $\nu$ in terms of observables: Take expectations on both sides and rearrange as
+$$\nu = \frac{\mye[D_{t+1}/D_t]}{\mye[R_{t+1}]}$$
+\im This gives the Gordon formula for the price-dividend ratio:
+\bq\label{2}\tag{$\star\star$}
+\frac{P_t}{D_t} = \frac{\mye[D_{t+1}/D_t]}{\mye[R_{t+1}] - \mye[D_{t+1}/D_t]}\,.
+\eq
+\ei
 \end{frame}
 
 \end{document}

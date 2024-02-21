@@ -296,17 +296,20 @@ This is the same $\nu_1$ we saw in Chapter 7.
 
 \section{Testing}\subsection{}
 \begin{frame}{Testing Conditional Models}
+    \bi \im
 Suppose we have a model for an SDF.  Call the model value $\hat M$.  We want to test whether
 \begin{equation}\label{0}\tag{$\star$}
-(\forall\;t, i) \qquad \mye_t[\hat M_{t+1}R_{i,t+1}] = 1
+(\forall\;t, i) \qquad \mye_t\left[\frac{\hat M_{t+1}}{\hat M_t}\bigg(R_{i,t+1} - R_{f, t+1}\bigg)\right] = 0
 \end{equation}
-Let $I_t$ be any variable observed at $t$.  Multiply both sides by $I_t$ and rearrange as:
-$$(\forall\;t, i) \qquad \mye_t[I_t\hat M_{t+1}R_{i,t+1}] -I_t =0$$
-Take the expectation and use the law of iterated expectations to obtain
+\im Let $I_t$ be any variable observed at $t$.  Multiply by $I_t$ to get:
+$$(\forall\;t, i) \qquad \mye_t\left[I_t\frac{\hat M_{t+1}}{\hat M_t}\bigg(R_{i,t+1} - R_{f, t+1}\bigg)\right] =0$$
+\im Now use the law of iterated expectations to obtain
 \begin{equation}\label{1}\tag{$\star\star$}
-(\forall\;t, i) \qquad \mye[I_t(\hat M_{t+1}R_{i,t+1} -1)] =0
+(\forall\;t, i) \qquad \mye\left[I_t\frac{\hat M_{t+1}}{\hat M_t}\bigg(R_{i,t+1} - R_{f, t+1}\bigg)\right]
 \end{equation}
+\im 
 The conditional model \eqref{0} implies the unconditional moment condition \eqref{1} for every \alert{instrument} $I$.  If we reject the unconditional moment conditions, then we reject the model. 
+\ei 
 \end{frame}
 \end{document}
 

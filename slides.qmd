@@ -10,8 +10,7 @@
 [Lopez-Lira/Rousannov](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3628120){target="_blank"}<br>
 [Discussion](KBack_2022_Utah_Discussion.pdf){target="_blank"}<br><br>
 [Chapter 8](Chapter08.pdf){target="_blank"}<br>
-[Chapter 10](Chapter10.pdf){target="_blank"}<br>
-[Chapter 11](Chapter11.pdf){target="_blank"}<br>
+[Chapter 9](Chapter09.pdf){target="_blank"}<br>
 [Chapter 12](Chapter12.pdf){target="_blank"}<br>
 [Chapter 13](Chapter13.pdf){target="_blank"}<br>
 [Chapter 14](Chapter14.pdf){target="_blank"}<br>

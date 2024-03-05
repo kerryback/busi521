@@ -1,3 +1,0 @@
-\beamer@sectionintoc {1}{Optimal Portfolio}{11}{0}{1}
-\beamer@sectionintoc {2}{CRRA Utility}{16}{0}{2}
-\beamer@sectionintoc {3}{Infinite Horizon}{23}{0}{3}

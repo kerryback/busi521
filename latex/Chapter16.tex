@@ -93,8 +93,88 @@ Rice University}
 
 \maketitle
 
-\begin{frame}[plain]
-    \Large Coming Soon
+
+\section{Options}\subsection{}
+
+\begin{frame}{Financial Options}
+    A financial option is a right to buy or sell  a financial security.
+    
+    The right trades separately from the (underlying) security and usually even on a different exchange.
+    
+    The rights are not (usually) issued by the companies who issue the underlying securities.  Instead, the rights are created when someone buys one from someone else.  Open interest is the number that exist at any point in time.
+    
+\end{frame}
+\begin{frame}
+A \alert{call} option gives the holder the right to \alert{buy} an asset at a pre-specified price.
+
+A \alert{put} option gives the holder the right to \alert{sell} an asset at a pre-specified price.
+
+The pre-specified price is called the exercise price or strike price.  
+
+An option is valid for a specified period of time, the end of which is called its expiration date or maturity date.
+
+You pay upfront to acquire an option.  The amount you pay is called the option premium.  It is not part of the contract but instead is determined in the market (like a stock price).
 \end{frame}
 
+\begin{frame}{Buying, Selling, and Exercising}
+    Anyone with an appropriate brokerage account can at any time either buy or sell an option.
+    
+    Individuals usually buy options instead of selling them (when they open positions), though they may sell as part of a portfolio (e.g., buy one option and sell another).
+    
+    After buying an option, investors usually sell it later instead of exercising.  However, the right to exercise is what gives an option its value.
+    
+    Sellers of options need to have sufficient equity in their accounts (margin).  A buyer needs enough cash to pay the premium but no more (like buying a stock).
+\end{frame}
+
+\begin{frame}{Value of a Call at Maturity}
+At maturity, \vspace*{-\baselineskip}
+\begin{enumerate}
+    \item If the underlying price is below the strike, the value of a call is zero  (why pay the strike if you can buy it cheaper in the market?).
+\item If the underlying price is above the strike, the value is 
+$$\text{underlying price} - \text{strike}$$
+because you can exercise, paying the strike, and then sell the underlying in the market at the market price, pocketing the difference between the underlying price and the strike.
+\end{enumerate}
+
+Combining the two cases,
+$$\text{call value} = \max(S-K,0)$$
+where $S=\,$ underlying price and $K=\,$ strike.
+    
+\end{frame}
+
+\begin{frame}{Moneyness}
+    Borrowing language from horse racing, we say a call is in the money if $S>K$, at the money if $S=K$ and out of the money if $S<K$.
+    
+    Also, ``deep in the money'' when $S>>K$ and ``deep out of the money'' when $S<<K$.
+    
+    We use the moneyness term at maturity and also before maturity.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Value of a Put at Maturity}
+A call value at maturity is $\max(S-K,0)$, but a put value is $\max(K-S,0)$.
+\vspace*{-\baselineskip}
+\begin{enumerate}\item
+If the underlying price is above the strike, the value is zero (why sell at the strike when you can sell at a higher price in the market?).
+\item If the underlying price is below the strike, then 
+$$\text{put value} = K-S$$
+because you could buy the underlying in the market and then sell it for the strike by exercising the put, pocketing the difference.
+\end{enumerate}
+We say a put is in the money if $K>S$, at the money if $K=S$, and out of the money if $K<S$.
+    
+\end{frame}
+
+\begin{frame}{European vs.\ American}
+    Most financial options can be exercised at any time the owner wishes, prior to maturity.  Such options are called American.
+    
+    There are some options that can only be exercised on the maturity date.  They are called European.
+    
+    Both types are traded on both continents.
+\end{frame}
+
+\begin{frame}{Yahoo Finance and Python Notebook}
+  Visit \url{http://finance.yahoo.com}, enter a ticker, and click on the Options tab to see the latest prices for traded options.
+  
+  Go to \url{https://github.com/kerryback/Options/blob/main/Options.ipynb} and click on `Open in Colab.'
+\end{frame}
 \end{document}

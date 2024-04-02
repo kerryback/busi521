@@ -93,8 +93,113 @@ Rice University}
 
 \maketitle
 
+
+\section{Risk Neutral Probabilities}
+\subsection{}
+
+
+\bfr\frametitle{Risk-Neutral Probabilities in Continuous Time}
+ \bi 
+ \im Consider $T<\infty$.
+ \im Let $R$ denote the money market account price with $R_0=1$.  
+ \im Let~$M$ be an SDF process. Assume $MR$ is a martingale so $$\mye[M_TR_T] \ = \ R_0 \ = \ 1$$   
+
+ \im Define
+$$
+\qr (A) \ = \  \mye\left[M_TR_T1_A\right]
+$$
+for each event~$A$ that is distinguishable at date~$T$, where $1_A=1$ when the state of the world is in~$A$ and~0 otherwise. 
+
+\im It follows  that $\qr$ is a probability (measure) and
+$$
+\mye^*[X_T] \ = \  \mye\left[M_TR_TX_T\right]
+$$
+for any random variable~$X_T$ depending on date--$T$ information, where $\mye^*$ denotes expectation with respect to $\qr $.  
+\ei
+\end{frame}
+
+
+\bfr\frametitle{Risk-Neutral Valuation}
+\bi 
+\im Let~$W$ be such  that $MW$ is a martingale under the physical probability.  Because we changed the probability using $MR$, a theorem in probability theory tells us that
+$$\frac{MW}{MR}$$
+is a $\qr$--martingale.
+
+\im So, $W/R$ is a $\qr $--martingale.  Thus,
+$$
+W_t \ = \  R_t\mye^*_t\left[\frac{W_T}{R_T}\right] \ = \  \mye^*_t\left[\exp\left(-\int_t^T r_u\,\D u\right)W_T\right]\,.
+$$
+\im In other words, asset values are expected discounted values, taking expectations with respect to the risk neutral probability and discounting at the instantaneous risk-free rate. 
+
+\im It follows that expected returns under the RNP equal the risk-free rate.
+\ei 
+\end{frame}
+
+
+
+
+\bfr\frametitle{Girsanov's Theorem}
+\bi 
+\im Let $M$ be an SDF process with 
+$$\frac{\D M}{M} \ = \ - r\,\D t - \lambda'\,\D B$$
+Here, $r$ and $\lambda$ can be stochastic processes.
+\im Define the risk-neutral probability $\qr$ using the martingale $MR$.
+
+\im The vector $B$ is not a vector of Brownian motions under $\qr$ 
+\bi
+\im Its drift is nonzero.  
+\im But, we still have quadratic variation $(\D B)(\D B)' = I\,\D t$, so it is ``close'' to being a vector of Brownian motions.
+\ei
+\im Girsanov's theorem states that $B^*$ defined by 
+ $B^*_0=0$ and
+$$\D B^* \ = \ \D B + \lambda\,\D t$$
+is a vector of independent Brownian motions under the risk-neutral probability $\qr$.
+\ei 
+\end{frame}
+
+
+\bfr\frametitle{Asset Returns under a Risk-Neutral Probability}
+\bi 
+\im 
+ Recall that the vector of asset returns is
+$$\frac{\D S}{S} \ = \ \mu\,\D t + \sigma\,\D B$$
+\im Define $\D B^* = \D B + \lambda\,\D t$.
+ Substitute to obtain
+\begin{align*}
+\frac{\D S}{S} &\ = \ \mu\,\D t + \sigma\,(\D B^* - \lambda\,\D t)\\
+&\ = \ (\mu - \sigma\lambda)\,\D t + \sigma\,\D B^*\\
+&\ = \ r\iota\,\D t + \sigma\,\D B^*
+\end{align*}
+\ei
+\end{frame}
+
+
+\section{Fundamental PDE}\subsection{}
+\begin{frame}{Fundamental PDE}
+    \bi 
+  \im  Let $f(t,S_t)$ denote the value at $t$ of some future payoff (e.g., the value of $(S_T-K)1_A$). 
+    
+  \im   It is convenient to use the risk-neutral probability.  The RN expected rate of return is the risk-free rate:
+    $$\frac{\text{drift of $f$}}{f(t,S_t)} = r$$
+    \pause
+   \begin{align*}
+       \D f &= f_t\,\D t + f_S\,\D S 
+       + \frac{1}{2}f_{SS}(\D S)^2\\
+       &= f_t\,\D t + f_S(rS\,\D t + \sigma S\,\D B^*)
+       + \frac{1}{2}f_{SS}(S^2\sigma^2\,\D t)
+   \end{align*}
+   
+   \pause
+   \im So 
+   $$\text{drift of $f$} = f_t + rSf_S + \frac{1}{2}\sigma^2S^2f_{SS}$$
+   \ei 
+\end{frame}
+
 \begin{frame}[plain]
-    \Large Coming Soon
+The fundamental PDE is
+\begin{equation}\tag{$\star$}
+f_t + rSf_S + \frac{1}{2}\sigma^2S^2f_{SS} = rf
+\end{equation}
 \end{frame}
 
 \end{document}

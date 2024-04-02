@@ -235,7 +235,7 @@ for some constant $a$ and function~$f$.
 
 \begin{frame}
 
-J(w,x) = a \log w + f(x)$ implies
+$J(w,x) = a \log w + f(x)$ implies
  \begin{align*}   
  J_w &=a/W \Rightarrow WJ_w = a\\
  J_{ww}&=-a/W^2 \Rightarrow W^2J_{ww}=-a\\
@@ -248,7 +248,7 @@ J(w,x) = a \log w + f(x)$ implies
 
 
 \begin{frame}{Optimum}
-Substituting $\,\Rightarow$
+Substituting $\,\Rightarrow$
 \begin{multline*} 0 \ = \ \max_{C,\pi} \quad \bigg\{\log Z + \log W - \delta [a \log W + f] \\ + a[-Z + r + \pi'(\mu - r\iota)] + \phi f'\\ 
 - \frac{a}{2}\pi'\Sigma\pi  + \frac{1}{2}\nu'\nu f'' \bigg\}
 \end{multline*}
@@ -277,4 +277,80 @@ This is an ODE in $f$.
 \end{frame}
 
 
+\section{CCAPM}\subsection{}
+
+\begin{frame}{SDF Factor Pricing and Euler Equation}
+  \bi 
+\im Risk premia depend on covariances with an SDF: for all dividend-reinvested prices $S$,
+$$\mye\left[\frac{\D S}{S}\right] -r\,\D t= - \left(\frac{\D S}{S}\right)\left(\frac{\D M}{M}\right)$$
+\im This is another way of saying that
+$$\mu - r\iota = \sigma\lambda$$
+\im Also, we have the Euler equation (FOC):
+$$\frac{\E^{-\delta t}u'(C_t)}{u'(C_0)} = M_t$$
+\im In other words, MRS is an SDF.  So, risk premia depend on covariances with marginal utility.
+\ei
+\end{frame}
+
+\begin{frame}{Risk Premia over Short Horizons}
+  \bi
+    \im In a single period model, risk premia also depend on covariances with marginal utility.
+    
+    \im What are we going to do that's new here?  Over short horizons, changes in marginal utility can be approximated by changes in consumption (Taylor series).
+    
+    \im Apply It\^o's formula to $u'(C_t)$ to get
+    $$\D u'(C_t) = u''(C_t)\,\D C_t + \text{second-order term}$$
+    \im There is no covariance with the second-order term (it is something $\D t$ so `risk-free').  
+    
+    \im So, over short horizons, risk premia depend on covariances with consumption changes.
+    \ei
+\end{frame}
+
+\begin{frame}{CRRA example}
+  \bi 
+  \im Suppose $u(c) = c^{1-\rho}/(1-\rho)$, so
+  $$M=\frac{\E^{-\delta t}C_t^{-\rho}}{C_0^{-\rho}} =C_0^\rho\E^{-\delta t}C_t^{-\rho}$$
+  \im Then, the stochastic part of $\D M/M$ is ?
+  \pause 
+  $$\frac{\D M}{M} = -\rho \frac{\D C}{C} + \text{something}\,\D t$$
+  \pause
+  \im So,
+  $$\mye\left[\frac{\D S}{S}\right] -r\,\D t= \rho \left(\frac{\D S}{S}\right)\left(\frac{\D C}{C}\right)$$
+  \ei
+\end{frame}
+
+\begin{frame}{CCAPM}
+  \bi 
+\im We don't need to assume CRRA utility.  Use the Euler equation and apply It\^o's formula to $u'(C_t)$.  We get the same formula with $\rho$ replaced by
+$$\frac{-C_tu''(C_t)}{u'(C_t)}$$
+
+\im The formula is true for aggregate consumption, even without a representative investor.  Replace RRA with aggregate consumption multiplied by aggregate absolute risk aversion. As usual, aggregate absolute risk aversion is the reciprocal of the sum of the investors' risk tolerances.
+
+\im Risk premia over short periods ($\D t$) equal aggregate relative risk aversion multiplied by the covariance with aggregate consumption growth.
+\ei
+\end{frame}
+
+\section{ICAPM}\subsection{}
+\begin{frame}{ICAPM}
+  \bi 
+\im Merton's Intertemporal CAPM states that risk premia depend on covariances with the market return plus covariances with the state variables that determine investment opportunities.
+
+\im One proof: Use (i) SDF pricing, (ii)  Euler equation and (iii) envelope condition $u' = J_w$ to see that risk premia depend on covariances with $J_w$.
+
+\im Over short horizons, changes in $J_w$ can be approximated by changes in $W$ and in state variables $X$ (It\^o's formula).  So, over short horizons, risk premia depend on covariances with wealth and state variables.
+
+\im In other words, we add covariances with state variables to the CAPM.
+\ei
+\end{frame}
+
+\begin{frame}{Portfolio Proof of ICAPM}
+  \bi 
+\im From previous work,
+$$\pi = -\frac{J_w}{WJ_{ww}}\Sigma^{-1}(\mu-r\iota)-\frac{J_w}{WJ_{ww}}\frac{J_{xw}}{J_w}\Sigma^{-1} \sigma\nu$$
+\im So,
+$$-\frac{WJ_{ww}}{J_w}\Sigma\pi - \frac{J_{xw}}{J_w}\sigma\nu = \mu-r\iota $$
+\im What is $\Sigma\pi$? \pause It is the vector of covariances between $\sigma\,\D B$ and $\pi'\sigma\,\D B$.
+\pause 
+\im What is $\sigma\nu$? \pause It is the vector of covariances between $\sigma\,\D B$ and $\nu'\,\D B$.
+\ei 
+\end{frame}
 \end{document}

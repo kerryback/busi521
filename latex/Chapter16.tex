@@ -94,7 +94,6 @@ Rice University}
 \maketitle
 
 
-\section{Options}\subsection{}
 
 \begin{frame}{Financial Options}
     A financial option is a right to buy or sell  a financial security.
@@ -127,7 +126,7 @@ You pay upfront to acquire an option.  The amount you pay is called the option p
 \end{frame}
 
 \begin{frame}{Value of a Call at Maturity}
-At maturity, \vspace*{-\baselineskip}
+At maturity, 
 \begin{enumerate}
     \item If the underlying price is below the strike, the value of a call is zero  (why pay the strike if you can buy it cheaper in the market?).
 \item If the underlying price is above the strike, the value is 
@@ -153,7 +152,7 @@ where $S=\,$ underlying price and $K=\,$ strike.
 
 \begin{frame}{Value of a Put at Maturity}
 A call value at maturity is $\max(S-K,0)$, but a put value is $\max(K-S,0)$.
-\vspace*{-\baselineskip}
+
 \begin{enumerate}\item
 If the underlying price is above the strike, the value is zero (why sell at the strike when you can sell at a higher price in the market?).
 \item If the underlying price is below the strike, then 
@@ -172,9 +171,100 @@ We say a put is in the money if $K>S$, at the money if $K=S$, and out of the mon
     Both types are traded on both continents.
 \end{frame}
 
-\begin{frame}{Yahoo Finance and Python Notebook}
-  Visit \url{http://finance.yahoo.com}, enter a ticker, and click on the Options tab to see the latest prices for traded options.
-  
-  Go to \url{https://github.com/kerryback/Options/blob/main/Options.ipynb} and click on `Open in Colab.'
+
+\section{Black-Scholes}\subsection{}
+\begin{frame}{Assumptions}
+    \bi 
+    \im single risky asset and single Brownian motion, constant risk-free rate
+    
+    \im no dividends
+    
+    \im geometric Browinan motion price process
+    $$\frac{\D S}{S} = \mu\,\D t + \sigma\,\D B$$
+    for constants $\mu$ and $\sigma$
+    
+    \im option that expires at some future date $T$
+    
+    \im European = can only be exercised at $T$ 
+    \ei
 \end{frame}
+
+\begin{frame}{Asset Price}
+  $$\frac{\D S}{S} = \mu\,\D t + \sigma\,\D B$$
+  \pause
+  
+  $$\D \log S = \left(\mu - \frac{1}{2}\sigma^2\right)\,\D t + \sigma\,\D B$$
+  \pause
+  
+  $$\log S_T = \log S_0 + \left(\mu - \frac{1}{2}\sigma^2\right)T + \sigma B_T$$
+  
+  $$S_T = S_0 \E^{(\mu-\sigma^2/2)T + \sigma B_T}$$
+  
+  
+\end{frame}
+\begin{frame}{SDF Process}
+$$\frac{\D M}{M} = - r\,\D t - \lambda\,\D B$$
+
+$$\sigma\lambda = \mu-r \quad \Rightarrow \quad \lambda = \frac{\mu-r}{\sigma}$$
+
+\pause
+$$\D \log M = -r\,\D t - \frac{1}{2}\lambda^2\,\D t - \lambda\,\D B$$
+
+\pause
+$$\log M_T = \log M_0 -\left(r + \frac{1}{2}\lambda^2\right)T - \lambda B_T$$
+\pause
+$$M_T = \E^{-(r+\lambda^2/2)T - \lambda B_T}$$
+\end{frame}
+
+\begin{frame}{Valuing a Call}
+Value of call at maturity is $\max(0,S_T-K)=(S_T-K)^+$
+
+Let $A$ denote the event $S_T>K$ and let $1_A$ denote its zero-one indicator.  
+
+The value of the call at maturity is
+$$(S_T-K)1_A = S_T1_A - K1_A$$
+
+The value of the call at date 0 is
+$$\mye[M_TS_T1_A] - K\mye[M_T1_A]$$
+\end{frame}
+
+\begin{frame}[plain]
+The event $A$ is the event $\log S_T > \log K$, which is the event
+$$\log S_0 + \left(\mu - \frac{1}{2}\sigma^2\right)T + \sigma B_T > \log K$$
+Let $\tz$ denote the standard normal $-B_T/\sqrt{T}$.  The event $A$ is the event
+$$\log S_0 + \left(\mu - \frac{1}{2}\sigma^2\right)T - \sigma \sqrt{T}\tz > \log K$$
+This is equivalent to
+$$\tz < \bar{z} \eqdef \frac{\log S_0 - \log K + (\mu-\sigma^2/2)T}{\sigma\sqrt{T}}$$
+Also,
+$$S_T = S_0 \E^{(\mu-\sigma^2/2)T - \sigma\sqrt{T}\tz} \quad \text{and} \quad
+M_T =  \E^{-(r+\lambda^2/2)T - \lambda \sqrt{T}\tz}$$
+So, we're integrating exponentials of a standard normal over the region $(-\infty, \bar{z})$.
+
+
+    
+\end{frame}
+
+
+\begin{frame}{Black-Scholes Formula}
+Value of the call at date 0 is
+$$S_0\N(d_1) - \E^{-rT}K\N(d_2)$$
+where $\N$ is the standard normal cdf and
+\begin{align*}
+    d_1 &= \frac{\log S_0 - \log K + (r+\sigma^2/2)T}{\sigma\sqrt{T}}\\
+    d_2 &= d_1 - \sigma\sqrt{T}
+\end{align*}
+    
+\end{frame}
+
+\begin{frame}{Risk-Neutral Probability}
+
+    The asset price process is also
+    $$\frac{\D S}{S} = r\,\D t + \sigma\,\D B^*$$
+    where $B^*$ is a Brownian motion under the risk-neutral probability.
+    
+    The value of the call at date 0 is
+    $$\E^{-rT}\mye^*[S_T1_A] - \E^{-rT}K\mye^*(1_A) = \E^{-rT}\mye^*[S_T1_A] - \E^{-rT}KQ(A)$$
+    
+    \end{frame}
+
 \end{document}

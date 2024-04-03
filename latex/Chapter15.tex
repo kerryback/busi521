@@ -177,10 +177,11 @@ $$\frac{\D S}{S} \ = \ \mu\,\D t + \sigma\,\D B$$
 \section{Fundamental PDE}\subsection{}
 \begin{frame}{Fundamental PDE}
     \bi 
-  \im  Let $f(t,S_t)$ denote the value at $t$ of some future payoff (e.g., the value of $(S_T-K)1_A$). 
+    \im Suppose $S$ is a univariate GBM that is a dividend-reinvested price: $\D S/S = \mu\,\D t + \sigma\,\D B = r\,\D t + \sigma\,\D B^*$.
+  \im  Let $f(t,S_t)$ denote the value at $t$ of some at $T>t$ that depends on $S_T$.
     
-  \im   It is convenient to use the risk-neutral probability.  The RN expected rate of return is the risk-free rate:
-    $$\frac{\text{drift of $f$}}{f(t,S_t)} = r$$
+  \im   The risk-neutral expected rate of return is the risk-free rate, so
+    $$\frac{\text{drift of $f$ under RNP}}{f(t,S_t)} = r$$
     \pause
    \begin{align*}
        \D f &= f_t\,\D t + f_S\,\D S 
@@ -191,7 +192,7 @@ $$\frac{\D S}{S} \ = \ \mu\,\D t + \sigma\,\D B$$
    
    \pause
    \im So 
-   $$\text{drift of $f$} = f_t + rSf_S + \frac{1}{2}\sigma^2S^2f_{SS}$$
+   $$\text{drift of $f$ under RNP} = f_t + rSf_S + \frac{1}{2}\sigma^2S^2f_{SS}$$
    \ei 
 \end{frame}
 

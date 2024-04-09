@@ -80,7 +80,7 @@
 
 \setbeamertemplate{frame footer}{BUSI 521/ECON 505, Spring 2024}
 
-\title{Chapter 19: Perpetual Options and the Leland Model}
+\title{Chapter 19: Perpetual Options}
 
 \date{}
 \author{Kerry Back\\ 
@@ -93,8 +93,103 @@ Rice University}
 
 \maketitle
 
-\begin{frame}[plain]
-    \Large Coming Soon
-\end{frame}
 
-\end{document}
+\begin{frame}{Set-up}
+    \bi 
+      \im Single risky asset with price $S$ and constant volatility $\sigma$, single Brownian motion, constant risk-free rate
+    
+      \im Dividend paid by risky asset in time period $\D t$ is $qS_t\,\D t$ for constant $q$ (``dividend yield'')
+    
+      \im Total return is
+    $$\frac{\D S + qS\,\D t}{S} = \frac{\D S}{S} + q\,\D t$$
+    \im Total expected return under RNP is risk-free rate, so
+    $$\frac{\D S}{S} = (r-q)\,\D t + \sigma\,\D B^*$$
+    for a risk-neutral Brownian motion $B^*$.
+    \ei
+ \end{frame}
+ 
+
+ \begin{frame}{Perpetual Call} 
+    \bi \im
+ Perpetual call option with strike $K$
+ 
+ \im Why exercise?  To capture the dividend.  But the asset price and dividend must be high enough before it is optimal to do so.
+ 
+ \im An example of a strategy is to pick a number $x$ and exercise the first time $S_t$ gets up to $x$.  The optimal strategy will be of this type.
+ 
+ \im The problem of finding the optimal exercise time is in the class of problems often called optimal stopping.
+ \ei 
+ \end{frame}
+ 
+ \begin{frame}{Exercise Boundary}
+    \bi \im
+ We will first calculate the value if we exercise the first time $S_t$ gets up to $x$ for an arbitrary $x>S_0$.
+ 
+ \im  Let $\tau = \inf\{t \mid S_t \ge x\}$.  This is called the hitting time of $x$.
+ 
+ \im By the time-homogeneity of $S$, the value at any $t<\tau$ depends only on $S_t$.  Call it $f(S_t)$.  
+     
+ \im    More formally,
+     $$f(s) = \mye^*[\E^{-r\tau}((x-K) \mid S_0=s] = \mye^*[\E^{-r(\tau-t)} (x-K)\mid S_t=s]$$
+     \ei 
+ \end{frame}
+ \begin{frame}{Fundamental ODE}
+     \bi \im 
+     The fundamental ODE is 
+     $$\frac{\text{drift$^*$ of $f$}}{f} = r$$
+     which is
+     $$(r-q)Sf' + \frac{1}{2}\sigma^2S^2f'' = rf$$
+     \im Trying a power solution $f(S) = S^\gamma$, we see that $f$ satisfies the ODE if and only if
+     $$(r-q)\gamma + \frac{1}{2}\sigma^2\gamma(\gamma-1) = r$$
+     \im The quadratic formula shows that there are two real roots of this equation.  One is negative and the other is greater than 1.  
+     \ei
+     
+ 
+ \end{frame}
+     
+ \begin{frame}{General Solution and Boundary Conditions}
+ \bi \im 
+ Let $\gamma=\,$ absolute value of negative root, and $\beta=\,$ positive root.  
+ \im The general solution of the ODE is
+ $$aS^{-\gamma} + bS^\beta$$
+ for constants $a$ and $b$ that must be determined by boundary conditions.
+ 
+ \im The value $f$ of the call exercised at the hitting time of $x$ satisfies $f(0)=0$ and $f(x) = x-K$.  The condition $f(0)=0$ implies $a=0$, and the condition $f(x)=x-K$ implies $b=(x-K)x^{-\beta}$.  
+ 
+ \im The value of the call is
+ $$f(S_t) = (x-K)\left(\frac{S_t}{x}\right)^\beta$$
+  \ei    
+ \end{frame}
+ 
+ \begin{frame}{Optimal Stopping}
+ \bi \im 
+ To optimize, maximize $(x-K)\left(\frac{S_t}{x}\right)^\beta$ over $x$. 
+ \im The factor $S_t^\beta$ is a positive constant and is irrelevant for determining the optimum, so we can maximize
+ $$(x-K)x^{-\beta} = x^{1-\beta} - Kx^{-\beta}$$
+ 
+ \im The FOC is
+ $$(1-\beta)x^{-\beta} + \beta Kx^{-\beta-1}=0$$
+ \im Equivalently,
+ $$(1-\beta)x + \beta K=0$$
+ So, 
+ $$x^* = \frac{\beta}{\beta-1}K$$
+     \ei 
+ \end{frame}
+ 
+ \begin{frame}{Perpetual Put}
+ \bi \im
+ Recall that the general solution of the ODe is $f(s) = as^{-\gamma} + bs^\beta$.
+ 
+ \im For a put, we exercise the first time $S_t$ drops to a boundary $x$.  
+ \im The boundary conditions for a put are $f(\infty)=0$, and $f(x)=K-x$.  The condition $f(\infty)=0$ implies $b=0$.  The condition $f(x)=K-x$ implies $a=(K-x)x^{\gamma}$.
+ 
+ \im So, the put value is 
+ $$f(S_t) = (K-x)\left(\frac{x}{S_t}\right)^\gamma$$
+ \im The FOC for maximizing over $x$ is
+ $$\gamma K x^{\gamma-1} - (1+\gamma)x^\gamma =0$$
+ Maximizing over $x$ yields $x^*=\gamma K/(1+\gamma)$.
+ \ei
+     
+ \end{frame}
+ \end{document}
+

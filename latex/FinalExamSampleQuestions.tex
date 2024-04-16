@@ -1,0 +1,93 @@
+\input{Preamble.tex}\usepackage{hyperref}
+\DeclareMathOperator{\Cov}{Cov}
+\newcommand{\pts}[1]{(#1 points)\hspace{2ex}}
+\newcommand{\tm}{\widetilde{m}}
+\newcommand{\tw}{\widetilde{w}}
+\newcommand{\tx}{\widetilde{x}}
+\newcommand{\tX}{\widetilde{X}}
+\newcommand{\tr}{\widetilde{R}}
+\newcommand{\br}{\widetilde{\mathbf{R}}}
+\newcommand{\np}[1]{\newpage\noindent This page is intentionally blank.  \textbf{There are #1 questions left to do!}.\newpage}
+\newcommand{\halfskip}{\vskip 14\baselineskip}
+\begin{document}\thispagestyle{empty}
+
+\fontfamily{cmss}\fontseries{sbx}\fontshape{n}\fontsize{12}{18}
+\selectfont
+\thispagestyle{empty}
+
+\noindent \parbox{3in}{\setlength{\baselineskip}{0.67\baselineskip}
+\noindent BUSI 521 --- ECON 505\\
+\noindent Asset Pricing Theory\\
+\noindent Prof. Kerry Back\\
+\noindent Spring 2018}
+\hfill
+\parbox{1.5in}{\includegraphics[scale=0.9]{../../../Logo.jpg}}
+\centerline{FINAL EXAM}
+\vskip 0.5\baselineskip
+\hrule
+\vskip 0.5in
+This is a  three hour exam.  It is closed book and closed notes.  There are four questions, and they will be equally weighted.  There are blank pages between questions, in case you need to continue an answer onto another page.   
+\vskip\baselineskip
+\begin{enumerate}
+\item Consider an investor with an infinite horizon, discount rate $\delta$, and no labor income.  Assume investment opportunities (meaning $r$, $\mu$ and $\sigma$) depend on a univariate Markov process $X$ that satisfies
+$$\D X = \phi(X)\,\D t + \nu(X)'\,\D B\,.$$
+\begin{enumerate}
+\im Write down the HJB equation for the stationary value function $J$.
+\im Derive the envelope condition.
+\im Derive a formula for the optimal portfolio in terms of the partial derivatives of $J$ and the market parameters.  
+\im In the formula for the optimal portfolio, identify the log-optimal portfolio and the hedging demands.
+\end{enumerate} 
+
+\np{3}
+
+\newpage\item In the setting of the previous question, assume the investor has log utility.  Conjecture that
+$$J(x,w) \ = \ f(x) + \frac{w}{\delta}\,.$$
+\begin{enumerate}
+\im Show that the optimal consumption rate is $C = \delta W$.
+\im Derive an ODE that $f$ must satisfy.
+\im Assume the investor is a representative investor.  Rearrange the optimal portfolio formula to derive the CAPM.
+\end{enumerate}
+
+\np{2}
+
+\newpage\item Assume aggregate consumption is a geometric Brownian motion:
+$$\frac{\D C}{C} = \alpha\,\D t + \theta\,\D B$$
+for a univariate Brownian motion $B$.  Assume there is a representative investor with constant relative risk aversion $\rho$ and discount rate $\delta$.  
+\begin{enumerate}
+\im Write down an SDF $M$ that is a function of aggregate consumption.  Derive $\D M/M$ in terms of the market parameters ($\delta$, $\rho$, $\alpha$, and $\theta$) and $\D B$.
+\im Derive a formula for the equilibrium interest rate in terms of the market parameters.
+\im Let $P$ denote the price of the market portfolio.  Derive the constant $k$ such that $P=kC$ (make the assumptions on the market parameters that you need to ensure $k>0$). 
+\im Let $S$ denote the price of any risky asset.  Explain why the risk premium of the asset must equal
+$$\rho \left(\frac{\D S}{S}\right)\left(\frac{\D C}{C}\right)\,.$$
+\im What is the name of the asset pricing model in part (d)?
+\end{enumerate}
+
+\newpage\noindent This page is intentionally blank.  \textbf{There is 1 question left to do!}
+
+\newpage\item Consider an economy with a single risky asset and a single Brownian motion $B$.  Assume the risk-free rate is constant.  Let $X_t$ (which we usually call $\lambda$) denote the Sharpe ratio of the risky asset at date $t$.  Assume $X$ is a Markov process with dynamics
+$$\D X = \kappa(\theta-X)\,\D t + \nu\,\D B\,.$$
+Consider an investor with constant relative risk aversion $\rho$ and discount rate $\delta$.  Notice that the market is complete, so there is a unique SDF process $M$.
+\begin{enumerate}
+\item Use the Euler equation to derive a formula for the optimal consumption $C_t$ in terms of $M_t$.
+\im Let $W$ denote the optimal wealth.  Using the result of part (a), show that $W_t/C_t$ is a conditional expectation that depends on $X_t$, so $W_t = C_tf(X_t)$ for some function $f$.
+\im Let $\sigma$ denote the volatility of the risky asset.  Equate the stochastic part of $\D W/W$ to $\pi \sigma\,\D B$ to derive a formula for $\pi$.  Identify the log-optimal portfolio and the hedging demand.
+\im Derive an ODE for $f$.
+\end{enumerate}
+
+
+
+
+
+ 
+\end{enumerate}
+
+\newpage\noindent This page is intentionally blank.  \textbf{This is the last question!}
+\end{document}
+
+\newpage\item  Consider an asset with price $S$, constant volatility $\sigma$, and constant dividend yield $\delta$.  Suppose you have the option to sell the asset at a fixed price $K$ at any date $\tau$ that you choose.  The value of selling at $K$ an asset worth $S_\tau$ is $K-S_\tau$, so you get $h(S_\tau)$ when you sell, where $h(x) = K-x$.  You would only sell when the market price is low, so consider selling when $S$ hits $s^*$, where $s^* \leq S_0$. Let $f(s)$ denote the value of the option, for $s^* \leq s \leq S_0$.
+\begin{enumerate}
+\im Working under the risk-neutral probability, derive an ODE that $f$ must satisfy.
+\im Show that $as^\beta$ satisfies the ODE, where $\beta$ is a root of a certain quadratic equation.
+\im Use a boundary condition to show that the value of the option is $as^{-\gamma}$, where $-\gamma$ is the negative root of the quadratic equation.  Use another boundary condition to calculate $a$.
+\im Now optimize over $s^*$ to find the optimal price $s^*$ at which to exercise the option.
+\end{enumerate}

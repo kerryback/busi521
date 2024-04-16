@@ -1,0 +1,70 @@
+## Sample Final Exam Questions<br>Asset Pricing / Financial Economics I<br>Rice University
+
+1.  Consider an investor with an infinite horizon, discount rate $\delta$, and no labor income.  Assume investment opportunities (meaning $r$, $\mu$ and $\sigma$) depend on a univariate Markov process $X$ that satisfies
+$$d X = \phi(X)\,d t + \nu(X)'\,d B\,.$$
+
+a. Write down the HJB equation for the stationary value function $J$.
+b. Derive the envelope condition.
+c. Derive a formula for the optimal portfolio in terms of the partial derivatives of $J$ and the market parameters.  
+d. In the formula for the optimal portfolio, identify the log-optimal portfolio and the hedging demands.
+
+2. In the setting of the previous question, assume the investor has log utility.  Conjecture that
+$$J(x,w) \ = \ f(x) + \frac{w}{\delta}\,.$$
+a. Show that the optimal consumption rate is $C = \delta W$.
+b. Derive an ODE that $f$ must satisfy.
+c. Assume the investor is a representative investor.  Rearrange the optimal portfolio formula to derive the CAPM.
+
+3. Assume aggregate consumption is a geometric Brownian motion:
+$$\frac{d C}{C} = \alpha\,d t + \theta\,d B$$
+for a univariate Brownian motion $B$.  Assume there is a representative investor with constant relative risk aversion $\rho$ and discount rate $\delta$.  
+a. Write down an SDF $M$ that is a function of aggregate consumption.  Derive $d M/M$ in terms of the market parameters ($\delta$, $\rho$, $\alpha$, and $\theta$) and $d B$.
+b. Derive a formula for the equilibrium interest rate in terms of the market parameters.
+c. Let $P$ denote the price of the market portfolio.  Derive the constant $k$ such that $P=kC$ (make the assumptions on the market parameters that you need to ensure $k>0$). 
+d. Let $S$ denote the price of any risky asset.  Explain why the risk premium of the asset must equal
+$$\rho \left(\frac{d S}{S}\right)\left(\frac{d C}{C}\right)\,.$$
+e. What is the name of the asset pricing model in part (d)?
+
+4. Consider an economy with a single risky asset and a single Brownian motion $B$.  Assume the risk-free rate is constant.  Let $X_t$ (which we usually call $\lambda$) denote the Sharpe ratio of the risky asset at date $t$.  Assume $X$ is a Markov process with dynamics
+$$d X = \kappa(\theta-X)\,d t + \nu\,d B\,.$$
+Consider an investor with constant relative risk aversion $\rho$ and discount rate $\delta$.  Notice that the market is complete, so there is a unique SDF process $M$.
+a. Use the Euler equation to derive a formula for the optimal consumption $C_t$ in terms of $M_t$.
+b. Let $W$ denote the optimal wealth.  Using the result of part (a), show that $W_t/C_t$ is a conditional expectation that depends on $X_t$, so $W_t = C_tf(X_t)$ for some function $f$.
+c. Let $\sigma$ denote the volatility of the risky asset.  Equate the stochastic part of $d W/W$ to $\pi \sigma\,d B$ to derive a formula for $\pi$.  Identify the log-optimal portfolio and the hedging demand.
+d. Derive an ODE for $f$.
+
+
+
+5.  Consider an investor with log utility in a continuous-time model with a single state variable $X$.  Show that if the investor's value function is $J(w,x) = a \log w + f(x)$ for a constant $a$ and function $f$, then $f$ must satisfy a certain ODE.  Derive the ODE.  Also, derive the optimal portfolio for the investor.
+
+6. Assume the price $S$ of a non-dividend-paying is a geometric Brownian motion.  Assume there is a constant risk-free rate.  Consider a security that pays the following at a given date $T$:
+$$\begin{cases}
+K_1 & \text{if $S_T < K_1$}\\
+S_T & \text{if $K_1 \le S_T \le K_2$}\\
+K_2  & \text{if $S_T > K_2$}
+\end{cases}
+$$
+for constants $K_1<K_2$.  Derive a PDE that the value of the security must satisfy.  Also, explain how you would price this security using an SDF process.  Give as much detail as you can about pricing using an SDF process, starting with describing the SDF process.
+
+7. Suppose there is a single Brownian motion and a single risky asset with price
+process S satisfying
+$$\frac{d S}{S} = \mu\,d t + \sigma\,d B$$
+for constants $\mu$ and $\sigma$. Assume the asset does not pay dividends prior to some
+date T, and assume the risk-free asset is constant. Consider a security that pays
+$S_T^2$ at date $T$.
+a. Use the SDF process to compute the price at which the security should trade
+at date $t<T$.
+b. Derive the fundamental PDE for the price using the risk-neutral probability.
+
+8. Consider a perpetual call option on an asset that pays a constant dividend
+yield $q>0$ and has a constant volatility $\sigma$. Assume the interest rate $r$ is
+constant. Derive the optimal exercise policy. Hint: Given that $q$ is part of the
+return, the asset price $S$ follows
+$$\frac{dS}{S} = (r-q)\,dt + \sigma\,dB^*$$
+where $B^*$ is a Brownian motion under the risk-neutral probability.
+
+9. Consider an asset with price $S$, constant volatility $\sigma$, and constant dividend yield $\delta$.  Suppose you have the option to sell the asset at a fixed price $K$ at any date $\tau$ that you choose.  The value of selling at $K$ an asset worth $S_\tau$ is $K-S_\tau$, so you get $h(S_\tau)$ when you sell, where $h(x) = K-x$.  You would only sell when the market price is low, so consider selling when $S$ hits $s^*$, where $s^* \leq S_0$. Let $f(s)$ denote the value of the option, for $s^* \leq s \leq S_0$.
+a. Working under the risk-neutral probability, derive an ODE that $f$ must satisfy.
+b. Show that $as^\beta$ satisfies the ODE, where $\beta$ is a root of a certain quadratic equation.
+c. Use a boundary condition to show that the value of the option is $as^{-\gamma}$, where $-\gamma$ is the negative root of the quadratic equation.  Use another boundary condition to calculate $a$.
+d. Now optimize over $s^*$ to find the optimal price $s^*$ at which to exercise the option.
+

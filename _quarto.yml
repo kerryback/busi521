@@ -6,6 +6,7 @@ project:
     - slides.qmd
     - assignments.qmd
     - sample_midterm.qmd
+    - sample_final.qmd
                
 website:
   title: ""
@@ -20,7 +21,9 @@ website:
       - text: Assignments
         file: assignments.qmd  
       - text: Sample Midterm 
-        file: sample_midterm.qmd   
+        file: sample_midterm.qmd  
+      - text: Sample Final 
+        file: sample_final.qmd 
         
 format: 
   html:

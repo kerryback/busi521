@@ -1,4 +1,4 @@
-## Asset Pricing Theory / Financial Economics I<br>Rice University <br>Spring 2024
+## Asset Pricing Theory / Financial Economics I<br>Rice University <br>Spring 2025
 
 
 #### Instructor
@@ -10,14 +10,12 @@ J. Howard Creekmore Professor of Finance and Professor of Economics<br>
 
 #### Teaching Assistants
 
-[Burak Kucuk](mailto:kb53@rice.edu)<br>
-[Binyu Zhao](mailto:bz27@rice.edu)
 
 #### Meeting Schedule
 
 Room 317, McNair Hall<br>
 TTh 2:30 -- 3:45<br>
-1/9/2024 -- 4/18/2024
+1/14/2024 -- 4/24/2024
 
 
 #### Textbook
@@ -40,7 +38,7 @@ other areas of economics and finance as well.
 
 #### Course Calendar
 
-This is a cross-listed course between the Jones School and the School of Social Sciences.  We will follow the School of Social Sciences academic calendar.  We meet TTh from 2:30-3:45 commencing January 9.  The last class day is April 18.  Per the university calendar, there will be no class on February 8 or on March 12 and March 14 (spring break).
+This is a cross-listed course between the Jones School and the School of Social Sciences.  We will follow the School of Social Sciences academic calendar.  We meet TTh from 2:30-3:45 commencing January 14.  The last class day is April 24.  Per the university calendar, there will be no class on February 13 or on March 18 and March 20 (spring break).
 The midterm exam will be February 29.  The final exam will be during exam week.
 
 #### Course Schedule by Week

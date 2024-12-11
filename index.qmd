@@ -33,7 +33,7 @@ study portfolio choice and some corporate investment decisions. Dynamic programm
 and other aspects of the mathematics of uncertainty in continuous time are useful in
 other areas of economics and finance as well.
 
-The last part of the course will cover various topics that continue to be of research interest, and students will make presentations.
+The middle part of the course will cover various topics that are of continuing research interest, and students will make presentations.
 
 #### Course Calendar
 
@@ -69,8 +69,7 @@ The topics listed above will be assigned to students one-to-one.  In addition to
 
 #### Grading
 
-Grades will be based on class participation, individual homework assignments, class presentations, and a final exam.  
-Late homeworks will not be accepted, but I will drop the lowest homework score.
+Grades will be based on class participation, individual homework assignments, class presentations, and a final exam.  Late homeworks will not be accepted, but I will drop the lowest homework score.
 
 #### Honor Code
 

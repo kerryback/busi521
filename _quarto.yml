@@ -5,7 +5,6 @@ project:
     - index.qmd
     - slides.qmd
     - assignments.qmd
-    - sample_midterm.qmd
     - sample_final.qmd
                
 website:
@@ -13,15 +12,13 @@ website:
   search: false  
   navbar:
     search: false
-    title: BUSI 521 / ECON 505
+    title: "BUSI 521 / ECON 505: ASSET PRICING / FIN ECON I"
     file: index.qmd
     right:
       - text: Slides
         file: slides.qmd
       - text: Assignments
         file: assignments.qmd  
-      - text: Sample Midterm 
-        file: sample_midterm.qmd  
       - text: Sample Final 
         file: sample_final.qmd 
         

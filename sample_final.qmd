@@ -1,4 +1,4 @@
-## Sample Final Exam Questions<br>Asset Pricing / Financial Economics I<br>Rice University
+## Sample Final Exam Questions
 
 1.  Consider an investor with an infinite horizon, discount rate $\delta$, and no labor income.  Assume investment opportunities (meaning $r$, $\mu$ and $\sigma$) depend on a univariate Markov process $X$ that satisfies
 $$d X = \phi(X)\,d t + \nu(X)'\,d B\,.$$

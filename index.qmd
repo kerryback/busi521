@@ -12,6 +12,7 @@ J. Howard Creekmore Professor of Finance and Professor of Economics<br>
 #### Meeting Schedule
 
 TTh 2:30 -- 3:45<br>
+317 McNair Hall<br>
 1/14/2024 -- 4/24/2024
 
 
@@ -56,7 +57,7 @@ The final exam will be during exam week.
    g. Common value auctions (Chapter 24)
    h. Allais paradox and betweenness preferences (Chapter 25)
    i. Generalized disappointment aversion (Chapter 25)
-   j. Ellsberg paradox and ambuiguity aversion (Chapter 25)
+   j. Ellsberg paradox and ambiguity aversion (Chapter 25)
 3. Continuous time methods and applications (Mar 25 - Apr 24)
    a. Brownian motion and stochastic calculus (Chapter 12)
    b. Dynamic programming (Chapters 9, 14, & 20)

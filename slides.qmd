@@ -1,4 +1,4 @@
-### Slide Decks<br>BUSI 521/ECON 505<br>Rice University<br>Spring 2025
+#### Slides Spring 2025
 
 [Chapter 1](Chapter01.pdf)
 <br>[Chapter 2](Chapter02.pdf)

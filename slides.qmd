@@ -1,1 +1,13 @@
-## Slide Decks
+### Slide Decks<br>BUSI 521/ECON 505<br>Rice University<br>Spring 2025
+
+[Chapter 1](Chapter01.pdf)
+<br>[Chapter 2](Chapter02.pdf)
+<br>[Chapter 3](Chapter03.pdf)
+<br>[Chapter 5](Chapter05.pdf)
+<br>[Chapter 6](Chapter06.pdf)
+<br>[Chapter 4](Chapter04.pdf)
+<br>[Chapter 7](Chapter07.pdf)
+<br>[Chapter 12](Chapter12.pdf)
+<br>[Chapter 14](Chapte14.pdf)
+<br>[Chapter 15](Chapter15.pdf)
+<br>[Chapter 19](Chapter19.pdf)

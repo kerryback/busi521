@@ -82,7 +82,7 @@
 \newcommand{\rb}{\right]} 
 \newcommand{\rp}{\right)} 
 
-\setbeamertemplate{frame footer}{BUSI 521/ECON 505/ECON 505}
+\setbeamertemplate{frame footer}{Chapter 2 BUSI 521/ECON 505}
 
 \title{Chapter 2: Portfolio Choice}
 
@@ -112,10 +112,10 @@ Rice University}
     \bi 
     \im Date-1 wealth is
     $$ \tw^* := \theta^*\tx + (w_0-p\theta^*)(1+r_f)$$
-    \im Divide the FOC by p.  Set $\tR = \tx / p$.  This is the (gross) return on the risky asset, meaning 1 + rate of return.
+    \im Divide the FOC by p.  Set $\tr = \tx / p$.  This is the (gross) return on the risky asset, meaning 1 + rate of return.
     \im Set $R_f = 1 + r_f$.  This is the (gross) risk-free return.
     \im The FOC is
-    $$ \mye[u'(\tw^*)\{\tR - R_f\}] = 0$$
+    $$ \mye[u'(\tw^*)\{\tr - R_f\}] = 0$$
     \pause 
     \im In words, marginal utility at the optimum is orthogonal to the excess return.
     \ei
@@ -123,11 +123,11 @@ Rice University}
 
 \begin{frame}{Preview of Chapter 3}
     \bi 
-    \im Set $\tm = u'(\tw^*)$.  The FOC is $\mye[\tm(\tR-R_f)] = 0$.
+    \im Set $\tm = u'(\tw^*)$.  The FOC is $\mye[\tm(\tr-R_f)] = 0$.
     \im By the definition of covariance, 
-    $$\mye[\tm(\tR-R_f)] = \mye[\tm]\mye[\tR-R_f] + \cov(\tm, \tR-R_f)$$
+    $$\mye[\tm(\tr-R_f)] = \mye[\tm]\mye[\tr-R_f] + \cov(\tm, \tr-R_f)$$
     \im So, the risk premium is
-    $$\mye[\tR - R_f] = - \frac{1}{\mye[\tm]} \cov(\tm, \tR)$$
+    $$\mye[\tr - R_f] = - \frac{1}{\mye[\tm]} \cov(\tm, \tr)$$
     \im What sign should the covariance with marginal utility have?
     \ei
 \end{frame}
@@ -206,7 +206,7 @@ $$\mye\lb u'\lp \sum_{i=1}^n \theta_i\tx_i \rp (\tr_i -\tr_j)\rb = 0 $$
 \ei
 \end{frame}
 
-\section{Some Results for One Risky Asset}
+\section{Results for One Risky Asset}
 \subsection{}
 
 \bfr\frametitle{Go Long if Risk Premium is Positive}
@@ -286,21 +286,21 @@ Usually assume $\alpha w_0$ is between 1 and 10.
 \im $\phi=\,$ $n$--vector of investments in consumption good units
 \im $\pi = (1/w_0)\phi$
 \im $\iota=\,$ $n$--vector of 1's
-\im $\Sigma = \,$ $n \times n$ covariance matrix, $\Sigma_{ij} = \cov(\tr_i,\tr_j)$
-$$\Sigma = \mye[(\tr-\mu)(\tr-\mu)']$$
+\im $\Sigma = \,$ $n \times n$ covariance matrix, $\Sigma_{ij} = \cov(\tR_i,\tR_j)$
+$$\Sigma = \mye[(\tR-\mu)(\tR-\mu)']$$
 \im date--1 wealth $\tw = w_0R_f + \phi'(\tR - R_f\iota)$
 \im expected wealth $\ow = w_0R_f + \phi'(\mu - R_f\iota)$
 \im variance of wealth $\, = \phi'\Sigma\phi$.  Proof:
-$$\mye[(\tw - \ow)^2] = \mye[\{\phi'(\tR - \mu)\}^2] = \mye[\phi'(\tr-\mu)(\tr-\mu)'\phi] = \phi'\Sigma\phi$$
+$$\mye[(\tw - \ow)^2] = \mye[\{\phi'(\tR - \mu)\}^2] = \mye[\phi'(\tR-\mu)(\tR-\mu)'\phi] = \phi'\Sigma\phi$$
 \ei
 \end{frame}
 
 \bfr\frametitle{Diversification}
 \bi
 \im Portfolio variance is
-$$\pi'\Sigma\pi = \sum_{i=1}^n \pi_i^2 \var(\tr_i) + 2 \sum_{i=1}^n \sum_{j=i+1}^n \pi_i\pi_j \cov(\tr_i,\tr_j)$$
+$$\pi'\Sigma\pi = \sum_{i=1}^n \pi_i^2 \var(\tR_i) + 2 \sum_{i=1}^n \sum_{j=i+1}^n \pi_i\pi_j \cov(\tR_i,\tR_j)$$
 \im We can generally make 
-$\sum_{i=1}^n \pi_i^2 \var(\tr_i)$
+$\sum_{i=1}^n \pi_i^2 \var(\tR_i)$
 small by diversifying, if there are many assets.
 \im Suppose for example that the risky assets are uncorrelated and have the same variance $\sigma^2$ ($\Sigma = \sigma^2I$).  Then
 $$\pi'\Sigma\pi = \sigma^2 \sum_{i=1}^n \pi_i^2$$
@@ -331,7 +331,7 @@ Note no wealth effects.
 $$\sum_i \phi \tR_i + \left(w_0- \sum_i \phi_i\right)R_f$$
 \im Divide by $w_0$ and write $\pi_i = \phi_i/w_0$.
 \im Date-1 wealth is
-$$w_0 \left[\sum_i \pi \tR_i + \left(1- \sum_i \pi_i\right)R_f\right] := w_0 \tR_p$$
+$$w_0 \left[\sum_i \pi_i \tR_i + \left(1- \sum_i \pi_i\right)R_f\right] := w_0 \tr_p$$
 \im In words, initial wealth times the (gross) portfolio return.
     \ei
 \end{frame}
@@ -339,7 +339,7 @@ $$w_0 \left[\sum_i \pi \tR_i + \left(1- \sum_i \pi_i\right)R_f\right] := w_0 \tR
 \begin{frame}{How does a Log Utility Investor's Portfolio Depend on Wealth?}
     \bi 
     \im Utility is
-    $$\log (w_0\tR_p) = \log w_0 + \log \tR_p = \log w_0 + \log\left(\sum_i \pi \tR_i + \left(1- \sum_i \pi_i\right)R_f\right)$$
+    $$\log (w_0\tr_p) = \log w_0 + \log \tr_p = \log w_0 + \log\left(\sum_i \pi \tr_i + \left(1- \sum_i \pi_i\right)R_f\right)$$
      \im The optimal portfolio maximizes expected log of portfolio return and is independent of initial wealth.
     \im Optimal dollar investments are proportional to initial wealth: $\phi_i^* = w_0 \pi_i^*$.
     \im Optimal shares are also proportional to initial wealth: $\theta_i^* = \phi_i^*/p_i = w_0 \pi_i^*/p_i$.
@@ -349,7 +349,7 @@ $$w_0 \left[\sum_i \pi \tR_i + \left(1- \sum_i \pi_i\right)R_f\right] := w_0 \tR
 \begin{frame}{Power Utility}
     \bi
     \im Utility is
-    $$\frac{1}{1-\rho} (w_0 \tR_p)^{1-\rho} = w_0^{1-\rho} \times \frac{1}{1-\rho} \tR_p^{1-\rho}$$
+    $$\frac{1}{1-\rho} (w_0 \tr_p)^{1-\rho} = w_0^{1-\rho} \times \frac{1}{1-\rho} \tr_p^{1-\rho}$$
     \im So $w_0^{1-\rho}$ is a positive constant that multiplies the expected utility of the portfolio return.
     \im Optimal portfolio $\pi^*$ maximizes expected utility of portfolio return and is independent of initial wealth.
     \im Optimal dollar investments are proportional to initial wealth: $\phi_i^* = w_0 \pi_i^*$.
@@ -388,11 +388,11 @@ $$w_0 \left[\sum_i \pi \tR_i + \left(1- \sum_i \pi_i\right)R_f\right] := w_0 \tR
 \im Date--0 and date--1 consumption.  Utility function $v(c_0,c_1)$.  Assume time-additive utility
 $$v(c_0,c_1) = u(c_0) + \delta u(c_1)$$
 \im Consumption/investment problem:  choose $c_0, \phi_1, \ldots, \phi_n$ to 
-$$\max \;u(c_0) +  \mye\lb \delta u\lp \sum_{i=1}^n \phi_i\tr_i \rp \rb \quad \text{subject to} \quad c_0 + \sum_{i=1}^n \phi_i = w\,.$$
+$$\max \;u(c_0) +  \mye\lb \delta u\lp \sum_{i=1}^n \phi_i\tR_i \rp \rb \quad \text{subject to} \quad c_0 + \sum_{i=1}^n \phi_i = w\,.$$
 \im FOC: $u'(c_0) = \lambda$ and 
-$$(\forall \,i) \quad  \mye\lb \delta u'\lp \sum_{i=1}^n \phi_i\tr_i \rp \tr_i\rb = \lambda$$
+$$(\forall \,i) \quad  \mye\lb \delta u'\lp \sum_{i=1}^n \phi_i\tR_i \rp \tR_i\rb = \lambda$$
 \im So
-$$(\forall \,i) \quad \mye\lb \frac{\delta u'\lp \sum_{i=1}^n \phi_i\tr_i \rp}{u'(c_0)} \tr_i\rb = 1$$
+$$(\forall \,i) \quad \mye\lb \frac{\delta u'\lp \sum_{i=1}^n \phi_i\tR_i \rp}{u'(c_0)} \tR_i\rb = 1$$
 \ei
 \end{frame}
 
@@ -452,10 +452,10 @@ $$\frac{\xi_i}{\sum_{j=1}^n \xi_j}$$
 \end{frame}
 
 \begin{frame}[plain]
-What is the sign of $\mye[u''(\tw)(\tr-R_f)]$?
+What is the sign of $\mye[u''(\tw)(\tR-R_f\iota)]$?
 \bi
 \im By the definition of covariance,
-$$\mye[u''(\tw)(\tr-R_f)] = \cov(u''(\tw),\tr-R_f) + \mye[u''(\tw)]\mye[\tr-R_f]$$
+$$\mye[u''(\tw)(\tR-R_f)] = \cov(u''(\tw),\tR-R_f) + \mye[u''(\tw)]\mye[\tR-R_f]$$
 and the second term is negative.
 \im DARA implies the first term is positive and larger in absolute value than the second term.
 \ei

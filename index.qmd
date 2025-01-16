@@ -59,8 +59,8 @@ The final exam will be during exam week.
    d. Glosten-Milgrom and Kyle models (Chapter 24) -- Fourth
    e. Glosten model of limit-order markets (Chapter 24)  -- Zhekai
    f. Allais paradox and betweenness preferences (Chapter 25) -- Nithya
-   g. Generalized disappointment aversion (Chapter 25)
-   h. Ellsberg paradox and ambiguity aversion (Chapter 25)
+   g. Generalized disappointment aversion (Chapter 25) -- Hritik
+   h. Ellsberg paradox and ambiguity aversion (Chapter 25) -- Hasan
 3. Continuous time methods and applications (Mar 11 -- Apr 24)
    a. Brownian motion and stochastic calculus (Chapter 12)
    b. Dynamic programming (Chapters 9, 14, & 20)

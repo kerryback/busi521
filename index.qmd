@@ -54,11 +54,11 @@ The final exam will be during exam week.
    c. Equilibrium, efficiency, and representative investors (Chapters 4 & 7)
 2. Topics (student presentations, Feb 27 -- Mar 11)
    a. Heterogenous beliefs and short sale constraints (Chapter 21)
-   b. Bubbles (Chapter 21)
-   c. Rational expectations equilibria (Chapter 22)
-   d. Glosten-Milgrom and Kyle models (Chapter 24)
-   e. Glosten model of limit-order markets (Chapter 24)
-   f. Allais paradox and betweenness preferences (Chapter 25)
+   b. Bubbles (Chapter 21) -- Amy
+   c. Rational expectations equilibria (Chapter 22) -- Mary
+   d. Glosten-Milgrom and Kyle models (Chapter 24) -- Fourth
+   e. Glosten model of limit-order markets (Chapter 24)  -- Zhekai
+   f. Allais paradox and betweenness preferences (Chapter 25) -- Nithya
    g. Generalized disappointment aversion (Chapter 25)
    h. Ellsberg paradox and ambiguity aversion (Chapter 25)
 3. Continuous time methods and applications (Mar 11 -- Apr 24)

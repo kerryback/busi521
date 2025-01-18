@@ -53,7 +53,7 @@ The final exam will be during exam week.
    b. Mean-variance analysis and factor picing (Chapters 5 & 6)
    c. Equilibrium, efficiency, and representative investors (Chapters 4 & 7)
 2. Topics (student presentations, Feb 27 -- Mar 11)
-   a. Heterogenous beliefs and short sale constraints (Chapter 21)
+   a. Heterogenous beliefs and short sale constraints (Chapter 21) -- Percy
    b. Bubbles (Chapter 21) -- Amy
    c. Rational expectations equilibria (Chapter 22) -- Mary
    d. Glosten-Milgrom and Kyle models (Chapter 24) -- Fourth

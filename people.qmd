@@ -1,4 +1,4 @@
 ### People
 
-![](people.png)
+![](people.png){height=600}
 

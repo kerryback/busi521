@@ -6,6 +6,7 @@ project:
     - slides.qmd
     - assignments.qmd
     - sample_final.qmd
+    - people.qmd
                
 website:
   title: ""

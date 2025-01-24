@@ -7,6 +7,7 @@ project:
     - assignments.qmd
     - sample_final.qmd
     - people.qmd
+    - podcasts.qmd
                
 website:
   title: ""
@@ -20,8 +21,8 @@ website:
         file: slides.qmd
       - text: Assignments
         file: assignments.qmd  
-      - text: Sample Final 
-        file: sample_final.qmd 
+      - text: Podcasts 
+        file: podcasts.qmd 
         
 format: 
   html:

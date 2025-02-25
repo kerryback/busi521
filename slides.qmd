@@ -11,3 +11,5 @@
 <br>[Chapter 14](Chapte14.pdf)
 <br>[Chapter 15](Chapter15.pdf)
 <br>[Chapter 19](Chapter19.pdf)
+<br>[Performance of Factor Models in a Simple Economy](back-ober.pdf)
+<br>[Slides](lsu.pdf)

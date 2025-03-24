@@ -1,0 +1,106 @@
+---
+title: "Applications of Betweenness Preferences in the Academic Finance Literature"
+format: pdf
+---
+
+## 1. Introduction
+
+Investor preferences that satisfy the **betweenness axiom** have attracted substantial interest in finance as a flexible middle ground between traditional expected utility and more radical behavioral models. Under betweenness, indifference curves over lotteries are convex: if an investor is indifferent between two gambles, any probability mixture of those gambles is equally attractive. This weaker axiom (relative to the Independence axiom of expected utility) retains normative appeal while accommodating behaviors like the **Allais paradox** that violate expected utility. In essence, betweenness preferences preserve “linear” mixing of indifference states but allow a form of nonlinear evaluation of risk that can better match observed choices.
+
+Over the past several decades, both economists and finance scholars have applied betweenness-based utility models to a wide range of problems – from asset pricing puzzles and portfolio allocation to behavioral anomalies – often in top-tier journals such as *Econometrica*, *Journal of Finance*, *Review of Financial Studies*, *Journal of Financial Economics*, and others. This report reviews the key applications of betweenness preferences in finance, spanning theoretical foundations and empirical findings across asset pricing, portfolio choice, behavioral finance, and corporate finance. We highlight major contributions and findings, and provide summary tables of influential papers and their contributions for easy reference.
+
+## 2. Theoretical Foundations of Betweenness Preferences
+
+Early work in decision theory established the axiomatic basis for betweenness preferences as a generalization of expected utility:
+
+- **Chew (1983)** introduced *weighted utility theory* (sometimes called implicit expected utility), weakening independence to a “ratio substitution” condition that implies betweenness.  
+- **Dekel (1986)** replaced the independence axiom with the betweenness axiom (convex indifference sets) and showed it yields preferences that are quasi-concave in probabilities and admit an implicit expected-utility representation.  
+- **Chew, Epstein, and Segal (1991)** considered an even weaker axiom (*mixture symmetry*) that nests betweenness.  
+- **Gul (1991)** introduced *disappointment aversion (DA)* theory, a crucial contribution to finance. Outcomes below an endogenous reference point (the certainty-equivalent) receive extra disutility, creating asymmetric risk aversion.  
+
+A key insight is that betweenness is the weakest condition ensuring “linearity in the probabilities” for *mixed* lotteries among indifferent outcomes, so it captures important deviations from expected utility while preserving tractability.
+
+### 2.1 Disappointment Aversion
+
+Among betweenness models, **Gul’s (1991) disappointment aversion (DA)** has become the most widely used in finance. Under DA, there is an endogenous reference level (often the certainty-equivalent of a gamble). Outcomes below that level generate a “disappointment” penalty, yielding **first-order risk aversion** – a kink in utility that makes even small risks undesirable. This feature helped address the limitation that expected utility generates only second-order risk aversion and typically cannot match empirical risk premia without implausibly high curvature.
+
+## 3. Selected Key Papers
+
+Below is a table summarizing key theoretical and empirical papers on betweenness preferences and their contributions, emphasizing top journals in economics and finance:
+
+| **Paper (Year)**                                                    | **Journal**                | **Focus/Area**                         | **Contribution**                                                                                                        |
+|:--------------------------------------------------------------------|:---------------------------|:----------------------------------------|:------------------------------------------------------------------------------------------------------------------------|
+| **Chew (1983)** – “Weighted Utility Theory”                         | –                          | Axiomatic decision theory              | Introduces *weighted utility*, weakening independence to betweenness. Establishes a linear mixing of indifference states. |
+| **Dekel (1986)** – “An Axiomatic Characterization of Preferences Under Uncertainty” | *J. Economic Theory*       | Axiomatic decision theory              | Formal characterization of betweenness. Demonstrates that convex indifference curves imply an implicit EU representation. |
+| **Gul (1991)** – “A Theory of Disappointment Aversion”             | *Econometrica*             | Axiomatic decision theory (finance)    | Defines DA preferences, a betweenness-satisfying model with first-order risk aversion (loss aversion without prob. weighting). |
+| **Chew, Epstein, & Segal (1991)** – “Mixture Symmetry and Quadratic Utility” | *Econometrica*            | Decision theory (extension)            | Proposes *mixture symmetry*, a weaker axiom than betweenness. Derives quadratic utility forms. Less commonly used in finance but influential theoretically.            |
+| **Bekaert, Hodrick & Marshall (1997)** – “The Implications of First-Order Risk Aversion for Asset Market Risk Premiums” | *J. Monetary Economics* | Asset pricing theory                   | Incorporates first-order risk aversion preferences (betweenness) into a general equilibrium model of equity, bond, and FX returns.  |
+| **Ang, Bekaert & Liu (2005)** – “Why Stocks May Disappoint”         | *Journal of Financial Economics* | Portfolio choice & asset pricing | Calibrates Gul’s DA utility. Explains moderate equity allocations even with low curvature, helps reconcile equity premium puzzle, and highlights asymmetric risk aversion. |
+| **Routledge & Zin (2010)** – “Generalized Disappointment Aversion and Asset Prices” | *Journal of Finance*       | Asset pricing theory                   | Extends DA to GDA (Generalized DA). Introduces state-dependent first-order risk aversion in a recursive utility setting, matching equity premium and risk dynamics.     |
+| **Bonomo, García, Meddahi & Tedongap (2011)** – “Generalized Disappointment Aversion, Long-Run Volatility Risk, and Asset Prices” | *Review of Financial Studies* | Asset pricing (theory) | Embeds GDA in a production economy with stochastic volatility. Explains variance risk premium and option-implied skewness.                                            |
+| **Dahlquist, Farago & Tedongap (2021)** – “Asymmetries and Portfolio Choice” | *Review of Financial Studies* | Portfolio choice (theory & empirics)   | Derives a three-fund separation under generalized DA. Shows DA investors strongly avoid negatively skewed assets, explaining horizon-based equity allocation.          |
+| **Choi, Fisman, Gale & Kariv (2007)** – “Consistency and Heterogeneity of Individual Behavior under Uncertainty” | *American Economic Review* | Behavioral/experimental                | Experimental data shows many individuals’ choices fit a two-parameter DA utility better than expected utility.                                                  |
+| **Gill & Prowse (2012)** – “A Structural Analysis of Disappointment Aversion in a Real Effort Competition” | *American Economic Review* | Behavioral/experimental                | Finds significant DA in real-effort tournaments. Subjects exhibit a discouragement effect when outcomes appear disappointing.                                        |
+
+## 4. Asset Pricing Applications
+
+One of the primary motivations for adopting betweenness-based preferences in finance has been to address persistent **asset pricing puzzles** that were difficult to reconcile under expected utility:
+
+- **Equity Premium Puzzle:** By introducing **first-order risk aversion**, disappointment aversion models significantly raise the equilibrium equity premium without requiring extreme curvature of utility.  
+- **State-Dependent Risk Aversion:** *Generalized Disappointment Aversion (GDA)* models (e.g., Routledge & Zin, 2010) make risk aversion spike in bad states, generating time-varying, countercyclical risk premia.  
+- **Skewness and Tail Risks:** Betweenness preferences imply strong aversion to large downside risks. Assets with negative skew (e.g., crash risk) command higher risk premia, consistent with empirical observations.  
+
+### 4.1 Disappointment Aversion in General Equilibrium
+
+- **Bekaert, Hodrick & Marshall (1997)** applied betweenness preferences in a consumption-based asset pricing framework to generate higher risk premia.  
+- **Routledge & Zin (2010)** introduced GDA in a recursive utility setting to replicate the equity premium, Sharpe ratio volatility, and countercyclical pricing kernel.  
+- **Bonomo et al. (2011)** incorporated long-run volatility risk and showed GDA helps match variance risk premiums and option market skewness.  
+
+## 5. Portfolio Choice Applications
+
+### 5.1 Moderate Equity Allocations and Skewness
+
+Under expected utility, moderate risk aversion typically yields higher equity holdings than observed. However:
+
+- **Ang, Bekaert & Liu (2005)** showed that a modest level of disappointment aversion explains plausible equity shares despite low curvature.  
+- The *aversion to downside risk* also leads to distinct hedging demands and lower equity allocations in bad states, aligning better with actual investor behavior.
+
+### 5.2 Horizon Effects
+
+Betweenness preferences imply that **short-horizon investors** especially dislike downside outcomes, since in a single period, the chance of “disappointment” is high:
+
+- **Dahlquist, Farago & Tedongap (2021)** found that disappointment-averse investors shun equities more strongly at short horizons due to negative skewness of stock returns.  
+- This creates a preference-based rationale for **life-cycle investment strategies**, where risk-taking increases with horizon.
+
+## 6. Behavioral Finance and Experimental Evidence
+
+Despite being a “rational” axiomatic model, betweenness-based preferences capture behavioral phenomena akin to loss aversion:
+
+- **Choi et al. (2007)** provided experimental evidence that many subjects’ risk choices are consistent with disappointment aversion rather than expected utility.  
+- **Gill & Prowse (2012)** found **disappointment aversion** explains real-effort competition outcomes. Subjects who anticipate “disappointing losses” sometimes reduce effort to avoid the psychological cost of a close defeat.  
+
+These studies demonstrate that betweenness frameworks are empirically relevant and can accommodate behavioral regularities (e.g. strong loss aversion, non-linear risk evaluation) without resorting to probability weighting or reference-dependent frames seen in prospect theory.
+
+## 7. Corporate Finance and Other Areas
+
+While most corporate finance models still assume expected utility or risk neutrality, disappointment aversion has potential relevance for:
+
+- **Managerial Decision-Making:** Managers fearing disappointing outcomes might undertake more conservative projects, reduce leverage, or hedge more aggressively.  
+- **Risk Management:** A strong aversion to surprises could lead firms to over-insure or systematically avoid high-variance ventures.  
+- **Behavioral Corporate Finance:** Similar to prospect theory models of managerial loss aversion, DA can explain reluctance to cut dividends or invest in risky R&D.
+
+Though relatively few corporate finance papers explicitly adopt betweenness preferences, the existing evidence suggests this area is ripe for further research.
+
+## 8. Conclusion
+
+Betweenness preferences – particularly **disappointment aversion** and its variants – have become valuable tools in finance research, offering a parsimonious way to capture real-world risk attitudes that depart from expected utility. They have been successfully applied to:
+
+- **Explain asset pricing puzzles** (equity premium, skewness premiums, countercyclical risk).
+- **Rationalize portfolio allocations** (moderate equity shares, sensitivity to downside risk).
+- **Reconcile experimental findings** showing strong aversion to disappointing outcomes.
+
+By relaxing the independence axiom only slightly, betweenness preferences combine analytic tractability with richer behavioral predictions, bridging rational and behavioral finance. While they have found greatest application in asset pricing and portfolio choice, there is potential for broader use in corporate finance and other domains. As the literature evolves, betweenness-based models are likely to remain an important part of the finance toolkit for understanding investor behavior and market outcomes.
+
+---
+
+*Compiled for reference. For further detail, please consult the articles cited in the text and table.*

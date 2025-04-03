@@ -8,6 +8,7 @@
 <br>[Chapter 4](Chapter04.pdf)
 <br>[Chapter 7](Chapter07.pdf)
 <br>[Chapter 12](Chapter12.pdf)
+<br>[Chapter 13](Chapter13.pdf)
 <br>[Chapter 14](Chapter14.pdf)
 <br>[Chapter 15](Chapter15.pdf)
 <br>[Chapter 19](Chapter19.pdf)

@@ -7,7 +7,7 @@
 
 #### Exercise Solutions
 
-[Solutions](https://github.com/kerryback/busi521/solutions.git)
+[Solutions](https://github.com/kerryback/busi521/tree/main/solutions)
 
 #### Instructor
 

@@ -1,4 +1,4 @@
-## Sample Midterm Questions
+## Sample Midterm Questions<br>Asset Pricing / Financial Economics I<br>Rice University
 
 1.  Assume there are three states of the world that are equally likely.  There are two assets with prices $p_1=p_2=1$.  The payoffs of the first asset across the three states of the world are $(1,2,1)$.  The payoffs of the second asset across the three states of the world are $(0,1,3)$.  
     (a) Describe the one-dimensional family of state price vectors.

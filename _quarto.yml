@@ -8,6 +8,8 @@ project:
     - sample_final.qmd
     - people.qmd
     - podcasts.qmd
+    - sample_midterm.qmd
+    - sample_final.qmd
                
 website:
   title: ""

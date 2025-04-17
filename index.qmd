@@ -1,5 +1,13 @@
 ### BUSI 521/ECON 505<br>Rice University<br>Spring 2025
 
+#### Sample Exams
+
+[Sample Midterm](sample_midterm.html)<br>
+[Sample Final](sample_final.html)
+
+#### Exercise Solutions
+
+[Solutions](https://github.com/kerryback/busi521/solutions.git)
 
 #### Instructor
 
@@ -7,6 +15,7 @@
 <br>
 J. Howard Creekmore Professor of Finance and Professor of Economics<br>
 <a href="mailto:kerryback@gmail.com">kerryback@gmail.com</a>
+
 
 
 #### Meeting Schedule

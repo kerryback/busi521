@@ -6,7 +6,6 @@ project:
     - slides.qmd
     - assignments.qmd
     - sample_final.qmd
-    - people.qmd
     - podcasts.qmd
     - sample_midterm.qmd
     - sample_final.qmd
@@ -26,10 +25,11 @@ website:
       - text: Podcasts 
         file: podcasts.qmd 
         
-format: 
+format:
   html:
-    theme: yeti
-    scss: styles.css
+    theme:
+      light: flatly
+      dark: superhero
     link-external-newwindow: true
     
    

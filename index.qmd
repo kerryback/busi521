@@ -1,13 +1,5 @@
 ### BUSI 521/ECON 505<br>Rice University<br>Spring 2026
 
-#### Sample Exams
-
-[Sample Midterm](sample_midterm.html)<br>
-[Sample Final](sample_final.html)
-
-#### Exercise Solutions
-
-[Solutions](https://github.com/kerryback/busi521/tree/main/solutions)
 
 #### Instructor
 

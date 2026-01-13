@@ -1,4 +1,4 @@
-#### Slides Spring 2025
+#### Slides Spring 2026
 
 [Chapter 1](Chapter01.pdf)
 <br>[Chapter 2](Chapter02.pdf)
@@ -12,5 +12,4 @@
 <br>[Chapter 14](Chapter14.pdf)
 <br>[Chapter 15](Chapter15.pdf)
 <br>[Chapter 19](Chapter19.pdf)
-<br>[Performance of Factor Models in a Simple Economy](back-ober.pdf)
-<br>[Slides](lsu.pdf)
+

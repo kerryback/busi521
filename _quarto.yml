@@ -6,9 +6,12 @@ project:
     - slides.qmd
     - assignments.qmd
     - sample_final.qmd
-    - podcasts.qmd
     - sample_midterm.qmd
     - sample_final.qmd
+  resources:
+    - CNAME
+    - latex/Chapter*.pdf
+    - .nojekyll
                
 website:
   title: ""
@@ -22,8 +25,6 @@ website:
         file: slides.qmd
       - text: Assignments
         file: assignments.qmd  
-      - text: Podcasts 
-        file: podcasts.qmd 
         
 format:
   html:

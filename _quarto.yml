@@ -7,7 +7,6 @@ project:
     - assignments.qmd
     - sample_final.qmd
     - sample_midterm.qmd
-    - sample_final.qmd
   resources:
     - CNAME
     - latex/Chapter*.pdf
@@ -18,13 +17,20 @@ website:
   search: false  
   navbar:
     search: false
-    title: "BUSI 521 / ECON 505: ASSET PRICING / FIN ECON I"
+    title: "BUSI 521 Asset Pricing / ECON 505 Financial Economics I"
     file: index.qmd
     right:
       - text: Slides
         file: slides.qmd
       - text: Assignments
         file: assignments.qmd  
+      - text: Solutions
+        url: https://github.com/kerryback/busi521/tree/main/solutions
+      - text: Sample Midterm
+        file: sample_midterm.qmd
+      - text: Sample Final
+        file: sample_final.qmd
+
         
 format:
   html:

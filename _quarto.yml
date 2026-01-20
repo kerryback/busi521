@@ -11,6 +11,7 @@ project:
     - CNAME
     - Chapter*.pdf
     - .nojekyll
+    - room_schedule.pdf
 
                
 website:
@@ -27,6 +28,10 @@ website:
         file: assignments.qmd  
       - text: Solutions
         url: https://github.com/kerryback/busi521/tree/main/solutions
+      - text: Room Schedule
+        file: room_schedule.pdf 
+      - text: NotebookLM
+        url: https://notebooklm.google.com/notebook/5ebfd59c-0deb-46da-a80a-85c66ea683b6
       - text: Sample Midterm
         file: sample_midterm.qmd
       - text: Sample Final

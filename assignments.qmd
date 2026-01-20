@@ -2,7 +2,7 @@
 
 Assignments are due on Thursdays at 11:59 p.m. 
 
-- Assignment 1: Due Jan 15
+- Assignment 1: Due Jan 22
   - Exercises 1.2, 1.5
   
 - Assignment 2: Due Jan 29

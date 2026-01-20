@@ -12,7 +12,12 @@
       "Bash(git push)",
       "Bash(git pull:*)",
       "Bash(git ls-tree:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(quarto render:*)",
+      "Bash(nul)",
+      "Bash(git check-ignore:*)",
+      "Bash(pdfinfo:*)",
+      "Bash(pdflatex:*)"
     ],
     "deny": [],
     "ask": []

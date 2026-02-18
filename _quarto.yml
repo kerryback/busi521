@@ -7,6 +7,7 @@ project:
     - assignments.qmd
     - sample_final.qmd
     - sample_midterm.qmd
+    - solutions.qmd
   resources:
     - CNAME
     - Chapter*.pdf
@@ -27,7 +28,7 @@ website:
       - text: Assignments
         file: assignments.qmd  
       - text: Solutions
-        url: https://github.com/kerryback/busi521/tree/main/solutions
+        file: solutions.qmd
       - text: Room Schedule
         file: room_schedule.pdf 
       - text: NotebookLM

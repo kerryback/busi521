@@ -1,0 +1,6 @@
+#### Solutions Spring 2026
+
+- [Chapter 1](https://github.com/kerryback/busi521-solutions/blob/main/Chapter1.pdf){target="_blank"}
+- [Chapter 2](https://github.com/kerryback/busi521-solutions/blob/main/Chapter2.pdf){target="_blank"}
+- [Chapter 3](https://github.com/kerryback/busi521-solutions/blob/main/Chapter3.pdf){target="_blank"}
+- [Chapter 5](https://github.com/kerryback/busi521-solutions/blob/main/Chapter5.pdf){target="_blank"}

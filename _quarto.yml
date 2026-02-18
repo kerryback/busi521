@@ -13,6 +13,7 @@ project:
     - Chapter*.pdf
     - .nojekyll
     - room_schedule.pdf
+    - solutions/*.pdf
 
                
 website:

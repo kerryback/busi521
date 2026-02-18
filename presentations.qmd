@@ -1,0 +1,15 @@
+#### Presentations Spring 2026
+
+1. Incomplete markets and the equity premium puzzle (Chapter 11)
+2. Rare disasters and the equity premium puzzle (Chapter 11)
+3. Disentangling risk aversion and intertemporal substitution (Chapter 11)
+4. Habit formation (Chapter 15)
+5. Heterogeneous beliefs and short sale constraints (Chapter 21)
+6. Bubbles (Chapter 21)
+7. Rational expectations equilibria (Chapter 22)
+8. Glosten-Milgrom and Kyle models (Chapter 24)
+9. Glosten model of limit-order markets (Chapter 24)
+10. Allais paradox and betweenness preferences (Chapter 25)
+11. Generalized disappointment aversion (Chapter 25)
+12. Ellsberg paradox and ambiguity aversion (Chapter 25)
+13. Intermediary asset pricing

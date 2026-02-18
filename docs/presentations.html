@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>sample_midterm</title>
+<title>presentations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -53,35 +53,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -106,7 +77,7 @@ window.Quarto = {
 <span class="menu-text">Slides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./presentations.html"> 
+    <a class="nav-link active" href="./presentations.html" aria-current="page"> 
 <span class="menu-text">Presentations</span></a>
   </li>  
   <li class="nav-item">
@@ -126,7 +97,7 @@ window.Quarto = {
 <span class="menu-text">NotebookLM</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./sample_midterm.html" aria-current="page"> 
+    <a class="nav-link" href="./sample_midterm.html"> 
 <span class="menu-text">Sample Midterm</span></a>
   </li>  
   <li class="nav-item">
@@ -152,150 +123,22 @@ window.Quarto = {
 
 
 
-<section id="sample-midterm-questions-asset-pricing-financial-economics-i-rice-university" class="level2">
-<h2 class="anchored" data-anchor-id="sample-midterm-questions-asset-pricing-financial-economics-i-rice-university">Sample Midterm Questions<br>Asset Pricing / Financial Economics I<br>Rice University</h2>
+<section id="presentations-spring-2026" class="level4">
+<h4 class="anchored" data-anchor-id="presentations-spring-2026">Presentations Spring 2026</h4>
 <ol type="1">
-<li>Assume there are three states of the world that are equally likely. There are two assets with prices <span class="math inline">\(p_1=p_2=1\)</span>. The payoffs of the first asset across the three states of the world are <span class="math inline">\((1,2,1)\)</span>. The payoffs of the second asset across the three states of the world are <span class="math inline">\((0,1,3)\)</span>.
-<ol type="a">
-<li>Describe the one-dimensional family of state price vectors.</li>
-<li>Find the SDF that is spanned by the assets.</li>
-</ol></li>
-<li>Assume there is a risk-free asset. Derive the first-order condition for a portfolio to be on the mean-variance frontier. Explain why the first-order condition implies a factor model for returns.</li>
-<li>Assume there is a representative investor with constant relative risk aversion <span class="math inline">\(\rho \neq 1\)</span>. Let <span class="math inline">\(c_0\)</span> denote aggregate consumption at date 0 and let <span class="math inline">\(\tilde{c}_1\)</span> denote aggregate consumption at date <span class="math inline">\(1\)</span>. Assume <span class="math inline">\(\log \tilde{c}_1\)</span> is normally distributed with mean <span class="math inline">\(\log c_0 + \mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>.
-<ol type="a">
-<li>Derive a formula for <span class="math inline">\(\log R_f\)</span>.<br>
-</li>
-<li>Explain (in terms of the demand to borrow and market clearing) why <span class="math inline">\(\log R_f\)</span> is larger when <span class="math inline">\(\mu\)</span> is larger and larger when <span class="math inline">\(\sigma\)</span> is smaller.</li>
-<li>Why is the effect of <span class="math inline">\(\rho\)</span> on <span class="math inline">\(\log R_f\)</span> ambiguous?</li>
-</ol></li>
-<li>Assume all investors have linear risk tolerance with the same cautiousness parameter. Explain why fact (a) below implies (b) and (c). Along the way, explain the concepts referenced in the facts.
-<ol type="a">
-<li>Sharing rules are affine.</li>
-<li>A competitive equilibrium is Pareto optimal as long as there is a risk-free asset (markets do not need to be complete).</li>
-<li>There is two-fund separation.</li>
-</ol></li>
-<li>Consider an investor who seeks to maximize <span class="math display">\[E \left[\sum_{t=0}^T \delta^t u(c_t)\right]\]</span> where <span class="math display">\[u(c) = \frac{1}{1-\rho}c^{1-\rho}\]</span> subject to the intertemporal budget constraint and subject to the terminal constraint <span class="math inline">\(C_T \leq W_T\)</span>’. Assume returns are iid. Let <span class="math inline">\(J_t(w)\)</span> denote the value function. Define <span class="math display">\[B = \max_\pi E\left[\frac{1}{1-\rho}(\pi'R_T)^{1-\rho}\right]\,.\]</span> Show that the optimal portfolio at date <span class="math inline">\(T-1\)</span> is the portfolio that achieves this maximum, and show that <span class="math display">\[J_{T-1}(w) = \frac{1}{1-\rho}A_{T-1}w^{1-\rho}\]</span> for some constant <span class="math inline">\(A_{T-1}\)</span>.</li>
-<li>Assume there is a risk-free asset. Let <span class="math inline">\(\widetilde{\mathbf{R}}\)</span> denote the vector of risky asset returns, let <span class="math inline">\(\mu\)</span> denote the mean of <span class="math inline">\(\widetilde{\mathbf{R}}\)</span>, and let <span class="math inline">\(\Sigma\)</span> denote the covariance matrix of <span class="math inline">\(\widetilde{\mathbf{R}}\)</span>. Let <span class="math inline">\(\iota\)</span> denote a vector of 1’s.
-<ol type="a">
-<li>Show that the following random variable is an SDF. <span class="math display">\[
-\frac{1}{R_f} + \left(\iota -\frac{1}{R_f}\mu\right)'\Sigma^{-1}(\widetilde{\mathbf{R}}-\mu)\,.
-\]</span></li>
-<li>The random variable in part (a) is spanned by the assets, so it is the payoff of a portfolio (that may include the risk-free asset). If we divide by the payoff by the cost of the portfolio, we obtain a return. Thus, the random variable is proportional to a return. Show that in fact it is proportional to a return <span class="math inline">\(\pi'\widetilde{\mathbf{R}} + (1-\iota'\pi)R_f\)</span> on the mean-variance frontier. You can use without proof any facts that you know about the mean-variance frontier.</li>
-</ol></li>
-<li>Assume there is a representative investor with constant relative risk aversion <span class="math inline">\(\rho\)</span> and discount factor <span class="math inline">\(\delta\)</span>. Assume the change in log consumption is normally distributed with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>.
-<ol type="a">
-<li>Derive a formula for the risk-free return in terms of <span class="math inline">\(\delta\)</span>, <span class="math inline">\(\rho\)</span>, <span class="math inline">\(\mu\)</span>, and <span class="math inline">\(\sigma\)</span>.</li>
-<li>Explain why the risk-free return is higher when <span class="math inline">\(\mu\)</span> is higher and lower when <span class="math inline">\(\sigma\)</span> is higher.</li>
-</ol></li>
-<li>Assume there is a risk-free asset and multiple risky assets with joint normal returns. Derive the optimal portfolio for an investor with CARA utility.</li>
-<li>Assume there are <span class="math inline">\(n\)</span> assets and <span class="math inline">\(k\)</span> states of the world. Let <span class="math inline">\(X\)</span> denote the <span class="math inline">\(n \times k\)</span> matrix of asset payoffs (so <span class="math inline">\(x_{ij}\)</span> is the payoff of the <span class="math inline">\(i\)</span>th asset in the <span class="math inline">\(j\)</span>th state). Assume the Law of One Price holds and the market is complete. Derive the unique state price vector and explain the derivation.</li>
-<li>Assume there is a risk-free asset. Let <span class="math inline">\(\widetilde{\mathbf{R}}\)</span> denote the vector of risky asset returns, let <span class="math inline">\(\mu\)</span> denote the mean of <span class="math inline">\(\widetilde{\mathbf{R}}\)</span>, and let <span class="math inline">\(\Sigma\)</span> denote the covariance matrix of <span class="math inline">\(\widetilde{\mathbf{R}}\)</span>. Let <span class="math inline">\(\iota\)</span> denote a vector of 1’s.<br>
-(a) Show that the following random variable is an SDF. <span class="math display">\[
-\frac{1}{R_f} + \left(\iota -\frac{1}{R_f}\mu\right)'\Sigma^{-1}(\widetilde{\mathbf{R}}-\mu)\,.
-\]</span> (b) Let <span class="math inline">\(\widetilde{m}\)</span> be any SDF. Explain why the random variable in the part(a) equals the orthogonal projection of <span class="math inline">\(\widetilde{m}\)</span> onto the span of the returns.</li>
-<li>Derive the tangency portfolio. Explain what assumption you need to ensure that the tangency portfolio exists.</li>
-<li>Let <span class="math inline">\(\tilde X = (\tilde x_1, \ldots,  \tilde x_k)\)</span> denote a vector of random variables. Suppose there exists a constant <span class="math inline">\(a\)</span> and a vector <span class="math inline">\(b\)</span> such that <span class="math inline">\(a+b' \tilde X\)</span> is an SDF. Show that there is a factor pricing model with <span class="math inline">\(\tilde X\)</span> as the vector of factors.</li>
-<li>Assume there is a risk-free asset and a representative investor with CRRA utility. Let <span class="math inline">\(\tilde R_m\)</span> denote the market return. Derive a generalization of the CAPM of the following form: for each asset <span class="math inline">\(i\)</span>, <span class="math display">\[E[ \tilde R_i]-R_f = \gamma_i \bigg(E[ \tilde R_m]-R_f\bigg)\]</span> where <span class="math inline">\(\gamma_i\)</span> is a generalization of the market beta of asset <span class="math inline">\(i\)</span>. Give an explicit formula for <span class="math inline">\(\gamma_i\)</span>.</li>
-<li>Suppose all investors have log utility and suppose <span class="math inline">\(( \tilde w_1,\ldots, \tilde w_H)\)</span> is a Pareto optimal allocation of market wealth <span class="math inline">\(\tilde w_m\)</span>. Show that each investor’s wealth <span class="math inline">\(\tilde w_h\)</span> is an affine function of <span class="math inline">\(\tilde w_m\)</span>.</li>
-<li>Assume there are four equally probable states of the world, a risk-free asset with return <span class="math inline">\(R_f=1.5\)</span>, and two risky assets with the following payoffs:</li>
-</ol>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th></th>
-<th>State 1</th>
-<th>State 2</th>
-<th>State 3</th>
-<th>State 4</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\tilde{x}_1\)</span>:</td>
-<td>3</td>
-<td>3</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\tilde{x}_2\)</span>:</td>
-<td>1</td>
-<td>5</td>
-<td>2</td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
-<p>The prices of the two risky assets are <span class="math inline">\(p_1 = 1\)</span> and <span class="math inline">\(p_2=2\)</span>. Show that the random variable having the following values in each state is an SDF.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>State 1</th>
-<th>State 2</th>
-<th>State 3</th>
-<th>State 4</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1/3</td>
-<td>1/3</td>
-<td>1</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<ol start="16" type="1">
-<li>Suppose there are two risk-averse investors and three states of the world. Suppose that the equilibrium end-of-period wealths of the two investors are as follows. Can we tell whether the market is complete? Explain.</li>
-</ol>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th></th>
-<th>State 1</th>
-<th>State 2</th>
-<th>State 3</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\tilde{w}_1\)</span>:</td>
-<td>1</td>
-<td>4</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\tilde{w}_2\)</span>:</td>
-<td>2</td>
-<td>3</td>
-<td>5</td>
-</tr>
-</tbody>
-</table>
-<ol start="17" type="1">
-<li><p>Consider a single-period model with a risk-free asset and a single risky asset. Let <span class="math inline">\(\phi(w)\)</span> denote the optimal investment in the risky asset for an investor when the investor’s initial wealth is <span class="math inline">\(w\)</span>. Under what circumstance is <span class="math inline">\(\phi'(w)&gt;0\)</span>?</p></li>
-<li><p>Define two-fund separation. What assumption on investor preferences implies two-fund separation?</p></li>
-<li><p>Let <span class="math inline">\(\tilde{m}\)</span> be an SDF and define a probability <span class="math inline">\(Q\)</span> by <span class="math inline">\(Q(A) = R_f E[\tilde{m}1_A]\)</span> for each event <span class="math inline">\(A\)</span>. Show that the return <span class="math inline">\(\tilde{R}\)</span> of each asset must satisfy <span class="math inline">\(E^*[\tilde{R}] = R_f\)</span>, where <span class="math inline">\(E^*\)</span> denotes expectation relative to <span class="math inline">\(Q\)</span>.</p></li>
-<li><p>Derive the global minimum variance portfolio.</p></li>
-<li><p>Suppose <span class="math inline">\(\tilde{m}\)</span> is an SDF and there are constants <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> such that <span class="math inline">\(a+b\tilde{m}\)</span> is a return. The return has two important properties. What are they?<br>
-</p></li>
-<li><p>Assume there is a risk-free asset. Derive a first-order condition for a return to be on the mean-variance frontier. Explain how this condition relates to factor pricing.</p></li>
-<li><p>Assume the CAPM holds, and let <span class="math inline">\(\tilde{R}_m\)</span> denote the market return. There are constants <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> such that <span class="math inline">\(a-b\tilde{R}_m\)</span> is an SDF. Calculate <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p></li>
-<li><p>Suppose there is a single-factor pricing model in which the factor is an excess return. Show that the factor risk premium is the expected excess return.</p></li>
-<li><p>Suppose there is a factor pricing model in which the factors are macroeconomic variables—GDP growth, etc. Explain why there must be a factor pricing model in which the factors are returns, and explain how the returns relate to the macroeconomic variables.</p></li>
-<li><p>Assume there is a representative investor with constant relative risk aversion <span class="math inline">\(\rho\)</span>. Assume there is a riskfree asset, and let <span class="math inline">\(\tilde{R}_m\)</span> denote the market return. Derive the following formula for the risk premium of each asset: <span class="math display">\[E[\tilde{R}] - R_f = \frac{E[\tilde{R}_m]-R_f}{cov(\tilde{R}_m,\tilde{R}_m^{-\rho})}cov\left(\tilde{R},\tilde{R}_m^{-\rho}\right)\,.\]</span></p></li>
-<li><p>In a single-period model, assume there is a representative investor with constant relative risk aversion <span class="math inline">\(\rho\)</span>. Assume that the logarithm of aggregate consumption is normally distributed with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. Show that <span class="math display">\[\log E[\tilde{R}_m] - \log R_f = \rho \sigma^2\,.\]</span></p></li>
-<li><p>What is the equity premium puzzle?</p></li>
-<li><p>Suppose there is a representative investor with discount factor <span class="math inline">\(\delta\)</span> and constant relative risk aversion <span class="math inline">\(\rho\)</span>. Assume that consumption growth <span class="math inline">\(C_{t+1}/C_t\)</span> is an iid sequence. Show that the market return is <span class="math display">\[R_{m,t+1} = \frac{1}{\nu} \cdot \frac{C_{t+1}}{C_t}\,,\]</span> where <span class="math display">\[\nu = \delta E\left[\left(\frac{C_{t+1}}{C_t}\right)^{1-\rho}\right]\,.\]</span></p></li>
-<li><p>Consider an investor with constant relative risk aversion in an infinite-horizon discrete-time model. Suppose there is a single state variable <span class="math inline">\(X\)</span>. Assume the investor has no labor income <span class="math inline">\(Y_t\)</span>. Show that<br>
-<span class="math display">\[J(w,x) = \frac{1}{1-\rho}w^{1-\rho}f(x)\]</span> satisfies the Bellman equation for some function <span class="math inline">\(f\)</span>.</p></li>
-<li><p>Assume there are three states of the world that are equally likely. There are two assets with prices <span class="math inline">\(p_1=p_2=1\)</span>. The payoffs of the first asset across the three states of the world are <span class="math inline">\((1,2,1)\)</span>. The payoffs of the second asset across the three states of the world are <span class="math inline">\((0,1,3)\)</span>.<br>
-(a) Describe the one-dimensional family of state price vectors.<br>
-(b) Find the SDF that is spanned by the assets.</p></li>
-<li><p>Explain the meaning of the following and prove it. Clearly state definitions of terms and any assumptions you make. “Risk premia depend on covariances with an SDF.”</p></li>
-<li><p>Assume there are n risky assets (not necessarily joint normal). Assume there is a risk-free asset. Show that a mean-variance frontier portfolio return is a pricing factor. Clearly state definitions of terms and any assumptions you make.</p></li>
-<li><p>Derive a formula for the risk-free return when there is a representative investor with CRRA utility and the change in log consumption is normally distributed.</p></li>
-<li><p>What is the form of Pareto optimal sharing rules when all investors have log utility? Prove it.</p></li>
+<li>Incomplete markets and the equity premium puzzle (Chapter 11)</li>
+<li>Rare disasters and the equity premium puzzle (Chapter 11)</li>
+<li>Disentangling risk aversion and intertemporal substitution (Chapter 11)</li>
+<li>Habit formation (Chapter 15)</li>
+<li>Heterogeneous beliefs and short sale constraints (Chapter 21)</li>
+<li>Bubbles (Chapter 21)</li>
+<li>Rational expectations equilibria (Chapter 22)</li>
+<li>Glosten-Milgrom and Kyle models (Chapter 24)</li>
+<li>Glosten model of limit-order markets (Chapter 24)</li>
+<li>Allais paradox and betweenness preferences (Chapter 25)</li>
+<li>Generalized disappointment aversion (Chapter 25)</li>
+<li>Ellsberg paradox and ambiguity aversion (Chapter 25)</li>
+<li>Intermediary asset pricing</li>
 </ol>
 
 

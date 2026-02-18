@@ -7,6 +7,7 @@ project:
     - assignments.qmd
     - sample_final.qmd
     - sample_midterm.qmd
+    - presentations.qmd
     - solutions.qmd
   resources:
     - CNAME
@@ -26,8 +27,10 @@ website:
     right:
       - text: Slides
         file: slides.qmd
+      - text: Presentations
+        file: presentations.qmd
       - text: Assignments
-        file: assignments.qmd  
+        file: assignments.qmd
       - text: Solutions
         file: solutions.qmd
       - text: Room Schedule

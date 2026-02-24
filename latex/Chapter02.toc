@@ -1,4 +1,0 @@
-\beamer@sectionintoc {1}{Results for One Risky Asset}{11}{0}{1}
-\beamer@sectionintoc {2}{Multiple Risky Assets}{17}{0}{2}
-\beamer@sectionintoc {3}{Wealth Expansion Paths}{21}{0}{3}
-\beamer@sectionintoc {4}{Euler Equation}{27}{0}{4}

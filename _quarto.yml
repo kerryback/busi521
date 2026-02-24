@@ -12,6 +12,7 @@ project:
   resources:
     - CNAME
     - Chapter*.pdf
+    - latex/*.pdf
     - .nojekyll
     - room_schedule.pdf
     - solutions/*.pdf

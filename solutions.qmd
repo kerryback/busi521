@@ -4,3 +4,5 @@
 - [Chapter 2](solutions/Chapter02-Solutions.pdf)
 - [Chapter 3](solutions/Chapter03-Solutions.pdf)
 - [Chapter 5](solutions/Chapter05-Solutions.pdf)
+- [Chapter 4](solutions/Chapter04-Solutions.pdf)
+- [Chapter 6](solutions/Chapter06-Solutions.pdf)

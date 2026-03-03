@@ -160,3 +160,6 @@ cython_debug/
 #.idea/
 
 /.quarto/
+
+# Solutions (source files - released copies go to docs/ via quarto resources)
+/solutions/

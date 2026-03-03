@@ -15,7 +15,10 @@ project:
     - latex/*.pdf
     - .nojekyll
     - room_schedule.pdf
-    - solutions/*.pdf
+    - solutions/Chapter01.pdf
+    - solutions/Chapter02.pdf
+    - solutions/Chapter03.pdf
+    - solutions/Chapter05.pdf
     - PCA_Factors.ipynb
 
                

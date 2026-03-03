@@ -11,14 +11,13 @@ project:
     - solutions.qmd
   resources:
     - CNAME
-    - Chapter*.pdf
     - latex/*.pdf
     - .nojekyll
     - room_schedule.pdf
-    - solutions/Chapter01.pdf
-    - solutions/Chapter02.pdf
-    - solutions/Chapter03.pdf
-    - solutions/Chapter05.pdf
+    - solutions/Chapter01-Solutions.pdf
+    - solutions/Chapter02-Solutions.pdf
+    - solutions/Chapter03-Solutions.pdf
+    - solutions/Chapter05-Solutions.pdf
     - PCA_Factors.ipynb
 
                

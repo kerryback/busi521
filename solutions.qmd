@@ -1,6 +1,6 @@
 #### Solutions Spring 2026
 
-- [Chapter 1](solutions/Chapter01.pdf)
-- [Chapter 2](solutions/Chapter02.pdf)
-- [Chapter 3](solutions/Chapter03.pdf)
-- [Chapter 5](solutions/Chapter05.pdf)
+- [Chapter 1](solutions/Chapter01-Solutions.pdf)
+- [Chapter 2](solutions/Chapter02-Solutions.pdf)
+- [Chapter 3](solutions/Chapter03-Solutions.pdf)
+- [Chapter 5](solutions/Chapter05-Solutions.pdf)

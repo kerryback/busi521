@@ -12,4 +12,5 @@
 <br>[Chapter 14](Chapter14.pdf)
 <br>[Chapter 15](Chapter15.pdf)
 <br>[Chapter 19](Chapter19.pdf)
+<br>[Principal Components and Factor Models](latex/PCA_Factors.pdf)
 

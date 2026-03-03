@@ -16,6 +16,7 @@ project:
     - .nojekyll
     - room_schedule.pdf
     - solutions/*.pdf
+    - PCA_Factors.ipynb
 
                
 website:

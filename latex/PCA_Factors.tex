@@ -1,0 +1,231 @@
+\documentclass[10pt]{beamer}
+
+\usetheme[progressbar=foot]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\usepackage{xcolor}
+
+\DeclareMathOperator{\stdev}{stdev}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\corr}{corr}
+\DeclareMathOperator{\prob}{prob}
+\DeclareMathOperator{\n}{n}
+\DeclareMathOperator{\N}{N}
+\DeclareMathOperator{\Cov}{Cov}
+
+\newcommand{\hlf}{\frac{1}{2}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\im}{\item}
+\newcommand{\D}{\mathrm{d}}
+\newcommand{\E}{\mathrm{e}}
+\newcommand{\mye}{\ensuremath{\mathsf{E}}}
+\newcommand{\myreal}{\ensuremath{\mathbb{R}}}
+\newcommand{\bq}{\begin{equation}}
+\newcommand{\eq}{\end{equation}}
+\newcommand{\bfr}{\begin{frame}}
+\newcommand{\efr}{\end{frame}}
+\newcommand{\bas}{\begin{align*}}
+\newcommand{\eas}{\end{align*}}
+
+\setbeamertemplate{frame footer}{PCA and Factor Models, BUSI 521/ECON 505}
+
+\title{Principal Components and Factor Models}
+
+\date{}
+\author{Kerry Back\\
+BUSI 521/ECON 505\\
+Rice University\\[1em]
+\small\href{https://colab.research.google.com/github/kerryback/busi521/blob/main/PCA_Factors.ipynb}{Open companion notebook in Colab}}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Factor Models}
+
+\begin{frame}{Setup}
+Let $R_t$ be an $N$--vector of excess returns with mean $\mu$ and covariance matrix $\Sigma$.
+
+A $K$--factor model is
+$$R_t = \mu + Bf_t + e_t$$
+\bi
+\im $f_t$ is a $K$--vector of factors (zero mean, $\Cov(f_t)=I$)
+\im $B = \Cov(R_t, f_t)$ is the $N \times K$ loading matrix
+\im $e_t$ is uncorrelated with $f_t$
+\ei
+\end{frame}
+
+\begin{frame}{What Makes It a Factor Model?}
+The key restriction: the elements of $e_t$ are \alert{mutually uncorrelated}.
+
+So $\Cov(e_t) = D$ for a diagonal matrix $D$.
+
+This implies
+$$\Sigma = BB' + D$$
+
+All return covariances are explained by common factor exposures.  Residual risks are idiosyncratic.
+\end{frame}
+
+\section{Factor Analysis}
+
+\begin{frame}{Rotational Indeterminacy}
+The decomposition $\Sigma = BB' + D$ does not uniquely determine $B$.
+
+For any $K \times K$ orthogonal matrix $Q$ (so $QQ'=I$), define $\tilde{B} = BQ$.  Then
+$$\tilde{B}\tilde{B}' = BQQ'B' = BB'$$
+
+So $\tilde{B}$ and $\tilde{f}_t = Q'f_t$ give the same covariance structure.  The loading matrix is only identified up to an orthogonal rotation.
+\end{frame}
+
+\begin{frame}{Identification}
+To pin down $B$, maximum likelihood factor analysis imposes:
+$$B'D^{-1}B \quad \text{is diagonal}$$
+
+This eliminates the $K(K-1)/2$ free parameters in an orthogonal rotation, because a diagonal matrix is unchanged only by sign flips and permutations.
+
+We also need enough data moments.  The covariance matrix $\Sigma$ has $N(N+1)/2$ distinct elements.  The model has $NK + N$ parameters in $B$ and $D$, minus $K(K-1)/2$ for the identification restriction.  So we need
+$$NK + N - \frac{K(K-1)}{2} \leq \frac{N(N+1)}{2}$$
+\end{frame}
+
+\begin{frame}{Factor Analysis (ML Estimation)}
+Given the identification restriction, ML estimation recovers $\hat{B}$ and $\hat{D}$ from the sample covariance matrix.
+
+We then infer the factors at each date by GLS:
+$$f_t = (\hat{B}'\hat{D}^{-1}\hat{B})^{-1}\hat{B}'\hat{D}^{-1}(R_t - \hat{\mu})$$
+
+This is a cross-sectional regression of the $N$ demeaned returns on the $N$ loadings, with GLS weighting by inverse residual variances.
+\end{frame}
+
+\begin{frame}{Interpretation of GLS}
+Why GLS?  Assets with small idiosyncratic variance $D_{ii}$ are more informative about the factors.
+
+The GLS formula puts more weight on assets whose returns are mostly driven by the common factors.
+
+In python: \texttt{sklearn.decomposition.FactorAnalysis}
+\end{frame}
+
+\section{Principal Components}
+
+\begin{frame}{Eigenvectors of the Covariance Matrix}
+Let $C$ be the matrix of eigenvectors of $\Sigma$, ordered by eigenvalue (largest first).
+
+Partition $C = (C_1 \mid C_2)$ where $C_1$ contains the first $K$ eigenvectors.
+
+The principal component factors are
+$$f_t = (R_t - \hat{\mu})\,C_1$$
+
+The eigenvectors are orthonormal: $C'C = CC' = I$.
+\end{frame}
+
+\begin{frame}{PCA as a Factor Model}
+Since $(f_t,\, \text{extras}_t) = (R_t - \hat{\mu})\,C$ and $CC'=I$:
+$$R_t = \hat{\mu} + f_t\, C_1' + \text{extras}_t\, C_2'$$
+\bi
+\im The loading matrix is $C_1'$ (the transposed eigenvectors)
+\im The ``residuals'' are $\text{extras}_t \cdot C_2'$
+\im Factors and residuals are orthogonal
+\ei
+
+PCA does not force residuals to be uncorrelated.  Instead, it makes residuals \alert{small} by dropping eigenvectors with small eigenvalues.
+\end{frame}
+
+\begin{frame}{How Much Variance Is Explained?}
+Each eigenvalue $\lambda_i$ equals the variance of the $i$th principal component.
+
+The fraction of total variance explained by $K$ components is
+$$\frac{\lambda_1 + \cdots + \lambda_K}{\lambda_1 + \cdots + \lambda_N}$$
+
+For the 25 size/BM portfolios, the first eigenvalue alone accounts for about 82\% of total variance.  Three components capture about 93\%.
+
+In python: \texttt{sklearn.decomposition.PCA}
+\end{frame}
+
+\section{Factor-Mimicking Portfolios}
+
+\begin{frame}{Why Factor-Mimicking Portfolios?}
+The raw factors (from FA or PCA) are linear combinations of returns, but the weights don't sum to one.
+
+A factor-mimicking portfolio (FMP) rescales the weights so $\iota'w = 1$.
+
+The FMP excess return is then a \alert{traded} excess return that tracks the factor.
+\end{frame}
+
+\begin{frame}{Constructing FMPs: PCA}
+For PCA, the weights are the eigenvector entries.  To make an FMP:
+$$w_i = \frac{C_{1,i}}{\iota' C_{1,i}}$$
+
+That is, divide each eigenvector's entries by their sum.
+
+This gives $K$ portfolios whose excess returns are the PCA factor-mimicking portfolios.
+\end{frame}
+
+\begin{frame}{Constructing FMPs: Factor Analysis}
+For factor analysis, regress each factor $f_t^{(i)}$ on a constant and the $N$ excess returns:
+$$f_t^{(i)} = \alpha + w'R_t + \text{error}$$
+
+The regression coefficients $w$ give the spanning weights.  Normalize so $\iota'w=1$.
+
+The FMP return is $w'R_t$.
+
+The $R^2$ is 1 (exact spanning) because the factors were constructed from the returns via the GLS formula.
+\end{frame}
+
+\section{Optimization Perspectives}
+
+\begin{frame}{PCA $=$ Maximum-Variance Portfolios}
+The first principal component solves
+$$\max_{w}\; \hlf w'\Sigma w \quad \text{subject to}\quad w'w = 1$$
+The FOC is $\Sigma w = \lambda w$\,---\,the eigenvector equation.
+
+The second component solves the same problem with the additional constraint $w'w_1 = 0$.
+
+Successive components are maximum-variance portfolios orthogonal to all previous ones.
+\end{frame}
+
+\begin{frame}{FA $=$ Minimum Residual-Variance Portfolios}
+The factor-analysis FMPs solve
+$$\min_{w}\; \hlf w'Dw \quad \text{subject to}\quad B'w = e_i$$
+
+This minimizes idiosyncratic risk while targeting a unit loading on factor $i$ and zero loadings on all other factors.
+
+The FOC gives $w = D^{-1}B(B'D^{-1}B)^{-1}e_i$, and the resulting portfolio returns reproduce exactly the GLS factor estimates.
+\end{frame}
+
+\section{Sharpe Ratios}
+
+\begin{frame}{Maximum Sharpe Ratios}
+Given $K$ excess-return factors with mean $\mu_f$ and covariance $\Sigma_f$, the maximum Sharpe ratio from combining them is
+$$\text{SR}^* = \sqrt{\mu_f'\Sigma_f^{-1}\mu_f}$$
+
+This is the Sharpe ratio of the tangency portfolio of the $K$ factors.
+
+For the 25 size/BM portfolios with $K=3$:
+\bi
+\im Fama--French factor SR $\approx 0.178$
+\im FA mimicking-portfolio SR $\approx 0.183$
+\im PCA mimicking-portfolio SR $\approx 0.177$
+\ei
+
+All three are similar---the statistical factors capture roughly the same pricing information as the Fama--French factors.
+\end{frame}
+
+\begin{frame}{Summary}
+\bi
+\im \alert{Factor analysis}: ML estimation of loadings and diagonal residual covariance; factors inferred by GLS.  FMPs minimize idiosyncratic risk.
+\im \alert{PCA}: Eigenvectors of the covariance matrix; factors are maximum-variance linear combinations.  FMPs are rescaled eigenvectors.
+\im Both methods produce traded factor-mimicking portfolios by normalizing weights to sum to one.
+\im For the 25 size/BM portfolios, three statistical factors deliver Sharpe ratios comparable to Fama--French.
+\ei
+\end{frame}
+
+\end{document}

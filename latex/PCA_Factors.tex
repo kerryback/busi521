@@ -89,31 +89,77 @@ $$\tilde{B}\tilde{B}' = BQQ'B' = BB'$$
 So $\tilde{B}$ and $\tilde{f}_t = Q'f_t$ give the same covariance structure.  The loading matrix is only identified up to an orthogonal rotation.
 \end{frame}
 
-\begin{frame}{Identification}
+\begin{frame}{The Identification Restriction}
 To pin down $B$, maximum likelihood factor analysis imposes:
 $$B'D^{-1}B \quad \text{is diagonal}$$
 
-This eliminates the $K(K-1)/2$ free parameters in an orthogonal rotation, because a diagonal matrix is unchanged only by sign flips and permutations.
-
-We also need enough data moments.  The covariance matrix $\Sigma$ has $N(N+1)/2$ distinct elements.  The model has $NK + N$ parameters in $B$ and $D$, minus $K(K-1)/2$ for the identification restriction.  So we need
-$$NK + N - \frac{K(K-1)}{2} \leq \frac{N(N+1)}{2}$$
+\alert{Interpretation.}  In the pre-whitened space, define $\tilde{B}=D^{-1/2}B$.  Then
+$$\tilde{B}'\tilde{B} = B'D^{-1}B$$
+So the restriction says the columns of $\tilde{B}$ (the whitened loadings) are orthogonal.  This is natural because $B'D^{-1}B$ appears in the GLS formula for factor inference.
 \end{frame}
 
-\begin{frame}{Factor Analysis (ML Estimation)}
+\begin{frame}{Why It Resolves Indeterminacy}
+A $K\times K$ orthogonal matrix $Q$ has $K(K{-}1)/2$ free parameters (one angle per pair of factors).  The restriction ``$B'D^{-1}B$ is diagonal'' kills the $K(K{-}1)/2$ off-diagonal elements---a perfect match.
+
+\bi
+\im \alert{Existence.}  Given any $B$, the symmetric matrix $B'D^{-1}B$ has an eigendecomposition $Q\Lambda Q'$.  Setting $\tilde{B}=BQ$ gives $\tilde{B}'D^{-1}\tilde{B} = \Lambda$ (diagonal).
+\im \alert{Uniqueness.}  If the diagonal entries of $\Lambda$ are distinct, the only orthogonal $Q$ satisfying $Q'\Lambda Q = \Lambda$ is a signed permutation matrix (sign flips and reordering of factors), which is a trivial relabeling.
+\ei
+
+\medskip
+We also need enough data moments.  The model has $NK + N - K(K{-}1)/2$ free parameters in $B$ and $D$, which must not exceed the $N(N{+}1)/2$ distinct elements of $\Sigma$.
+\end{frame}
+
+\begin{frame}{ML Estimation}
 Given the identification restriction, ML estimation recovers $\hat{B}$ and $\hat{D}$ from the sample covariance matrix.
 
-We then infer the factors at each date by GLS:
-$$f_t = (\hat{B}'\hat{D}^{-1}\hat{B})^{-1}\hat{B}'\hat{D}^{-1}(R_t - \hat{\mu})$$
-
-This is a cross-sectional regression of the $N$ demeaned returns on the $N$ loadings, with GLS weighting by inverse residual variances.
+But we still need the factor realizations $f_t$ at each date.
 \end{frame}
 
-\begin{frame}{Interpretation of GLS}
-Why GLS?  Assets with small idiosyncratic variance $D_{ii}$ are more informative about the factors.
+\begin{frame}{Inferring the Factors}
+At each date $t$, the model says
+$$\underbrace{R_t - \mu}_{N\times 1} = \underbrace{B}_{N\times K}\;\underbrace{f_t}_{K\times 1} + \underbrace{e_t}_{N\times 1}$$
 
-The GLS formula puts more weight on assets whose returns are mostly driven by the common factors.
+This is a \alert{cross-sectional regression}: $N$ observations (one per asset), $K$ unknowns (the factor values $f_t$), and $B$ plays the role of the design matrix.
 
+\bi
+\im OLS estimate: $\;\hat{f}_t = (B'B)^{-1}B'(R_t - \mu)$
+\im GLS estimate: $\;\hat{f}_t = (B'D^{-1}B)^{-1}B'D^{-1}(R_t - \mu)$
+\ei
+
+GLS is preferred because $\Cov(e_t)=D$ is heteroskedastic (different assets have different idiosyncratic variances).
+\end{frame}
+
+\begin{frame}{Why GLS Produces Uncorrelated Residuals}
+The factor model's key restriction: $\Cov(e_t)=D$ is diagonal---all correlations come from common factors.
+
+\alert{Pre-whitening.}  Define $\tilde{R}_t = D^{-1/2}(R_t - \mu)$ and $\tilde{B} = D^{-1/2}B$.  Then
+$$\tilde{R}_t = \tilde{B}f_t + \tilde{e}_t\,,\qquad \Cov(\tilde{e}_t)=I$$
+
+OLS on the whitened model gives exactly the GLS formula:
+$$\hat{f}_t = (\tilde{B}'\tilde{B})^{-1}\tilde{B}'\tilde{R}_t = (B'D^{-1}B)^{-1}B'D^{-1}(R_t - \mu)$$
+
+Because $\tilde{e}_t$ has identity covariance (iid errors), OLS correctly separates factors from uncorrelated noise in the whitened space.
+
+\medskip
+Skipping the whitening (i.e., using OLS on the raw data) ignores heteroskedasticity, letting idiosyncratic noise leak across assets and creating spurious residual correlations.
+\end{frame}
+
+\begin{frame}{GLS Creates Traded Factors}
+The GLS formula
+$$f_t = (\hat{B}'\hat{D}^{-1}\hat{B})^{-1}\hat{B}'\hat{D}^{-1}(R_t - \hat{\mu})$$
+shows that each factor is a \alert{linear combination of returns}---a portfolio return (up to a constant).
+
+\bi
+\im The companion notebook confirms this: regressing any inferred factor on the $N$ returns gives $R^2=1$ (exact spanning).
+\im This exact spanning is what makes the FMP construction work.  The regression coefficients, normalized to sum to one, are the portfolio weights.
+\ei
+
+\medskip
 In python: \texttt{sklearn.decomposition.FactorAnalysis}
+
+\smallskip
+{\small \href{https://colab.research.google.com/github/kerryback/busi521/blob/main/PCA_Factors.ipynb}{$\rightarrow$ Open companion notebook in Colab}}
 \end{frame}
 
 \section{Principal Components}

@@ -163,3 +163,5 @@ cython_debug/
 
 # Solutions (source files - released copies go to docs/ via quarto resources)
 /solutions/
+release-schedule.yml
+release-solutions.py

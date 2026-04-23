@@ -1,0 +1,390 @@
+\input{Preamble.tex}
+
+\begin{document}
+
+\begin{center}
+{\Large \textbf{Sample Final Exam Solutions}}\\[0.5\baselineskip]
+{\large BUSI 521 / ECON 505 --- Asset Pricing}\\[0.5\baselineskip]
+Rice University
+\end{center}
+
+\vskip\baselineskip
+
+%%% ---------------------------------------------------------------
+%%% QUESTION 1
+%%% ---------------------------------------------------------------
+\newsection{Question 1}
+
+\textbf{Setup.} An investor with infinite horizon, discount rate $\delta$, and no labor income.  Investment opportunities depend on a univariate Markov process $X$ satisfying
+$$\D X = \phi(X)\,\D t + \nu(X)'\,\D B.$$
+There are $n$ risky assets with expected returns $\mu$, volatility matrix $\sigma$, and covariance matrix $\Sigma = \sigma\sigma'$, and a risk-free rate $r$.  All may depend on $X$.
+
+\vskip 0.5\baselineskip
+\textbf{(a) HJB equation for the stationary value function $J(w,x)$.}
+
+The investor's value function is
+$$J(w,x) = \max \mye\!\left[\int_0^\infty \E^{-\delta t}\,u(C_t)\,\D t\right],$$
+where the maximum is over consumption and portfolio processes.  The HJB equation for the stationary value function $J(w,x)$ is:
+$$0 = \max_{c,\pi}\left\{u(c) - \delta J + \left[r w + \pi'(\mu - r\iota)w - c\right]J_w + \frac{1}{2}\pi'\Sigma\pi\,w^2 J_{ww} + \phi\,J_x + \frac{1}{2}\nu'\nu\,J_{xx} + \pi' \sigma\nu\,w\,J_{wx}\right\}.$$
+
+\vskip 0.5\baselineskip
+\textbf{(b) Envelope condition.}
+
+The first-order condition with respect to $c$ is
+$$u'(c) = J_w.$$
+This is the envelope condition: the marginal utility of consumption equals the marginal value of wealth.
+
+\vskip 0.5\baselineskip
+\textbf{(c) Optimal portfolio formula.}
+
+The first-order condition with respect to $\pi$ is
+$$(\mu - r\iota)\,w\,J_w + \Sigma\pi\,w^2 J_{ww} + \sigma\nu\,w\,J_{wx} = 0.$$
+Solving for $\pi$:
+$$\pi = -\frac{J_w}{wJ_{ww}}\Sigma^{-1}(\mu - r\iota) - \frac{J_{wx}}{wJ_{ww}}\Sigma^{-1}\sigma\nu.$$
+
+\vskip 0.5\baselineskip
+\textbf{(d) Log-optimal portfolio and hedging demands.}
+
+The first term,
+$$\pi^{\text{log}} = -\frac{J_w}{wJ_{ww}}\Sigma^{-1}(\mu - r\iota),$$
+is the \emph{log-optimal portfolio} (also called the myopic or speculative demand).  For a log-utility investor, $-J_w/(wJ_{ww}) = 1$, so this reduces to $\Sigma^{-1}(\mu - r\iota)$.
+
+The second term,
+$$\pi^{\text{hedge}} = -\frac{J_{wx}}{wJ_{ww}}\Sigma^{-1}\sigma\nu,$$
+is the \emph{hedging demand}.  It hedges against changes in the investment opportunity set as captured by changes in $X$.
+
+%%% ---------------------------------------------------------------
+%%% QUESTION 2
+%%% ---------------------------------------------------------------
+\mysection{Question 2}
+
+\textbf{Setup.} Same as Question~1, but with log utility: $u(c) = \log c$.  Conjecture $J(w,x) = f(x) + \frac{\log w}{\delta}$.
+
+\vskip 0.5\baselineskip
+\textbf{(a) Optimal consumption rate.}
+
+From the envelope condition, $u'(C) = J_w$, so
+$$\frac{1}{C} = \frac{1}{\delta W}.$$
+Hence $C = \delta W$.
+
+\vskip 0.5\baselineskip
+\textbf{(b) ODE for $f$.}
+
+With $J_w = 1/(\delta w)$, $J_{ww} = -1/(\delta w^2)$, and $J_{wx} = 0$, the optimal portfolio from the first-order condition becomes
+$$\pi = \Sigma^{-1}(\mu - r\iota),$$
+and the optimal consumption is $c = \delta w$.  Substituting into the HJB equation:
+\begin{align*}
+0 &= \log(\delta w) - \delta f - \log w + \frac{1}{\delta}\!\left[r + (\mu - r\iota)'\Sigma^{-1}(\mu - r\iota) - \delta\right] - \frac{1}{2\delta}(\mu - r\iota)'\Sigma^{-1}(\mu - r\iota)\\
+  &\quad + \phi f_x + \frac{1}{2}\nu'\nu\,f_{xx}.
+\end{align*}
+Using $\kappa^2 = (\mu - r\iota)'\Sigma^{-1}(\mu - r\iota)$ for the squared maximum Sharpe ratio and simplifying:
+$$\phi(x)\,f'(x) + \frac{1}{2}\nu(x)'\nu(x)\,f''(x) = \delta f(x) - \frac{\log \delta}{\delta} - \frac{r - \delta + \kappa^2/2}{\delta}.$$
+This is the ODE that $f$ must satisfy (with $r$ and $\kappa$ depending on $x$).
+
+\vskip 0.5\baselineskip
+\textbf{(c) Derivation of the CAPM.}
+
+If the investor is a representative investor, then the market portfolio equals the investor's portfolio:
+$$\pi_m = \Sigma^{-1}(\mu - r\iota).$$
+Hence $\mu - r\iota = \Sigma\pi_m$.  The return on the market portfolio $W_m$ satisfies
+$$\frac{\D W_m}{W_m} = \left[r + \pi_m'(\mu - r\iota)\right]\D t + \pi_m'\sigma\,\D B,$$
+so the instantaneous covariance of any asset $i$'s return with the market return is
+$$\left(\frac{\D S_i}{S_i}\right)\!\!\left(\frac{\D W_m}{W_m}\right) = e_i'\Sigma\pi_m\,\D t.$$
+From $\mu - r\iota = \Sigma\pi_m$, the risk premium of asset $i$ is
+$$\mu_i - r = e_i'\Sigma\pi_m = \frac{\cov\!\left(\D S_i/S_i,\;\D W_m/W_m\right)}{\var(\D W_m/W_m)}\bigl(\mu_m - r\bigr),$$
+which is the continuous-time CAPM: expected excess returns are proportional to market beta.
+
+%%% ---------------------------------------------------------------
+%%% QUESTION 3
+%%% ---------------------------------------------------------------
+\mysection{Question 3}
+
+\textbf{Setup.}  Aggregate consumption follows a geometric Brownian motion:
+$$\frac{\D C}{C} = \alpha\,\D t + \theta\,\D B.$$
+There is a representative investor with CRRA $\rho$ and discount rate $\delta$.
+
+\vskip 0.5\baselineskip
+\textbf{(a) SDF process and its dynamics.}
+
+The SDF process is the marginal rate of substitution:
+$$M_t = \E^{-\delta t}\left(\frac{C_t}{C_0}\right)^{-\rho}.$$
+Using It\^o's formula (specifically Exercise~12.2(c)):
+$$\frac{\D M}{M} = -\delta\,\D t - \rho\,\frac{\D C}{C} + \frac{\rho(1+\rho)}{2}\left(\frac{\D C}{C}\right)^2$$
+$$= -\left(\delta + \rho\alpha - \frac{\rho(1+\rho)}{2}\theta^2\right)\D t - \rho\theta\,\D B.$$
+
+\vskip 0.5\baselineskip
+\textbf{(b) Equilibrium risk-free rate.}
+
+The instantaneous risk-free rate equals minus the drift of $\D M/M$:
+$$r = \delta + \rho\alpha - \frac{\rho(1+\rho)}{2}\theta^2.$$
+
+\vskip 0.5\baselineskip
+\textbf{(c) Market price-to-consumption ratio.}
+
+The market portfolio is a claim to the aggregate consumption stream.  Its price is
+$$P_t = \mye_t\!\left[\int_t^\infty \frac{M_u}{M_t}\,C_u\,\D u\right].$$
+Because $C$ is a GBM and $M$ depends only on $C$, we have $P_t = kC_t$ for a constant $k$.  Computing:
+$$\frac{M_u C_u}{M_t C_t} = \E^{-\delta(u-t)}\left(\frac{C_u}{C_t}\right)^{1-\rho}.$$
+Since $C_u/C_t$ is lognormal with $\log(C_u/C_t) \sim \mathcal{N}\!\bigl((\alpha - \theta^2/2)(u-t),\;\theta^2(u-t)\bigr)$,
+$$\mye_t\!\left[\frac{M_u C_u}{M_t C_t}\right] = \exp\!\left[\left(-\delta + (1-\rho)\alpha + \frac{(1-\rho)(-\rho)}{2}\theta^2\right)(u-t)\right].$$
+This simplifies to $\E^{-\left(\delta - (1-\rho)\alpha + \rho(1-\rho)\theta^2/2\right)(u-t)}$.  Define
+$$\eta = \delta - (1-\rho)\alpha + \frac{\rho(\rho-1)}{2}\theta^2 = r + \rho\theta^2 - \alpha.$$
+For $\eta > 0$ (needed for $k > 0$), the integral gives
+$$k = \frac{1}{\eta} = \frac{1}{r + \rho\theta^2 - \alpha}.$$
+
+\vskip 0.5\baselineskip
+\textbf{(d) Risk premium of any asset.}
+
+For any asset with price $S$, the risk premium satisfies
+$$(\mu_S - r)\,\D t = -\left(\frac{\D S}{S}\right)\!\!\left(\frac{\D M}{M}\right) = \rho\left(\frac{\D S}{S}\right)\!\!\left(\frac{\D C}{C}\right).$$
+This is because $\D M/M$ has stochastic part $-\rho\theta\,\D B$, and the instantaneous covariance of any asset's return with consumption growth determines the risk premium.
+
+\vskip 0.5\baselineskip
+\textbf{(e) Name of the model.}
+
+This is the \textbf{Consumption CAPM (CCAPM)}, also known as the Breeden CCAPM.
+
+%%% ---------------------------------------------------------------
+%%% QUESTION 4
+%%% ---------------------------------------------------------------
+\mysection{Question 4}
+
+\textbf{Setup.}  One risky asset, one Brownian motion $B$, constant risk-free rate $r$.  The Sharpe ratio $X_t$ (usually called $\lambda$) satisfies
+$$\D X = \kappa(\theta - X)\,\D t + \nu\,\D B.$$
+Investor has CRRA $\rho$, discount rate $\delta$.  The market is complete, so $M$ is unique.
+
+\vskip 0.5\baselineskip
+\textbf{(a) Optimal consumption from the Euler equation.}
+
+In a complete market, the first-order condition gives
+$$\E^{-\delta t}C_t^{-\rho} = \gamma M_t,$$
+so
+$$C_t = \left(\gamma \E^{\delta t} M_t\right)^{-1/\rho},$$
+where $\gamma$ is the Lagrange multiplier on the static budget constraint.
+
+\vskip 0.5\baselineskip
+\textbf{(b) $W_t/C_t$ as a function of $X_t$.}
+
+Optimal wealth is
+$$W_t = \mye_t\!\left[\int_t^\infty \frac{M_u}{M_t}\,C_u\,\D u\right].$$
+Substituting $C_u = (\gamma \E^{\delta u} M_u)^{-1/\rho}$:
+$$\frac{W_t}{C_t} = \mye_t\!\left[\int_t^\infty \frac{M_u}{M_t}\cdot\frac{C_u}{C_t}\,\D u\right] = \mye_t\!\left[\int_t^\infty \E^{-(\delta/\rho)(u-t)}\left(\frac{M_u}{M_t}\right)^{1-1/\rho}\D u\right].$$
+The SDF process satisfies $\D M/M = -r\,\D t - X\,\D B$, so $M_u/M_t$ depends only on the path of $X$ and $B$ from $t$ onward.  Since $X$ is Markov, the conditional expectation depends only on $X_t$.  Hence $W_t/C_t = f(X_t)$ for some function $f$, and $W_t = C_t f(X_t)$.
+
+\vskip 0.5\baselineskip
+\textbf{(c) Optimal portfolio.}
+
+We have $W = C\,f(X)$, so
+$$\frac{\D W}{W} = \frac{\D C}{C} + \frac{\D f}{f} + \left(\frac{\D C}{C}\right)\!\!\left(\frac{\D f}{f}\right).$$
+The stochastic part of $\D C/C$ comes from
+$$\frac{\D C}{C} = -\frac{1}{\rho}\,\frac{\D M}{M} + \cdots = \frac{1}{\rho}X\,\D B + \cdots$$
+The stochastic part of $\D f/f$ is $(f'/f)\nu\,\D B$.  Therefore, the stochastic part of $\D W/W$ is
+$$\left(\frac{X}{\rho} + \frac{f'}{f}\nu + \frac{f'}{f}\cdot\frac{\nu X}{\rho}\right)\D B.$$
+However, since $(\D C/C)(\D f/f)$ contributes $(\nu X/\rho)(f'/f)\,\D t$ (a drift term), the stochastic part of $\D W/W$ is
+$$\left(\frac{X}{\rho} + \frac{f'(X)}{f(X)}\nu\right)\D B.$$
+Setting $\pi\sigma\,\D B$ equal to this:
+$$\pi = \frac{1}{\sigma}\!\left(\frac{X}{\rho} + \frac{f'(X)}{f(X)}\nu\right).$$
+The first term $X/(\rho\sigma) = \lambda/(\rho\sigma) = (\mu - r)/(\rho\sigma^2)$ is the \textbf{log-optimal (myopic) portfolio}.  The second term $\nu f'(X)/(\sigma f(X))$ is the \textbf{hedging demand}---it hedges against changes in investment opportunities driven by changes in $X$.
+
+\vskip 0.5\baselineskip
+\textbf{(d) ODE for $f$.}
+
+From part~(b), $W_t = C_t f(X_t)$ and
+$$\int_0^t M_u C_u\,\D u + M_t C_t f(X_t)$$
+is a martingale.  Its differential is
+$$M_t C_t\,\D t + \D\!\big[M_t C_t f(X_t)\big] = 0 \quad \text{(in the } \D t \text{ terms)}.$$
+We can write $M_t C_t = M_t^{1-1/\rho}\cdot(\text{const}\cdot\E^{-\delta t/\rho})$.  Setting the drift of the martingale to zero and using the dynamics of $M$ and $X$ yields:
+$$\frac{1}{2}\nu^2 f''(x) + \left[\kappa(\theta - x) + \frac{(\rho-1)}{\rho}\nu x\right]f'(x) + \left[\frac{(\rho-1)r}{\rho} + \frac{(\rho-1)x^2}{2\rho^2} - \frac{\delta}{\rho}\right]f(x) + 1 = 0.$$
+This is the ODE that $f$ must satisfy.
+
+%%% ---------------------------------------------------------------
+%%% QUESTION 5
+%%% ---------------------------------------------------------------
+\mysection{Question 5}
+
+\textbf{Setup.}  Log-utility investor in a continuous-time model with a single state variable $X$.  Value function $J(w,x) = a\log w + f(x)$.
+
+\vskip 0.5\baselineskip
+\textbf{Optimal portfolio.}
+
+With $J_w = a/w$, $J_{ww} = -a/w^2$, and $J_{wx} = 0$, the first-order condition for $\pi$ gives
+$$\pi = \Sigma^{-1}(\mu - r\iota).$$
+This is the myopic (log-optimal) portfolio.  There is no hedging demand because $J_{wx} = 0$.
+
+\vskip 0.5\baselineskip
+\textbf{Optimal consumption.}
+
+From $u'(c) = J_w$: $1/c = a/w$, so $c = w/a$.  Substituting into the HJB equation with $\delta$ as the discount rate:
+$$0 = \log(w/a) - \delta a\log w - \delta f + a\left[r + \kappa^2 - \frac{1}{a}\right] - \frac{a}{2}\kappa^2 + a\left[r + \kappa^2 - \frac{1}{a}\right]$$
+After careful substitution, the HJB equation becomes:
+$$0 = \log w - \log a - \delta a\log w - \delta f + a\!\left(r - \frac{1}{a}\right) + \frac{a}{2}\kappa^2 + \phi f' + \frac{1}{2}\nu'\nu\,f''.$$
+For the $\log w$ terms to cancel, we need $1 = \delta a$, i.e., $a = 1/\delta$.
+
+\vskip 0.5\baselineskip
+\textbf{ODE for $f$.}
+
+Substituting $a = 1/\delta$ and collecting terms, the ODE for $f$ is:
+$$\phi(x)\,f'(x) + \frac{1}{2}\nu(x)'\nu(x)\,f''(x) = \delta f(x) - \frac{\log\delta}{\delta} - \frac{r(x) - \delta + \kappa(x)^2/2}{\delta},$$
+where $\kappa^2 = (\mu - r\iota)'\Sigma^{-1}(\mu - r\iota)$ is the squared maximum Sharpe ratio (which may depend on $x$).  This is the same ODE as in Question~2(b).
+
+%%% ---------------------------------------------------------------
+%%% QUESTION 6
+%%% ---------------------------------------------------------------
+\mysection{Question 6}
+
+\textbf{Setup.}  The price $S$ of a non-dividend-paying asset is a geometric Brownian motion:
+$$\frac{\D S}{S} = \mu\,\D t + \sigma\,\D B,$$
+with a constant risk-free rate $r$.  A security pays at date $T$:
+$$g(S_T) = \begin{cases}
+K_1 & \text{if } S_T < K_1,\\
+S_T & \text{if } K_1 \le S_T \le K_2,\\
+K_2 & \text{if } S_T > K_2.
+\end{cases}$$
+
+\vskip 0.5\baselineskip
+\textbf{PDE for the value.}
+
+Let $V(t,S)$ denote the value of the security at date $t$ when the asset price is $S$.  Under the risk-neutral probability, $S$ satisfies
+$$\frac{\D S}{S} = r\,\D t + \sigma\,\D B^*,$$
+where $B^*$ is a Brownian motion under the risk-neutral measure.  The fundamental PDE is obtained by writing the rate of return $(\D V)/V$ and equating its expected value under the risk-neutral probability to $r$:
+$$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} = rV,$$
+with the terminal condition $V(T,S) = g(S_T)$.
+
+\vskip 0.5\baselineskip
+\textbf{Pricing using an SDF process.}
+
+An SDF process $M$ satisfies
+$$\frac{\D M}{M} = -r\,\D t - \lambda\,\D B,$$
+where $\lambda = (\mu - r)/\sigma$ is the market price of risk.  By Girsanov's theorem, $\D B^* = \D B + \lambda\,\D t$ defines a Brownian motion under the risk-neutral probability.
+
+The value of the security at date $t$ is
+$$V_t = \mye_t\!\left[\frac{M_T}{M_t}\,g(S_T)\right].$$
+Equivalently, using the risk-neutral probability:
+$$V_t = \E^{-r(T-t)}\,\mye_t^*\!\big[g(S_T)\big],$$
+where $\mye^*$ denotes expectation under the risk-neutral measure.  Under this measure, $\log S_T$ is normally distributed:
+$$\log S_T = \log S_t + \left(r - \frac{\sigma^2}{2}\right)(T-t) + \sigma(B_T^* - B_t^*).$$
+
+The payoff $g(S_T) = K_1\cdot\mathbf{1}_{S_T < K_1} + S_T\cdot\mathbf{1}_{K_1 \le S_T \le K_2} + K_2\cdot\mathbf{1}_{S_T > K_2}$ can be decomposed as:
+$$g(S_T) = K_1 + \max(S_T - K_1, 0) - \max(S_T - K_2, 0).$$
+This is a portfolio of $K_1$ in cash, a long call with strike $K_1$, and a short call with strike $K_2$.  Each call can be priced using the Black--Scholes formula, giving
+$$V_t = \E^{-r(T-t)}K_1 + \text{BS}_{\text{call}}(S_t, K_1, T-t) - \text{BS}_{\text{call}}(S_t, K_2, T-t).$$
+
+%%% ---------------------------------------------------------------
+%%% QUESTION 7
+%%% ---------------------------------------------------------------
+\mysection{Question 7}
+
+\textbf{Setup.}  A single risky asset with $\D S/S = \mu\,\D t + \sigma\,\D B$, no dividends prior to $T$, constant $r$.  A security pays $S_T^2$ at date $T$.
+
+\vskip 0.5\baselineskip
+\textbf{(a) Price using the SDF process.}
+
+The SDF process satisfies $\D M/M = -r\,\D t - \lambda\,\D B$ with $\lambda = (\mu - r)/\sigma$.  The price at date $t$ is
+$$V_t = \mye_t\!\left[\frac{M_T}{M_t}\,S_T^2\right] = \E^{-r(T-t)}\,\mye_t^*\!\left[S_T^2\right].$$
+Under the risk-neutral probability, $S$ satisfies $\D S/S = r\,\D t + \sigma\,\D B^*$, so
+$$S_T = S_t\exp\!\left[\left(r - \frac{\sigma^2}{2}\right)(T-t) + \sigma(B_T^* - B_t^*)\right].$$
+Therefore
+$$S_T^2 = S_t^2\exp\!\left[\left(2r - \sigma^2\right)(T-t) + 2\sigma(B_T^* - B_t^*)\right].$$
+Taking the risk-neutral expectation (using $\mye^*[\E^{aZ}] = \E^{a^2/2}$ for $Z \sim \mathcal{N}(0,1)$):
+$$\mye_t^*[S_T^2] = S_t^2\exp\!\left[(2r - \sigma^2)(T-t) + 2\sigma^2(T-t)\right] = S_t^2\,\E^{(2r + \sigma^2)(T-t)}.$$
+Hence
+$$\boxed{V_t = S_t^2\,\E^{(r + \sigma^2)(T-t)}.}$$
+
+\vskip 0.5\baselineskip
+\textbf{(b) Fundamental PDE.}
+
+Let $V = f(t,S)$ denote the price.  The fundamental PDE (derived by equating the expected return under the risk-neutral probability to the risk-free rate) is
+$$\frac{\partial f}{\partial t} + rS\frac{\partial f}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 f}{\partial S^2} = rf,$$
+with boundary condition $f(T,S) = S^2$.
+
+We can verify: $f(t,S) = S^2\,\E^{(r+\sigma^2)(T-t)}$ gives
+\begin{align*}
+f_t &= -(r+\sigma^2)f, \\
+f_S &= 2S\,\E^{(r+\sigma^2)(T-t)}, \\
+f_{SS} &= 2\,\E^{(r+\sigma^2)(T-t)}.
+\end{align*}
+Substituting:
+$$-(r+\sigma^2)f + 2rS^2\E^{(r+\sigma^2)(T-t)} + \sigma^2 S^2\E^{(r+\sigma^2)(T-t)} = -(r+\sigma^2)f + (2r + \sigma^2)f = rf.\;\checkmark$$
+
+%%% ---------------------------------------------------------------
+%%% QUESTION 8
+%%% ---------------------------------------------------------------
+\mysection{Question 8}
+
+\textbf{Setup.}  A perpetual call option on an asset with constant dividend yield $q > 0$, constant volatility $\sigma$, and constant risk-free rate $r$.  Under the risk-neutral probability,
+$$\frac{\D S}{S} = (r - q)\,\D t + \sigma\,\D B^*.$$
+
+\vskip 0.5\baselineskip
+\textbf{Solution.}
+
+Consider exercising the call when $S$ first rises to a level $s^* > K$.  For $S < s^*$, the value of the option is $f(S)$, which satisfies the ODE (obtained by equating the expected return under the risk-neutral measure to $r$):
+$$\frac{1}{2}\sigma^2 S^2 f''(S) + (r - q)S f'(S) = r f(S).$$
+The general solution is $f(S) = aS^\beta + bS^{-\gamma}$, where $\beta > 1$ and $-\gamma < 0$ are the two roots of the characteristic equation
+$$\frac{1}{2}\sigma^2 z(z-1) + (r-q)z - r = 0.$$
+Equivalently, $\frac{1}{2}\sigma^2 z^2 + (r - q - \frac{1}{2}\sigma^2)z - r = 0$.
+
+\textbf{Boundary conditions:}
+\begin{itemize}
+\item As $S \to 0$, $f(S) \to 0$, which requires $b = 0$.  So $f(S) = aS^\beta$.
+\item \textbf{Value matching:} $f(s^*) = s^* - K$, giving $a(s^*)^\beta = s^* - K$.
+\item \textbf{Smooth pasting:} $f'(s^*) = 1$, giving $a\beta(s^*)^{\beta - 1} = 1$.
+\end{itemize}
+
+From smooth pasting: $a = (s^*)^{1-\beta}/\beta$.  Substituting into value matching:
+$$\frac{s^*}{\beta} = s^* - K \quad\implies\quad s^* = \frac{\beta K}{\beta - 1}.$$
+Then $a = (s^* - K)/(s^*)^\beta$.  The value of the perpetual call for $S \le s^*$ is
+$$f(S) = (s^* - K)\left(\frac{S}{s^*}\right)^\beta,$$
+where $s^* = \beta K/(\beta - 1)$ and $\beta > 1$ is the positive root of the characteristic equation.
+
+The optimal exercise policy is: exercise the first time $S$ reaches $s^* = \beta K/(\beta - 1)$.
+
+%%% ---------------------------------------------------------------
+%%% QUESTION 9
+%%% ---------------------------------------------------------------
+\mysection{Question 9}
+
+\textbf{Setup.}  An asset with price $S$, constant volatility $\sigma$, and constant dividend yield $\delta$.  You have the option to sell at price $K$ at any time $\tau$.  The payoff is $h(S_\tau) = K - S_\tau$.  Consider exercising when $S$ first falls to $s^* \le S_0$.  Let $f(s)$ be the option value for $s^* \le s \le S_0$.
+
+\vskip 0.5\baselineskip
+\textbf{(a) ODE for $f$.}
+
+Under the risk-neutral probability, $\D S/S = (r - \delta)\,\D t + \sigma\,\D B^*$.  Since the option has no cash flow before exercise, its expected return under the risk-neutral probability must equal $r$.  This gives the ODE:
+$$\frac{1}{2}\sigma^2 s^2 f''(s) + (r - \delta)\,s\,f'(s) - r\,f(s) = 0.$$
+
+\vskip 0.5\baselineskip
+\textbf{(b) Power-function solution.}
+
+Try $f(s) = as^\beta$.  Then $f'(s) = a\beta s^{\beta - 1}$ and $f''(s) = a\beta(\beta-1)s^{\beta-2}$.  Substituting:
+$$\frac{1}{2}\sigma^2\beta(\beta - 1) + (r - \delta)\beta - r = 0.$$
+This is the characteristic (quadratic) equation for $\beta$.  It has two roots: one positive $\beta > 0$ and one negative $-\gamma < 0$.
+
+\vskip 0.5\baselineskip
+\textbf{(c) Boundary condition and value.}
+
+As $s \to \infty$, the put option value should vanish: $f(s) \to 0$.  The positive root $\beta$ would give $f(s) \to \infty$ as $s \to \infty$, so we set its coefficient to zero.  Hence
+$$f(s) = a\,s^{-\gamma},$$
+where $-\gamma$ is the negative root.
+
+\textbf{Value matching} at $s = s^*$: $f(s^*) = K - s^*$, so
+$$a(s^*)^{-\gamma} = K - s^* \quad\implies\quad a = (K - s^*)(s^*)^\gamma.$$
+Thus
+$$f(s) = (K - s^*)\left(\frac{s^*}{s}\right)^\gamma.$$
+
+\vskip 0.5\baselineskip
+\textbf{(d) Optimal exercise boundary.}
+
+To find the optimal $s^*$, use the \textbf{smooth-pasting} condition: $f'(s^*) = -1$ (the derivative of the payoff $K - s$ at $s = s^*$).
+
+$$f'(s) = -\gamma(K - s^*)(s^*)^\gamma s^{-\gamma - 1}.$$
+At $s = s^*$:
+$$f'(s^*) = -\gamma(K - s^*)(s^*)^{-1} = -1.$$
+Hence
+$$\gamma(K - s^*) = s^* \quad\implies\quad s^* = \frac{\gamma K}{1 + \gamma}.$$
+Since $\gamma > 0$, we have $s^* < K$ as required.
+
+The optimal exercise policy is: exercise the first time $S$ falls to
+$$s^* = \frac{\gamma K}{1 + \gamma},$$
+and the value of the perpetual put for $s \ge s^*$ is
+$$f(s) = (K - s^*)\left(\frac{s^*}{s}\right)^\gamma = \frac{K}{1+\gamma}\left(\frac{\gamma K}{(1+\gamma)s}\right)^\gamma.$$
+
+\end{document}

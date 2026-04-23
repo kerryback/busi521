@@ -1,0 +1,557 @@
+\input{Preamble.tex}
+
+\begin{document}
+
+\centerline{\Large \textbf{Sample Midterm Exam Solutions}}
+\vskip 0.5\baselineskip
+\centerline{\large BUSI 521 / ECON 505 --- Asset Pricing}
+\vskip 2\baselineskip
+
+\begin{enumerate}
+
+%%%%% QUESTION 1 %%%%%
+\item Assume there are three equally likely states.  Two assets with prices $p_1=p_2=1$ and payoffs $(1,2,1)$ and $(0,1,3)$.
+
+\begin{enumerate}
+\item[(a)] \textbf{State price vectors.}  Let $q=(q_1,q_2,q_3)$ be a state price vector.  The pricing equations are:
+\[
+q_1 + 2q_2 + q_3 = 1\,,\qquad 0\cdot q_1 + q_2 + 3q_3 = 1\,.
+\]
+From the second equation, $q_2 = 1 - 3q_3$.  Substituting into the first:
+\[
+q_1 + 2(1-3q_3) + q_3 = 1 \;\Longrightarrow\; q_1 = -1 + 5q_3\,.
+\]
+Thus the one-dimensional family is $q = (-1+5q_3,\; 1-3q_3,\; q_3)$ for $q_3 > 0$ with $q_1>0$ and $q_2>0$, i.e., $1/5 < q_3 < 1/3$.
+
+\item[(b)] \textbf{SDF spanned by the assets.}  Each state has probability $1/3$, so the SDF is $\tm = q_i/(1/3) = 3q_i$ in state~$i$.  Let $X$ be the $2\times 3$ payoff matrix:
+\[
+X = \begin{pmatrix} 1 & 2 & 1 \\ 0 & 1 & 3 \end{pmatrix}\,.
+\]
+The SDF spanned by the assets is the projection of any SDF onto the span of the asset payoffs.  We need $\tm = X'\theta$ for some $\theta \in \myreal^2$, and the pricing conditions $\frac{1}{3}X\,\tm = p$ give the system
+\[
+\frac{1}{3}X X'\theta = p = \begin{pmatrix}1\\1\end{pmatrix}\,.
+\]
+We compute $\frac{1}{3}XX' = \frac{1}{3}\begin{pmatrix} 6 & 5 \\ 5 & 10\end{pmatrix}$, so
+\[
+\theta = 3\begin{pmatrix}6&5\\5&10\end{pmatrix}^{-1}\begin{pmatrix}1\\1\end{pmatrix} = 3\cdot \frac{1}{35}\begin{pmatrix}10&-5\\-5&6\end{pmatrix}\begin{pmatrix}1\\1\end{pmatrix} = \frac{3}{35}\begin{pmatrix}5\\1\end{pmatrix} = \begin{pmatrix}3/7\\3/35\end{pmatrix}\,.
+\]
+Hence $\tm = X'\theta$:
+\[
+\tm = \begin{pmatrix}1&0\\2&1\\1&3\end{pmatrix}\begin{pmatrix}3/7\\3/35\end{pmatrix} = \begin{pmatrix}3/7 \\ 6/7+3/35 \\ 3/7+9/35\end{pmatrix} = \begin{pmatrix}15/35\\33/35\\24/35\end{pmatrix}\,.
+\]
+\end{enumerate}
+
+%%%%% QUESTION 2 %%%%%
+\item \textbf{MV frontier FOC and factor pricing.}
+
+Assume there is a risk-free asset with return $R_f$.  Let $\tilde{\mathbf{R}}$ be the vector of risky asset returns with mean $\mu$ and covariance matrix $\Sigma$.  A portfolio on the mean-variance frontier solves
+\[
+\min_\pi \;\frac{1}{2}\pi'\Sigma\pi \quad\text{subject to}\quad \pi'(\mu - R_f\iota) = \mu_{\mathrm{targ}} - R_f\,.
+\]
+The first-order condition (with Lagrange multiplier $\delta$) is
+\[
+\Sigma \pi = \delta(\mu - R_f\iota) \;\;\Longrightarrow\;\; \pi = \delta\,\Sigma^{-1}(\mu - R_f\iota)\,.
+\]
+The return on this portfolio is $\tr_p = R_f + \pi'(\tilde{\mathbf{R}}-R_f\iota)$.  For any return $\tr_i$,
+\[
+\cov(\tr_i,\tr_p) = \pi'\Sigma e_i = \delta(\mu-R_f\iota)'\Sigma^{-1}\Sigma e_i = \delta(\mu_i - R_f)\,,
+\]
+where $e_i$ selects asset $i$. Hence $\mu_i - R_f = \frac{1}{\delta}\cov(\tr_i,\tr_p)$, which is a factor model with $\tr_p$ as the single factor:
+\[
+\mye[\tr_i] - R_f = \lambda\,\cov(\tr_i,\tr_p)\,,\quad \lambda = \frac{1}{\delta}\,.
+\]
+
+%%%%% QUESTION 3 %%%%%
+\item \textbf{CRRA risk-free rate with lognormal consumption.}
+
+Assume $\log \tilde{c}_1 \sim N(\log c_0 + \mu,\;\sigma^2)$.  The SDF is $\tm = \delta(\tilde{c}_1/c_0)^{-\rho}$, so
+\[
+\frac{1}{R_f} = \mye[\tm] = \delta\,\mye\!\left[e^{-\rho\log(\tilde{c}_1/c_0)}\right] = \delta\,e^{-\rho\mu + \rho^2\sigma^2/2}\,,
+\]
+using the moment generating function of a normal.  Thus,
+\[
+\log R_f = -\log\delta + \rho\mu - \frac{\rho^2\sigma^2}{2}\,.
+\]
+
+\begin{enumerate}
+\item[(a)] This is the formula derived above.
+
+\item[(b)] When $\mu$ is larger, expected consumption growth is higher.  Investors want to borrow against future income to smooth consumption, pushing up $R_f$.  When $\sigma$ is smaller, there is less precautionary saving motive, so investors save less, and $R_f$ rises.
+
+\item[(c)] The effect of $\rho$ is ambiguous because $\rho$ appears in both the $+\rho\mu$ term (higher $\rho$ increases $R_f$, the consumption-smoothing effect) and the $-\rho^2\sigma^2/2$ term (higher $\rho$ decreases $R_f$, the precautionary-savings effect).
+\end{enumerate}
+
+%%%%% QUESTION 4 %%%%%
+\item \textbf{Linear risk tolerance, sharing rules, Pareto optimality, two-fund separation.}
+
+All investors have linear risk tolerance $\tau_h(w) = A_h + Bw$ with the same cautiousness parameter $B$.
+
+\begin{enumerate}
+\item[(a)] \textbf{Affine sharing rules.}  In a Pareto optimum, the first-order conditions $\lambda_h u_h'(\tilde{w}_h) = \tilde{\eta}$ yield each investor's consumption as a function of the social marginal utility $\tilde{\eta}$.  Because risk tolerance is affine with the same slope $B$, Pareto optimal sharing rules are affine:
+\[
+\tilde{w}_h = a_h + b_h \tilde{w}_m\,,\quad \textstyle\sum_h a_h = 0,\;\sum_h b_h = 1\,.
+\]
+
+\item[(b)] \textbf{Pareto optimality with a risk-free asset.}  Because sharing rules are affine, each investor's optimal consumption $\tilde{w}_h = a_h + b_h\tilde{w}_m$ can be replicated by holding $a_h/R_f$ units of the risk-free asset and fraction $b_h$ of the market portfolio.  No other securities are needed, so as long as a risk-free asset exists, the competitive equilibrium allocation is Pareto optimal even without complete markets.
+
+\item[(c)] \textbf{Two-fund separation.}  Since every investor holds only the risk-free asset and the market portfolio (a consequence of affine sharing rules), there is two-fund separation: the risk-free asset and the tangency (market) portfolio are the two funds.
+\end{enumerate}
+
+%%%%% QUESTION 5 %%%%%
+\item \textbf{Dynamic programming with CRRA utility.}
+
+At date $T-1$, the investor chooses consumption $c$ and portfolio $\pi$ to maximize
+\[
+\frac{1}{1-\rho}c^{1-\rho} + \delta\,\mye\!\left[\frac{1}{1-\rho}\big((w-c)\pi'\tilde{R}_T\big)^{1-\rho}\right].
+\]
+Because $u$ is CRRA, we can write the second term as
+\[
+\delta\,\frac{(w-c)^{1-\rho}}{1-\rho}\,\mye\!\left[(\pi'\tilde{R}_T)^{1-\rho}\right].
+\]
+The optimal portfolio $\pi^*$ maximizes $\mye\!\left[\frac{1}{1-\rho}(\pi'\tilde{R}_T)^{1-\rho}\right]$, i.e., it achieves the maximum $B$.  Hence the value function becomes
+\[
+J_{T-1}(w) = \max_c\left\{\frac{c^{1-\rho}}{1-\rho} + \delta B(w-c)^{1-\rho}\right\}.
+\]
+The FOC is $c^{-\rho} = \delta B(1-\rho)(w-c)^{-\rho}$, giving $c = \alpha w$ for a constant $\alpha$.  Substituting back:
+\[
+J_{T-1}(w) = \frac{1}{1-\rho}\left[\alpha^{1-\rho} + \delta B(1-\rho)(1-\alpha)^{1-\rho}\right]w^{1-\rho} = \frac{1}{1-\rho}A_{T-1}\,w^{1-\rho}\,,
+\]
+where $A_{T-1} = \alpha^{1-\rho} + \delta B(1-\rho)(1-\alpha)^{1-\rho}$ is a constant.
+
+%%%%% QUESTION 6 %%%%%
+\item \textbf{SDF formula with $R_f$.}
+
+\begin{enumerate}
+\item[(a)] Define $\tm = \frac{1}{R_f} + \left(\iota - \frac{1}{R_f}\mu\right)'\Sigma^{-1}(\tilde{\mathbf{R}}-\mu)$.  We verify $\mye[\tm\tr_i]=1$ for each risky asset $i$ and $\mye[\tm]R_f = 1$.
+
+$\mye[\tm] = \frac{1}{R_f}$ since $\mye[\tilde{\mathbf{R}}-\mu]=0$.  Thus $\mye[\tm]R_f = 1$.
+
+For each risky return $\tr_i$:
+\begin{align*}
+\mye[\tm \tr_i] &= \frac{\mu_i}{R_f} + \left(\iota - \frac{\mu}{R_f}\right)'\Sigma^{-1}\cov(\tilde{\mathbf{R}},\tr_i) \\
+&= \frac{\mu_i}{R_f} + \left(\iota - \frac{\mu}{R_f}\right)'\Sigma^{-1}\Sigma e_i = \frac{\mu_i}{R_f} + 1 - \frac{\mu_i}{R_f} = 1\,.
+\end{align*}
+
+\item[(b)] The SDF $\tm$ is in the span of a constant and the returns $\tilde{\mathbf{R}}$, so it is spanned by the assets.  Its cost is $\mye[\tm\cdot\tm/\text{cost}]$... more directly: the payoff $\tm$ costs $\mye[\tm^2]$ (using $\tm$ itself as the SDF to price $\tm$).  Dividing $\tm$ by its cost gives a return.  The frontier return proportional to an SDF is
+\[
+\tr_p = \frac{\tm}{\mye[\tm^2]}\,.
+\]
+Since $\tm$ is an affine function of $\tilde{\mathbf{R}}$, $\tr_p$ is a return on the mean-variance frontier.  Thus $\tm$ is proportional to a frontier return $\pi'\tilde{\mathbf{R}} + (1-\iota'\pi)R_f$.
+\end{enumerate}
+
+%%%%% QUESTION 7 %%%%%
+\item \textbf{CRRA risk-free return with lognormal consumption.}
+
+Let $\Delta \log c = \log(\tilde{c}_1/c_0) \sim N(\mu,\sigma^2)$.  The SDF is $\tm = \delta\,e^{-\rho\,\Delta\log c}$.
+
+\begin{enumerate}
+\item[(a)]
+\[
+\frac{1}{R_f} = \mye[\tm] = \delta\,e^{-\rho\mu+\rho^2\sigma^2/2}\quad\Longrightarrow\quad R_f = \frac{1}{\delta}\,e^{\rho\mu - \rho^2\sigma^2/2}\,.
+\]
+
+\item[(b)] Higher $\mu$ means higher expected consumption growth; investors want to borrow against future consumption to smooth, raising $R_f$.  Higher $\sigma$ increases precautionary saving demand, lowering $R_f$.
+\end{enumerate}
+
+%%%%% QUESTION 8 %%%%%
+\item \textbf{CARA optimal portfolio with normal returns.}
+
+Let $u(w) = -e^{-\alpha w}$.  With a risk-free asset and risky returns $\tilde{\mathbf{R}} \sim N(\mu,\Sigma)$, end-of-period wealth is $\tilde{w} = w_0 R_f + \phi'(\tilde{\mathbf{R}}-R_f\iota)$.  This is normal with mean $w_0 R_f + \phi'(\mu-R_f\iota)$ and variance $\phi'\Sigma\phi$.  Expected utility is
+\[
+-\exp\!\left(-\alpha\left[w_0 R_f + \phi'(\mu-R_f\iota)\right] + \frac{\alpha^2}{2}\phi'\Sigma\phi\right).
+\]
+Maximizing over $\phi$: the FOC is $\mu - R_f\iota - \alpha\Sigma\phi = 0$, giving the optimal portfolio
+\[
+\phi^* = \frac{1}{\alpha}\Sigma^{-1}(\mu - R_f\iota)\,.
+\]
+
+%%%%% QUESTION 9 %%%%%
+\item \textbf{Complete market, unique state price vector.}
+
+There are $n$ assets and $k$ states, with $n \ge k$ for completeness.  The payoff matrix $X$ is $n\times k$ with $\mathrm{rank}(X) = k$.  The pricing condition is $p = Xq$, where $q \in \myreal^k$ is the state price vector and $p$ is the price vector.  Since $X$ has full column rank, $X'X$ is invertible, and the unique state price vector is
+\[
+q = (X'X)^{-1}X'p\,.
+\]
+This is the unique solution because $X$ has rank $k$ (the market is complete), so the system $Xq = p$ has exactly one solution.
+
+%%%%% QUESTION 10 %%%%%
+\item \textbf{SDF formula with $R_f$ (projection interpretation).}
+
+\begin{enumerate}
+\item[(a)] Same as Question~6(a).  The random variable
+\[
+\tm^* = \frac{1}{R_f} + \left(\iota - \frac{1}{R_f}\mu\right)'\Sigma^{-1}(\tilde{\mathbf{R}}-\mu)
+\]
+is an SDF, verified by checking $\mye[\tm^*\tr_i]=1$ for all risky returns and $\mye[\tm^*]R_f=1$.
+
+\item[(b)] Let $\tm$ be any SDF.  Decompose $\tm = \tm_p + \varepsilon$, where $\tm_p$ is the projection of $\tm$ onto the span of a constant and the returns, and $\varepsilon$ is orthogonal to all returns.  Then $\tm_p$ is the unique SDF in the span of the returns.  Because $\tm^*$ is also in the span of the returns and is an SDF, by uniqueness of the Riesz representation, $\tm^* = \tm_p$.  Thus the random variable in part~(a) equals the orthogonal projection of any SDF onto the span of the returns.
+\end{enumerate}
+
+%%%%% QUESTION 11 %%%%%
+\item \textbf{Tangency portfolio.}
+
+With a risk-free asset, the tangency portfolio maximizes the Sharpe ratio:
+\[
+\max_\pi \frac{\pi'(\mu-R_f\iota)}{\sqrt{\pi'\Sigma\pi}}\,.
+\]
+The solution is $\pi_{\mathrm{tang}} = c\,\Sigma^{-1}(\mu-R_f\iota)$ for a normalizing constant $c = 1/[\iota'\Sigma^{-1}(\mu-R_f\iota)]$ so that $\iota'\pi_{\mathrm{tang}}=1$.
+
+The tangency portfolio exists provided $\iota'\Sigma^{-1}(\mu - R_f\iota) \neq 0$, i.e., $R_f \neq B/C$ where $B = \iota'\Sigma^{-1}\mu$ and $C = \iota'\Sigma^{-1}\iota$.  If $R_f = B/C$ (the expected return of the GMV portfolio), no tangency portfolio exists.
+
+%%%%% QUESTION 12 %%%%%
+\item \textbf{Factor pricing from SDF.}
+
+Suppose $\tm = a + b'\tilde{X}$ is an SDF.  For any return $\tr$:
+\[
+1 = \mye[\tm\tr] = a\,\mye[\tr] + b'\mye[\tilde{X}\tr] = a\,\mye[\tr] + b'\left(\cov(\tilde{X},\tr) + \mye[\tilde{X}]\mye[\tr]\right).
+\]
+Hence,
+\[
+\mye[\tr]\left(a + b'\mye[\tilde{X}]\right) = 1 - b'\cov(\tilde{X},\tr)\,.
+\]
+Applying this to $\tr = R_f$ (if a risk-free asset exists) gives $a + b'\mye[\tilde{X}] = 1/R_f$, so
+\[
+\mye[\tr] - R_f = -R_f\,b'\cov(\tilde{X},\tr)\,.
+\]
+This is a factor pricing model with factors $\tilde{X}$ and risk premium vector $\lambda = -R_f\,b$.
+
+If there is no risk-free asset, define $R_z = 1/(a+b'\mye[\tilde{X}])$ and the same algebra yields $\mye[\tr] - R_z = -R_z\,b'\cov(\tilde{X},\tr)$.
+
+%%%%% QUESTION 13 %%%%%
+\item \textbf{Generalized CAPM with CRRA.}
+
+With a representative investor with CRRA $\rho$ and a risk-free asset, $\tm = \delta(\tilde{c}_1/c_0)^{-\rho}$ is an SDF.  In equilibrium, $\tilde{c}_1 \propto \tilde{R}_m$, so $\tm \propto \tilde{R}_m^{-\rho}$.  For each asset $i$:
+\[
+\mye[\tr_i] - R_f = -\frac{\cov(\tilde{R}_m^{-\rho},\tr_i)}{\mye[\tilde{R}_m^{-\rho}]}\cdot R_f = \frac{\cov(\tr_i,\tilde{R}_m^{-\rho})}{\cov(\tilde{R}_m,\tilde{R}_m^{-\rho})}\left(\mye[\tilde{R}_m]-R_f\right).
+\]
+Define the generalized beta:
+\[
+\gamma_i = \frac{\cov(\tr_i,\tilde{R}_m^{-\rho})}{\cov(\tilde{R}_m,\tilde{R}_m^{-\rho})}\,.
+\]
+Then $\mye[\tr_i]-R_f = \gamma_i(\mye[\tilde{R}_m]-R_f)$.
+
+When $\rho=1$, $\tilde{R}_m^{-\rho} = 1/\tilde{R}_m$, and $\gamma_i$ reduces to something close to the standard CAPM beta.  When $\rho \neq 1$, this is a nonlinear generalization.
+
+%%%%% QUESTION 14 %%%%%
+\item \textbf{Log utility Pareto optimal sharing.}
+
+With log utility $u_h(w) = \log w$, the Pareto optimality FOC is $\lambda_h/\tilde{w}_h = \tilde{\eta}$ for all $h$, where $\tilde{\eta}$ is the social marginal utility.  Thus $\tilde{w}_h = \lambda_h/\tilde{\eta}$.  Summing over $h$:
+\[
+\tilde{w}_m = \sum_h \tilde{w}_h = \frac{1}{\tilde{\eta}}\sum_h \lambda_h\,.
+\]
+Hence $\tilde{\eta} = (\sum_h \lambda_h)/\tilde{w}_m$ and
+\[
+\tilde{w}_h = \frac{\lambda_h}{\sum_j \lambda_j}\,\tilde{w}_m = b_h\,\tilde{w}_m\,,
+\]
+where $b_h = \lambda_h/\sum_j\lambda_j$.  This is affine (in fact, proportional) in $\tilde{w}_m$.
+
+%%%%% QUESTION 15 %%%%%
+\item \textbf{Verify SDF.}
+
+Four equally probable states, $R_f = 1.5$, two risky assets with payoffs and prices as given.  The proposed SDF is $\tm = (1/3,\;1/3,\;1,\;1)$.  We verify:
+
+\textit{Risk-free asset:} $\mye[\tm]R_f = \frac{1}{4}(1/3+1/3+1+1)\cdot 1.5 = \frac{1}{4}\cdot\frac{8}{3}\cdot 1.5 = 1$.  \checkmark
+
+\textit{Asset 1} (price $p_1=1$, payoffs $(3,3,1,1)$):
+\[
+\mye[\tm\tilde{x}_1] = \frac{1}{4}\!\left(\frac{1}{3}\cdot 3 + \frac{1}{3}\cdot 3 + 1\cdot 1 + 1\cdot 1\right) = \frac{1}{4}(1+1+1+1)=1 = p_1\,.\;\checkmark
+\]
+
+\textit{Asset 2} (price $p_2=2$, payoffs $(1,5,2,4)$):
+\[
+\mye[\tm\tilde{x}_2] = \frac{1}{4}\!\left(\frac{1}{3}\cdot 1 + \frac{1}{3}\cdot 5 + 1\cdot 2 + 1\cdot 4\right) = \frac{1}{4}\!\left(\frac{1}{3}+\frac{5}{3}+2+4\right) = \frac{1}{4}\cdot 8 = 2 = p_2\,.\;\checkmark
+\]
+
+%%%%% QUESTION 16 %%%%%
+\item \textbf{Complete market test.}
+
+With two investors and three states, Pareto optimality implies that each investor's consumption is a function of aggregate consumption.  Aggregate wealth by state: $(3,7,8)$.  Investor~1's wealth $(1,4,3)$ is \emph{not} a monotone function of aggregate wealth (states ordered by aggregate wealth give $(3,7,8) \to (1,4,3)$, but $3 < 4$ while $8>7$, and $3 < 4$ okay, but the ordering $1,4,3$ is not monotone with $3,7,8$).
+
+Specifically, investor~1's wealth is 1 when aggregate is 3, 4 when aggregate is 7, and 3 when aggregate is 8.  Since investor 1 is risk averse, $u_1'$ is decreasing, so the sharing rule $\tilde{w}_1 = f(\tilde{w}_m)$ must be increasing if the allocation is Pareto optimal.  But $f(7)=4 > 3 = f(8)$, violating monotonicity.  Therefore the allocation is \emph{not} Pareto optimal, which means the market is \emph{not} complete (since competitive equilibria in complete markets are Pareto optimal).
+
+%%%%% QUESTION 17 %%%%%
+\item \textbf{Risky asset demand $\phi'(w)$.}
+
+In a single-period model with a risk-free asset and one risky asset with excess return $\tilde{R}-R_f$, the investor maximizes $\mye[u(wR_f + \phi(\tilde{R}-R_f))]$.  The FOC is
+\[
+\mye\!\left[u'\!\left(wR_f + \phi(\tilde{R}-R_f)\right)(\tilde{R}-R_f)\right] = 0\,.
+\]
+Differentiating implicitly with respect to $w$:
+\[
+\mye\!\left[u''\!\left(\tilde{w}\right)\left(R_f + \phi'(w)(\tilde{R}-R_f)\right)(\tilde{R}-R_f)\right] = 0\,.
+\]
+Solving for $\phi'(w)$:
+\[
+\phi'(w) = -\frac{R_f\,\mye[u''(\tilde{w})(\tilde{R}-R_f)]}{\mye[u''(\tilde{w})(\tilde{R}-R_f)^2]}\,.
+\]
+The denominator is negative (since $u''<0$).  The sign of $\phi'(w)$ equals the sign of $\mye[u''(\tilde{w})(\tilde{R}-R_f)]$.  This is positive (meaning $\phi'(w)>0$, investment in the risky asset increases with wealth) when the investor has decreasing absolute risk aversion (DARA).
+
+%%%%% QUESTION 18 %%%%%
+\item \textbf{Two-fund separation.}
+
+Two-fund separation means that all investors hold portfolios that are combinations of the same two mutual funds (typically the risk-free asset and a single portfolio of risky assets).
+
+The assumption that implies two-fund separation is that all investors have \textbf{linear risk tolerance with the same cautiousness parameter} (the same slope $B$ in $\tau(w) = A_h + Bw$).  This includes CARA (all same $B=0$), CRRA (all same $\rho$, so $B = 1/\rho$), and quadratic utility.
+
+Under this assumption, sharing rules are affine, so each investor holds a linear combination of the risk-free asset and the market portfolio.
+
+%%%%% QUESTION 19 %%%%%
+\item \textbf{Risk-neutral probability.}
+
+Define $Q(A) = R_f\,\mye[\tm \mathbf{1}_A]$ for each event $A$.  For any return $\tr$:
+\[
+\mye^*[\tr] = R_f\,\mye[\tm\tr]\,.
+\]
+Since $\tm$ is an SDF, $\mye[\tm\tr] = 1$ for every return.  Therefore,
+\[
+\mye^*[\tr] = R_f\cdot 1 = R_f\,.
+\]
+
+%%%%% QUESTION 20 %%%%%
+\item \textbf{GMV portfolio.}
+
+The global minimum variance (GMV) portfolio minimizes $\pi'\Sigma\pi$ subject to $\iota'\pi = 1$.  Using a Lagrange multiplier:
+\[
+\mathcal{L} = \frac{1}{2}\pi'\Sigma\pi - \lambda(\iota'\pi - 1)\,.
+\]
+FOC: $\Sigma\pi = \lambda\iota$, so $\pi = \lambda\Sigma^{-1}\iota$.  Imposing $\iota'\pi=1$:
+\[
+\lambda\,\iota'\Sigma^{-1}\iota = 1 \;\Longrightarrow\; \lambda = \frac{1}{\iota'\Sigma^{-1}\iota}\,.
+\]
+Thus,
+\[
+\pi_{\mathrm{gmv}} = \frac{\Sigma^{-1}\iota}{\iota'\Sigma^{-1}\iota}\,.
+\]
+
+%%%%% QUESTION 21 %%%%%
+\item \textbf{SDF as return (two properties).}
+
+If $\tm$ is an SDF and $a + b\tm$ is a return, then:
+
+\begin{enumerate}
+\item[(i)] \textbf{It is on the mean-variance frontier.}  Any return that is an affine function of an SDF is on the mean-variance frontier, because the frontier return $\tilde{R}_p = \tm_p/\mye[\tm_p^2]$ is proportional to the projected SDF.
+
+\item[(ii)] \textbf{It is on the inefficient part of the frontier} (assuming $b>0$).  The SDF is a decreasing function of wealth in states where wealth is high (good states have low SDF values).  A return positively related to $\tm$ is high in bad states and low in good states, meaning it has a low expected return for its level of variance---it is inefficient.  (Specifically, $\tilde{R}_p$ is the minimum second-moment return, which is on the inefficient part.)
+\end{enumerate}
+
+%%%%% QUESTION 22 %%%%%
+\item Same as Question~2.
+
+A return $\tr_p$ is on the mean-variance frontier if and only if $\tr_p = R_f + \delta(\mu-R_f\iota)'\Sigma^{-1}(\tilde{\mathbf{R}}-\mu)$ for some $\delta$.  The FOC for frontier membership is $\Sigma\pi = \delta(\mu-R_f\iota)$, i.e., $\pi = \delta\Sigma^{-1}(\mu-R_f\iota)$.
+
+This relates to factor pricing because: for any return $\tr_i$,
+\[
+\cov(\tr_i,\tr_p) = e_i'\Sigma\pi = \delta(\mu_i-R_f)\,,
+\]
+so
+\[
+\mye[\tr_i] - R_f = \frac{1}{\delta}\cov(\tr_i,\tr_p) = \frac{\mye[\tr_p]-R_f}{\var(\tr_p)}\cov(\tr_i,\tr_p)\,.
+\]
+This is a single-factor model with $\tr_p$ as the factor and the price of risk equal to the Sharpe ratio squared divided by the risk premium, or equivalently $\beta_i(\mye[\tr_p]-R_f)$ where $\beta_i = \cov(\tr_i,\tr_p)/\var(\tr_p)$.
+
+%%%%% QUESTION 23 %%%%%
+\item \textbf{CAPM SDF.}
+
+If the CAPM holds, the market return $\tilde{R}_m$ is on the mean-variance frontier.  From the SDF representation of frontier returns, $\tm = a - b\tilde{R}_m$ is an SDF for some $a,b$.
+
+We need $\mye[\tm]=1/R_f$ and $\mye[\tm\tilde{R}_m]=1$.  These give:
+\begin{align*}
+a - b\,\mye[\tilde{R}_m] &= \frac{1}{R_f}\,,\\
+a\,\mye[\tilde{R}_m] - b\,\mye[\tilde{R}_m^2] &= 1\,.
+\end{align*}
+From the first equation, $a = 1/R_f + b\,\mye[\tilde{R}_m]$.  Substituting into the second:
+\begin{align*}
+\left(\frac{1}{R_f}+b\,\mye[\tilde{R}_m]\right)\mye[\tilde{R}_m] - b\,\mye[\tilde{R}_m^2] &= 1\\
+\frac{\mye[\tilde{R}_m]}{R_f} - b\,\var(\tilde{R}_m) &= 1\,.
+\end{align*}
+Hence,
+\[
+b = \frac{\mye[\tilde{R}_m]/R_f - 1}{\var(\tilde{R}_m)} = \frac{\mye[\tilde{R}_m]-R_f}{R_f\,\var(\tilde{R}_m)}\,,
+\]
+and
+\[
+a = \frac{1}{R_f} + \frac{\mye[\tilde{R}_m]-R_f}{R_f\,\var(\tilde{R}_m)}\,\mye[\tilde{R}_m] = \frac{1}{R_f}\left(1 + \frac{\mye[\tilde{R}_m](\mye[\tilde{R}_m]-R_f)}{\var(\tilde{R}_m)}\right).
+\]
+
+%%%%% QUESTION 24 %%%%%
+\item \textbf{Factor risk premium = expected excess return.}
+
+Suppose $\tilde{f}$ is an excess return that is a pricing factor: $\mye[\tr_i]-R_f = \beta_i\lambda$ for $\beta_i = \cov(\tr_i,\tilde{f})/\var(\tilde{f})$.  Apply this to the return $R_f + \tilde{f}$ (which is a return since $\tilde{f}$ is an excess return):
+\[
+\mye[R_f + \tilde{f}] - R_f = \beta_f\,\lambda\,.
+\]
+Here $\beta_f = \cov(R_f+\tilde{f},\tilde{f})/\var(\tilde{f}) = 1$.  Thus $\mye[\tilde{f}] = \lambda$.  The factor risk premium equals the expected excess return of the factor.
+
+%%%%% QUESTION 25 %%%%%
+\item \textbf{Macro factors to return factors.}
+
+If there is a factor pricing model $\mye[\tr_i]-R_f = \beta_i'\lambda$ with macroeconomic factors $\tilde{F}$, then define the \emph{factor-mimicking portfolios}: for each factor $\tilde{f}_j$, project it onto the space of returns to obtain a return $\tilde{R}_j$ that has maximum correlation with $\tilde{f}_j$.  Specifically, the mimicking return for factor $j$ is
+\[
+\tilde{R}_j = R_f + \cov(\tilde{f}_j,\tilde{\mathbf{R}})'\Sigma^{-1}(\tilde{\mathbf{R}}-R_f\iota)\cdot c_j
+\]
+for an appropriate constant $c_j$.  Because the covariance of any return with $\tilde{f}_j$ is proportional to its covariance with $\tilde{R}_j$, there is a factor pricing model with the returns $\tilde{R}_1,\ldots,\tilde{R}_k$ as factors.  These return factors are the projections of the macro factors onto the return space.
+
+%%%%% QUESTION 26 %%%%%
+\item \textbf{CRRA risk premium formula.}
+
+With CRRA $\rho$ and a risk-free asset, $\tm = \gamma\tilde{R}_m^{-\rho}$ is an SDF for some constant $\gamma$.  For any return $\tr$:
+\[
+\mye[\tr]-R_f = -R_f\,\cov(\tm,\tr)/\mye[\tm]\cdot\mye[\tm] = -\frac{\cov(\tm,\tr)}{\mye[\tm]}\cdot R_f\,.
+\]
+More directly, $\mye[\tr]-R_f = -R_f\,\cov(\gamma\tilde{R}_m^{-\rho},\tr) \cdot R_f$... Let us use the standard derivation.  From $\mye[\tm\tr]=1$ and $\mye[\tm]=1/R_f$:
+\[
+\mye[\tr]-R_f = -\frac{\cov(\tm,\tr)}{\mye[\tm]}\,.
+\]
+Since $\tm \propto \tilde{R}_m^{-\rho}$:
+\[
+\mye[\tr]-R_f = -\frac{\cov(\tilde{R}_m^{-\rho},\tr)}{\mye[\tilde{R}_m^{-\rho}]}\,.
+\]
+Applying this to $\tr = \tilde{R}_m$:
+\[
+\mye[\tilde{R}_m]-R_f = -\frac{\cov(\tilde{R}_m^{-\rho},\tilde{R}_m)}{\mye[\tilde{R}_m^{-\rho}]}\,.
+\]
+Dividing:
+\[
+\mye[\tr]-R_f = \frac{\mye[\tilde{R}_m]-R_f}{\cov(\tilde{R}_m,\tilde{R}_m^{-\rho})}\,\cov(\tr,\tilde{R}_m^{-\rho})\,.
+\]
+
+%%%%% QUESTION 27 %%%%%
+\item \textbf{Equity premium with lognormal consumption.}
+
+With CRRA $\rho$ and $\log(\tilde{c}_1/c_0)\sim N(\mu,\sigma^2)$, we showed in Question~3 that $\log R_f = -\log\delta+\rho\mu-\rho^2\sigma^2/2$.
+
+For the market return, in equilibrium $\tilde{R}_m \propto \tilde{c}_1/c_0$, so $\log\tilde{R}_m = \log(\tilde{c}_1/c_0)+\text{const}$.  Using the Euler equation $1 = \mye[\tm\tilde{R}_m] = \delta\,\mye[(\tilde{c}_1/c_0)^{1-\rho}]$:
+\[
+\log\mye[\tilde{R}_m] = -\log\delta + (1-\rho)\left(-\mu+\frac{(1-\rho)\sigma^2}{2}\right)^{-1}\ldots
+\]
+More carefully: let $z = \log(\tilde{c}_1/c_0)\sim N(\mu,\sigma^2)$.
+\[
+\log\mye[\tilde{R}_m] = \mu + \sigma^2/2 + \text{const terms that cancel}\,.
+\]
+The equity premium is:
+\[
+\log\mye[\tilde{R}_m] - \log R_f = \rho\sigma^2\,.
+\]
+\textit{Proof:} $\mye[\tm\tilde{R}_m]=1$ with $\tm = \delta e^{-\rho z}$ and $\tilde{R}_m \propto e^z$ gives $\log\mye[\tilde{R}_m] = -\log\delta+(1-\rho)\mu+(1-\rho)^2\sigma^2/2 + \sigma^2/2$... Actually, a clean derivation uses:
+\[
+\log\mye[\tilde{R}_m] - \log R_f = -\cov(\log\tm,\log\tilde{R}_m) - \frac{1}{2}\var(\log\tilde{R}_m)\,.
+\]
+But the simplest route: $\mye[\tm\tilde{R}_m]=1$ implies $\cov(\tm,\tilde{R}_m)=-\mye[\tm]\mye[\tilde{R}_m]+1$, so
+\[
+\mye[\tilde{R}_m]-R_f = -R_f\cov(\tm,\tilde{R}_m)\,.
+\]
+With $\tm=\delta e^{-\rho z}$, $\tilde{R}_m = \nu^{-1}e^z$ (where $\nu=\delta\mye[e^{(1-\rho)z}]$), and using lognormal properties:
+\[
+\log\mye[\tilde{R}_m]-\log R_f = \rho\sigma^2\,.
+\]
+
+%%%%% QUESTION 28 %%%%%
+\item \textbf{Equity premium puzzle.}
+
+The equity premium puzzle (Mehra and Prescott, 1985) is the observation that the historically observed equity premium (about 6\% per year) is too large to be explained by standard consumption-based asset pricing models with reasonable levels of risk aversion.
+
+From Question~27, $\log\mye[\tilde{R}_m]-\log R_f = \rho\sigma^2$.  With $\sigma \approx 0.035$ (consumption growth std.\ dev.), we get $\rho\sigma^2 \approx \rho\times 0.00125$.  To match a 6\% premium requires $\rho \approx 48$, which is an implausibly high level of risk aversion.  Additionally, with $\rho$ that high, the risk-free rate formula predicts an extremely high $R_f$ (the risk-free rate puzzle).
+
+%%%%% QUESTION 29 %%%%%
+\item \textbf{Market return with IID consumption growth.}
+
+With CRRA $\rho$, discount factor $\delta$, and IID consumption growth $C_{t+1}/C_t$, the market portfolio is a claim to the consumption stream.  In the infinite-horizon case, the price of the market at date $t$ is
+\[
+P_t = \mye_t\!\left[\sum_{s=1}^{\infty}\delta^s\left(\frac{C_{t+s}}{C_t}\right)^{-\rho}C_{t+s}\right] = C_t\sum_{s=1}^{\infty}\delta^s\,\mye\!\left[\left(\frac{C_{t+s}}{C_t}\right)^{1-\rho}\right].
+\]
+By the IID assumption, $\mye[(C_{t+s}/C_t)^{1-\rho}] = \left(\mye[(C_{t+1}/C_t)^{1-\rho}]\right)^s$.  Define $\nu = \delta\,\mye[(C_{t+1}/C_t)^{1-\rho}]$.  Then $P_t = C_t\cdot\nu/(1-\nu)$.  The market return is
+\[
+R_{m,t+1} = \frac{P_{t+1}+C_{t+1}}{P_t} = \frac{C_{t+1}[\nu/(1-\nu)+1]}{C_t\cdot\nu/(1-\nu)} = \frac{1}{\nu}\cdot\frac{C_{t+1}}{C_t}\,.
+\]
+
+%%%%% QUESTION 30 %%%%%
+\item \textbf{Bellman equation with CRRA and state variable.}
+
+The Bellman equation is
+\[
+J(w,x) = \max_{c,\pi}\left\{\frac{c^{1-\rho}}{1-\rho} + \delta\,\mye\!\left[J\!\left((w-c)\pi'\tilde{R}(x),\,X'\right)\,\Big|\,X=x\right]\right\}.
+\]
+Guess $J(w,x) = \frac{1}{1-\rho}w^{1-\rho}f(x)$.  With CRRA, the optimal $c = \alpha(x)\,w$ for some function $\alpha$.  Substituting:
+\begin{align*}
+\frac{w^{1-\rho}f(x)}{1-\rho} &= \frac{(\alpha w)^{1-\rho}}{1-\rho} + \delta\,\mye\!\left[\frac{((1-\alpha)w)^{1-\rho}(\pi'\tilde{R})^{1-\rho}f(X')}{1-\rho}\,\Big|\,x\right]\\
+&= \frac{w^{1-\rho}}{1-\rho}\left[\alpha^{1-\rho} + \delta(1-\alpha)^{1-\rho}\,\mye\!\left[(\pi'\tilde{R})^{1-\rho}f(X')\,|\,x\right]\right].
+\end{align*}
+The $w^{1-\rho}/(1-\rho)$ terms cancel, confirming the guess with
+\[
+f(x) = \alpha(x)^{1-\rho} + \delta(1-\alpha(x))^{1-\rho}\max_\pi\,\mye\!\left[(\pi'\tilde{R}(x))^{1-\rho}f(X')\,|\,X=x\right],
+\]
+where $\alpha(x)$ is determined by the FOC for consumption.
+
+%%%%% QUESTION 31 %%%%%
+\item Same as Question~1.
+
+\begin{enumerate}
+\item[(a)] Three equally likely states, two assets with prices $p_1=p_2=1$, payoffs $(1,2,1)$ and $(0,1,3)$.  State prices satisfy:
+\[
+q_1+2q_2+q_3=1\,,\qquad q_2+3q_3=1\,.
+\]
+The one-dimensional family is $q = (-1+5q_3,\;1-3q_3,\;q_3)$ for $q_3 \in (1/5,\,1/3)$.
+
+\item[(b)] The SDF spanned by the assets is the same as computed in Question~1(b): $\tm = (15/35,\;33/35,\;24/35)$.
+\end{enumerate}
+
+%%%%% QUESTION 32 %%%%%
+\item \textbf{Risk premia and SDF covariances.}
+
+\textit{Statement:} If $\tm$ is an SDF and there is a risk-free asset with return $R_f$, then for any return $\tr$:
+\[
+\mye[\tr]-R_f = -R_f\,\cov(\tm,\tr)\,.
+\]
+
+\textit{Definitions:} An SDF is a random variable $\tm$ such that $\mye[\tm\tr]=1$ for all returns $\tr$.  The risk premium of $\tr$ is $\mye[\tr]-R_f$.
+
+\textit{Proof:} Since $\mye[\tm]=1/R_f$ and $\mye[\tm\tr]=1$:
+\[
+\cov(\tm,\tr) = \mye[\tm\tr]-\mye[\tm]\mye[\tr] = 1-\frac{\mye[\tr]}{R_f}\,.
+\]
+Rearranging:
+\[
+\mye[\tr]-R_f = -R_f\,\cov(\tm,\tr)\,.
+\]
+Thus, the risk premium depends on the covariance with the SDF.  Assets that covary negatively with $\tm$ (i.e., pay well in good states when $\tm$ is low) have positive risk premia.
+
+%%%%% QUESTION 33 %%%%%
+\item \textbf{MV frontier return as pricing factor.}
+
+Assume there are $n$ risky assets with return vector $\tilde{\mathbf{R}}$, mean $\mu$, covariance $\Sigma$, and a risk-free asset with return $R_f$.  Let $\tr_p$ be a mean-variance frontier return with $\tr_p \neq R_f$.
+
+\textit{Definition:} A return $\tr_p$ is a pricing factor if $\mye[\tr_i]-R_f = \lambda\,\cov(\tr_i,\tr_p)$ for all returns $\tr_i$ and some constant $\lambda$.
+
+A frontier return satisfies $\pi = \delta\Sigma^{-1}(\mu-R_f\iota)$ for some $\delta\neq 0$.  For any asset $i$:
+\[
+\cov(\tr_i,\tr_p) = e_i'\Sigma\pi = \delta(\mu_i-R_f)\,,
+\]
+so $\mu_i - R_f = (1/\delta)\cov(\tr_i,\tr_p)$.  Setting $\lambda = 1/\delta = (\mye[\tr_p]-R_f)/\var(\tr_p)$:
+\[
+\mye[\tr_i]-R_f = \frac{\mye[\tr_p]-R_f}{\var(\tr_p)}\,\cov(\tr_i,\tr_p)\,.
+\]
+Hence any frontier return (other than $R_f$) is a pricing factor.
+
+%%%%% QUESTION 34 %%%%%
+\item Same as Questions~3 and~7.
+
+With CRRA $\rho$ and $\log(\tilde{c}_1/c_0)\sim N(\mu,\sigma^2)$:
+\[
+\log R_f = -\log\delta + \rho\mu - \frac{\rho^2\sigma^2}{2}\,.
+\]
+See the derivation in Question~3.
+
+%%%%% QUESTION 35 %%%%%
+\item Same as Question~14.
+
+With log utility ($u_h(w)=\log w$), Pareto optimal sharing rules are $\tilde{w}_h = b_h\tilde{w}_m$ where $b_h = \lambda_h/\sum_j\lambda_j > 0$.
+
+\textit{Proof:} The FOC for the social planner's problem is $\lambda_h u_h'(\tilde{w}_h) = \tilde{\eta}$ for all $h$, i.e., $\lambda_h/\tilde{w}_h = \tilde{\eta}$.  Thus $\tilde{w}_h = \lambda_h/\tilde{\eta}$.  Summing: $\tilde{w}_m = (\sum_h\lambda_h)/\tilde{\eta}$, so $\tilde{\eta} = (\sum_h\lambda_h)/\tilde{w}_m$.  Therefore
+\[
+\tilde{w}_h = \frac{\lambda_h}{\sum_j\lambda_j}\,\tilde{w}_m\,.
+\]
+Each investor's wealth is proportional to market wealth---the sharing rules are affine (in fact, linear).
+
+\end{enumerate}
+
+\end{document}

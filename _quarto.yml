@@ -7,6 +7,7 @@ project:
     - assignments.qmd
     - sample_final.qmd
     - sample_midterm.qmd
+    - exam_questions.qmd
     - presentations.qmd
     - solutions.qmd
   resources:
@@ -20,6 +21,10 @@ project:
     - solutions/Chapter05-Solutions.pdf
     - solutions/Chapter04-Solutions.pdf
     - solutions/Chapter06-Solutions.pdf
+    - solutions/Chapter12-Solutions.pdf
+    - solutions/Chapter14-Solutions.pdf
+    - solutions/Chapter15-Solutions.pdf
+    - solutions/Chapter19-Solutions.pdf
     - PCA_Factors.ipynb
 
                
@@ -43,10 +48,8 @@ website:
         file: room_schedule.pdf 
       - text: NotebookLM
         url: https://notebooklm.google.com/notebook/5ebfd59c-0deb-46da-a80a-85c66ea683b6
-      - text: Sample Midterm
-        file: sample_midterm.qmd
-      - text: Sample Final
-        file: sample_final.qmd
+      - text: Sample Exams
+        file: exam_questions.qmd
 
         
 format:

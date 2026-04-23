@@ -326,13 +326,17 @@ Equivalently, $\frac{1}{2}\sigma^2 z^2 + (r - q - \frac{1}{2}\sigma^2)z - r = 0$
 \textbf{Boundary conditions:}
 \begin{itemize}
 \item As $S \to 0$, $f(S) \to 0$, which requires $b = 0$.  So $f(S) = aS^\beta$.
-\item \textbf{Value matching:} $f(s^*) = s^* - K$, giving $a(s^*)^\beta = s^* - K$.
-\item \textbf{Smooth pasting:} $f'(s^*) = 1$, giving $a\beta(s^*)^{\beta - 1} = 1$.
+\item \textbf{Value matching:} $f(s^*) = s^* - K$, giving $a(s^*)^\beta = s^* - K$, i.e., $a = (s^* - K)/(s^*)^\beta$.
 \end{itemize}
 
-From smooth pasting: $a = (s^*)^{1-\beta}/\beta$.  Substituting into value matching:
-$$\frac{s^*}{\beta} = s^* - K \quad\implies\quad s^* = \frac{\beta K}{\beta - 1}.$$
-Then $a = (s^* - K)/(s^*)^\beta$.  The value of the perpetual call for $S \le s^*$ is
+Substituting, the option value for any $S \le s^*$ is
+$$f(S) = (s^* - K)\left(\frac{S}{s^*}\right)^\beta.$$
+
+\textbf{Optimal exercise boundary by direct optimization.}  Maximize $f(S)$ over $s^*$ (for fixed $S$).  Taking the derivative:
+$$\frac{\partial f}{\partial s^*} = \left(\frac{S}{s^*}\right)^\beta\!\left[1 - \frac{\beta(s^* - K)}{s^*}\right] = 0.$$
+Since $(S/s^*)^\beta > 0$, we need $s^* - \beta(s^* - K) = 0$, which gives
+$$s^* = \frac{\beta K}{\beta - 1}.$$
+The value of the perpetual call for $S \le s^*$ is
 $$f(S) = (s^* - K)\left(\frac{S}{s^*}\right)^\beta,$$
 where $s^* = \beta K/(\beta - 1)$ and $\beta > 1$ is the positive root of the characteristic equation.
 
@@ -371,15 +375,12 @@ Thus
 $$f(s) = (K - s^*)\left(\frac{s^*}{s}\right)^\gamma.$$
 
 \vskip 0.5\baselineskip
-\textbf{(d) Optimal exercise boundary.}
+\textbf{(d) Optimal exercise boundary by direct optimization.}
 
-To find the optimal $s^*$, use the \textbf{smooth-pasting} condition: $f'(s^*) = -1$ (the derivative of the payoff $K - s$ at $s = s^*$).
-
-$$f'(s) = -\gamma(K - s^*)(s^*)^\gamma s^{-\gamma - 1}.$$
-At $s = s^*$:
-$$f'(s^*) = -\gamma(K - s^*)(s^*)^{-1} = -1.$$
-Hence
-$$\gamma(K - s^*) = s^* \quad\implies\quad s^* = \frac{\gamma K}{1 + \gamma}.$$
+Maximize $f(s)$ over $s^*$ (for fixed $s > s^*$).  Writing $f = (K - s^*)(s^*)^\gamma s^{-\gamma}$ and differentiating with respect to $s^*$:
+$$\frac{\partial f}{\partial s^*} = s^{-\gamma}(s^*)^{\gamma - 1}\!\left[\gamma(K - s^*) - s^*\right] = 0.$$
+Since $s^{-\gamma}(s^*)^{\gamma-1} > 0$, we need $\gamma(K - s^*) = s^*$, which gives
+$$s^* = \frac{\gamma K}{1 + \gamma}.$$
 Since $\gamma > 0$, we have $s^* < K$ as required.
 
 The optimal exercise policy is: exercise the first time $S$ falls to
